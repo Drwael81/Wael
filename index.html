@@ -456,20 +456,26 @@
   }
   .tension-tag span{ font-family:'Cairo', sans-serif; font-weight:800; color:var(--accent); }
 
-  /* ---------- experiment 7: evaporation surface area ---------- */
-  .evap-grid{ display:flex; justify-content:center; gap:26px; flex-wrap:wrap; margin-bottom:24px; }
-  .evap-container{ display:flex; flex-direction:column; align-items:center; gap:8px; }
-  .evap-shape{
-    width:80px; height:90px; border:3px solid var(--ink); border-top:none; position:relative; overflow:hidden; background:#fff;
+  /* ---------- experiment 7: single adjustable-mouth evaporation ---------- */
+  .evap-single-wrap{ display:flex; justify-content:center; margin-bottom:8px; height:150px; align-items:flex-end; }
+  .evap-single{
+    width:30px; height:120px; border:3px solid var(--ink); border-top:none;
+    border-radius:0 0 14px 14px; position:relative; overflow:visible; background:#fff;
+    transition: width .3s ease;
   }
-  .evap-shape.wide{ border-radius:0 0 6px 6px; clip-path: polygon(15% 0, 85% 0, 100% 100%, 0% 100%); }
-  .evap-shape.medium{ border-radius:0 0 10px 10px; }
-  .evap-shape.narrow{ clip-path: polygon(35% 0, 65% 0, 78% 100%, 22% 100%); }
-  .evap-water{ position:absolute; bottom:0; left:0; right:0; height:80%; background:#A9CBE0; transition: height 3.5s ease-in; }
-  .evap-container.narrow .evap-water.evaporating{ height:62%; }
-  .evap-container.medium .evap-water.evaporating{ height:18%; }
-  .evap-container.wide .evap-water.evaporating{ height:40%; }
-  .evap-name{ font-size:12px; color:var(--ink-soft); text-align:center; }
+  .evap-single-water{
+    position:absolute; bottom:0; left:0; right:0; height:75%;
+    background:#A9CBE0; transition: height 2.6s ease-in-out;
+  }
+  .evap-arrows{
+    position:absolute; top:-26px; left:0; right:0; display:flex; justify-content:center; gap:10px;
+    font-size:15px; color: var(--gas); opacity:0; transition: opacity .4s ease;
+  }
+  .evap-arrows.active{ opacity:1; }
+  .evap-arrows span{ animation: rise-fade 1.4s ease-in-out infinite; }
+  .evap-arrows span:nth-child(2){ animation-delay:.2s; }
+  .evap-arrows span:nth-child(3){ animation-delay:.4s; }
+  @keyframes rise-fade{ 0%{ transform:translateY(6px); opacity:0; } 50%{ opacity:1; } 100%{ transform:translateY(-10px); opacity:0; } }
 
   /* ---------- experiment 8: sublimation / deposition ---------- */
   .sub-tube{
@@ -1000,34 +1006,33 @@
         <span class="eyebrow">تجربة ٠٧ · التبخر</span>
         <h1>مساحة السطح والتبخر</h1>
         <p class="intro">
-          ثلاث أوعية بنفس شكل مختلف تحتوي على نفس كمية الماء بالظبط. اضغط "شغّل" وشوف بعد ساعات
-          مين هيفقد ماء أكتر، ومين هيحتفظ بأكبر كمية.
+          نفس كمية الماء بالظبط، بس بفوهة وعاء بتتغيّر اتساعها. حرّك السلايدر عشان توسّع فوهة الوعاء،
+          وشوف معدل التبخر بيزيد إزاي كل ما زادت مساحة السطح المعرّضة للهواء.
         </p>
       </header>
 
-      <div class="evap-grid">
-        <div class="evap-container wide" id="evap-2">
-          <div class="evap-shape wide"><div class="evap-water"></div></div>
-          <div class="evap-name">وعاء (٢) عريض</div>
+      <div class="beaker-sim">
+        <div class="evap-single-wrap">
+          <div class="evap-single" id="evapSingle">
+            <div class="evap-single-water" id="evapSingleWater"></div>
+            <div class="evap-arrows" id="evapArrows">
+              <span>↑</span><span>↑</span><span>↑</span>
+            </div>
+          </div>
         </div>
-        <div class="evap-container medium" id="evap-1">
-          <div class="evap-shape medium"><div class="evap-water"></div></div>
-          <div class="evap-name">وعاء (١) متوسط</div>
+        <div class="beaker-sim-controls">
+          <label class="slider-label" for="mouthSlider">اتساع فوهة الوعاء: <span id="mouthLabel">ضيقة</span></label>
+          <input type="range" id="mouthSlider" min="30" max="140" step="1" value="30" class="glucose-slider">
+          <div class="concentration-tag" id="evapRateTag">معدل التبخر المتوقع: بطيء 🐢</div>
         </div>
-        <div class="evap-container narrow" id="evap-3">
-          <div class="evap-shape narrow"><div class="evap-water"></div></div>
-          <div class="evap-name">وعاء (٣) ضيق الفوهة</div>
+        <div class="race-controls" style="margin-top:8px;">
+          <button class="master-btn" id="evapRunBtn">شغّل التبخر (بعد عدة ساعات)</button>
         </div>
       </div>
 
-      <div class="race-controls">
-        <button class="master-btn" id="evapBtn">شغّل (بعد عدة ساعات)</button>
-      </div>
-
-      <div class="conclusion" id="evap-result" style="opacity:0; transition:opacity .4s ease;">
-        <b>لاحظ:</b> الوعاء (٢) العريض له أكبر مساحة سطح، فيفقد أكبر كمية ماء بالتبخر.
-        الوعاء (٣) ضيق الفوهة له أصغر مساحة سطح، فيحتفظ بأكبر كمية ماء متبقية.
-        الترتيب: (٣) > (١) > (٢).
+      <div class="conclusion">
+        <b>القاعدة:</b> كل ما زادت مساحة سطح الماء المعرّضة للهواء (فوهة أوسع)، زاد عدد الجزيئات
+        اللي تقدر "تهرب" للهواء في نفس الوقت، فيزيد معدل التبخر — حتى لو كمية الماء نفسها واحدة.
       </div>
     </section>
 
@@ -1274,15 +1279,32 @@
     });
   });
 
-  /* ---- experiment 7: evaporation ---- */
-  const evapBtn = document.getElementById('evapBtn');
-  const evapResult = document.getElementById('evap-result');
-  let evapRunning = false;
-  evapBtn.addEventListener('click', () => {
-    evapRunning = !evapRunning;
-    document.querySelectorAll('.evap-water').forEach(w => w.classList.toggle('evaporating', evapRunning));
-    evapBtn.textContent = evapRunning ? 'إعادة الضبط' : 'شغّل (بعد عدة ساعات)';
-    evapResult.style.opacity = evapRunning ? '1' : '0';
+  /* ---- experiment 7: single adjustable-mouth evaporation ---- */
+  const mouthSlider = document.getElementById('mouthSlider');
+  const mouthLabel = document.getElementById('mouthLabel');
+  const evapRateTag = document.getElementById('evapRateTag');
+  const evapSingle = document.getElementById('evapSingle');
+  const evapSingleWater = document.getElementById('evapSingleWater');
+  const evapArrows = document.getElementById('evapArrows');
+  const evapRunBtn = document.getElementById('evapRunBtn');
+
+  function updateMouth(width){
+    evapSingle.style.width = width + 'px';
+    if(width < 60){ mouthLabel.textContent = 'ضيقة جدًا'; evapRateTag.textContent = 'معدل التبخر المتوقع: بطيء جدًا 🐢'; }
+    else if(width < 100){ mouthLabel.textContent = 'متوسطة'; evapRateTag.textContent = 'معدل التبخر المتوقع: متوسط 🙂'; }
+    else { mouthLabel.textContent = 'واسعة جدًا'; evapRateTag.textContent = 'معدل التبخر المتوقع: سريع جدًا 🔥'; }
+    evapSingleWater.style.height = '75%';
+    evapArrows.classList.remove('active');
+  }
+  mouthSlider.addEventListener('input', () => updateMouth(parseInt(mouthSlider.value, 10)));
+  updateMouth(30);
+
+  evapRunBtn.addEventListener('click', () => {
+    const width = parseInt(mouthSlider.value, 10);
+    const finalHeight = 75 - ((width - 30) / (140 - 30)) * 55; // wider mouth -> lower final level
+    evapSingleWater.style.height = finalHeight + '%';
+    evapArrows.classList.add('active');
+    setTimeout(() => evapArrows.classList.remove('active'), 2600);
   });
 
   /* ---- experiment 8: sublimation / deposition ---- */
