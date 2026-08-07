@@ -219,6 +219,8 @@
   }
   .press-btn:hover{ background: var(--accent); color:#fff; }
   .press-btn:active{ transform: scale(.96); }
+  .press-btn:disabled{ opacity:.4; cursor:not-allowed; }
+  .press-btn:disabled:hover{ background:#fff; color:var(--accent); }
   .press-btn:focus-visible{ outline: 3px solid var(--ink); outline-offset:3px; }
   .hint{
     font-size:12.5px;
@@ -536,6 +538,47 @@
   .therm-value{ font-family:'Cairo', sans-serif; font-weight:800; font-size:22px; transition: color .4s ease; }
   .therm-label{ font-size:12.5px; color:var(--ink-soft); margin-top:4px; }
 
+  /* ---------- experiment 10: heat perception illusion ---------- */
+  .hand-row{ display:flex; justify-content:center; gap:30px; margin:18px 0; font-size:40px; }
+  .hand-box{ text-align:center; }
+  .hand-box .label{ font-size:12px; color:var(--ink-soft); margin-top:6px; }
+  .illusion-step{ text-align:center; margin:20px 0; }
+  .illusion-result{
+    max-width:520px; margin:14px auto 0; background:#fff; border:1.5px dashed var(--liquid);
+    border-radius:14px; padding:14px 16px; font-size:14px; color:var(--ink);
+    opacity:0; transform:translateY(6px); transition: opacity .4s ease, transform .4s ease;
+  }
+  .illusion-result.show{ opacity:1; transform:none; }
+
+  /* ---------- experiment 12: mass/type/state simulator ---------- */
+  .sim-tabs{ display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-bottom:26px; }
+  .sim-beakers{ display:flex; justify-content:center; gap:50px; flex-wrap:wrap; margin-bottom:20px; }
+  .sim-beaker{ text-align:center; }
+  .sim-beaker .therm-bar-wrap{ height:120px; }
+  .sim-beaker .beaker-name{ font-family:'Cairo', sans-serif; font-weight:700; font-size:13px; margin-top:8px; }
+  .sim-beaker .beaker-sub{ font-size:11.5px; color:var(--ink-soft); }
+
+  /* ---------- experiment 13: specific heat table ---------- */
+  .sh-table{ width:100%; max-width:420px; margin:0 auto 22px; border-collapse:collapse; font-size:13.5px; }
+  .sh-table th, .sh-table td{ padding:8px 10px; text-align:center; border-bottom:1px solid rgba(30,42,51,0.1); }
+  .sh-table th{ font-family:'Cairo', sans-serif; color:var(--ink-soft); font-weight:700; }
+  .sh-table td.hi{ color: var(--liquid); font-weight:800; font-family:'Cairo', sans-serif; }
+
+  /* ---------- experiment 14: pressure cooker ---------- */
+  .pot-readout{ text-align:center; margin-bottom:26px; }
+  .pot-visual-big{ font-size:64px; margin-bottom:8px; transition: transform .3s ease; }
+  .time-compare{ max-width:380px; margin:0 auto 28px; text-align:center; }
+  .time-label{ font-size:13px; color:var(--ink-soft); margin-bottom:8px; }
+  .time-bar-wrap{
+    height:16px; border-radius:8px; background:#EEF1EA; overflow:hidden;
+    border:1px solid rgba(30,42,51,0.1);
+  }
+  .time-bar{
+    height:100%; border-radius:8px; background: var(--solid); width:100%;
+    transition: width .6s ease, background .6s ease;
+  }
+  .time-value{ font-family:'Cairo', sans-serif; font-weight:800; font-size:15px; margin-top:8px; color: var(--ink); }
+
   .coming-soon{ padding: 10px 0 70px; text-align:center; }
   .coming-soon h2{
     font-family:'Cairo', sans-serif; font-weight:800; font-size:22px;
@@ -602,7 +645,12 @@
         <a href="#exp-7">٧ · مساحة السطح والتبخر</a>
         <a href="#exp-8">٨ · التصعيد والترسيب</a>
         <a href="#exp-9">٩ · النقاء ودرجتا الغليان والانصهار</a>
-        <a class="soon" title="هتضاف قريبًا">١٠ · قريبًا</a>
+        <a href="#exp-10">١٠ · الإحساس بالحرارة يخدعنا</a>
+        <a href="#exp-11">١١ · أنواع الأنظمة</a>
+        <a href="#exp-12">١٢ · العوامل المؤثرة في تغير الحرارة</a>
+        <a href="#exp-13">١٣ · السعة الحرارية النوعية</a>
+        <a href="#exp-14">١٤ · حلة الضغط</a>
+        <a class="soon" title="هتضاف قريبًا">١٥ · قريبًا</a>
       </nav>
     </div>
   </div>
@@ -1115,12 +1163,209 @@
       </div>
     </section>
 
+    <!-- ============ experiment 10: heat perception illusion ============ -->
+    <section class="experiment" id="exp-10">
+      <header class="exp-head">
+        <span class="eyebrow">تجربة ١٠ · الطاقة الحرارية</span>
+        <h1>الإحساس بالحرارة يخدعنا</h1>
+        <p class="intro">
+          إحساسنا باليد مش أداة قياس دقيقة للحرارة — جرب الخطوتين بالترتيب وشوف المفاجأة.
+        </p>
+      </header>
+
+      <div class="hand-row">
+        <div class="hand-box">🧊<div class="label">ماء مثلج</div></div>
+        <div class="hand-box">🌡️<div class="label">ماء دافئ</div></div>
+        <div class="hand-box">🔥<div class="label">ماء ساخن</div></div>
+      </div>
+
+      <div class="illusion-step">
+        <button class="press-btn" id="illusionStep1" style="--accent: var(--solid);">
+          الخطوة ١: حط إيدك اليمين في الساخن، والشمال في المثلج لمدة دقيقة
+        </button>
+        <div class="illusion-result" id="illusionResult1">
+          <strong>حسيت:</strong> إيدك اليمين حاسة سخونة، وإيدك الشمال حاسة برودة — طبيعي جدًا.
+        </div>
+      </div>
+
+      <div class="illusion-step">
+        <button class="press-btn" id="illusionStep2" style="--accent: var(--liquid);" disabled>
+          الخطوة ٢: دلوقتي حط الإيدين الاتنين في الماء الدافئ
+        </button>
+        <div class="illusion-result" id="illusionResult2">
+          <strong>المفاجأة:</strong> نفس الماء الدافئ بالظبط — إيدك اللي كانت في الساخن حسّته بارد،
+          وإيدك اللي كانت في المثلج حسّته سخن! الإحساس اتخدع لأنه بيقيس "الفرق" مش الدرجة الفعلية.
+        </div>
+      </div>
+
+      <div class="conclusion">
+        <b>الخلاصة:</b> نقل الحرارة بين الجسم والمحيط هو اللي بيحدد الإحساس، مش درجة الحرارة الفعلية —
+        عشان كده بنستخدم الترمومتر كأداة قياس دقيقة بدل الإحساس.
+      </div>
+    </section>
+
+    <!-- ============ experiment 11: types of systems ============ -->
+    <section class="experiment" id="exp-11">
+      <header class="exp-head">
+        <span class="eyebrow">تجربة ١١ · مفهوم النظام</span>
+        <h1>أنواع الأنظمة</h1>
+        <p class="intro">
+          كل نظام له حدود بتفصله عن المحيط. اضغط على كل مثال وشوف هل بيتبادل طاقة، مادة، ولا الاتنين مع المحيط.
+        </p>
+      </header>
+
+      <div class="grid">
+        <div class="card solid" id="card-sys-open">
+          <span class="tag">نظام مفتوح</span>
+          <div class="material-name">🍲 قدر مكشوف بيغلي</div>
+          <button class="press-btn" data-target="card-sys-open" data-toggle="diffused">ليه نظام مفتوح؟</button>
+          <div class="result">
+            <strong>بيتبادل طاقة ومادة معًا.</strong> الحرارة وبخار الماء بيتبادلوا مع الهواء المحيط.
+          </div>
+        </div>
+
+        <div class="card liquid" id="card-sys-closed">
+          <span class="tag">نظام مغلق</span>
+          <div class="material-name">🥤 علبة مياه غازية مبردة</div>
+          <button class="press-btn" data-target="card-sys-closed" data-toggle="diffused">ليه نظام مغلق؟</button>
+          <div class="result">
+            <strong>بيتبادل طاقة بس، مش مادة.</strong> الحرارة بس بتتبادل مع الهواء، والسائل جوه العلبة فضل مقفول.
+          </div>
+        </div>
+
+        <div class="card gas" id="card-sys-isolated">
+          <span class="tag">نظام معزول</span>
+          <div class="material-name">🧴 ترمس (فلاسك حراري)</div>
+          <button class="press-btn" data-target="card-sys-isolated" data-toggle="diffused">ليه نظام معزول؟</button>
+          <div class="result">
+            <strong>ملوش تبادل خالص.</strong> لا طاقة ولا مادة بتتبادل مع المحيط — عشان كده بيحافظ على درجة الحرارة لفترة طويلة.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ experiment 12: mass/type/state simulator ============ -->
+    <section class="experiment" id="exp-12">
+      <header class="exp-head">
+        <span class="eyebrow">تجربة ١٢ · العوامل المؤثرة</span>
+        <h1>العوامل المؤثرة في تغير درجة الحرارة</h1>
+        <p class="intro">
+          اختار العامل اللي عايز تختبره، وبعدين اضغط "سخّن الاثنين" وشوف الفرق في ارتفاع درجة الحرارة —
+          مع إن كل إناء بياخد نفس كمية الحرارة بالظبط.
+        </p>
+      </header>
+
+      <div class="sim-tabs">
+        <button class="alt-btn sim-tab active" data-sim="mass">تأثير الكتلة</button>
+        <button class="alt-btn sim-tab" data-sim="type">تأثير نوع المادة</button>
+        <button class="alt-btn sim-tab" data-sim="state">تأثير حالة المادة</button>
+      </div>
+
+      <div class="sim-beakers">
+        <div class="sim-beaker">
+          <div class="therm-bar-wrap"><div class="therm-bar" id="simBarA" style="background:var(--liquid);"></div></div>
+          <div class="beaker-name" id="simNameA">ماء ١ كجم</div>
+          <div class="beaker-sub" id="simTempA">٢٠°م</div>
+        </div>
+        <div class="sim-beaker">
+          <div class="therm-bar-wrap"><div class="therm-bar" id="simBarB" style="background:var(--solid);"></div></div>
+          <div class="beaker-name" id="simNameB">ماء ٠.٥ كجم</div>
+          <div class="beaker-sub" id="simTempB">٢٠°م</div>
+        </div>
+      </div>
+
+      <div class="race-controls">
+        <button class="master-btn" id="simHeatBtn">سخّن الاثنين لنفس المدة</button>
+      </div>
+
+      <div class="conclusion" id="simResult">
+        كتلة الماء الأصغر (B) هترتفع درجة حرارتها أكتر من الأكبر (A) بنفس كمية الحرارة،
+        لأن نفس الطاقة بتتوزع على عدد جزيئات أقل.
+      </div>
+    </section>
+
+    <!-- ============ experiment 13: specific heat ============ -->
+    <section class="experiment" id="exp-13">
+      <header class="exp-head">
+        <span class="eyebrow">تجربة ١٣ · السعة الحرارية النوعية</span>
+        <h1>السعة الحرارية النوعية</h1>
+        <p class="intro">
+          السعة الحرارية النوعية هي كمية الحرارة اللازمة لرفع درجة حرارة ١ كجم من المادة درجة واحدة مئوية.
+          كل ما كانت أكبر، كل ما احتاجت المادة حرارة أكتر عشان تسخن، وبردت أبطأ.
+        </p>
+      </header>
+
+      <table class="sh-table">
+        <tr><th>المادة</th><th>السعة الحرارية (J/kg.°م)</th></tr>
+        <tr><td>الزئبق</td><td>١٤٠</td></tr>
+        <tr><td>النحاس</td><td>٣٨٥</td></tr>
+        <tr><td>الحديد</td><td>٤٥٠</td></tr>
+        <tr><td>الألومنيوم</td><td>٩٠٠</td></tr>
+        <tr><td>زيت الذرة</td><td>٢٠٠٠</td></tr>
+        <tr><td>الثلج</td><td>٢٠٩٠</td></tr>
+        <tr><td class="hi">الماء</td><td class="hi">٤١٨٠</td></tr>
+      </table>
+
+      <div class="race-controls">
+        <button class="master-btn" id="copperBtn">سخّن النحاس والألومنيوم بنفس كمية الحرارة</button>
+      </div>
+
+      <div class="sim-beakers" style="margin-top:20px;">
+        <div class="sim-beaker">
+          <div class="therm-bar-wrap"><div class="therm-bar" id="cuBar" style="background:var(--solid); height:20%;"></div></div>
+          <div class="beaker-name">نحاس ٥ جم</div>
+          <div class="beaker-sub" id="cuTemp">٢٠°م</div>
+        </div>
+        <div class="sim-beaker">
+          <div class="therm-bar-wrap"><div class="therm-bar" id="alBar" style="background:var(--liquid); height:20%;"></div></div>
+          <div class="beaker-name">ألومنيوم ٥ جم</div>
+          <div class="beaker-sub" id="alTemp">٢٠°م</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ experiment 14: pressure cooker ============ -->
+    <section class="experiment" id="exp-14">
+      <header class="exp-head">
+        <span class="eyebrow">تجربة ١٤ · تطبيق تكنولوجي</span>
+        <h1>حلة الضغط توفّر الوقت والوقود</h1>
+        <p class="intro">
+          حلة الضغط بتحبس بخار الماء جواها، فيزيد الضغط الداخلي، وده بيرفع درجة غليان الماء فوق ١٠٠°م —
+          اضغط على الحلتين وشوف الفرق في درجة الغليان ووقت الطهي.
+        </p>
+      </header>
+
+      <div class="sim-tabs">
+        <button class="alt-btn pot-tab active" data-pot="normal">🍲 قدر عادي</button>
+        <button class="alt-btn pot-tab" data-pot="pressure">🔒 حلة ضغط</button>
+      </div>
+
+      <div class="pot-readout">
+        <div class="pot-visual-big" id="potVisualBig">🍲</div>
+        <div class="boil-readout" id="potBoilReadout">تغلي عند ١٠٠°م</div>
+        <div class="alt-readout">درجة الضغط الداخلي: عادي</div>
+      </div>
+
+      <div class="time-compare">
+        <div class="time-label">وقت الطهي النسبي</div>
+        <div class="time-bar-wrap">
+          <div class="time-bar" id="potTimeBar"></div>
+        </div>
+        <div class="time-value" id="potTimeValue">١٠٠٪ (الوقت الكامل)</div>
+      </div>
+
+      <div class="conclusion">
+        <b>الخلاصة:</b> زيادة الضغط الداخلي في حلة الضغط بترفع درجة غليان الماء فوق ١٠٠°م،
+        فالطعام بينضج في وقت أقصر وبيوفر وقود بنسبة تتراوح من ٧٠٪ إلى ٩٠٪ مقارنة بالقدر العادي.
+      </div>
+    </section>
+
     <!-- ============ coming soon ============ -->
     <section class="coming-soon">
       <h2>تجارب هتتضاف قريبًا</h2>
       <p>الموقع مبني عشان يتوسع — كل تجربة جديدة هتتضاف هنا كقسم مستقل زي التجارب اللي فوق.</p>
       <div class="soon-grid">
-        <div class="soon-card"><div class="num">١٠</div>قريبًا</div>
+        <div class="soon-card"><div class="num">١٥</div>قريبًا</div>
       </div>
     </section>
 
@@ -1355,6 +1600,115 @@
 
   glucoseSlider.addEventListener('input', () => updateSolution(parseInt(glucoseSlider.value, 10)));
   updateSolution(0);
+
+  /* ---- experiment 10: heat perception illusion ---- */
+  const step1 = document.getElementById('illusionStep1');
+  const step2 = document.getElementById('illusionStep2');
+  const res1 = document.getElementById('illusionResult1');
+  const res2 = document.getElementById('illusionResult2');
+  step1.addEventListener('click', () => {
+    res1.classList.add('show');
+    step2.disabled = false;
+  });
+  step2.addEventListener('click', () => {
+    res2.classList.add('show');
+  });
+
+  /* ---- experiment 12: mass/type/state simulator ---- */
+  const simTabs = document.querySelectorAll('.sim-tab');
+  const simNameA = document.getElementById('simNameA');
+  const simNameB = document.getElementById('simNameB');
+  const simTempA = document.getElementById('simTempA');
+  const simTempB = document.getElementById('simTempB');
+  const simBarA = document.getElementById('simBarA');
+  const simBarB = document.getElementById('simBarB');
+  const simHeatBtn = document.getElementById('simHeatBtn');
+  const simResult = document.getElementById('simResult');
+
+  const simScenarios = {
+    mass: {
+      nameA: 'ماء ١ كجم', nameB: 'ماء ٠.٥ كجم',
+      tempA: '٣٥°م', tempB: '٥٠°م', heightA: '55%', heightB: '75%',
+      text: 'كتلة الماء الأصغر (B) ارتفعت درجة حرارتها أكتر من الأكبر (A) بنفس كمية الحرارة، لأن نفس الطاقة اتوزعت على عدد جزيئات أقل.'
+    },
+    type: {
+      nameA: 'ماء ١ كجم', nameB: 'زيت ١ كجم',
+      tempA: '٣٠°م', tempB: '٤٥°م', heightA: '50%', heightB: '70%',
+      text: 'الزيت (B) ارتفعت درجة حرارته أكتر من الماء (A) بنفس كمية الحرارة، لأن السعة الحرارية للزيت أقل من الماء.'
+    },
+    state: {
+      nameA: 'ماء سائل ٥٠٠ جم', nameB: 'ثلج ٥٠٠ جم',
+      tempA: '٢٥°م', tempB: '٤٥°م', heightA: '50%', heightB: '72%',
+      text: 'الثلج (B) ارتفعت درجة حرارته أكتر من الماء السائل (A) بنفس كمية الحرارة، لأن السعة الحرارية للثلج أقل من الماء السائل.'
+    }
+  };
+
+  let currentSim = 'mass';
+  function resetSim(){
+    simBarA.style.height = '25%';
+    simBarB.style.height = '25%';
+    const s = simScenarios[currentSim];
+    simNameA.textContent = s.nameA;
+    simNameB.textContent = s.nameB;
+    simTempA.textContent = '٢٠°م';
+    simTempB.textContent = '٢٠°م';
+  }
+  simTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      simTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      currentSim = tab.dataset.sim;
+      resetSim();
+    });
+  });
+  simHeatBtn.addEventListener('click', () => {
+    const s = simScenarios[currentSim];
+    simBarA.style.height = s.heightA;
+    simBarB.style.height = s.heightB;
+    simTempA.textContent = s.tempA;
+    simTempB.textContent = s.tempB;
+    simResult.textContent = s.text;
+  });
+  resetSim();
+
+  /* ---- experiment 13: specific heat (copper vs aluminum) ---- */
+  const copperBtn = document.getElementById('copperBtn');
+  const cuBar = document.getElementById('cuBar');
+  const alBar = document.getElementById('alBar');
+  const cuTemp = document.getElementById('cuTemp');
+  const alTemp = document.getElementById('alTemp');
+  copperBtn.addEventListener('click', () => {
+    cuBar.style.height = '92%';
+    alBar.style.height = '55%';
+    cuTemp.textContent = '٩٧.٩°م';
+    alTemp.textContent = '٥٣.٣°م';
+  });
+
+  /* ---- experiment 14: pressure cooker ---- */
+  const potTabs = document.querySelectorAll('.pot-tab');
+  const potVisualBig = document.getElementById('potVisualBig');
+  const potBoilReadout = document.getElementById('potBoilReadout');
+  const potTimeBar = document.getElementById('potTimeBar');
+  const potTimeValue = document.getElementById('potTimeValue');
+  potTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      potTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      if(tab.dataset.pot === 'pressure'){
+        potVisualBig.textContent = '🔒';
+        potBoilReadout.textContent = 'تغلي عند أكتر من ١٠٠°م (ضغط مرتفع)';
+        potTimeBar.style.width = '20%';
+        potTimeBar.style.background = 'var(--gas)';
+        potTimeValue.textContent = '٢٠٪ من الوقت فقط (يوفر ٧٠-٩٠٪)';
+      } else {
+        potVisualBig.textContent = '🍲';
+        potBoilReadout.textContent = 'تغلي عند ١٠٠°م';
+        potTimeBar.style.width = '100%';
+        potTimeBar.style.background = 'var(--solid)';
+        potTimeValue.textContent = '١٠٠٪ (الوقت الكامل)';
+      }
+    });
+  });
 </script>
 </body>
 </html>
