@@ -401,6 +401,135 @@
   }
   .life-example b{ font-family:'Cairo', sans-serif; color:var(--ink); }
 
+  /* ---------- experiment 5: altitude & boiling point ---------- */
+  .mountain-controls{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:28px; }
+  .alt-btn{
+    font-family:'Cairo', sans-serif; font-weight:700; font-size:13.5px;
+    background:#fff; border:2px solid rgba(30,42,51,0.15); color:var(--ink-soft);
+    padding:10px 18px; border-radius:12px; cursor:pointer;
+    transition: all .2s ease;
+  }
+  .alt-btn.active{ border-color: var(--liquid); color:var(--liquid); background: color-mix(in srgb, var(--liquid) 8%, white); }
+  .pot-visual{ display:flex; flex-direction:column; align-items:center; gap:10px; }
+  .pot{
+    width:110px; height:80px; border:3px solid var(--ink); border-top:none;
+    border-radius:0 0 16px 16px; position:relative; overflow:hidden; background:#fff;
+  }
+  .pot-water{ position:absolute; bottom:0; left:0; right:0; height:65%; background:#BFE3F2; }
+  .bubble{
+    position:absolute; bottom:6px; width:6px; height:6px; border-radius:50%;
+    background:#fff; opacity:.9; animation: bubble-rise 1.6s ease-in infinite;
+  }
+  @keyframes bubble-rise{ 0%{ transform:translateY(0); opacity:.9;} 100%{ transform:translateY(-45px); opacity:0; } }
+  .pot-visual.slow .bubble{ animation-duration: 3.2s; }
+  .pot-visual.fast .bubble{ animation-duration: .9s; }
+  .boil-readout{
+    font-family:'Cairo', sans-serif; font-weight:800; font-size:22px; color: var(--liquid);
+  }
+  .alt-readout{ font-size:13px; color:var(--ink-soft); }
+
+  /* ---------- experiment 6: pull-apart particle game ---------- */
+  .particle-lab{ margin:14px 0 6px; user-select:none; touch-action:none; }
+  .particle-track{
+    display:flex; align-items:center; justify-content:center;
+    height:64px;
+  }
+  .particle{
+    font-size:26px; width:38px; height:38px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background: color-mix(in srgb, var(--accent) 16%, white);
+    border:2px solid var(--accent);
+    flex-shrink:0; z-index:2;
+    transition: transform .2s ease;
+  }
+  .bond{
+    height:3px; border-top:3px dashed var(--accent);
+    width:22px; opacity:.7;
+    transition: width .5s cubic-bezier(.2,.7,.3,1), opacity .5s ease;
+  }
+  .card.solid .particle-lab.pulling .bond{ width:28px; }
+  .card.solid .particle-lab.pulling .particle.b{ animation: resist .28s ease; }
+  .card.liquid .particle-lab.pulling .bond{ width:90px; opacity:.45; }
+  .card.gas .particle-lab.pulling .bond{ width:170px; opacity:.12; }
+  .tension-tag{
+    text-align:center; font-size:12.5px; color:var(--ink-soft); margin-top:8px; min-height:16px;
+  }
+  .tension-tag span{ font-family:'Cairo', sans-serif; font-weight:800; color:var(--accent); }
+
+  /* ---------- experiment 7: evaporation surface area ---------- */
+  .evap-grid{ display:flex; justify-content:center; gap:26px; flex-wrap:wrap; margin-bottom:24px; }
+  .evap-container{ display:flex; flex-direction:column; align-items:center; gap:8px; }
+  .evap-shape{
+    width:80px; height:90px; border:3px solid var(--ink); border-top:none; position:relative; overflow:hidden; background:#fff;
+  }
+  .evap-shape.wide{ border-radius:0 0 6px 6px; clip-path: polygon(15% 0, 85% 0, 100% 100%, 0% 100%); }
+  .evap-shape.medium{ border-radius:0 0 10px 10px; }
+  .evap-shape.narrow{ clip-path: polygon(35% 0, 65% 0, 78% 100%, 22% 100%); }
+  .evap-water{ position:absolute; bottom:0; left:0; right:0; height:80%; background:#A9CBE0; transition: height 3.5s ease-in; }
+  .evap-container.narrow .evap-water.evaporating{ height:62%; }
+  .evap-container.medium .evap-water.evaporating{ height:18%; }
+  .evap-container.wide .evap-water.evaporating{ height:40%; }
+  .evap-name{ font-size:12px; color:var(--ink-soft); text-align:center; }
+
+  /* ---------- experiment 8: sublimation / deposition ---------- */
+  .sub-tube{
+    width:90px; height:220px; margin:0 auto; border:3px solid var(--ink); border-radius:14px;
+    position:relative; overflow:hidden; background:#fff;
+  }
+  .sub-solid{
+    position:absolute; bottom:8px; left:50%; transform:translateX(-50%);
+    width:34px; height:34px; border-radius:8px; background:#2B2B36; transition: opacity .6s ease, transform .6s ease;
+  }
+  .sub-vapor{
+    position:absolute; inset:0; background: linear-gradient(0deg, rgba(216,109,178,0.05), rgba(216,109,178,0.55));
+    opacity:0; transition: opacity .8s ease;
+  }
+  .sub-tube.sublimed .sub-solid{ opacity:0; transform:translateX(-50%) scale(.3); }
+  .sub-tube.sublimed .sub-vapor{ opacity:1; }
+  .sub-controls{ display:flex; gap:12px; justify-content:center; margin-top:18px; }
+
+  /* ---------- experiment 9: interactive concentration simulator ---------- */
+  .beaker-sim{ display:flex; flex-direction:column; align-items:center; gap:18px; margin-bottom:30px; }
+  .beaker-sim-glass{
+    width:120px; height:130px; border:3px solid var(--ink); border-top:none;
+    border-radius:0 0 16px 16px; position:relative; overflow:hidden; background:#fff;
+  }
+  .beaker-sim-water{ position:absolute; bottom:0; left:0; right:0; height:80%; background:#DCEBF4; }
+  .crystal{
+    position:absolute; width:5px; height:5px; border-radius:50%;
+    background: var(--liquid); opacity:0; transform:scale(.4);
+    transition: opacity .4s ease, transform .4s ease;
+  }
+  .beaker-sim-controls{ width:100%; max-width:320px; text-align:center; }
+  .slider-label{
+    display:block; font-size:13.5px; color:var(--ink-soft); margin-bottom:10px;
+  }
+  .slider-label span{ font-family:'Cairo', sans-serif; font-weight:800; color: var(--ink); }
+  .glucose-slider{
+    width:100%; height:8px; border-radius:6px; accent-color: var(--liquid);
+    background:#EEF1EA; margin-bottom:12px;
+  }
+  .concentration-tag{
+    font-size:12.5px; color:var(--ink-soft); background:#fff;
+    border:1px solid rgba(30,42,51,0.12); border-radius:999px;
+    padding:6px 14px; display:inline-block;
+  }
+  .therm-grid{ display:flex; justify-content:center; gap:40px; flex-wrap:wrap; }
+  .therm-card{ text-align:center; }
+  .therm-bar-wrap{
+    width:22px; height:100px; border-radius:11px; background:#EEF1EA;
+    margin:0 auto 10px; position:relative; overflow:hidden;
+    border:1px solid rgba(30,42,51,0.1);
+  }
+  .therm-bar{
+    position:absolute; bottom:0; left:0; right:0; border-radius:11px;
+    transition: height .4s ease, background .4s ease;
+  }
+  .freeze-bar{ background: var(--liquid); height:40%; }
+  .boil-bar{ background: var(--solid); height:40%; }
+  .therm-value{ font-family:'Cairo', sans-serif; font-weight:800; font-size:22px; transition: color .4s ease; }
+  .therm-label{ font-size:12.5px; color:var(--ink-soft); margin-top:4px; }
+
   .coming-soon{ padding: 10px 0 70px; text-align:center; }
   .coming-soon h2{
     font-family:'Cairo', sans-serif; font-weight:800; font-size:22px;
@@ -428,6 +557,17 @@
     text-align:center; padding:26px 20px 40px;
     color:var(--ink-soft); font-size:13px;
   }
+  .visit-counter{
+    display:inline-flex; align-items:center; gap:8px;
+    margin-top:14px; background:#fff;
+    border:1px solid rgba(30,42,51,0.14); border-radius:999px;
+    padding:6px 16px; box-shadow: var(--shadow);
+  }
+  .visit-counter-label{ font-size:12px; color:var(--ink-soft); }
+  .visit-counter-num{
+    font-family:'Cairo', sans-serif; font-weight:800; font-size:14px;
+    color: var(--gas); letter-spacing:.5px;
+  }
 
   @media (prefers-reduced-motion: reduce){
     html{ scroll-behavior:auto; }
@@ -451,7 +591,12 @@
         <a href="#exp-2">٢ · سرعة الانتشار</a>
         <a href="#exp-3">٣ · سباق النشادر وحمض الهيدروكلوريك</a>
         <a href="#exp-4">٤ · ضغط الغاز وحجمه</a>
-        <a class="soon" title="هتضاف قريبًا">٥ · قريبًا</a>
+        <a href="#exp-5">٥ · الضغط الجوي ودرجة الغليان</a>
+        <a href="#exp-6">٦ · قوى التجاذب بين الجزيئات</a>
+        <a href="#exp-7">٧ · مساحة السطح والتبخر</a>
+        <a href="#exp-8">٨ · التصعيد والترسيب</a>
+        <a href="#exp-9">٩ · النقاء ودرجتا الغليان والانصهار</a>
+        <a class="soon" title="هتضاف قريبًا">١٠ · قريبًا</a>
       </nav>
     </div>
   </div>
@@ -741,12 +886,236 @@
       </div>
     </section>
 
+    <!-- ============ experiment 5: altitude & boiling point ============ -->
+    <section class="experiment" id="exp-5">
+      <header class="exp-head">
+        <span class="eyebrow">تجربة ٠٥ · تطبيق على الضغط الجوي</span>
+        <h1>الضغط الجوي ودرجة الغليان</h1>
+        <p class="intro">
+          كل ما زاد الارتفاع عن سطح البحر، قل الضغط الجوي، وكل ما قل الضغط الجوي، قلت درجة غليان الماء.
+          اختار ارتفاع مختلف وشوف الماء بيغلي عند كام درجة، وسرعة الفقاقيع بتتغير إزاي.
+        </p>
+      </header>
+
+      <div class="mountain-controls">
+        <button class="alt-btn" data-alt="0">سطح البحر (٠ م)</button>
+        <button class="alt-btn" data-alt="1800">ارتفاع ١٨٠٠ م</button>
+        <button class="alt-btn" data-alt="3000">قمة الجبل ٣٠٠٠ م</button>
+      </div>
+
+      <div class="pot-visual" id="potVisual">
+        <div class="pot">
+          <div class="pot-water"></div>
+          <div class="bubble" style="left:20%; animation-delay:0s"></div>
+          <div class="bubble" style="left:45%; animation-delay:.4s"></div>
+          <div class="bubble" style="left:65%; animation-delay:.8s"></div>
+          <div class="bubble" style="left:35%; animation-delay:1.1s"></div>
+        </div>
+        <div class="boil-readout" id="boilReadout">تغلي عند ١٠٠°م</div>
+        <div class="alt-readout" id="altReadout">الضغط الجوي: ١ ضغط جوي</div>
+      </div>
+
+      <div class="conclusion">
+        <b>الخلاصة:</b> درجة غليان الماء تقل كلما زاد الارتفاع عن سطح البحر (قلّ الضغط الجوي)،
+        لذلك الطهي على قمم الجبال العالية بياخد وقت أطول لأن الماء بيغلي عند درجة حرارة أقل من ١٠٠°م.
+      </div>
+    </section>
+
+    <!-- ============ experiment 6: attraction forces ============ -->
+    <section class="experiment" id="exp-6">
+      <header class="exp-head">
+        <span class="eyebrow">تجربة ٠٦ · نظرية الجسيمات</span>
+        <h1>قوى التجاذب بين الجزيئات</h1>
+        <p class="intro">
+          حاول تفصل الجزيئين عن بعض! اضغط مع الاستمرار على كل زوج وشوف قوة الترابط بينهم بنفسك —
+          كل ما قاومت أكتر، فهمت أكتر ليه بعض المواد صعب تتكسر وبعضها بيتبخر بسهولة.
+        </p>
+      </header>
+
+      <div class="grid">
+        <div class="card solid" id="card-force-solid">
+          <span class="tag">صخر صلب</span>
+          <div class="material-name">🪨 حاول تفصل الجزيئات</div>
+          <div class="particle-lab" id="pull-solid">
+            <div class="particle-track">
+              <div class="particle a">⚛️</div>
+              <div class="bond"></div>
+              <div class="particle b">⚛️</div>
+            </div>
+            <div class="tension-tag">قوة الترابط: <span>—</span></div>
+          </div>
+          <button class="press-btn" data-pull="pull-solid">اسحب مع الاستمرار</button>
+          <div class="result">
+            <strong>الجزيئات ما اتفصلتش!</strong> قوى التجاذب بين جزيئات الصخر قوية جدًا والمسافات بينها صغيرة جدًا،
+            فتفضل متماسكة مهما حاولت تفصلها.
+          </div>
+        </div>
+
+        <div class="card liquid" id="card-force-liquid">
+          <span class="tag">ملح في الماء</span>
+          <div class="material-name">🥄 حاول تفصل الجزيئات</div>
+          <div class="particle-lab" id="pull-liquid">
+            <div class="particle-track">
+              <div class="particle a">⚛️</div>
+              <div class="bond"></div>
+              <div class="particle b">⚛️</div>
+            </div>
+            <div class="tension-tag">قوة الترابط: <span>—</span></div>
+          </div>
+          <button class="press-btn" data-pull="pull-liquid">اسحب مع الاستمرار</button>
+          <div class="result">
+            <strong>اتحركت شوية ورجعت.</strong> قوى التجاذب متوسطة والمسافات بين الجزيئات أكبر،
+            عشان كده جزيئات الملح تقدر "تدخل" بينها وتذوب.
+          </div>
+        </div>
+
+        <div class="card gas" id="card-force-gas">
+          <span class="tag">دخان في الهواء</span>
+          <div class="material-name">🕯️ حاول تفصل الجزيئات</div>
+          <div class="particle-lab" id="pull-gas">
+            <div class="particle-track">
+              <div class="particle a">⚛️</div>
+              <div class="bond"></div>
+              <div class="particle b">⚛️</div>
+            </div>
+            <div class="tension-tag">قوة الترابط: <span>—</span></div>
+          </div>
+          <button class="press-btn" data-pull="pull-gas">اسحب مع الاستمرار</button>
+          <div class="result">
+            <strong>اتفصلوا فورًا!</strong> قوى التجاذب بين جزيئات الغاز ضعيفة جدًا تقريبًا معدومة،
+            فبيتحركوا بحرية وينتشروا بسهولة شديدة.
+          </div>
+        </div>
+      </div>
+
+      <div class="conclusion">
+        <b>لاحظت الفرق؟</b> كل ما قوة التجاذب بين الجزيئات أكبر، كل ما كان أصعب تفصلها —
+        وده بالظبط اللي بيفرّق بين صلابة الصخر وسيولة الماء وخفة الهواء.
+      </div>
+    </section>
+
+    <!-- ============ experiment 7: evaporation & surface area ============ -->
+    <section class="experiment" id="exp-7">
+      <header class="exp-head">
+        <span class="eyebrow">تجربة ٠٧ · التبخر</span>
+        <h1>مساحة السطح والتبخر</h1>
+        <p class="intro">
+          ثلاث أوعية بنفس شكل مختلف تحتوي على نفس كمية الماء بالظبط. اضغط "شغّل" وشوف بعد ساعات
+          مين هيفقد ماء أكتر، ومين هيحتفظ بأكبر كمية.
+        </p>
+      </header>
+
+      <div class="evap-grid">
+        <div class="evap-container wide" id="evap-2">
+          <div class="evap-shape wide"><div class="evap-water"></div></div>
+          <div class="evap-name">وعاء (٢) عريض</div>
+        </div>
+        <div class="evap-container medium" id="evap-1">
+          <div class="evap-shape medium"><div class="evap-water"></div></div>
+          <div class="evap-name">وعاء (١) متوسط</div>
+        </div>
+        <div class="evap-container narrow" id="evap-3">
+          <div class="evap-shape narrow"><div class="evap-water"></div></div>
+          <div class="evap-name">وعاء (٣) ضيق الفوهة</div>
+        </div>
+      </div>
+
+      <div class="race-controls">
+        <button class="master-btn" id="evapBtn">شغّل (بعد عدة ساعات)</button>
+      </div>
+
+      <div class="conclusion" id="evap-result" style="opacity:0; transition:opacity .4s ease;">
+        <b>لاحظ:</b> الوعاء (٢) العريض له أكبر مساحة سطح، فيفقد أكبر كمية ماء بالتبخر.
+        الوعاء (٣) ضيق الفوهة له أصغر مساحة سطح، فيحتفظ بأكبر كمية ماء متبقية.
+        الترتيب: (٣) > (١) > (٢).
+      </div>
+    </section>
+
+    <!-- ============ experiment 8: sublimation / deposition ============ -->
+    <section class="experiment" id="exp-8">
+      <header class="exp-head">
+        <span class="eyebrow">تجربة ٠٨ · تحولات المادة</span>
+        <h1>التصعيد والترسيب</h1>
+        <p class="intro">
+          اليود الصلب لما يُسخَّن، يتحول مباشرة لبخار بنفسجي من غير ما يمر بالحالة السائلة (تصعيد).
+          وبالتبريد، البخار يرجع صلب تاني مباشرة (ترسيب). اضغط سخّن أو برّد وشوف التحول.
+        </p>
+      </header>
+
+      <div class="sub-tube" id="subTube">
+        <div class="sub-vapor"></div>
+        <div class="sub-solid"></div>
+      </div>
+
+      <div class="sub-controls">
+        <button class="press-btn" id="heatBtn" style="--accent: var(--solid);">سخّن (تصعيد)</button>
+        <button class="press-btn" id="coolBtn" style="--accent: var(--liquid);">برّد (ترسيب)</button>
+      </div>
+
+      <div class="conclusion">
+        <b>الخلاصة:</b> التصعيد هو تحول المادة من الحالة الصلبة إلى الغازية مباشرة (زي اليود والثلج الجاف)،
+        والترسيب هو العكس: من الحالة الغازية إلى الصلبة مباشرة (زي تكوّن الصقيع)، من غير المرور بالحالة السائلة في الحالتين.
+      </div>
+    </section>
+
+    <!-- ============ experiment 9: purity & boiling/freezing point ============ -->
+    <section class="experiment" id="exp-9">
+      <header class="exp-head">
+        <span class="eyebrow">تجربة ٠٩ · النقاء ودرجات التغير</span>
+        <h1>النقاء ودرجتا الغليان والانصهار</h1>
+        <p class="intro">
+          حرّك السلايدر عشان تزوّد كمية الجلوكوز المذابة في الماء، وشوف بعينك درجتي التجمد والغليان
+          بيتغيروا لحظيًا مع زيادة التركيز — وعدد الجزيئات الذايبة في الكوب بيزيد كمان.
+        </p>
+      </header>
+
+      <div class="beaker-sim">
+        <div class="beaker-sim-glass">
+          <div class="beaker-sim-water">
+            <div class="crystal" style="top:20%;left:30%"></div>
+            <div class="crystal" style="top:55%;left:60%"></div>
+            <div class="crystal" style="top:35%;left:70%"></div>
+            <div class="crystal" style="top:70%;left:25%"></div>
+            <div class="crystal" style="top:15%;left:55%"></div>
+            <div class="crystal" style="top:80%;left:50%"></div>
+          </div>
+        </div>
+        <div class="beaker-sim-controls">
+          <label class="slider-label" for="glucoseSlider">كمية الجلوكوز المذابة: <span id="glucoseAmount">٠</span> جم/لتر</label>
+          <input type="range" id="glucoseSlider" min="0" max="360" step="10" value="0" class="glucose-slider">
+          <div class="concentration-tag" id="concentrationTag">ماء نقي 100% — بدون أي مادة مذابة</div>
+        </div>
+      </div>
+
+      <div class="therm-grid">
+        <div class="therm-card">
+          <div class="therm-bar-wrap">
+            <div class="therm-bar freeze-bar" id="freezeBar"></div>
+          </div>
+          <div class="therm-value" id="freezeVal" style="color:var(--liquid);">٠°م</div>
+          <div class="therm-label">درجة التجمد</div>
+        </div>
+        <div class="therm-card">
+          <div class="therm-bar-wrap">
+            <div class="therm-bar boil-bar" id="boilBar"></div>
+          </div>
+          <div class="therm-value" id="boilVal" style="color:var(--solid);">١٠٠°م</div>
+          <div class="therm-label">درجة الغليان</div>
+        </div>
+      </div>
+
+      <div class="conclusion">
+        <b>لاحظت؟</b> كل ما زادت كمية المادة المذابة، درجة التجمد نزلت تحت الصفر أكتر، ودرجة الغليان زادت فوق ١٠٠°م أكتر —
+        والفرق ده بيُستخدم كمقياس لاختبار نقاء المواد بمقارنتها بقيمها الثابتة المعروفة.
+      </div>
+    </section>
+
     <!-- ============ coming soon ============ -->
     <section class="coming-soon">
       <h2>تجارب هتتضاف قريبًا</h2>
       <p>الموقع مبني عشان يتوسع — كل تجربة جديدة هتتضاف هنا كقسم مستقل زي التجارب اللي فوق.</p>
       <div class="soon-grid">
-        <div class="soon-card"><div class="num">٠٥</div>قريبًا</div>
+        <div class="soon-card"><div class="num">١٠</div>قريبًا</div>
       </div>
     </section>
 
@@ -764,6 +1133,7 @@
       <!-- hitwebcounter Code END -->
     </div>
   </footer>
+
 
 <script>
   const cards = ['card-solid','card-liquid','card-gas'];
@@ -854,6 +1224,115 @@
     pumpBtn.style.display = 'inline-block';
     pumpReset.style.display = 'none';
   });
+
+  /* ---- experiment 5: altitude & boiling point ---- */
+  const altData = {
+    '0':    { temp: '١٠٠°م', pressure: '١ ضغط جوي', speed: 'fast' },
+    '1800': { temp: '٩٤°م',  pressure: '٠.٨ ضغط جوي', speed: '' },
+    '3000': { temp: '٩٠°م',  pressure: '٠.٦٩ ضغط جوي', speed: 'slow' }
+  };
+  const altBtns = document.querySelectorAll('.alt-btn[data-alt]');
+  const potVisual = document.getElementById('potVisual');
+  const boilReadout = document.getElementById('boilReadout');
+  const altReadout = document.getElementById('altReadout');
+  altBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      altBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const d = altData[btn.dataset.alt];
+      boilReadout.textContent = 'تغلي عند ' + d.temp;
+      altReadout.textContent = 'الضغط الجوي: ' + d.pressure;
+      potVisual.classList.remove('slow','fast');
+      if(d.speed) potVisual.classList.add(d.speed);
+    });
+  });
+  altBtns[0].classList.add('active');
+
+  /* ---- experiment 6: pull-apart particle game ---- */
+  const tensionText = {
+    'pull-solid':  'قوية جدًا 💪 مستحيل تتفصل',
+    'pull-liquid': 'متوسطة 🌊 اتحركت بس رجعت',
+    'pull-gas':    'ضعيفة جدًا 💨 اتفصلت فورًا'
+  };
+  document.querySelectorAll('.particle-lab').forEach(lab => {
+    const tag = lab.querySelector('.tension-tag span');
+    const card = lab.closest('.card');
+    const btn = document.querySelector('.press-btn[data-pull="' + lab.id + '"]');
+    const startPull = () => {
+      lab.classList.add('pulling');
+      card.classList.add('revealed');
+      tag.textContent = tensionText[lab.id];
+    };
+    const endPull = () => { lab.classList.remove('pulling'); };
+    [lab, btn].forEach(el => {
+      el.addEventListener('mousedown', startPull);
+      el.addEventListener('touchstart', startPull, {passive:true});
+      el.addEventListener('mouseup', endPull);
+      el.addEventListener('mouseleave', endPull);
+      el.addEventListener('touchend', endPull);
+      el.addEventListener('touchcancel', endPull);
+    });
+  });
+
+  /* ---- experiment 7: evaporation ---- */
+  const evapBtn = document.getElementById('evapBtn');
+  const evapResult = document.getElementById('evap-result');
+  let evapRunning = false;
+  evapBtn.addEventListener('click', () => {
+    evapRunning = !evapRunning;
+    document.querySelectorAll('.evap-water').forEach(w => w.classList.toggle('evaporating', evapRunning));
+    evapBtn.textContent = evapRunning ? 'إعادة الضبط' : 'شغّل (بعد عدة ساعات)';
+    evapResult.style.opacity = evapRunning ? '1' : '0';
+  });
+
+  /* ---- experiment 8: sublimation / deposition ---- */
+  const subTube = document.getElementById('subTube');
+  document.getElementById('heatBtn').addEventListener('click', () => subTube.classList.add('sublimed'));
+  document.getElementById('coolBtn').addEventListener('click', () => subTube.classList.remove('sublimed'));
+
+  /* ---- experiment 9: interactive concentration simulator ---- */
+  const glucoseSlider = document.getElementById('glucoseSlider');
+  const glucoseAmount = document.getElementById('glucoseAmount');
+  const concentrationTag = document.getElementById('concentrationTag');
+  const freezeVal = document.getElementById('freezeVal');
+  const boilVal = document.getElementById('boilVal');
+  const freezeBar = document.getElementById('freezeBar');
+  const boilBar = document.getElementById('boilBar');
+  const crystals = document.querySelectorAll('.crystal');
+  const arabicDigits = n => n.toLocaleString('ar-EG');
+
+  function updateSolution(amount){
+    const ratio = amount / 180; // 180 g/L is the textbook reference amount
+    const freezeC = -1.86 * ratio;
+    const boilC = 100 + 0.5 * ratio;
+
+    glucoseAmount.textContent = arabicDigits(amount);
+    freezeVal.textContent = (amount === 0 ? '٠' : arabicDigits(Math.round(freezeC * 100) / 100)) + '°م';
+    boilVal.textContent = arabicDigits(Math.round(boilC * 100) / 100) + '°م';
+
+    freezeBar.style.height = (30 + Math.min(ratio, 2) * 35) + '%';
+    boilBar.style.height = (30 + Math.min(ratio, 2) * 35) + '%';
+
+    const visibleCrystals = Math.round((amount / 360) * crystals.length);
+    crystals.forEach((c, i) => {
+      const on = i < visibleCrystals;
+      c.style.opacity = on ? '.85' : '0';
+      c.style.transform = on ? 'scale(1)' : 'scale(.4)';
+    });
+
+    if(amount === 0){
+      concentrationTag.textContent = 'ماء نقي 100% — بدون أي مادة مذابة';
+    } else if(amount <= 120){
+      concentrationTag.textContent = 'تركيز منخفض 🟢';
+    } else if(amount <= 250){
+      concentrationTag.textContent = 'تركيز متوسط 🟡';
+    } else {
+      concentrationTag.textContent = 'تركيز مرتفع 🔴';
+    }
+  }
+
+  glucoseSlider.addEventListener('input', () => updateSolution(parseInt(glucoseSlider.value, 10)));
+  updateSolution(0);
 </script>
 </body>
 </html>
