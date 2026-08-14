@@ -54,7 +54,7 @@
     flex-wrap:wrap;
   }
   .brand{
-    display:flex; align-items:center; gap:10px;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
     font-family:'Cairo', sans-serif; font-weight:900; font-size:16px;
     direction:ltr; text-align:left;
   }
@@ -71,6 +71,15 @@
     border-radius:999px;
     white-space:nowrap;
   }
+  .channel-link{
+    font-family:'Cairo', sans-serif; font-weight:700; font-size:12px;
+    text-decoration:none; white-space:nowrap;
+    padding:5px 12px; border-radius:999px;
+    transition: transform .15s ease, filter .15s ease;
+  }
+  .channel-link:hover{ transform: translateY(-1px); filter:brightness(1.05); }
+  .channel-link.wa{ background:#25D366; color:#fff; }
+  .channel-link.tg{ background:#229ED9; color:#fff; }
   @media (max-width:560px){ .brand{ font-size:13.5px; } .credit{ display:none; } }
   .brand-mark{
     width:34px; height:34px; border-radius:9px;
@@ -579,6 +588,26 @@
   }
   .time-value{ font-family:'Cairo', sans-serif; font-weight:800; font-size:15px; margin-top:8px; color: var(--ink); }
 
+  /* ---------- experiment 3: tea diffusion (temperature) ---------- */
+  .tea-cup{
+    width:110px; height:90px; border:3px solid var(--ink); border-top:none;
+    border-radius:0 0 45px 45px; position:relative; overflow:hidden; background:#fff;
+  }
+  .tea-water{ position:absolute; bottom:0; left:0; right:0; height:80%; background:#F3E9D5; transition: background 2.2s ease-in-out; }
+  .tea-cup.steeped .tea-water{ background:#8B4A1E; }
+  .tea-bag{ position:absolute; top:-6px; left:50%; transform:translateX(-50%); font-size:20px; }
+
+  /* ---------- experiment 4: mass affects diffusion ---------- */
+  .cloud.mass-h2, .cloud.mass-o2{
+    width:22px; height:22px; left:4%;
+    background: radial-gradient(circle, currentColor, transparent 70%);
+    transition: left 2.4s linear;
+  }
+  .mass-h2{ color: var(--gas); }
+  .mass-o2{ color: var(--solid); }
+  .tube-track.mass-running .mass-h2{ left:94%; }
+  .tube-track.mass-running .mass-o2{ left:55%; }
+
   .coming-soon{ padding: 10px 0 70px; text-align:center; }
   .coming-soon h2{
     font-family:'Cairo', sans-serif; font-weight:800; font-size:22px;
@@ -634,23 +663,27 @@
           <span class="brand-url">www.</span>2nd Prep. Funny Science lab
         </span>
         <span class="credit">By #Dr_Wael_Aboagiza</span>
+        <a href="https://whatsapp.com/channel/0029VbBAp9MFMqrg4r1h8x06" target="_blank" rel="noopener" class="channel-link wa">📱 واتساب</a>
+        <a href="https://t.me/secondprepfunnyscience" target="_blank" rel="noopener" class="channel-link tg">✈️ تليجرام</a>
       </div>
       <nav class="toc">
         <a href="#exp-1">١ · الحجم وقابلية الانضغاط</a>
         <a href="#exp-2">٢ · سرعة الانتشار</a>
-        <a href="#exp-3">٣ · سباق النشادر وحمض الهيدروكلوريك</a>
-        <a href="#exp-4">٤ · ضغط الغاز وحجمه</a>
-        <a href="#exp-5">٥ · الضغط الجوي ودرجة الغليان</a>
-        <a href="#exp-6">٦ · قوى التجاذب بين الجزيئات</a>
-        <a href="#exp-7">٧ · مساحة السطح والتبخر</a>
-        <a href="#exp-8">٨ · التصعيد والترسيب</a>
-        <a href="#exp-9">٩ · النقاء ودرجتا الغليان والانصهار</a>
-        <a href="#exp-10">١٠ · الإحساس بالحرارة يخدعنا</a>
-        <a href="#exp-11">١١ · أنواع الأنظمة</a>
-        <a href="#exp-12">١٢ · العوامل المؤثرة في تغير الحرارة</a>
-        <a href="#exp-13">١٣ · السعة الحرارية النوعية</a>
-        <a href="#exp-14">١٤ · حلة الضغط</a>
-        <a class="soon" title="هتضاف قريبًا">١٥ · قريبًا</a>
+        <a href="#exp-3">٣ · تأثير الحرارة على الانتشار</a>
+        <a href="#exp-4">٤ · تأثير الكتلة على الانتشار</a>
+        <a href="#exp-5">٥ · سباق النشادر وحمض الهيدروكلوريك</a>
+        <a href="#exp-6">٦ · ضغط الغاز وحجمه</a>
+        <a href="#exp-7">٧ · الضغط الجوي ودرجة الغليان</a>
+        <a href="#exp-8">٨ · قوى التجاذب بين الجزيئات</a>
+        <a href="#exp-9">٩ · مساحة السطح والتبخر</a>
+        <a href="#exp-10">١٠ · التصعيد والترسيب</a>
+        <a href="#exp-11">١١ · النقاء ودرجتا الغليان والانصهار</a>
+        <a href="#exp-12">١٢ · الإحساس بالحرارة يخدعنا</a>
+        <a href="#exp-13">١٣ · أنواع الأنظمة</a>
+        <a href="#exp-14">١٤ · العوامل المؤثرة في تغير الحرارة</a>
+        <a href="#exp-15">١٥ · السعة الحرارية النوعية</a>
+        <a href="#exp-16">١٦ · حلة الضغط</a>
+        <a class="soon" title="هتضاف قريبًا">١٧ · قريبًا</a>
       </nav>
     </div>
   </div>
@@ -871,10 +904,83 @@
       </div>
     </section>
 
-    <!-- ============ experiment 3: ammonia / HCl diffusion race ============ -->
+    <!-- ============ experiment 3: temperature effect on diffusion rate ============ -->
     <section class="experiment" id="exp-3">
       <header class="exp-head">
-        <span class="eyebrow">تجربة ٠٣ · مقارنة سرعة انتشار الغازات</span>
+        <span class="eyebrow">تجربة ٠٣ · العوامل المؤثرة في سرعة الانتشار</span>
+        <h1>تأثير درجة الحرارة على سرعة الانتشار</h1>
+        <p class="intro">
+          كل ما زادت درجة حرارة وسط الانتشار، زادت سرعة الانتشار (علاقة طردية).
+          اختار كوباية واحضر انتشار الشاي فيها وقارن.
+        </p>
+      </header>
+
+      <div class="sim-tabs">
+        <button class="alt-btn temp-tab active" data-temp="cold">🧊 ماء بارد</button>
+        <button class="alt-btn temp-tab" data-temp="hot">🔥 ماء ساخن</button>
+      </div>
+
+      <div class="beaker-sim">
+        <div class="evap-single-wrap" style="height:120px;">
+          <div class="tea-cup" id="teaCup">
+            <div class="tea-water" id="teaWater"></div>
+            <div class="tea-bag">🍵</div>
+          </div>
+        </div>
+        <div class="beaker-sim-controls">
+          <div class="concentration-tag" id="teaRateTag">سرعة الانتشار: بطيئة 🐢</div>
+        </div>
+        <div class="race-controls" style="margin-top:8px;">
+          <button class="master-btn" id="teaRunBtn">شغّل انتشار الشاي</button>
+        </div>
+      </div>
+
+      <div class="conclusion">
+        <b>لاحظت؟</b> الشاي في الماء الساخن ينتشر ويلوّن الماء كله أسرع بكتير من الماء البارد —
+        لأن جزيئات الماء الساخن بتتحرك بطاقة حركية أكبر، فبتصطدم بجزيئات الشاي وتوزّعها أسرع.
+      </div>
+    </section>
+
+    <!-- ============ experiment 4: mass effect on diffusion rate ============ -->
+    <section class="experiment" id="exp-4">
+      <header class="exp-head">
+        <span class="eyebrow">تجربة ٠٤ · العوامل المؤثرة في سرعة الانتشار</span>
+        <h1>تأثير كتلة الجزيئات على سرعة الانتشار</h1>
+        <p class="intro">
+          كل ما زادت كتلة جزيئات الغاز المنتشر، قلّت سرعة الانتشار (علاقة عكسية).
+          اضغط "شغّل" وقارن بين غاز الهيدروجين الخفيف وغاز الأكسجين الأثقل.
+        </p>
+      </header>
+
+      <div class="race-wrap" style="max-width:520px;">
+        <div class="cotton-label" style="color:var(--gas);">H<sub>2</sub><br>هيدروجين<br>(كتلة أقل)</div>
+        <div class="tube-track" id="massTube">
+          <div class="cloud mass-h2" id="massH2"></div>
+        </div>
+        <div class="cotton-label" style="color:var(--solid);">O<sub>2</sub><br>أكسجين<br>(كتلة أكبر)</div>
+      </div>
+      <div class="race-wrap" style="max-width:520px; margin-top:14px;">
+        <div class="cotton-label" style="color:var(--gas);">&nbsp;</div>
+        <div class="tube-track" id="massTube2">
+          <div class="cloud mass-o2" id="massO2"></div>
+        </div>
+        <div class="cotton-label" style="color:var(--solid);">&nbsp;</div>
+      </div>
+
+      <div class="race-controls">
+        <button class="master-btn" id="massBtn">شغّل المقارنة</button>
+      </div>
+
+      <div class="conclusion">
+        <b>لاحظت؟</b> غاز الهيدروجين (H₂) وصل لآخر الأنبوبة قبل الأكسجين (O₂) بكتير —
+        لأن جزيء الهيدروجين أخف وزنًا، فينتشر أسرع من الجزيئات الأثقل زي الأكسجين.
+      </div>
+    </section>
+
+    <!-- ============ experiment 5: ammonia / HCl diffusion race ============ -->
+    <section class="experiment" id="exp-5">
+      <header class="exp-head">
+        <span class="eyebrow">تجربة ٠٥ · مقارنة سرعة انتشار الغازات</span>
         <h1>سباق النشادر وحمض الهيدروكلوريك</h1>
         <p class="intro">
           أنبوبة مغلقة الطرفين، بها قطنة مبللة بحمض الهيدروكلوريك من جهة، وقطنة مبللة بمحلول النشادر من الجهة الأخرى.
@@ -903,9 +1009,9 @@
     </section>
 
     <!-- ============ experiment 4: gas compression ============ -->
-    <section class="experiment" id="exp-4">
+    <section class="experiment" id="exp-6">
       <header class="exp-head">
-        <span class="eyebrow">تجربة ٠٤ · تأثير الضغط على حجم الغاز</span>
+        <span class="eyebrow">تجربة ٠٦ · تأثير الضغط على حجم الغاز</span>
         <h1>ضغط الغاز وحجمه</h1>
         <p class="intro">
           مضخة مملوءة بالهواء وحجمه لتر واحد. كل ما ضغطنا على المكبس أكتر، حجم الهواء بيقل.
@@ -941,9 +1047,9 @@
     </section>
 
     <!-- ============ experiment 5: altitude & boiling point ============ -->
-    <section class="experiment" id="exp-5">
+    <section class="experiment" id="exp-7">
       <header class="exp-head">
-        <span class="eyebrow">تجربة ٠٥ · تطبيق على الضغط الجوي</span>
+        <span class="eyebrow">تجربة ٠٧ · تطبيق على الضغط الجوي</span>
         <h1>الضغط الجوي ودرجة الغليان</h1>
         <p class="intro">
           كل ما زاد الارتفاع عن سطح البحر، قل الضغط الجوي، وكل ما قل الضغط الجوي، قلت درجة غليان الماء.
@@ -976,9 +1082,9 @@
     </section>
 
     <!-- ============ experiment 6: attraction forces ============ -->
-    <section class="experiment" id="exp-6">
+    <section class="experiment" id="exp-8">
       <header class="exp-head">
-        <span class="eyebrow">تجربة ٠٦ · نظرية الجسيمات</span>
+        <span class="eyebrow">تجربة ٠٨ · نظرية الجسيمات</span>
         <h1>قوى التجاذب بين الجزيئات</h1>
         <p class="intro">
           حاول تفصل الجزيئين عن بعض! اضغط مع الاستمرار على كل زوج وشوف قوة الترابط بينهم بنفسك —
@@ -1049,9 +1155,9 @@
     </section>
 
     <!-- ============ experiment 7: evaporation & surface area ============ -->
-    <section class="experiment" id="exp-7">
+    <section class="experiment" id="exp-9">
       <header class="exp-head">
-        <span class="eyebrow">تجربة ٠٧ · التبخر</span>
+        <span class="eyebrow">تجربة ٠٩ · التبخر</span>
         <h1>مساحة السطح والتبخر</h1>
         <p class="intro">
           نفس كمية الماء بالظبط، بس بفوهة وعاء بتتغيّر اتساعها. حرّك السلايدر عشان توسّع فوهة الوعاء،
@@ -1085,9 +1191,9 @@
     </section>
 
     <!-- ============ experiment 8: sublimation / deposition ============ -->
-    <section class="experiment" id="exp-8">
+    <section class="experiment" id="exp-10">
       <header class="exp-head">
-        <span class="eyebrow">تجربة ٠٨ · تحولات المادة</span>
+        <span class="eyebrow">تجربة ١٠ · تحولات المادة</span>
         <h1>التصعيد والترسيب</h1>
         <p class="intro">
           اليود الصلب لما يُسخَّن، يتحول مباشرة لبخار بنفسجي من غير ما يمر بالحالة السائلة (تصعيد).
@@ -1112,9 +1218,9 @@
     </section>
 
     <!-- ============ experiment 9: purity & boiling/freezing point ============ -->
-    <section class="experiment" id="exp-9">
+    <section class="experiment" id="exp-11">
       <header class="exp-head">
-        <span class="eyebrow">تجربة ٠٩ · النقاء ودرجات التغير</span>
+        <span class="eyebrow">تجربة ١١ · النقاء ودرجات التغير</span>
         <h1>النقاء ودرجتا الغليان والانصهار</h1>
         <p class="intro">
           حرّك السلايدر عشان تزوّد كمية الجلوكوز المذابة في الماء، وشوف بعينك درجتي التجمد والغليان
@@ -1164,9 +1270,9 @@
     </section>
 
     <!-- ============ experiment 10: heat perception illusion ============ -->
-    <section class="experiment" id="exp-10">
+    <section class="experiment" id="exp-12">
       <header class="exp-head">
-        <span class="eyebrow">تجربة ١٠ · الطاقة الحرارية</span>
+        <span class="eyebrow">تجربة ١٢ · الطاقة الحرارية</span>
         <h1>الإحساس بالحرارة يخدعنا</h1>
         <p class="intro">
           إحساسنا باليد مش أداة قياس دقيقة للحرارة — جرب الخطوتين بالترتيب وشوف المفاجأة.
@@ -1205,9 +1311,9 @@
     </section>
 
     <!-- ============ experiment 11: types of systems ============ -->
-    <section class="experiment" id="exp-11">
+    <section class="experiment" id="exp-13">
       <header class="exp-head">
-        <span class="eyebrow">تجربة ١١ · مفهوم النظام</span>
+        <span class="eyebrow">تجربة ١٣ · مفهوم النظام</span>
         <h1>أنواع الأنظمة</h1>
         <p class="intro">
           كل نظام له حدود بتفصله عن المحيط. اضغط على كل مثال وشوف هل بيتبادل طاقة، مادة، ولا الاتنين مع المحيط.
@@ -1245,9 +1351,9 @@
     </section>
 
     <!-- ============ experiment 12: mass/type/state simulator ============ -->
-    <section class="experiment" id="exp-12">
+    <section class="experiment" id="exp-14">
       <header class="exp-head">
-        <span class="eyebrow">تجربة ١٢ · العوامل المؤثرة</span>
+        <span class="eyebrow">تجربة ١٤ · العوامل المؤثرة</span>
         <h1>العوامل المؤثرة في تغير درجة الحرارة</h1>
         <p class="intro">
           اختار العامل اللي عايز تختبره، وبعدين اضغط "سخّن الاثنين" وشوف الفرق في ارتفاع درجة الحرارة —
@@ -1285,9 +1391,9 @@
     </section>
 
     <!-- ============ experiment 13: specific heat ============ -->
-    <section class="experiment" id="exp-13">
+    <section class="experiment" id="exp-15">
       <header class="exp-head">
-        <span class="eyebrow">تجربة ١٣ · السعة الحرارية النوعية</span>
+        <span class="eyebrow">تجربة ١٥ · السعة الحرارية النوعية</span>
         <h1>السعة الحرارية النوعية</h1>
         <p class="intro">
           السعة الحرارية النوعية هي كمية الحرارة اللازمة لرفع درجة حرارة ١ كجم من المادة درجة واحدة مئوية.
@@ -1325,9 +1431,9 @@
     </section>
 
     <!-- ============ experiment 14: pressure cooker ============ -->
-    <section class="experiment" id="exp-14">
+    <section class="experiment" id="exp-16">
       <header class="exp-head">
-        <span class="eyebrow">تجربة ١٤ · تطبيق تكنولوجي</span>
+        <span class="eyebrow">تجربة ١٦ · تطبيق تكنولوجي</span>
         <h1>حلة الضغط توفّر الوقت والوقود</h1>
         <p class="intro">
           حلة الضغط بتحبس بخار الماء جواها، فيزيد الضغط الداخلي، وده بيرفع درجة غليان الماء فوق ١٠٠°م —
@@ -1365,7 +1471,7 @@
       <h2>تجارب هتتضاف قريبًا</h2>
       <p>الموقع مبني عشان يتوسع — كل تجربة جديدة هتتضاف هنا كقسم مستقل زي التجارب اللي فوق.</p>
       <div class="soon-grid">
-        <div class="soon-card"><div class="num">١٥</div>قريبًا</div>
+        <div class="soon-card"><div class="num">١٧</div>قريبًا</div>
       </div>
     </section>
 
@@ -1708,6 +1814,37 @@
         potTimeValue.textContent = '١٠٠٪ (الوقت الكامل)';
       }
     });
+  });
+
+  /* ---- experiment 3: tea diffusion (temperature) ---- */
+  const teaTabs = document.querySelectorAll('.temp-tab');
+  const teaCup = document.getElementById('teaCup');
+  const teaRateTag = document.getElementById('teaRateTag');
+  const teaRunBtn = document.getElementById('teaRunBtn');
+  let teaMode = 'cold';
+  teaTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      teaTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      teaMode = tab.dataset.temp;
+      teaCup.classList.remove('steeped');
+      teaRateTag.textContent = teaMode === 'hot' ? 'سرعة الانتشار: سريعة جدًا 🔥' : 'سرعة الانتشار: بطيئة 🐢';
+    });
+  });
+  teaRunBtn.addEventListener('click', () => {
+    teaCup.classList.toggle('steeped');
+  });
+
+  /* ---- experiment 4: mass affects diffusion ---- */
+  const massBtn = document.getElementById('massBtn');
+  const massTube = document.getElementById('massTube');
+  const massTube2 = document.getElementById('massTube2');
+  let massRunning = false;
+  massBtn.addEventListener('click', () => {
+    massRunning = !massRunning;
+    massTube.classList.toggle('mass-running', massRunning);
+    massTube2.classList.toggle('mass-running', massRunning);
+    massBtn.textContent = massRunning ? 'إعادة الضبط' : 'شغّل المقارنة';
   });
 </script>
 </body>
