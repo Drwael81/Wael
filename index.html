@@ -608,6 +608,78 @@
   .tube-track.mass-running .mass-h2{ left:94%; }
   .tube-track.mass-running .mass-o2{ left:55%; }
 
+  /* ---------- experiment 18: conduction rod race ---------- */
+  .rod-lab{ max-width:420px; margin:0 auto 8px; }
+  .rod-row{ display:flex; align-items:center; gap:8px; margin-bottom:22px; }
+  .rod-label{ font-family:'Cairo', sans-serif; font-weight:800; font-size:13px; width:44px; flex-shrink:0; }
+  .rod-line{ flex:1; height:8px; border-radius:4px; background:#EEF1EA; }
+  .copper-line{ background: linear-gradient(90deg, #C97C4B, #EEF1EA); }
+  .iron-line{ background: linear-gradient(90deg, #7A7F86, #EEF1EA); }
+  .pin{
+    font-size:16px; transition: opacity .3s ease, transform .3s ease;
+  }
+  #rodCopper.dropping .pin{ animation: pin-fall .4s ease forwards; }
+  #rodCopper.dropping .pin:nth-child(3){ animation-delay:.1s; }
+  #rodCopper.dropping .pin:nth-child(4){ animation-delay:.35s; }
+  #rodCopper.dropping .pin:nth-child(5){ animation-delay:.6s; }
+  #rodCopper.dropping .pin:nth-child(6){ animation-delay:.85s; }
+  #rodIron.dropping .pin{ animation: pin-fall .4s ease forwards; }
+  #rodIron.dropping .pin:nth-child(3){ animation-delay:.6s; }
+  #rodIron.dropping .pin:nth-child(4){ animation-delay:1.3s; }
+  #rodIron.dropping .pin:nth-child(5){ animation-delay:2s; }
+  #rodIron.dropping .pin:nth-child(6){ animation-delay:2.7s; }
+  @keyframes pin-fall{ to{ opacity:0; transform:translateY(18px) rotate(25deg); } }
+
+  /* ---------- experiment 20: convection (animated loop) ---------- */
+  .conv-beaker{
+    width:120px; height:130px; border:3px solid var(--ink); border-top:none;
+    border-radius:0 0 16px 16px; position:relative; overflow:hidden;
+    background:#BFE3F2;
+  }
+  .conv-dot{
+    position:absolute; width:9px; height:9px; border-radius:50%;
+    background:#7C3FA0; opacity:.85; top:88%; left:50%;
+    animation-play-state:paused; animation-timing-function:linear; animation-iteration-count:infinite;
+  }
+  .conv-dot.a{ animation-name: loop-a; }
+  .conv-dot.b{ animation-name: loop-b; animation-delay:-1.5s; }
+  @keyframes loop-a{
+    0%{ left:50%; top:88%; } 25%{ left:50%; top:14%; }
+    50%{ left:82%; top:38%; } 75%{ left:82%; top:82%; } 100%{ left:50%; top:88%; }
+  }
+  @keyframes loop-b{
+    0%{ left:50%; top:88%; } 25%{ left:50%; top:14%; }
+    50%{ left:18%; top:38%; } 75%{ left:18%; top:82%; } 100%{ left:50%; top:88%; }
+  }
+  .conv-beaker.flowing .conv-dot{ animation-play-state:running; }
+  .conv-flame{
+    position:absolute; bottom:-22px; left:50%; transform:translateX(-50%);
+    font-size:20px; opacity:0; transition: opacity .3s ease;
+  }
+  .conv-beaker.flowing .conv-flame{ opacity:1; }
+
+  .tube-exp{
+    max-width:520px; margin:40px auto 0; text-align:center;
+    background:#fff; border-radius:16px; padding:22px 18px; box-shadow: var(--shadow);
+  }
+  .tube-exp-title{ font-family:'Cairo', sans-serif; font-weight:800; font-size:16px; margin:0 0 8px; }
+  .tube-exp-desc{ font-size:13px; color:var(--ink-soft); margin-bottom:18px; }
+  .tube-exp-box{
+    display:flex; align-items:flex-end; justify-content:center; gap:24px;
+    height:100px; margin-bottom:16px;
+  }
+  .tube-exp-tube{
+    width:36px; height:70px; border:3px solid var(--ink); border-radius:6px;
+    position:relative; display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
+    background:#fff;
+  }
+  .tube-exp-label{ font-family:'Cairo', sans-serif; font-weight:800; font-size:12px; margin-top:-20px; }
+  .tube-exp-arrow{
+    font-size:20px; color: var(--gas); margin-top:18px; opacity:0; transition: opacity .4s ease;
+  }
+  .tube-exp-box.lit .tube-exp-arrow{ opacity:1; }
+  .tube-exp-candle{ font-size:30px; }
+
   .coming-soon{ padding: 10px 0 70px; text-align:center; }
   .coming-soon h2{
     font-family:'Cairo', sans-serif; font-weight:800; font-size:22px;
@@ -635,6 +707,13 @@
     text-align:center; padding:26px 20px 40px;
     color:var(--ink-soft); font-size:13px;
   }
+  .footer-email{
+    display:inline-block; margin-top:4px;
+    font-family:'Cairo', sans-serif; font-weight:700; font-size:12.5px;
+    color: var(--liquid); text-decoration:none;
+    direction:ltr;
+  }
+  .footer-email:hover{ text-decoration:underline; }
   .visit-counter{
     display:inline-flex; align-items:center; gap:8px;
     margin-top:14px; background:#fff;
@@ -683,7 +762,13 @@
         <a href="#exp-14">١٤ · العوامل المؤثرة في تغير الحرارة</a>
         <a href="#exp-15">١٥ · السعة الحرارية النوعية</a>
         <a href="#exp-16">١٦ · حلة الضغط</a>
-        <a class="soon" title="هتضاف قريبًا">١٧ · قريبًا</a>
+        <a href="#exp-17">١٧ · الاتزان الحراري</a>
+        <a href="#exp-18">١٨ · التوصيل الحراري بين المعادن</a>
+        <a href="#exp-19">١٩ · الموصلات والعوازل الحرارية</a>
+        <a href="#exp-20">٢٠ · الحمل الحراري</a>
+        <a href="#exp-21">٢١ · الإشعاع الحراري</a>
+        <a href="#exp-22">٢٢ · مقارنة طرق انتقال الحرارة</a>
+        <a class="soon" title="هتضاف قريبًا">٢٣ · قريبًا</a>
       </nav>
     </div>
   </div>
@@ -1466,12 +1551,317 @@
       </div>
     </section>
 
+    <!-- ============ experiment 17: thermal equilibrium ============ -->
+    <section class="experiment" id="exp-17">
+      <header class="exp-head">
+        <span class="eyebrow">تجربة ١٧ · الحرارة والاتزان الحراري</span>
+        <h1>الاتزان الحراري</h1>
+        <p class="intro">
+          لما نحط كرات معدنية سخنة (١٠٠°م) في ماء بارد (٢٠°م)، الحرارة بتنتقل من الأسخن للأبرد
+          لحد ما الاتنين يوصلوا لنفس الدرجة. اضغط "اخلط" وشوف الاتزان الحراري بيحصل إزاي.
+        </p>
+      </header>
+
+      <div class="sim-beakers">
+        <div class="sim-beaker">
+          <div class="therm-bar-wrap"><div class="therm-bar" id="eqBarBalls" style="background:var(--solid); height:100%;"></div></div>
+          <div class="beaker-name">كرات معدنية</div>
+          <div class="beaker-sub" id="eqTempBalls">١٠٠°م</div>
+        </div>
+        <div class="sim-beaker">
+          <div class="therm-bar-wrap"><div class="therm-bar" id="eqBarWater" style="background:var(--liquid); height:15%;"></div></div>
+          <div class="beaker-name">ماء بارد</div>
+          <div class="beaker-sub" id="eqTempWater">٢٠°م</div>
+        </div>
+      </div>
+
+      <div class="race-controls">
+        <button class="master-btn" id="eqMixBtn">اخلط الكرات مع الماء</button>
+      </div>
+
+      <div class="conclusion">
+        <b>لاحظت؟</b> درجتا الحرارة اتقابلوا عند ٢٨°م — مش نص المسافة بالظبط (٦٠°م) لأن السعة الحرارية للماء
+        أكبر من المعادن، فدرجة حرارة الماء ارتفعت بمعدل أبطأ من انخفاض درجة حرارة الكرات.
+      </div>
+    </section>
+
+    <!-- ============ experiment 18: conduction race (copper vs iron) ============ -->
+    <section class="experiment" id="exp-18">
+      <header class="exp-head">
+        <span class="eyebrow">تجربة ١٨ · طرق انتقال الحرارة</span>
+        <h1>التوصيل الحراري بين المعادن</h1>
+        <p class="intro">
+          قضيبان (نحاس وحديد) عليهم دبابيس ملتصقة بالشمع، بيتسخنوا من نفس الطرف.
+          اضغط "أشعل الشمعة" وشوف مين دبابيسه بتقع أسرع — ده دليل على التوصيل الحراري الأعلى.
+        </p>
+      </header>
+
+      <div class="rod-lab">
+        <div class="rod-row" id="rodCopper">
+          <span class="rod-label" style="color:var(--solid);">نحاس</span>
+          <div class="rod-line copper-line"></div>
+          <span class="pin">📌</span><span class="pin">📌</span><span class="pin">📌</span><span class="pin">📌</span>
+        </div>
+        <div class="rod-row" id="rodIron">
+          <span class="rod-label" style="color:var(--ink-soft);">حديد</span>
+          <div class="rod-line iron-line"></div>
+          <span class="pin">📌</span><span class="pin">📌</span><span class="pin">📌</span><span class="pin">📌</span>
+        </div>
+      </div>
+
+      <div class="race-controls">
+        <button class="master-btn" id="rodBtn">🔥 أشعل الشمعة</button>
+      </div>
+
+      <div class="conclusion">
+        <b>لاحظت؟</b> دبابيس النحاس وقعت أسرع بكتير من دبابيس الحديد —
+        لأن التوصيل الحراري للنحاس أعلى من الحديد، فالحرارة بتنتقل فيه أسرع.
+        ترتيب أفضل الموصلات الحرارية طبيعيًا: الألماس، ثم الفضة، ثم النحاس.
+      </div>
+    </section>
+
+    <!-- ============ experiment 19: conductors, insulators & applications ============ -->
+    <section class="experiment" id="exp-19">
+      <header class="exp-head">
+        <span class="eyebrow">تجربة ١٩ · تطبيقات حياتية</span>
+        <h1>الموصلات والعوازل الحرارية في حياتنا</h1>
+        <p class="intro">
+          كل تصميم من التصاميم دي مبني على فكرة علمية واحدة: نستخدم موصل حراري كويس فين،
+          وعازل حراري فين. اضغط على كل بطاقة واعرف السبب.
+        </p>
+      </header>
+
+      <div class="grid">
+        <div class="card solid" id="card-app-1">
+          <span class="tag">أواني الطهي</span>
+          <div class="material-name">🍳 جسم معدني + مقبض بلاستيك</div>
+          <button class="press-btn" data-target="card-app-1" data-toggle="reveal">ليه كده؟</button>
+          <div class="result">
+            الجسم معدني (موصل جيد) عشان الحرارة توصل للأكل بسرعة، والمقبض بلاستيك أو خشب
+            (عازل) عشان إيدك متحسّش بالسخونية.
+          </div>
+        </div>
+
+        <div class="card liquid" id="card-app-2">
+          <span class="tag">صندوق البيتزا</span>
+          <div class="material-name">🍕 كرتون</div>
+          <button class="press-btn" data-target="card-app-2" data-toggle="reveal">ليه كده؟</button>
+          <div class="result">
+            الكرتون عازل حراري، فبيحافظ على سخونية البيتزا لأطول فترة ممكنة بدل ما تبرد بسرعة.
+          </div>
+        </div>
+
+        <div class="card gas" id="card-app-3">
+          <span class="tag">عزل المباني</span>
+          <div class="material-name">🧱 بوليسترين بين الطوب المفرغ</div>
+          <button class="press-btn" data-target="card-app-3" data-toggle="reveal">ليه كده؟</button>
+          <div class="result">
+            البوليسترين والهواء المحبوس داخل فتحات الطوب عوازل حرارية، بتمنع دخول أو خروج
+            الحرارة بسرعة، فتقل تكلفة التكييف جوه المبنى.
+          </div>
+        </div>
+
+        <div class="card solid" id="card-app-4">
+          <span class="tag">تبريد الأجهزة</span>
+          <div class="material-name">💻 أنظمة تبريد بالفضة داخل الموبايل والكمبيوتر</div>
+          <button class="press-btn" data-target="card-app-4" data-toggle="reveal">ليه كده؟</button>
+          <div class="result">
+            بتستخدم موصلات حرارية ممتازة زي الفضة عشان تتخلص من الحرارة الزايدة جوه الجهاز،
+            اللي ممكن تسبب ضعف في الأداء أو تلف للأجزاء الداخلية.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ experiment 20: convection ============ -->
+    <section class="experiment" id="exp-20">
+      <header class="exp-head">
+        <span class="eyebrow">تجربة ٢٠ · طرق انتقال الحرارة</span>
+        <h1>الحمل الحراري في السوائل والغازات</h1>
+        <p class="intro">
+          لما نحط بلورة برمنجنات بوتاسيوم في قاع إناء ماء ونسخّنه، اللون البنفسجي بيدور في حلقة مستمرة —
+          حرّك سلايدر شدة التسخين وشوف الدورة بتتحرك أسرع كل ما زادت الحرارة.
+        </p>
+      </header>
+
+      <div class="beaker-sim">
+        <div class="evap-single-wrap" style="height:150px;">
+          <div class="conv-beaker" id="convBeaker">
+            <div class="conv-dot a" id="convDotA"></div>
+            <div class="conv-dot b" id="convDotB"></div>
+            <div class="conv-flame" id="convFlame">🔥</div>
+          </div>
+        </div>
+        <div class="beaker-sim-controls">
+          <label class="slider-label" for="heatSlider">شدة التسخين: <span id="heatLevel">إيقاف</span></label>
+          <input type="range" id="heatSlider" min="0" max="100" step="1" value="0" class="glucose-slider">
+        </div>
+      </div>
+
+      <div class="conclusion" id="conv-result" style="opacity:0; transition:opacity .4s ease;">
+        <b>لاحظت؟</b> كل ما زادت شدة التسخين، الماء الساخن بيرتفع أسرع من القاع للسطح، والماء البارد بينزل أسرع
+        ليحل محله — فسرعة دورة الحمل الحراري بتزيد طرديًا مع شدة التسخين.
+      </div>
+
+      <div class="grid" style="margin-top:30px;">
+        <div class="card solid" id="card-heater">
+          <span class="tag">تطبيق حياتي</span>
+          <div class="material-name">🔥 دفاية الغرفة: تُوضع على الأرض ولا السقف؟</div>
+          <button class="press-btn" data-target="card-heater" data-toggle="reveal">اعرف الإجابة</button>
+          <div class="result">
+            <strong>تُوضع على الأرض.</strong> الهواء الساخن حوليها كثافته أقل فيرتفع لأعلى وينتشر في الغرفة،
+            بينما الهواء البارد الأثقل ينزل تحت ليسخن بدوره — فتوزيع الحرارة يكون بالكامل.
+          </div>
+        </div>
+
+        <div class="card liquid" id="card-freezer">
+          <span class="tag">تطبيق حياتي</span>
+          <div class="material-name">🧊 الفريزر في الثلاجة: يُوضع فوق ولا تحت؟</div>
+          <button class="press-btn" data-target="card-freezer" data-toggle="reveal">اعرف الإجابة</button>
+          <div class="result">
+            <strong>يُوضع فوق.</strong> الهواء البارد كثافته أعلى فينزل لأسفل تلقائيًا، فيبرّد كل أجزاء الثلاجة
+            بالحمل الحراري من غير ما نحتاج مروحة تدفعه.
+          </div>
+        </div>
+      </div>
+
+      <div class="tube-exp">
+        <h3 class="tube-exp-title">تجربة إضافية: اتجاه حركة الهواء بين أنبوبتين</h3>
+        <p class="tube-exp-desc">صندوق بداخله شمعة مشتعلة، وفوقه أنبوبتان (A) و(B). اضغط "أشعل الشمعة" وشوف الهواء بيتحرك إزاي في كل أنبوبة.</p>
+        <div class="tube-exp-box" id="tubeExpBox">
+          <div class="tube-exp-tube">
+            <span class="tube-exp-label">A</span>
+            <span class="tube-exp-arrow" id="tubeArrowA">↓</span>
+          </div>
+          <div class="tube-exp-candle">🕯️</div>
+          <div class="tube-exp-tube">
+            <span class="tube-exp-label">B</span>
+            <span class="tube-exp-arrow" id="tubeArrowB">↑</span>
+          </div>
+        </div>
+        <div class="race-controls">
+          <button class="master-btn" id="tubeExpBtn">أشعل الشمعة</button>
+        </div>
+        <div class="conclusion" id="tube-exp-result" style="opacity:0; transition:opacity .4s ease;">
+          <b>الإجابة:</b> الهواء الساخن فوق الشمعة كثافته تقل فيرتفع ويخرج من الأنبوبة (B)،
+          وده بيقلل الضغط جوه الصندوق فيدخل هواء بارد جديد من الأنبوبة (A) ليحل محله — دورة حمل حراري كاملة.
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ experiment 21: radiation ============ -->
+    <section class="experiment" id="exp-21">
+      <header class="exp-head">
+        <span class="eyebrow">تجربة ٢١ · طرق انتقال الحرارة</span>
+        <h1>الإشعاع الحراري</h1>
+        <p class="intro">
+          الإشعاع هو الطريقة الوحيدة اللي بتنتقل بيها الحرارة في الفراغ (الفضاء) من غير أي وسط مادي —
+          قرّب إيدك من اللمبة وشوف تحس بإيه، حتى من غير ما تلمسها.
+        </p>
+      </header>
+
+      <div class="hand-row">
+        <div class="hand-box">✋<div class="label">إيدك</div></div>
+        <div class="hand-box" id="lampIcon">💡<div class="label">لمبة ساخنة</div></div>
+      </div>
+
+      <div class="illusion-step">
+        <button class="press-btn" id="radiationBtn" style="--accent: var(--solid);">قرّب إيدك من اللمبة (من غير لمس)</button>
+        <div class="illusion-result" id="radiationResult">
+          <strong>حسيت بالسخونية!</strong> مع إن إيدك ملمستش اللمبة ولا فيه هواء بيتحرك بينهم بشكل واضح —
+          الحرارة وصلتلك بالإشعاع (أشعة تحت حمراء)، وده بيحصل حتى في الفراغ التام زي أشعة الشمس اللي بتوصلنا عبر الفضاء.
+        </div>
+      </div>
+
+      <div class="grid" style="margin-top:10px;">
+        <div class="card gas" id="card-thermo">
+          <span class="tag">تطبيق تكنولوجي</span>
+          <div class="material-name">📷 الكاميرا الحرارية (Thermography)</div>
+          <button class="press-btn" data-target="card-thermo" data-toggle="reveal">إزاي بتشتغل؟</button>
+          <div class="result">
+            بتكتشف الأشعة تحت الحمراء المنبعثة من الأجسام وتحوّلها لصور ملوّنة —
+            الألوان بتتدرج حسب درجة الحرارة من الأبرد للأسخن: أسود ← أزرق ← بنفسجي ← أخضر ← أصفر ← أحمر ← أبيض.
+          </div>
+        </div>
+
+        <div class="card solid" id="card-snake">
+          <span class="tag">تكامل مع الأحياء</span>
+          <div class="material-name">🐍 إزاي الثعابين بتصطاد بالليل؟</div>
+          <button class="press-btn" data-target="card-snake" data-toggle="reveal">اعرف السبب</button>
+          <div class="result">
+            الثعابين عندها مستقبلات حسية في مقدمة رأسها بتكتشف الأشعة تحت الحمراء (الإشعاع الحراري)
+            المنبعثة من جسم فرائسها، فتقدر تحدد مكانها حتى في الظلام التام.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ experiment 22: comparing the three methods ============ -->
+    <section class="experiment" id="exp-22">
+      <header class="exp-head">
+        <span class="eyebrow">تجربة ٢٢ · مراجعة شاملة</span>
+        <h1>مقارنة طرق انتقال الحرارة الثلاث</h1>
+        <p class="intro">
+          دلوقتي وإحنا عارفين الطرق الثلاث، اضغط على كل سؤال من الأسئلة دي وشوف الإجابة والسبب العلمي وراها.
+        </p>
+      </header>
+
+      <div class="grid">
+        <div class="card solid" id="card-q-thermos">
+          <span class="tag">سؤال تطبيقي</span>
+          <div class="material-name">🧴 إزاي الحرارة بتتنقل عبر الفراغ بين جدران الترمس؟</div>
+          <button class="press-btn" data-target="card-q-thermos" data-toggle="reveal">جاوب</button>
+          <div class="result">
+            <strong>بالإشعاع فقط.</strong> الفراغ (Vacuum) بين جداري الترمس ملهوش جزيئات مادة خالص،
+            فمينفعش التوصيل ولا الحمل يحصلوا فيه — بس الإشعاع وحده قادر ينتقل عبر الفراغ.
+          </div>
+        </div>
+
+        <div class="card liquid" id="card-q-icecream">
+          <span class="tag">سؤال تطبيقي</span>
+          <div class="material-name">🍨 الآيس كريم بيسخن إزاي لما نسيبه في الهوا؟</div>
+          <button class="press-btn" data-target="card-q-icecream" data-toggle="reveal">جاوب</button>
+          <div class="result">
+            بيكتسب حرارة من الكوب بالتوصيل (تلامس مباشر)، ومن الهواء المحيط بالحمل الحراري —
+            وطول ما فيه فرق حرارة بينه وبين الغرفة، هيفضل يسخن لحد ما يوصل لدرجة حرارة الغرفة.
+          </div>
+        </div>
+
+        <div class="card gas" id="card-q-blackwhite">
+          <span class="tag">سؤال تطبيقي</span>
+          <div class="material-name">⬛⬜ خزان مية بجانب أسود وجانب أبيض لامع — أي إيد هتحس بسخونية أكتر؟</div>
+          <button class="press-btn" data-target="card-q-blackwhite" data-toggle="reveal">جاوب</button>
+          <div class="result">
+            <strong>الإيد اللي جنب الجانب الأسود.</strong> الأسطح الداكنة (زي الأسود) بتمتص وتشع الحرارة
+            بكفاءة أعلى من الأسطح اللامعة الفاتحة، اللي بتعكس جزء كبير من الإشعاع الحراري.
+          </div>
+        </div>
+
+        <div class="card solid" id="card-q-smoke">
+          <span class="tag">سؤال تطبيقي</span>
+          <div class="material-name">🚭 ليه الأستاذ بينصح الطلاب بالنوم على الأرض وقت الحريق؟</div>
+          <button class="press-btn" data-target="card-q-smoke" data-toggle="reveal">جاوب</button>
+          <div class="result">
+            الدخان الساخن كثافته أقل من الهواء البارد، فبيرتفع لأعلى بالحمل الحراري ويتجمع قرب السقف —
+            فالهواء الأنضف والأبرد بيفضل قريب من الأرض، وده الأأمن للتنفس.
+          </div>
+        </div>
+      </div>
+
+      <table class="sh-table" style="max-width:600px; margin-top:30px;">
+        <tr><th>وجه المقارنة</th><th>توصيل</th><th>حمل</th><th>إشعاع</th></tr>
+        <tr><td>يحدث في</td><td>مواد صلبة</td><td>سوائل وغازات</td><td>أي وسط، وحتى الفراغ</td></tr>
+        <tr><td>حركة الجزيئات</td><td>بدون انتقال</td><td>بانتقال الجزيئات</td><td>بدون جزيئات مادة</td></tr>
+        <tr><td>الاتجاه</td><td>من الأسخن للأبرد</td><td>لأعلى (كثافة أقل)</td><td>في كل الاتجاهات</td></tr>
+      </table>
+    </section>
+
     <!-- ============ coming soon ============ -->
     <section class="coming-soon">
       <h2>تجارب هتتضاف قريبًا</h2>
       <p>الموقع مبني عشان يتوسع — كل تجربة جديدة هتتضاف هنا كقسم مستقل زي التجارب اللي فوق.</p>
       <div class="soon-grid">
-        <div class="soon-card"><div class="num">١٧</div>قريبًا</div>
+        <div class="soon-card"><div class="num">٢٣</div>قريبًا</div>
       </div>
     </section>
 
@@ -1479,6 +1869,7 @@
 
   <footer class="site-footer">
     www.2ndPrepFunnyScienceLab · تجارب تفاعلية لدرس حالات المادة<br>By #Dr_Wael_Aboagiza
+    <br><a href="mailto:drwael81@gmail.com" class="footer-email">drwael81@gmail.com</a>
     <div style="margin-top:12px;">
       <!-- hitwebcounter Code START -->
       <a href="https://www.hitwebcounter.com/work-hours-calculator" target="_blank" rel="noopener" title="Counter Hours">
@@ -1540,6 +1931,13 @@
       const on = card.classList.toggle('diffused');
       card.classList.toggle('revealed', on);
       btn.textContent = on ? 'إعادة الضبط' : 'شغّل الانتشار';
+    });
+  });
+
+  document.querySelectorAll('.press-btn[data-toggle="reveal"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card = document.getElementById(btn.dataset.target);
+      card.classList.toggle('revealed');
     });
   });
 
@@ -1845,6 +2243,86 @@
     massTube.classList.toggle('mass-running', massRunning);
     massTube2.classList.toggle('mass-running', massRunning);
     massBtn.textContent = massRunning ? 'إعادة الضبط' : 'شغّل المقارنة';
+  });
+
+  /* ---- experiment 17: thermal equilibrium ---- */
+  const eqMixBtn = document.getElementById('eqMixBtn');
+  const eqBarBalls = document.getElementById('eqBarBalls');
+  const eqBarWater = document.getElementById('eqBarWater');
+  const eqTempBalls = document.getElementById('eqTempBalls');
+  const eqTempWater = document.getElementById('eqTempWater');
+  let eqMixed = false;
+  eqMixBtn.addEventListener('click', () => {
+    eqMixed = !eqMixed;
+    if(eqMixed){
+      eqBarBalls.style.height = '40%';
+      eqBarWater.style.height = '40%';
+      eqBarBalls.style.background = 'var(--gas)';
+      eqBarWater.style.background = 'var(--gas)';
+      eqTempBalls.textContent = '٢٨°م';
+      eqTempWater.textContent = '٢٨°م';
+      eqMixBtn.textContent = 'إعادة الضبط';
+    } else {
+      eqBarBalls.style.height = '100%';
+      eqBarWater.style.height = '15%';
+      eqBarBalls.style.background = 'var(--solid)';
+      eqBarWater.style.background = 'var(--liquid)';
+      eqTempBalls.textContent = '١٠٠°م';
+      eqTempWater.textContent = '٢٠°م';
+      eqMixBtn.textContent = 'اخلط الكرات مع الماء';
+    }
+  });
+
+  /* ---- experiment 18: conduction rod race ---- */
+  const rodBtn = document.getElementById('rodBtn');
+  const rodCopper = document.getElementById('rodCopper');
+  const rodIron = document.getElementById('rodIron');
+  rodBtn.addEventListener('click', () => {
+    rodCopper.classList.remove('dropping');
+    rodIron.classList.remove('dropping');
+    void rodCopper.offsetWidth;
+    rodCopper.classList.add('dropping');
+    rodIron.classList.add('dropping');
+  });
+
+  /* ---- experiment 20: convection (slider-driven loop) ---- */
+  const heatSlider = document.getElementById('heatSlider');
+  const heatLevel = document.getElementById('heatLevel');
+  const convBeaker = document.getElementById('convBeaker');
+  const convResult = document.getElementById('conv-result');
+  heatSlider.addEventListener('input', () => {
+    const v = parseInt(heatSlider.value, 10);
+    if(v === 0){
+      convBeaker.classList.remove('flowing');
+      heatLevel.textContent = 'إيقاف';
+      convResult.style.opacity = '0';
+      return;
+    }
+    convBeaker.classList.add('flowing');
+    convResult.style.opacity = '1';
+    const duration = 4.5 - (v / 100) * 3.7; // faster loop as heat increases
+    document.getElementById('convDotA').style.animationDuration = duration + 's';
+    document.getElementById('convDotB').style.animationDuration = duration + 's';
+    heatLevel.textContent = v < 40 ? 'منخفضة 🔥' : v < 75 ? 'متوسطة 🔥🔥' : 'عالية جدًا 🔥🔥🔥';
+  });
+
+  /* ---- extra: candle & two tubes air direction ---- */
+  const tubeExpBtn = document.getElementById('tubeExpBtn');
+  const tubeExpBox = document.getElementById('tubeExpBox');
+  const tubeExpResult = document.getElementById('tube-exp-result');
+  tubeExpBtn.addEventListener('click', () => {
+    const lit = tubeExpBox.classList.toggle('lit');
+    tubeExpResult.style.opacity = lit ? '1' : '0';
+    tubeExpBtn.textContent = lit ? 'إطفاء الشمعة' : 'أشعل الشمعة';
+  });
+
+  /* ---- experiment 21: radiation ---- */
+  const radiationBtn = document.getElementById('radiationBtn');
+  const radiationResult = document.getElementById('radiationResult');
+  const lampIcon = document.getElementById('lampIcon');
+  radiationBtn.addEventListener('click', () => {
+    radiationResult.classList.add('show');
+    lampIcon.style.transform = 'scale(1.15)';
   });
 </script>
 </body>
