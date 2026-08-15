@@ -50,8 +50,12 @@
   }
   .site-header-inner{
     max-width:1180px; margin:0 auto;
-    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    display:flex; align-items:center; justify-content:center; gap:16px;
     flex-wrap:wrap;
+  }
+  @media (max-width:880px){
+    .site-header-inner{ justify-content:center; }
+    .brand{ justify-content:center; width:100%; }
   }
   .brand{
     display:flex; align-items:center; gap:10px; flex-wrap:wrap;
@@ -106,6 +110,125 @@
   nav.toc a.soon:hover{ background:#fff; color:var(--ink-soft); }
 
   .wrap{max-width:1180px; margin:0 auto; padding: 40px 20px 30px;}
+
+  /* ---------- hero ---------- */
+  .hero-section{ text-align:center; padding:26px 10px 10px; }
+  .hero-badge{
+    display:inline-block; font-family:'Cairo', sans-serif; font-weight:800; font-size:13px;
+    background: linear-gradient(90deg, var(--solid), var(--liquid), var(--gas));
+    color:#fff; padding:8px 20px; border-radius:999px; margin-bottom:22px;
+    box-shadow: var(--shadow);
+  }
+  .hero-title{
+    font-family:'Cairo', sans-serif; font-weight:900;
+    font-size:clamp(28px,5vw,48px); line-height:1.25; margin:0 0 16px;
+    background: linear-gradient(90deg, var(--solid), var(--liquid) 55%, var(--gas));
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:var(--ink);
+  }
+  .hero-sub{
+    max-width:640px; margin:0 auto 32px; color:var(--ink-soft); font-size:16px; line-height:1.9;
+  }
+  .hero-stats{ display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:10px; }
+  .hero-stat{
+    background:#fff; border-radius:14px; padding:14px 24px; box-shadow:var(--shadow);
+    display:flex; flex-direction:column; align-items:center; gap:2px; min-width:110px;
+  }
+  .hero-stat-num{ font-family:'Cairo', sans-serif; font-weight:900; font-size:24px; color:var(--ink); }
+  .hero-stat-label{ font-size:12px; color:var(--ink-soft); }
+
+  .hero-wa-btn{
+    display:inline-flex; align-items:center; gap:14px;
+    margin-top:30px; padding:16px 30px;
+    background: linear-gradient(90deg, #1EBE5A, #25D366);
+    border-radius:18px; text-decoration:none; color:#fff;
+    box-shadow: 0 12px 28px rgba(37,211,102,0.35);
+    animation: wa-pulse 2.4s ease-in-out infinite;
+    transition: transform .18s ease;
+  }
+  .hero-wa-btn:hover{ transform: translateY(-3px) scale(1.02); }
+  .hero-wa-icon{ font-size:30px; }
+  .hero-wa-title{
+    display:block; font-family:'Cairo', sans-serif; font-weight:800; font-size:16px;
+  }
+  .hero-wa-sub{ display:block; font-size:12px; opacity:.9; margin-top:2px; }
+  @keyframes wa-pulse{
+    0%, 100%{ box-shadow: 0 12px 28px rgba(37,211,102,0.35); }
+    50%{ box-shadow: 0 12px 38px rgba(37,211,102,0.6); }
+  }
+  @media (prefers-reduced-motion: reduce){ .hero-wa-btn{ animation:none; } }
+  .hero-tg-btn{
+    display:inline-block; margin-top:14px;
+    font-family:'Cairo', sans-serif; font-weight:700; font-size:13.5px;
+    color:#229ED9; text-decoration:none;
+    background:#fff; border:1.5px solid #229ED9;
+    padding:9px 22px; border-radius:999px;
+    transition: background .15s ease, color .15s ease;
+  }
+  .hero-tg-btn:hover{ background:#229ED9; color:#fff; }
+
+  /* ---------- category grid ---------- */
+  /* ---------- two main path cards ---------- */
+  .paths-section{
+    display:grid; grid-template-columns:1fr 1fr; gap:22px;
+    margin-top:44px;
+  }
+  @media (max-width:640px){ .paths-section{ grid-template-columns:1fr; } }
+  .path-card{
+    display:block; text-decoration:none; color:#fff;
+    border-radius:24px; padding:32px 28px;
+    box-shadow: 0 16px 34px rgba(30,42,51,0.16);
+    transition: transform .18s ease, box-shadow .18s ease;
+    position:relative; overflow:hidden;
+  }
+  .path-card:hover{ transform:translateY(-5px); box-shadow:0 22px 44px rgba(30,42,51,0.22); }
+  .path-experiments{ background: linear-gradient(135deg, var(--solid), var(--liquid)); }
+  .path-lessons{ background: linear-gradient(135deg, #3F5E9E, #1E8A72); }
+  .path-icon{ font-size:44px; margin-bottom:10px; }
+  .path-title{ font-family:'Cairo', sans-serif; font-weight:900; font-size:24px; margin-bottom:6px; }
+  .path-count{
+    display:inline-block; font-family:'Cairo', sans-serif; font-weight:700; font-size:12.5px;
+    background:rgba(255,255,255,0.22); padding:4px 14px; border-radius:999px; margin-bottom:14px;
+  }
+  .path-desc{ font-size:14px; line-height:1.8; opacity:.95; margin-bottom:18px; }
+  .path-cta{ font-family:'Cairo', sans-serif; font-weight:800; font-size:14px; }
+
+  .cat-section{ padding:38px 0 10px; }
+  .cat-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:18px;
+  }
+  @media (max-width:880px){ .cat-grid{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:560px){ .cat-grid{ grid-template-columns:1fr; } }
+  .cat-card{
+    display:block; text-decoration:none; color:var(--ink);
+    background:#fff; border-radius:18px; padding:22px 20px;
+    box-shadow: var(--shadow); border-bottom:5px solid var(--accent);
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .cat-card:hover{ transform:translateY(-4px); box-shadow:0 16px 34px rgba(30,42,51,0.14); }
+  .cat-card .cat-icon{ font-size:30px; margin-bottom:6px; }
+  .cat-card .cat-count{
+    font-family:'Cairo', sans-serif; font-weight:800; font-size:11.5px;
+    color:var(--accent); text-transform:uppercase; letter-spacing:.4px; margin-bottom:6px;
+  }
+  .cat-card .cat-title{ font-family:'Cairo', sans-serif; font-weight:800; font-size:16px; margin-bottom:8px; }
+  .cat-card .cat-desc{ font-size:12.5px; color:var(--ink-soft); line-height:1.7; }
+  .cat-pressure{ --accent: var(--solid); }
+  .cat-diffusion{ --accent: var(--gas); }
+  .cat-states{ --accent: var(--liquid); }
+  .cat-temp{ --accent:#C9542E; }
+  .cat-transfer{ --accent:#B23A3A; }
+  .cat-lessons{ --accent:#3F5E9E; }
+
+  .section-divider{
+    text-align:center; margin:44px 0 10px; position:relative;
+    font-family:'Cairo', sans-serif; font-weight:700; font-size:13px; color:var(--ink-soft);
+  }
+  .section-divider::before, .section-divider::after{
+    content:""; position:absolute; top:50%; width:38%; height:1px; background:rgba(30,42,51,0.15);
+  }
+  .section-divider::before{ right:0; }
+  .section-divider::after{ left:0; }
+
 
   /* ---------- experiment section shell ---------- */
   .experiment{ padding: 30px 0 60px; }
@@ -743,39 +866,95 @@
           <span class="brand-url">www.</span>2nd Prep. Funny Science lab
         </span>
         <span class="credit">By #Dr_Wael_Aboagiza</span>
-        <a href="https://whatsapp.com/channel/0029VbBAp9MFMqrg4r1h8x06" target="_blank" rel="noopener" class="channel-link wa">📱 واتساب</a>
-        <a href="https://t.me/secondprepfunnyscience" target="_blank" rel="noopener" class="channel-link tg">✈️ تليجرام</a>
-        <a href="lessons.html" class="channel-link lessons">📚 الدروس</a>
       </div>
-      <nav class="toc">
-        <a href="#exp-1">١ · الحجم وقابلية الانضغاط</a>
-        <a href="#exp-2">٢ · سرعة الانتشار</a>
-        <a href="#exp-3">٣ · تأثير الحرارة على الانتشار</a>
-        <a href="#exp-4">٤ · تأثير الكتلة على الانتشار</a>
-        <a href="#exp-5">٥ · سباق النشادر وحمض الهيدروكلوريك</a>
-        <a href="#exp-6">٦ · ضغط الغاز وحجمه</a>
-        <a href="#exp-7">٧ · الضغط الجوي ودرجة الغليان</a>
-        <a href="#exp-8">٨ · قوى التجاذب بين الجزيئات</a>
-        <a href="#exp-9">٩ · مساحة السطح والتبخر</a>
-        <a href="#exp-10">١٠ · التصعيد والترسيب</a>
-        <a href="#exp-11">١١ · النقاء ودرجتا الغليان والانصهار</a>
-        <a href="#exp-12">١٢ · الإحساس بالحرارة يخدعنا</a>
-        <a href="#exp-13">١٣ · أنواع الأنظمة</a>
-        <a href="#exp-14">١٤ · العوامل المؤثرة في تغير الحرارة</a>
-        <a href="#exp-15">١٥ · السعة الحرارية النوعية</a>
-        <a href="#exp-16">١٦ · حلة الضغط</a>
-        <a href="#exp-17">١٧ · الاتزان الحراري</a>
-        <a href="#exp-18">١٨ · التوصيل الحراري بين المعادن</a>
-        <a href="#exp-19">١٩ · الموصلات والعوازل الحرارية</a>
-        <a href="#exp-20">٢٠ · الحمل الحراري</a>
-        <a href="#exp-21">٢١ · الإشعاع الحراري</a>
-        <a href="#exp-22">٢٢ · مقارنة طرق انتقال الحرارة</a>
-        <a class="soon" title="هتضاف قريبًا">٢٣ · قريبًا</a>
-      </nav>
     </div>
   </div>
 
   <div class="wrap">
+
+    <!-- ============ hero ============ -->
+    <section class="hero-section">
+      <div class="hero-badge">👋 أهلاً يا صف تاني إعدادي</div>
+      <h1 class="hero-title">العلوم مش لازم تتحفظ، ممكن تتلمس وتتجرّب</h1>
+      <p class="hero-sub">
+        الموقع ده اتعمل خصيصًا لك أنت — كل درس صعب فهمته في الكتاب، هتلاقيه هنا تجربة تقدر تلمسها بإيدك،
+        تضغط، تسحب، تشوف النتيجة قدامك على طول. مفيش حفظ من غير فهم، وكل حاجة هنا مجانية بالكامل.
+      </p>
+
+      <a href="https://whatsapp.com/channel/0029VbBAp9MFMqrg4r1h8x06" target="_blank" rel="noopener" class="hero-wa-btn">
+        <span class="hero-wa-icon">📱</span>
+        <span>
+          <span class="hero-wa-title">انضم لقناة واتساب الصف الثاني الإعدادي</span>
+          <span class="hero-wa-sub">آخر أخبار الدروس والتجارب أول بأول</span>
+        </span>
+      </a>
+
+      <a href="https://t.me/secondprepfunnyscience" target="_blank" rel="noopener" class="hero-tg-btn">
+        ✈️ تابعنا كمان على تليجرام
+      </a>
+    </section>
+
+    <!-- ============ two main sections ============ -->
+    <section class="paths-section">
+      <a href="#exp-1" class="path-card path-experiments">
+        <div class="path-icon">🧪</div>
+        <div class="path-title">قسم التجارب</div>
+        <div class="path-count">٢٢ تجربة تفاعلية</div>
+        <div class="path-desc">اضغط، اسحب، حرّك السلايدرات، وشوف نتيجة كل تجربة بنفسك على طول.</div>
+        <div class="path-cta">استكشف التجارب ←</div>
+      </a>
+      <a href="lessons.html" class="path-card path-lessons">
+        <div class="path-icon">📚</div>
+        <div class="path-title">قسم الدروس</div>
+        <div class="path-count">شرح مرئي كامل</div>
+        <div class="path-desc">شرح تفصيلي منظّم لكل درس، بالرسومات والتفاعلات، بجانب التجارب.</div>
+        <div class="path-cta">ادخل للدروس ←</div>
+      </a>
+    </section>
+
+    <div class="section-divider">
+      <span>تصفّح التجارب حسب الموضوع 👇</span>
+    </div>
+
+    <!-- ============ category grid ============ -->
+    <section class="cat-section">
+      <div class="cat-grid">
+        <a href="#exp-1" class="cat-card cat-pressure">
+          <div class="cat-icon">💨</div>
+          <div class="cat-count">٣ تجارب</div>
+          <div class="cat-title">خواص المادة والضغط</div>
+          <div class="cat-desc">الانضغاط، ضغط الغاز، الضغط الجوي ودرجة الغليان</div>
+        </a>
+        <a href="#exp-2" class="cat-card cat-diffusion">
+          <div class="cat-icon">🌫️</div>
+          <div class="cat-count">٥ تجارب</div>
+          <div class="cat-title">الانتشار والحركة الجزيئية</div>
+          <div class="cat-desc">سرعة الانتشار، تأثير الحرارة والكتلة، سباق الغازات، قوى التجاذب</div>
+        </a>
+        <a href="#exp-9" class="cat-card cat-states">
+          <div class="cat-icon">🔄</div>
+          <div class="cat-count">٣ تجارب</div>
+          <div class="cat-title">تغيرات الحالة والنقاء</div>
+          <div class="cat-desc">التبخر، التصعيد والترسيب، النقاء ودرجتا الغليان والانصهار</div>
+        </a>
+        <a href="#exp-12" class="cat-card cat-temp">
+          <div class="cat-icon">🌡️</div>
+          <div class="cat-count">٦ تجارب</div>
+          <div class="cat-title">الحرارة والاتزان الحراري</div>
+          <div class="cat-desc">الإحساس بالحرارة، الأنظمة، العوامل المؤثرة، السعة الحرارية، حلة الضغط، الاتزان</div>
+        </a>
+        <a href="#exp-18" class="cat-card cat-transfer">
+          <div class="cat-icon">🔥</div>
+          <div class="cat-count">٥ تجارب</div>
+          <div class="cat-title">طرق انتقال الحرارة</div>
+          <div class="cat-desc">التوصيل، الموصلات والعوازل، الحمل الحراري، الإشعاع، مقارنة شاملة</div>
+        </a>
+      </div>
+    </section>
+
+    <div class="section-divider">
+      <span>كل التجارب بالتفصيل تحت 👇</span>
+    </div>
 
     <!-- ============ experiment 1 ============ -->
     <section class="experiment" id="exp-1">
