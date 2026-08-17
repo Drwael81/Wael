@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>اختبار · www.2ndPrepFunnyScienceLab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Tajawal:wght@400;500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="style.css">
+<style>
+  /* أنماط خاصة بصفحة الاختبار فقط — بتستخدم نفس متغيرات style.css الموجودة */
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper, #F3F7F7);
+    color:var(--ink, #14232B);
+    font-family: var(--font-body, 'Tajawal', 'Segoe UI', Tahoma, Arial, sans-serif);
+    min-height:100vh;
+    display:flex; flex-direction:column;
+  }
+  .quiz-header{
+    text-align:center; padding:30px 20px 14px;
+  }
+  .quiz-icon{ font-size:34px; }
+  .quiz-header h1{
+    font-family: var(--font-head, 'Cairo', sans-serif);
+    font-weight:900; font-size:clamp(20px,4vw,28px);
+    margin:8px 0 6px;
+  }
+  .quiz-meta{
+    font-size:13px; color:var(--solid, #B84F14);
+    font-family: var(--font-head, 'Cairo', sans-serif); font-weight:700;
+  }
+
+  .quiz-wrap{ max-width:560px; margin:0 auto; padding:10px 18px 60px; width:100%; }
+
+  .quiz-progress-row{
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:13px; color:var(--ink-soft, #5B6E76); margin:18px 0 8px;
+  }
+  .quiz-score{ font-family: var(--font-head, 'Cairo', sans-serif); font-weight:800; }
+
+  .quiz-card{
+    background:var(--card-bg, #fff); border-radius:var(--radius-lg, 22px);
+    box-shadow:var(--shadow, 0 10px 30px rgba(20,35,43,0.09));
+    padding:26px 22px;
+  }
+  .q-tag{
+    font-family: var(--font-head, 'Cairo', sans-serif); font-weight:800; font-size:12px;
+    color: var(--liquid, #1D6FE0);
+    background: color-mix(in srgb, var(--liquid, #1D6FE0) 10%, white);
+    display:inline-block; padding:4px 12px; border-radius:999px; margin-bottom:14px;
+  }
+  .q-prompt{ font-size:16.5px; line-height:1.8; margin-bottom:20px; }
+
+  .choice-btn{
+    display:block; width:100%; text-align:right;
+    font-family: var(--font-body, 'Tajawal', sans-serif); font-size:15px;
+    background:#fff; color:var(--ink, #14232B);
+    border:2px solid rgba(20,35,43,0.14); border-radius:14px;
+    padding:14px 18px; margin-bottom:10px; cursor:pointer;
+    transition: border-color .15s ease, background .15s ease, transform .1s ease;
+  }
+  .choice-btn:hover{ border-color:var(--liquid, #1D6FE0); }
+  .choice-btn:active{ transform:scale(.98); }
+  .choice-btn.selected{ border-color:var(--liquid, #1D6FE0); background: color-mix(in srgb, var(--liquid, #1D6FE0) 8%, white); }
+  .choice-btn.correct{ border-color:#16A34A; background:#F0FBF4; color:#166534; }
+  .choice-btn.incorrect{ border-color:#DC2626; background:#FEF2F2; color:#991B1B; }
+  .choice-btn:disabled{ cursor:default; }
+
+  .text-answer-input{
+    width:100%; font-family: var(--font-body, 'Tajawal', sans-serif); font-size:15px;
+    padding:14px 16px; border-radius:14px; border:2px solid rgba(20,35,43,0.14);
+    margin-bottom:14px;
+  }
+  .text-answer-input:focus{ outline:none; border-color:var(--liquid, #1D6FE0); }
+
+  .check-btn{
+    display:block; width:100%;
+    font-family: var(--font-head, 'Cairo', sans-serif); font-weight:800; font-size:15px;
+    color:#fff; background: var(--solid, #B84F14);
+    border:none; border-radius:14px; padding:14px; cursor:pointer;
+    margin-top:6px;
+    transition: transform .15s ease, filter .15s ease;
+  }
+  .check-btn:hover{ filter:brightness(1.06); }
+  .check-btn:active{ transform:scale(.98); }
+  .check-btn:disabled{ opacity:.45; cursor:not-allowed; }
+
+  .feedback-box{
+    margin-top:16px; padding:14px 16px; border-radius:14px;
+    font-size:14.5px; line-height:1.8;
+    opacity:0; max-height:0; overflow:hidden;
+    transition: opacity .3s ease, max-height .3s ease, margin-top .3s ease;
+  }
+  .feedback-box.show{ opacity:1; max-height:300px; }
+  .feedback-box.correct-box{ background:#F0FBF4; color:#14532D; border:1.5px solid #16A34A; }
+  .feedback-box.incorrect-box{ background:#FEF2F2; color:#7F1D1D; border:1.5px solid #DC2626; }
+
+  .next-btn{
+    display:block; width:100%;
+    font-family: var(--font-head, 'Cairo', sans-serif); font-weight:800; font-size:15px;
+    color:#fff; background: var(--liquid, #1D6FE0);
+    border:none; border-radius:14px; padding:14px; cursor:pointer;
+    margin-top:14px; opacity:0; max-height:0; overflow:hidden;
+    transition: opacity .3s ease, max-height .3s ease, margin-top .3s ease;
+  }
+  .next-btn.show{ opacity:1; max-height:80px; margin-top:14px; }
+  .next-btn:active{ transform:scale(.98); }
+
+  .quiz-result{ text-align:center; padding:20px 0; }
+  .quiz-result .emoji{ font-size:52px; margin-bottom:10px; }
+  .quiz-result h2{ font-family: var(--font-head, 'Cairo', sans-serif); font-weight:900; font-size:22px; margin:0 0 8px; }
+  .quiz-result p{ color:var(--ink-soft, #5B6E76); font-size:14.5px; }
+
+  .quiz-empty{ text-align:center; padding:60px 20px; color:var(--ink-soft, #5B6E76); }
+
+  @media (prefers-reduced-motion: reduce){
+    .choice-btn, .check-btn, .next-btn, .feedback-box{ transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="quiz-header">
+    <div class="quiz-icon">🧪</div>
+    <h1 id="quizTitle">جاري التحميل...</h1>
+    <div class="quiz-meta" id="quizMeta"></div>
+  </div>
+
+  <div class="quiz-wrap">
+    <div class="quiz-progress-row">
+      <span id="quizProgressLabel"></span>
+      <span class="quiz-score">النقاط: <span id="quizScore">0</span> ⭐</span>
+    </div>
+    <div class="progress-track" style="margin-bottom:20px;">
+      <div class="progress-fill" id="quizProgressBar" style="width:0%;"></div>
+    </div>
+
+    <div class="quiz-card" id="quizCard">
+      <!-- المحتوى بيتولّد ديناميكيًا بالـ JS تحت -->
+    </div>
+  </div>
+
+<script src="quizzes-data.js"></script>
+<script>
+  (function(){
+    const params = new URLSearchParams(window.location.search);
+    const quizId = params.get('id') || (typeof quizzesData !== 'undefined' && quizzesData[0] ? quizzesData[0].id : null);
+
+    const quizCard = document.getElementById('quizCard');
+    const quizTitle = document.getElementById('quizTitle');
+    const quizMeta = document.getElementById('quizMeta');
+    const quizScoreEl = document.getElementById('quizScore');
+    const quizProgressLabel = document.getElementById('quizProgressLabel');
+    const quizProgressBar = document.getElementById('quizProgressBar');
+
+    if (typeof quizzesData === 'undefined' || !Array.isArray(quizzesData) || quizzesData.length === 0) {
+      quizCard.innerHTML = '<div class="quiz-empty">مفيش اختبارات متاحة دلوقتي.</div>';
+      quizTitle.textContent = 'لا يوجد اختبار';
+      return;
+    }
+
+    const quiz = quizzesData.find(q => q.id === quizId);
+    if (!quiz) {
+      quizCard.innerHTML = '<div class="quiz-empty">الاختبار المطلوب مش موجود.</div>';
+      quizTitle.textContent = 'اختبار غير موجود';
+      return;
+    }
+
+    quizTitle.textContent = quiz.title;
+    quizMeta.textContent = 'اختبار تفاعلي · ' + quiz.questions.length + ' سؤال';
+
+    let currentIndex = 0;
+    let score = 0;
+    let answeredCurrent = false;
+
+    function normalize(str){
+      return (str || '').toString().trim().toLowerCase();
+    }
+
+    function renderQuestion(){
+      const q = quiz.questions[currentIndex];
+      answeredCurrent = false;
+      quizProgressLabel.textContent = 'سؤال ' + (currentIndex + 1) + ' من ' + quiz.questions.length;
+      quizProgressBar.style.width = Math.round((currentIndex / quiz.questions.length) * 100) + '%';
+      quizScoreEl.textContent = score;
+
+      let html = '<div class="q-tag">سؤال ' + (currentIndex + 1) + '</div>';
+      html += '<div class="q-prompt">' + q.prompt + '</div>';
+
+      if (q.type === 'mcq') {
+        html += '<div id="choicesWrap">';
+        q.choices.forEach((choice, i) => {
+          html += '<button class="choice-btn" data-choice="' + i + '">' + choice + '</button>';
+        });
+        html += '</div>';
+      } else {
+        html += '<input type="text" class="text-answer-input" id="textAnswerInput" placeholder="اكتب إجابتك هنا...">';
+      }
+
+      html += '<button class="check-btn" id="checkBtn">✔ تحقق من الإجابة</button>';
+      html += '<div class="feedback-box" id="feedbackBox"></div>';
+      html += '<button class="next-btn" id="nextBtn">السؤال التالي ←</button>';
+
+      quizCard.innerHTML = html;
+
+      let selectedChoice = null;
+      if (q.type === 'mcq') {
+        document.querySelectorAll('.choice-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            if (answeredCurrent) return;
+            document.querySelectorAll('.choice-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            selectedChoice = btn.textContent;
+          });
+        });
+      }
+
+      document.getElementById('checkBtn').addEventListener('click', () => {
+        if (answeredCurrent) return;
+        const userAnswer = q.type === 'mcq' ? selectedChoice : document.getElementById('textAnswerInput').value;
+        if (!userAnswer) return;
+
+        answeredCurrent = true;
+        const isCorrect = normalize(userAnswer) === normalize(q.answer);
+        if (isCorrect) score++;
+
+        if (q.type === 'mcq') {
+          document.querySelectorAll('.choice-btn').forEach(btn => {
+            btn.disabled = true;
+            if (normalize(btn.textContent) === normalize(q.answer)) btn.classList.add('correct');
+            else if (btn.classList.contains('selected') && !isCorrect) btn.classList.add('incorrect');
+          });
+        } else {
+          document.getElementById('textAnswerInput').disabled = true;
+        }
+
+        const feedbackBox = document.getElementById('feedbackBox');
+        feedbackBox.className = 'feedback-box show ' + (isCorrect ? 'correct-box' : 'incorrect-box');
+        feedbackBox.innerHTML = (isCorrect ? '✅ <strong>إجابة صحيحة!</strong> ' : '💡 <strong>مش قصادها.</strong> ') + (q.explanation || '');
+
+        document.getElementById('checkBtn').disabled = true;
+        document.getElementById('nextBtn').classList.add('show');
+        quizScoreEl.textContent = score;
+      });
+
+      document.getElementById('nextBtn').addEventListener('click', () => {
+        currentIndex++;
+        if (currentIndex < quiz.questions.length) {
+          renderQuestion();
+        } else {
+          renderResult();
+        }
+      });
+    }
+
+    function renderResult(){
+      quizProgressBar.style.width = '100%';
+      quizProgressLabel.textContent = 'انتهى الاختبار';
+      const total = quiz.questions.length;
+      const percent = Math.round((score / total) * 100);
+      let emoji = '🌱';
+      if (percent >= 80) emoji = '🏆';
+      else if (percent >= 50) emoji = '✨';
+
+      quizCard.innerHTML =
+        '<div class="quiz-result">' +
+          '<div class="emoji">' + emoji + '</div>' +
+          '<h2>خلصت الاختبار!</h2>' +
+          '<p>حصلت على <strong>' + score + '</strong> من <strong>' + total + '</strong> (' + percent + '٪)</p>' +
+        '</div>';
+    }
+
+    renderQuestion();
+  })();
+</script>
+</body>
+</html>
