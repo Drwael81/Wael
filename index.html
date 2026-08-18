@@ -56,15 +56,32 @@
   @media (max-width:880px){
     .site-header-inner{ justify-content:center; }
     .brand{ justify-content:center; width:100%; }
+    .main-nav{ width:100%; justify-content:center; flex-wrap:wrap; }
+    .credit{ display:none; }
   }
   .brand{
     display:flex; align-items:center; gap:10px; flex-wrap:wrap;
     font-family:'Cairo', sans-serif; font-weight:900; font-size:16px;
     direction:ltr; text-align:left;
+    text-decoration:none; color:var(--ink);
   }
   .brand-url{
     font-weight:700; color:var(--ink-soft);
   }
+  .main-nav{
+    display:flex; align-items:center; gap:4px;
+    font-family:'Cairo', sans-serif; font-weight:700; font-size:14px;
+  }
+  .main-nav a{
+    color:var(--ink-soft); text-decoration:none;
+    padding:8px 14px; border-radius:999px;
+    transition: background .15s ease, color .15s ease;
+  }
+  .main-nav a:hover, .main-nav a:focus-visible{
+    background: color-mix(in srgb, var(--liquid) 10%, white);
+    color: var(--liquid);
+  }
+  #top{ display:block; position:relative; top:-14px; visibility:hidden; }
   .credit{
     font-family:'Tajawal', sans-serif;
     font-weight:500; font-size:11.5px;
@@ -85,7 +102,7 @@
   .channel-link.wa{ background:#25D366; color:#fff; }
   .channel-link.tg{ background:#229ED9; color:#fff; }
   .channel-link.lessons{ background:var(--ink); color:#fff; }
-  @media (max-width:560px){ .brand{ font-size:13.5px; } .credit{ display:none; } }
+  @media (max-width:560px){ .brand{ font-size:13.5px; } }
   .brand-mark{
     width:34px; height:34px; border-radius:9px;
     background: linear-gradient(135deg, var(--solid), var(--liquid) 50%, var(--gas));
@@ -136,6 +153,20 @@
   .hero-stat-num{ font-family:'Cairo', sans-serif; font-weight:900; font-size:24px; color:var(--ink); }
   .hero-stat-label{ font-size:12px; color:var(--ink-soft); }
 
+  .hero-cta-row{
+    display:flex; justify-content:center; gap:14px; flex-wrap:wrap;
+    margin-bottom:28px;
+  }
+  .btn-secondary{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Cairo', sans-serif; font-weight:700; font-size:15px;
+    color:var(--ink); background:#fff;
+    border:2px solid rgba(20,35,43,0.14);
+    border-radius:16px; padding:12px 26px; text-decoration:none;
+    transition: transform .15s ease, border-color .15s ease;
+  }
+  .btn-secondary:hover{ transform:translateY(-2px); border-color:var(--liquid); color:var(--liquid); }
+  .btn-secondary:active{ transform:scale(.97); }
   .hero-wa-btn{
     display:inline-flex; align-items:center; gap:14px;
     margin-top:30px; padding:16px 30px;
@@ -169,9 +200,10 @@
   /* ---------- category grid ---------- */
   /* ---------- two main path cards ---------- */
   .paths-section{
-    display:grid; grid-template-columns:1fr 1fr; gap:22px;
+    display:grid; grid-template-columns:1fr 1fr 1fr; gap:22px;
     margin-top:44px;
   }
+  @media (max-width:880px){ .paths-section{ grid-template-columns:1fr 1fr; } }
   @media (max-width:640px){ .paths-section{ grid-template-columns:1fr; } }
   .path-card{
     display:block; text-decoration:none; color:#fff;
@@ -182,7 +214,8 @@
   }
   .path-card:hover{ transform:translateY(-5px); box-shadow:0 22px 44px rgba(30,42,51,0.22); }
   .path-experiments{ background: linear-gradient(135deg, var(--solid), var(--liquid)); }
-  .path-lessons{ background: linear-gradient(135deg, #3F5E9E, #1E8A72); }
+  .path-lessons{ background: linear-gradient(135deg, #3F5E9E, var(--gas)); }
+  .path-quizzes{ background: linear-gradient(135deg, var(--gas), var(--solid)); }
   .path-icon{ font-size:44px; margin-bottom:10px; }
   .path-title{ font-family:'Cairo', sans-serif; font-weight:900; font-size:24px; margin-bottom:6px; }
   .path-count{
@@ -283,7 +316,7 @@
   .master-btn:hover{ transform: translateY(-2px); }
   .master-btn:active{ transform: translateY(0px) scale(.98); }
   .master-btn.on{ background: #B23A3A; }
-  .master-btn:focus-visible{ outline: 3px solid #24567A; outline-offset:3px; }
+  .master-btn:focus-visible{ outline: 3px solid var(--liquid); outline-offset:3px; }
 
   .grid{
     display:grid;
@@ -828,9 +861,30 @@
   }
 
   footer.site-footer{
-    text-align:center; padding:26px 20px 40px;
+    text-align:center; padding:36px 20px 40px;
     color:var(--ink-soft); font-size:13px;
+    border-top:1px solid rgba(20,35,43,0.08);
+    margin-top:20px;
   }
+  .footer-brand{
+    font-family:'Cairo', sans-serif; font-weight:800; font-size:16px; color:var(--ink);
+    direction:ltr;
+  }
+  .footer-tagline{
+    font-size:12.5px; color:var(--ink-soft); font-style:italic; margin-top:4px; direction:ltr;
+  }
+  .footer-links{
+    display:flex; justify-content:center; gap:8px; flex-wrap:wrap;
+    margin:18px 0 14px;
+  }
+  .footer-links a{
+    font-family:'Cairo', sans-serif; font-weight:700; font-size:12.5px;
+    color:var(--ink-soft); text-decoration:none;
+    padding:6px 14px; border-radius:999px; border:1px solid rgba(20,35,43,0.12);
+    transition: background .15s ease, color .15s ease;
+  }
+  .footer-links a:hover{ background: color-mix(in srgb, var(--liquid) 10%, white); color:var(--liquid); }
+  .footer-credit{ font-size:12px; margin-bottom:2px; }
   .footer-email{
     display:inline-block; margin-top:4px;
     font-family:'Cairo', sans-serif; font-weight:700; font-size:12.5px;
@@ -855,20 +909,31 @@
     .piston-group, .fill-group, .master-btn, .press-btn, .result{ transition:none !important; animation:none !important; }
   }
 </style>
+<!-- Design System (Phase 1) — بيغيّر قيم متغيرات الألوان القديمة فقط، صفر تأثير على بنية التجارب -->
+<link rel="stylesheet" href="style.css">
+<!-- Experiments Metadata (Phase 2 data layer) — id/category/order فقط، مش محتوى -->
+<script src="experiments-data.js"></script>
 </head>
 <body>
 
   <div class="site-header">
     <div class="site-header-inner">
-      <div class="brand">
+      <a href="#top" class="brand" aria-label="الرئيسية">
         <span class="brand-mark">🧪</span>
         <span class="brand-text">
           <span class="brand-url">www.</span>2nd Prep. Funny Science lab
         </span>
-        <span class="credit">By #Dr_Wael_Aboagiza</span>
-      </div>
+      </a>
+      <nav class="main-nav" aria-label="التنقل الرئيسي">
+        <a href="#top">الرئيسية</a>
+        <a href="#categories">التجارب</a>
+        <a href="lessons.html">الدروس</a>
+      </nav>
+      <span class="credit">By #Dr_Wael_Aboagiza</span>
     </div>
   </div>
+
+  <a id="top"></a>
 
   <div class="wrap">
 
@@ -880,6 +945,11 @@
         الموقع ده اتعمل خصيصًا لك أنت — كل درس صعب فهمته في الكتاب، هتلاقيه هنا تجربة تقدر تلمسها بإيدك،
         تضغط، تسحب، تشوف النتيجة قدامك على طول. مفيش حفظ من غير فهم، وكل حاجة هنا مجانية بالكامل.
       </p>
+
+      <div class="hero-cta-row">
+        <a href="#exp-1" class="btn-primary">🧪 ابدأ أول تجربة</a>
+        <a href="#categories" class="btn-secondary">📚 استكشف التجارب</a>
+      </div>
 
       <a href="https://whatsapp.com/channel/0029VbBAp9MFMqrg4r1h8x06" target="_blank" rel="noopener" class="hero-wa-btn">
         <span class="hero-wa-icon">📱</span>
@@ -910,6 +980,13 @@
         <div class="path-desc">شرح تفصيلي منظّم لكل درس، بالرسومات والتفاعلات، بجانب التجارب.</div>
         <div class="path-cta">ادخل للدروس ←</div>
       </a>
+      <a href="quizzes.html" class="path-card path-quizzes">
+        <div class="path-icon">📝</div>
+        <div class="path-title">قسم الاختبارات</div>
+        <div class="path-count">أسئلة بتصحيح فوري</div>
+        <div class="path-desc">اختبر فهمك بأسئلة تفاعلية، وشوف نتيجتك ودرجتك في الآخر على طول.</div>
+        <div class="path-cta">ابدأ اختبار ←</div>
+      </a>
     </section>
 
     <div class="section-divider">
@@ -917,35 +994,35 @@
     </div>
 
     <!-- ============ category grid ============ -->
-    <section class="cat-section">
+    <section class="cat-section" id="categories">
       <div class="cat-grid">
-        <a href="#exp-1" class="cat-card cat-pressure">
+        <a href="#exp-1" class="cat-card cat-pressure" data-category="matter">
           <div class="cat-icon">💨</div>
-          <div class="cat-count">٣ تجارب</div>
+          <div class="cat-count" data-count-placeholder>٣ تجارب</div>
           <div class="cat-title">خواص المادة والضغط</div>
           <div class="cat-desc">الانضغاط، ضغط الغاز، الضغط الجوي ودرجة الغليان</div>
         </a>
-        <a href="#exp-2" class="cat-card cat-diffusion">
+        <a href="#exp-2" class="cat-card cat-diffusion" data-category="diffusion">
           <div class="cat-icon">🌫️</div>
-          <div class="cat-count">٥ تجارب</div>
+          <div class="cat-count" data-count-placeholder>٥ تجارب</div>
           <div class="cat-title">الانتشار والحركة الجزيئية</div>
           <div class="cat-desc">سرعة الانتشار، تأثير الحرارة والكتلة، سباق الغازات، قوى التجاذب</div>
         </a>
-        <a href="#exp-9" class="cat-card cat-states">
+        <a href="#exp-9" class="cat-card cat-states" data-category="state-changes">
           <div class="cat-icon">🔄</div>
-          <div class="cat-count">٣ تجارب</div>
+          <div class="cat-count" data-count-placeholder>٣ تجارب</div>
           <div class="cat-title">تغيرات الحالة والنقاء</div>
           <div class="cat-desc">التبخر، التصعيد والترسيب، النقاء ودرجتا الغليان والانصهار</div>
         </a>
-        <a href="#exp-12" class="cat-card cat-temp">
+        <a href="#exp-12" class="cat-card cat-temp" data-category="temperature">
           <div class="cat-icon">🌡️</div>
-          <div class="cat-count">٦ تجارب</div>
+          <div class="cat-count" data-count-placeholder>٦ تجارب</div>
           <div class="cat-title">الحرارة والاتزان الحراري</div>
           <div class="cat-desc">الإحساس بالحرارة، الأنظمة، العوامل المؤثرة، السعة الحرارية، حلة الضغط، الاتزان</div>
         </a>
-        <a href="#exp-18" class="cat-card cat-transfer">
+        <a href="#exp-18" class="cat-card cat-transfer" data-category="heat-transfer">
           <div class="cat-icon">🔥</div>
-          <div class="cat-count">٥ تجارب</div>
+          <div class="cat-count" data-count-placeholder>٥ تجارب</div>
           <div class="cat-title">طرق انتقال الحرارة</div>
           <div class="cat-desc">التوصيل، الموصلات والعوازل، الحمل الحراري، الإشعاع، مقارنة شاملة</div>
         </a>
@@ -2049,8 +2126,17 @@
   </div>
 
   <footer class="site-footer">
-    www.2ndPrepFunnyScienceLab · تجارب تفاعلية لدرس حالات المادة<br>By #Dr_Wael_Aboagiza
-    <br><a href="mailto:drwael81@gmail.com" class="footer-email">drwael81@gmail.com</a>
+    <div class="footer-brand">🧪 www.2nd Prep. Funny Science lab</div>
+    <div class="footer-tagline">Science is better when you experiment.</div>
+    <nav class="footer-links">
+      <a href="#top">الرئيسية</a>
+      <a href="#categories">التجارب</a>
+      <a href="lessons.html">الدروس</a>
+      <a href="https://whatsapp.com/channel/0029VbBAp9MFMqrg4r1h8x06" target="_blank" rel="noopener">واتساب</a>
+      <a href="https://t.me/secondprepfunnyscience" target="_blank" rel="noopener">تليجرام</a>
+    </nav>
+    <div class="footer-credit">By #Dr_Wael_Aboagiza</div>
+    <a href="mailto:drwael81@gmail.com" class="footer-email">drwael81@gmail.com</a>
     <div style="margin-top:12px;">
       <!-- hitwebcounter Code START -->
       <a href="https://www.hitwebcounter.com/work-hours-calculator" target="_blank" rel="noopener" title="Counter Hours">
@@ -2064,6 +2150,24 @@
 
 
 <script>
+  /* ---- Phase 2A: Dynamic category counts from experiments-data.js ---- */
+  /* معزولة في دالة خاصة بيها عشان صفر تعارض مع أي متغير في التجارب تحت */
+  (function renderCategoryCounts(){
+    if (typeof experimentsData === 'undefined' || !Array.isArray(experimentsData)) return;
+    const counts = {};
+    experimentsData.forEach(item => {
+      counts[item.category] = (counts[item.category] || 0) + 1;
+    });
+    const arabicDigits = n => n.toLocaleString('ar-EG');
+    document.querySelectorAll('.cat-card[data-category]').forEach(card => {
+      const cat = card.dataset.category;
+      const countEl = card.querySelector('[data-count-placeholder]');
+      if (countEl && counts[cat] !== undefined) {
+        countEl.textContent = arabicDigits(counts[cat]) + ' تجارب';
+      }
+    });
+  })();
+
   const cards = ['card-solid','card-liquid','card-gas'];
 
   function press(id){
