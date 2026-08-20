@@ -271,7 +271,15 @@
           '<div class="emoji">' + emoji + '</div>' +
           '<h2>خلصت الاختبار!</h2>' +
           '<p>حصلت على <strong>' + score + '</strong> من <strong>' + total + '</strong> (' + percent + '٪)</p>' +
+          '<button class="check-btn" id="restartBtn">🔄 إعادة الاختبار</button>' +
         '</div>';
+
+      document.getElementById('restartBtn').addEventListener('click', () => {
+        currentIndex = 0;
+        score = 0;
+        answeredCurrent = false;
+        renderQuestion();
+      });
     }
 
     renderQuestion();
