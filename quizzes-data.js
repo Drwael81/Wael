@@ -206,6 +206,138 @@ const quizzesData = [
         explanation: "Liquids have a stable volume; they are practically incompressible."
       }
     ]
+  },
+
+  /* ------------------------------------------------------------------
+     Check Your Understanding 2 — The Particle Model of Matter
+     الإجابات محفوظة كنص الاختيار الصحيح نفسه (زي ما المحرك بيقرأ).
+     ------------------------------------------------------------------ */
+  {
+    id: "quiz-check-understanding-2",
+    title: "Check Your Understanding 2",
+    lessonId: null,
+    category: "matter",
+    questions: [
+      {
+        type: "mcq",
+        prompt: "What is matter made up of according to the particle theory?",
+        choices: [
+          "Large visible objects",
+          "Very small particles",
+          "Only atoms of gases",
+          "Continuous material with no particles"
+        ],
+        answer: "Very small particles",
+        explanation: "Matter is composed of very small particles that cannot be seen by the naked eye."
+      },
+      {
+        type: "mcq",
+        prompt: "What exists between the particles of matter?",
+        choices: [
+          "Interparticle spaces",
+          "Empty containers",
+          "Magnetic fields only",
+          "No space at all"
+        ],
+        answer: "Interparticle spaces",
+        explanation: "There are spaces between particles, and their size varies according to the physical state."
+      },
+      {
+        type: "mcq",
+        prompt: "Which state of matter has the strongest attractive forces between its particles?",
+        choices: ["Gas", "Liquid", "Solid", "Plasma only"],
+        answer: "Solid",
+        explanation: "Particles in solids are held together by very strong attractive forces."
+      },
+      {
+        type: "mcq",
+        prompt: "How do particles in a solid mainly move?",
+        choices: [
+          "They move freely in all directions.",
+          "They flow around each other.",
+          "They vibrate about fixed positions.",
+          "They stop moving completely."
+        ],
+        answer: "They vibrate about fixed positions.",
+        explanation: "Solid particles remain in fixed positions but continuously vibrate."
+      },
+      {
+        type: "mcq",
+        prompt: "Which state of matter has very large interparticle spaces?",
+        choices: ["Solid", "Liquid", "Gas", "None of them"],
+        answer: "Gas",
+        explanation: "Gas particles are separated by very large spaces."
+      },
+      {
+        type: "mcq",
+        prompt: "Why are gases easily compressed?",
+        choices: [
+          "Their particles are very large.",
+          "Their particles do not move.",
+          "There are very large spaces between their particles.",
+          "Their attractive forces are very strong."
+        ],
+        answer: "There are very large spaces between their particles.",
+        explanation: "The large interparticle spaces in gases can be reduced when pressure is applied."
+      },
+      {
+        type: "mcq",
+        prompt: "Which state has a definite volume but no definite shape?",
+        choices: ["Solid", "Liquid", "Gas", "Plasma"],
+        answer: "Liquid",
+        explanation: "A liquid has a definite volume but takes the shape of its container."
+      },
+      {
+        type: "mcq",
+        prompt: "Which state has the fastest diffusion?",
+        choices: ["Solid", "Liquid", "Gas", "All are equal"],
+        answer: "Gas",
+        explanation: "Gas particles move freely and rapidly, so diffusion occurs very quickly."
+      },
+      {
+        type: "mcq",
+        prompt: "What is Brownian motion?",
+        choices: [
+          "The vibration of particles in a solid",
+          "Random motion of relatively large suspended particles caused by collisions with fluid molecules",
+          "The movement of electrons around the nucleus",
+          "The flow of a liquid only"
+        ],
+        answer: "Random motion of relatively large suspended particles caused by collisions with fluid molecules",
+        explanation: "Brownian motion results from continuous random collisions between suspended particles and molecules of the surrounding fluid."
+      },
+      {
+        type: "mcq",
+        prompt: "What happens when a gas is heated to extremely high temperatures and becomes ionized?",
+        choices: [
+          "It becomes a solid.",
+          "It becomes a liquid.",
+          "It becomes plasma.",
+          "It stops moving."
+        ],
+        answer: "It becomes plasma.",
+        explanation: "Plasma contains positively charged ions and free electrons."
+      },
+      {
+        type: "mcq",
+        prompt: "Which of the following is an example of plasma?",
+        choices: ["Ice", "Water", "The Sun", "Table salt"],
+        answer: "The Sun",
+        explanation: "The Sun and other stars consist largely of plasma."
+      },
+      {
+        type: "mcq",
+        prompt: "Which statement correctly compares the three common states of matter?",
+        choices: [
+          "Attraction forces are strongest in gases.",
+          "Interparticle spaces are smallest in gases.",
+          "Diffusion is fastest in solids.",
+          "Attraction forces decrease from solid to liquid to gas."
+        ],
+        answer: "Attraction forces decrease from solid to liquid to gas.",
+        explanation: "Attractive forces decrease from solid to liquid to gas, while interparticle spaces and diffusion speed increase."
+      }
+    ]
   }
 
   /* الاختبارات الحقيقية الجديدة تتضاف هنا تحت، كل واحد بفاصلة قبله: */
