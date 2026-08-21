@@ -1,0 +1,150 @@
+/* ==========================================================================
+   Funny Science Lab — Design System (Phase 1)
+   طبقة تصميم فوق الأنماط المدمجة في الصفحات.
+   بتغيّر قيم متغيرات الألوان القديمة + بوليش للمكونات،
+   صفر تأثير على بنية التجارب أو منطق الـ JS.
+   ========================================================================== */
+
+/* ---------- 1) التصميم البصري الأساسي ---------- */
+:root{
+  /* الألوان — نفس أسماء المتغيرات القديمة عشان كل الصفحات تتحدث تلقائيًا */
+  --paper:      #F3F7F8;
+  --paper-line: rgba(20, 35, 43, 0.045);
+  --ink:        #14232B;
+  --ink-soft:   #55676F;
+  --card-bg:    #FFFFFF;
+
+  /* ألوان الأقسام */
+  --solid:  #B84F14;   /* برتقالي دافئ */
+  --liquid: #1D6FE0;   /* أزرق حيوي */
+  --gas:    #0E9488;   /* أخضر مزرق */
+
+  /* توكنز إضافية (quiz.html بيستخدمها) */
+  --font-head: 'Cairo', 'Tajawal', sans-serif;
+  --font-body: 'Tajawal', 'Segoe UI', Tahoma, Arial, sans-serif;
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --shadow: 0 10px 30px rgba(16, 32, 40, 0.09);
+  --shadow-lift: 0 18px 38px rgba(16, 32, 40, 0.15);
+}
+
+/* ---------- 2) لمسات عامة ---------- */
+html{ scroll-padding-top: 92px; }
+
+::selection{ background: rgba(29, 111, 224, 0.20); }
+
+::-webkit-scrollbar{ width: 11px; height: 11px; }
+::-webkit-scrollbar-track{ background: transparent; }
+::-webkit-scrollbar-thumb{
+  background: #C3CFD4;
+  border-radius: 8px;
+  border: 3px solid var(--paper);
+}
+::-webkit-scrollbar-thumb:hover{ background: #A9BAC1; }
+
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible{
+  outline: 3px solid rgba(29, 111, 224, 0.45);
+  outline-offset: 2px;
+}
+
+/* الهيدر: زجاجية أنعم + ظل خفيف عند التمرير */
+.site-header{
+  background: color-mix(in srgb, var(--paper) 78%, transparent);
+  -webkit-backdrop-filter: saturate(1.5) blur(12px);
+  backdrop-filter: saturate(1.5) blur(12px);
+  border-bottom: 1px solid rgba(20, 35, 43, 0.07);
+}
+body.scrolled .site-header{ box-shadow: 0 6px 24px rgba(16, 32, 40, 0.08); }
+
+.main-nav a.active{
+  background: color-mix(in srgb, var(--liquid) 12%, #fff);
+  color: var(--liquid);
+}
+
+/* ---------- 3) إصلاح زر البداية (.btn-primary كان بدون تنسيق) ---------- */
+.btn-primary{
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-head); font-weight: 800; font-size: 15px;
+  color: #fff; text-decoration: none;
+  background: linear-gradient(135deg, var(--solid), var(--liquid));
+  border: none; border-radius: 16px; padding: 13px 28px;
+  box-shadow: 0 10px 24px rgba(29, 111, 224, 0.30);
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+.btn-primary:hover{
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  box-shadow: 0 14px 30px rgba(29, 111, 224, 0.38);
+}
+.btn-primary:active{ transform: scale(.97); }
+.btn-secondary:hover{ border-color: var(--liquid); color: var(--liquid); }
+
+/* ---------- 4) بوليش الكروت ---------- */
+.card,
+.cat-card,
+.lesson-card,
+.quiz-card{ border-radius: var(--radius-lg); border: 1px solid rgba(20, 35, 43, 0.06); }
+
+.cat-card{ border-bottom: 5px solid var(--accent); }
+.lesson-card{ border-top-width: 6px; }
+.card{ border-top-width: 6px; }
+
+.cat-card:hover,
+.lesson-card:hover,
+.quiz-card:hover{ box-shadow: var(--shadow-lift); }
+
+.path-card{ border-radius: 26px; }
+
+/* صناديق النتائج داخل التجارب: خلفية أنعم */
+.result{
+  background: color-mix(in srgb, var(--accent, var(--liquid)) 7%, #fff);
+}
+
+/* ---------- 5) شريط تقدم القراءة (بيتم إنشاؤه من site-enhance.js) ---------- */
+.scroll-progress{
+  position: fixed; top: 0; right: 0;
+  height: 4px; width: 100%;
+  z-index: 80; pointer-events: none;
+  background: linear-gradient(270deg, var(--solid), var(--liquid), var(--gas));
+  transform: scaleX(var(--progress, 0));
+  transform-origin: right center;
+}
+
+/* ---------- 6) زر العودة لأعلى ---------- */
+.to-top{
+  position: fixed; bottom: 24px; inset-inline-end: 24px;
+  z-index: 70;
+  width: 48px; height: 48px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; line-height: 1;
+  color: #fff; text-decoration: none; cursor: pointer; border: none;
+  background: linear-gradient(135deg, var(--liquid), var(--gas));
+  box-shadow: 0 10px 24px rgba(16, 32, 40, 0.28);
+  opacity: 0; visibility: hidden; transform: translateY(14px);
+  transition: opacity .25s ease, transform .25s ease, visibility .25s, filter .15s ease;
+}
+.to-top.show{ opacity: 1; visibility: visible; transform: none; }
+.to-top:hover{ filter: brightness(1.08); transform: translateY(-2px); }
+
+/* ---------- 7) أنيميشن الظهور التدريجي عند التمرير ----------
+   بتتفعل فقط لما الـ JS يضيف كلاس reveal-on لعنصر html،
+   ولو المتصفح مش شايل IntersectionObserver أو المستخدم
+   قافل الحركة مفيش أي عنصر هيختفي. */
+html.reveal-on .reveal{
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .65s ease, transform .65s cubic-bezier(.19, .7, .26, 1);
+}
+html.reveal-on .reveal.is-visible{ opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce){
+  html.reveal-on .reveal{
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .scroll-progress{ display: none; }
+}
