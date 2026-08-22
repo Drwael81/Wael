@@ -37,5 +37,16 @@ const lessonsData = [
     cta: "ابدأ الدرس ←",
     href: "lesson-particle-model-of-matter.html",
     lang: "en"
+  },
+  {
+    id: "lesson-changes-in-states-of-matter",
+    order: 3,
+    status: "published",
+    icon: "🔥🧊💧",
+    title: "Changes in the States of Matter",
+    desc: "Interactive heating curve (A → F), melting & boiling plateaus, pressure and purity effects, and the pressure cooker.",
+    cta: "ابدأ الدرس ←",
+    href: "lesson-changes-in-states-of-matter.html",
+    lang: "en"
   }
 ];

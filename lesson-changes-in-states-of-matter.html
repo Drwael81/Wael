@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Changes in the States of Matter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ice:#0B3D5C;
+  --water:#1B8A9E;
+  --amber:#F2A65A;
+  --heat:#E1543D;
+  --bg:#FAFAF6;
+  --ink:#12202A;
+  --paper:#FFFFFF;
+  --line:#D8DED9;
+  --mono:'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Inter',sans-serif;
+  line-height:1.55;
+  overflow-x:hidden;
+}
+.ar{
+  font-family:'Cairo',sans-serif;
+  direction:rtl;
+  color:#3f5a63;
+  font-size:0.92rem;
+  background:#EEF4F2;
+  border-inline-start:3px solid var(--water);
+  padding:10px 14px;
+  border-radius:4px;
+  margin-top:10px;
+}
+h1,h2,h3,.disp{font-family:'Space Grotesk',sans-serif;}
+.wrap{max-width:960px; margin:0 auto; padding:0 24px;}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;
+  min-height:74vh;
+  display:flex; flex-direction:column; justify-content:center;
+  background:linear-gradient(180deg,var(--ice) 0%, #0e5b7a 45%, var(--water) 100%);
+  color:#fff;
+  overflow:hidden;
+}
+.hero .wrap{position:relative; z-index:2; padding-top:60px; padding-bottom:60px;}
+.eyebrow{
+  font-family:var(--mono); letter-spacing:.12em; text-transform:uppercase;
+  font-size:.75rem; opacity:.85; margin-bottom:18px;
+}
+.hero h1{
+  font-size:clamp(2.4rem,6vw,4.2rem);
+  font-weight:700; line-height:1.02; letter-spacing:-.02em;
+  max-width:11ch;
+}
+.hero p.sub{
+  margin-top:22px; max-width:520px; font-size:1.05rem; color:#dceef0;
+}
+.hero .ar{background:rgba(255,255,255,.08); color:#eafaf7; border-color:var(--amber); backdrop-filter:blur(2px); max-width:560px;}
+.thermo-field{
+  position:absolute; inset:0; z-index:1; opacity:.5;
+  background-image:
+    radial-gradient(circle at 85% 20%, rgba(255,255,255,.25), transparent 40%),
+    radial-gradient(circle at 15% 80%, rgba(242,166,90,.35), transparent 45%);
+}
+.particles{position:absolute; inset:0; z-index:1;}
+.p{
+  position:absolute; border-radius:50%; background:#fff; opacity:.55;
+  animation:float 6s ease-in-out infinite;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0px);}
+  50%{transform:translateY(-18px);}
+}
+
+/* ---------- SECTION SHELL ---------- */
+section{padding:80px 0;}
+.section-head{margin-bottom:36px;}
+.tag{
+  font-family:var(--mono); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--water); font-weight:600;
+}
+h2{font-size:clamp(1.6rem,3.4vw,2.3rem); font-weight:700; margin-top:8px; letter-spacing:-.01em;}
+.lede{max-width:640px; color:#3d4d54; margin-top:10px;}
+
+/* ---------- PHASE DIAGRAM ---------- */
+.phase-row{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:36px;
+}
+.phase-card{
+  background:var(--paper); border:1px solid var(--line); border-radius:10px;
+  padding:22px 18px; position:relative;
+}
+.phase-card .icon{width:48px; height:48px; margin-bottom:14px;}
+.phase-card h3{font-size:1.05rem; margin-bottom:6px;}
+.phase-card p{font-size:.9rem; color:#4a5b62;}
+.phase-arrow{
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--mono); font-size:.75rem; color:var(--amber); margin:6px 0;
+}
+.key-points{
+  margin-top:30px; background:#F1F6EE; border:1px solid var(--line); border-radius:10px; padding:22px 24px;
+}
+.key-points ul{list-style:none;}
+.key-points li{position:relative; padding-left:20px; margin-bottom:10px; font-size:.94rem;}
+.key-points li::before{content:'—'; position:absolute; left:0; color:var(--heat); font-family:var(--mono);}
+
+/* ---------- HEATING CURVE (interactive) ---------- */
+.curve-shell{
+  background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:26px 20px 10px;
+  margin-top:30px;
+}
+svg#curveSvg{width:100%; height:auto; display:block;}
+.seg{cursor:pointer;}
+.seg-hit{stroke:transparent; stroke-width:22; fill:none;}
+.node{cursor:pointer; transition:r .15s ease;}
+.node:hover, .node.active{r:8;}
+.info-panel{
+  margin-top:18px; border-top:1px dashed var(--line); padding-top:18px; min-height:120px;
+}
+.info-title{font-family:var(--mono); font-size:.75rem; letter-spacing:.08em; text-transform:uppercase; color:var(--water); margin-bottom:6px;}
+.info-body h4{font-size:1.05rem; margin-bottom:8px;}
+.info-body ul{padding-left:18px; font-size:.92rem; color:#3d4d54;}
+.info-body li{margin-bottom:5px;}
+.legend{display:flex; gap:18px; flex-wrap:wrap; margin-top:14px; font-size:.78rem; font-family:var(--mono); color:#5a6b71;}
+.legend span{display:inline-flex; align-items:center; gap:6px;}
+.dot{width:9px; height:9px; border-radius:50%; display:inline-block;}
+
+/* ---------- FACTORS ---------- */
+.factor-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:30px;}
+.factor-card{background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:24px;}
+.factor-card .num{font-family:var(--mono); color:var(--amber); font-size:.8rem;}
+.factor-card h3{margin-top:6px; margin-bottom:10px; font-size:1.15rem;}
+.mtable{width:100%; border-collapse:collapse; margin-top:14px; font-size:.88rem;}
+.mtable th,.mtable td{padding:8px 6px; border-bottom:1px solid var(--line); text-align:center;}
+.mtable th{font-family:var(--mono); font-weight:600; color:var(--water); font-size:.72rem; text-transform:uppercase;}
+
+/* fire / snow toggle */
+.fm-toggle{display:flex; gap:8px; margin-top:16px;}
+.fm-btn{
+  flex:1; font-family:'Inter',sans-serif; font-weight:600; font-size:.86rem;
+  padding:9px 10px; border-radius:8px; border:1px solid var(--line);
+  background:#F5F8F4; color:#5a6b71; cursor:pointer; transition:.15s ease;
+}
+.fm-btn.active{background:var(--ice); color:#fff; border-color:var(--ice);}
+.fm-panel{
+  background:#F8FAF7; border:1px solid var(--line); border-top:none; border-radius:0 0 8px 8px;
+  padding:14px 16px; margin-top:-1px;
+}
+.fm-panel ul{padding-left:18px; font-size:.9rem; color:#3d4d54;}
+.fm-panel li{margin-bottom:6px;}
+
+/* altitude slider */
+.altitude-slider{
+  margin-top:18px; background:#F8FAF7; border:1px solid var(--line); border-radius:10px; padding:14px 16px;
+}
+.slider-head{display:flex; justify-content:space-between; font-size:.85rem; color:#3d4d54; font-weight:600; margin-bottom:8px;}
+.slider-readout{font-family:var(--mono); color:var(--heat);}
+input#altRange{width:100%; accent-color:var(--heat); cursor:pointer;}
+.slider-result{margin-top:10px; font-size:.92rem; color:#12202A; font-family:var(--mono);}
+
+/* worked example */
+.worked-example{
+  margin-top:18px; background:#EFF5F1; border-left:3px solid var(--water); border-radius:6px; padding:14px 16px;
+}
+.we-q{font-size:.88rem; color:#2b3d43; margin-bottom:10px;}
+.we-toggle{
+  font-family:var(--mono); font-size:.78rem; background:var(--water); color:#fff; border:none;
+  padding:7px 14px; border-radius:20px; cursor:pointer;
+}
+.we-a{margin-top:12px; font-size:.9rem; color:#2b3d43;}
+.we-a p{margin-bottom:6px;}
+
+/* altitude mountain viz */
+.mountain{position:relative; height:210px; margin-top:18px;}
+.mountain svg{width:100%; height:100%;}
+.mlabel{font-family:var(--mono); font-size:.72rem; fill:#2b3d43;}
+.mlabel.big{font-size:.85rem; font-weight:600;}
+
+/* solution shift viz */
+.shift-row{display:flex; gap:14px; margin-top:16px; flex-wrap:wrap;}
+.shift-box{flex:1; min-width:150px; background:#F5F8F4; border-radius:8px; padding:14px; text-align:center;}
+.shift-box .from{font-family:var(--mono); color:#8b98a0; font-size:.8rem; text-decoration:line-through;}
+.shift-box .to{font-family:var(--mono); font-size:1.4rem; font-weight:600; margin-top:4px;}
+.shift-box .to.down{color:var(--water);}
+.shift-box .to.up{color:var(--heat);}
+.shift-box .lbl{font-size:.78rem; color:#5a6b71; margin-top:6px;}
+
+/* ---------- QUIZ ---------- */
+.quiz-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:30px;}
+.quiz-card{background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:22px;}
+.quiz-card h3{font-size:1.02rem; margin-bottom:14px;}
+.diagram-quiz{background:#F8FAF7; border-radius:8px; padding:10px 4px;}
+.diagram-quiz svg{width:100%; height:auto;}
+.dq-state{font-family:'Space Grotesk',sans-serif; font-size:14px; fill:#12202A; font-weight:600;}
+.dq-label{
+  font-family:var(--mono); font-size:13px; fill:var(--water); cursor:pointer; font-weight:600;
+  text-decoration:underline; text-underline-offset:3px;
+}
+.dq-label.energy-up{fill:var(--heat);}
+.dq-label.energy-down{fill:#5a6b71;}
+.dq-panel{
+  margin-top:12px; font-size:.88rem; color:#3d4d54; background:#F5F8F4; border-radius:8px;
+  padding:10px 14px; min-height:20px;
+}
+.sub-row{cursor:pointer;}
+.sub-row:hover{background:#F5F8F4;}
+.sub-answer{font-weight:600; color:var(--water);}
+
+/* ---------- PRESSURE COOKER ---------- */
+.cooker-wrap{display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:30px; align-items:center;}
+.cooker-visual{display:flex; justify-content:center;}
+.cooker-visual svg{width:100%; max-width:260px;}
+.cooker-text h3{margin-bottom:10px;}
+.cooker-text ul{padding-left:18px; font-size:.94rem; color:#3d4d54;}
+.cooker-text li{margin-bottom:8px;}
+.badge-save{
+  display:inline-block; margin-top:14px; background:var(--heat); color:#fff;
+  font-family:var(--mono); font-size:.78rem; padding:6px 12px; border-radius:20px;
+}
+
+/* ---------- QUICK REFERENCE ---------- */
+.ref-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:26px;}
+.ref-card{background:var(--ice); color:#fff; border-radius:10px; padding:18px; text-align:center;}
+.ref-card .val{font-family:var(--mono); font-size:1.5rem; font-weight:600;}
+.ref-card .lbl{font-size:.78rem; opacity:.85; margin-top:4px;}
+
+footer{padding:40px 0 70px; text-align:center; color:#8b98a0; font-size:.8rem; font-family:var(--mono);}
+
+@media(max-width:720px){
+  .phase-row{grid-template-columns:1fr;}
+  .phase-arrow{transform:rotate(90deg);}
+  .factor-grid{grid-template-columns:1fr;}
+  .quiz-grid{grid-template-columns:1fr;}
+  .cooker-wrap{grid-template-columns:1fr;}
+  .ref-grid{grid-template-columns:1fr;}
+  .quiz-card,.factor-card{min-width:0;}
+  .mtable{table-layout:fixed; word-wrap:break-word;}
+}
+@media(prefers-reduced-motion:reduce){
+  .p{animation:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<div class="hero">
+  <div class="thermo-field"></div>
+  <div class="particles" id="particles"></div>
+  <div class="wrap">
+    <div class="eyebrow">Unit 1 · Matter and Energy — Lesson 2</div>
+    <h1 class="disp">Changes in the States of Matter</h1>
+    <p class="sub">How thermal energy reshapes ice, water, and vapour — and why the thermometer sometimes refuses to move.</p>
+    <div class="ar">إنفوجرافيك بيلخّص درس "تغير حالة المادة": يعني احنا هنفهم إزاي الحرارة بتأثر على الجليد والميه والبخار، وليه في لحظات درجة الحرارة "بتتجمد" مكانها وميه بتزيد.</div>
+  </div>
+</div>
+
+<!-- ============ SECTION 1: PHASE CHANGE ============ -->
+<section id="phases">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">01 — The Mechanism</div>
+      <h2>What happens when matter gains heat</h2>
+      <p class="lede">Three states, one rule: heat speeds particles up. But during an actual change of state, that extra energy stops raising temperature and starts breaking bonds instead.</p>
+    </div>
+
+    <div class="phase-row">
+      <div class="phase-card">
+        <svg class="icon" viewBox="0 0 48 48"><rect x="10" y="10" width="6" height="6" fill="#0B3D5C"/><rect x="20" y="10" width="6" height="6" fill="#0B3D5C"/><rect x="30" y="10" width="6" height="6" fill="#0B3D5C"/><rect x="10" y="20" width="6" height="6" fill="#0B3D5C"/><rect x="20" y="20" width="6" height="6" fill="#0B3D5C"/><rect x="30" y="20" width="6" height="6" fill="#0B3D5C"/><rect x="10" y="30" width="6" height="6" fill="#0B3D5C"/><rect x="20" y="30" width="6" height="6" fill="#0B3D5C"/><rect x="30" y="30" width="6" height="6" fill="#0B3D5C"/></svg>
+        <h3>Solid — Ice</h3>
+        <p>Particles vibrate faster in fixed positions as heat is gained → temperature of the ice rises.</p>
+        <div class="ar">الجليد لما ياخد حرارة، الجزيئات بتهتز أسرع في مكانها، فدرجة حرارته بترتفع عادي.</div>
+      </div>
+      <div class="phase-card">
+        <svg class="icon" viewBox="0 0 48 48"><circle cx="14" cy="16" r="4" fill="#1B8A9E"/><circle cx="26" cy="12" r="4" fill="#1B8A9E"/><circle cx="34" cy="22" r="4" fill="#1B8A9E"/><circle cx="16" cy="28" r="4" fill="#1B8A9E"/><circle cx="28" cy="32" r="4" fill="#1B8A9E"/><circle cx="10" cy="36" r="4" fill="#1B8A9E"/></svg>
+        <h3>Liquid — Water</h3>
+        <p>At the melting point, attraction forces weaken and ice turns to liquid while temperature stays fixed at 0 °C until melting is complete.</p>
+        <div class="ar">عند نقطة الانصهار، قوى التجاذب بتضعف، فالجليد بيبقى ميه — والحرارة بتفضل ثابتة على 0°م لحد ما كل الجليد يدوب.</div>
+      </div>
+      <div class="phase-card">
+        <svg class="icon" viewBox="0 0 48 48"><circle cx="10" cy="10" r="2.5" fill="#F2A65A"/><circle cx="30" cy="8" r="2.5" fill="#F2A65A"/><circle cx="18" cy="24" r="2.5" fill="#F2A65A"/><circle cx="38" cy="20" r="2.5" fill="#F2A65A"/><circle cx="8" cy="34" r="2.5" fill="#F2A65A"/><circle cx="26" cy="38" r="2.5" fill="#F2A65A"/><circle cx="40" cy="38" r="2.5" fill="#F2A65A"/></svg>
+        <h3>Gas — Vapour</h3>
+        <p>Past the boiling point, kinetic energy keeps rising with heat — while temperature plateaus again at 100 °C until evaporation is complete.</p>
+        <div class="ar">بعد نقطة الغليان، الطاقة الحركية للجزيئات بتزيد، وبرضه الحرارة بتقف عند 100°م لحد ما الميه كلها تتبخر.</div>
+      </div>
+    </div>
+
+    <div class="key-points">
+      <h3 style="margin-bottom:14px;">General rules</h3>
+      <ul>
+        <li>Gaining thermal energy → kinetic energy of particles increases → temperature rises (and vice versa).</li>
+        <li>A heated liquid keeps warming gradually until it hits its boiling point.</li>
+        <li>A cooling liquid keeps losing heat gradually until it hits its freezing point.</li>
+        <li>During melting and boiling, temperature stays constant — the absorbed energy is spent weakening attraction forces between particles, not heating them further.</li>
+      </ul>
+      <div class="ar">يعني الخلاصة: الحرارة بتزوّد سرعة الجزيئات، لكن وقت التحول نفسه (دوبان أو غليان) الطاقة بتتصرف في كسر الروابط مش في رفع الحرارة — عشان كده الترمومتر "بيقف" لفترة.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 2: HEATING CURVE ============ -->
+<section id="curve" style="background:#F3F7F5;">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">02 — Reading The Graph</div>
+      <h2>The heating curve of water, A → F</h2>
+      <p class="lede">Tap or hover any segment to see what's physically happening to the water at that point.</p>
+    </div>
+
+    <div class="curve-shell">
+      <svg id="curveSvg" viewBox="0 0 780 340" preserveAspectRatio="xMidYMid meet">
+        <!-- axes -->
+        <line x1="60" y1="20" x2="60" y2="300" stroke="#B9C4C0" stroke-width="1.5"/>
+        <line x1="60" y1="300" x2="740" y2="300" stroke="#B9C4C0" stroke-width="1.5"/>
+        <text x="20" y="90" class="mlabel" transform="rotate(-90 20,90)">Temp (°C)</text>
+        <text x="700" y="320" class="mlabel">Time →</text>
+        <!-- gridlines for 0 and 100 -->
+        <line x1="60" y1="230" x2="740" y2="230" stroke="#DCE4E1" stroke-dasharray="4 4"/>
+        <text x="30" y="234" class="mlabel">0°</text>
+        <line x1="60" y1="90" x2="740" y2="90" stroke="#DCE4E1" stroke-dasharray="4 4"/>
+        <text x="18" y="94" class="mlabel">100°</text>
+
+        <!-- path segments (A 60,300)(B 160,230)(C 280,230)(D 430,90)(E 560,90)(F 700,30) -->
+        <path class="seg-hit" data-seg="AB" d="M60,300 L160,230"/>
+        <path class="seg AB" d="M60,300 L160,230" stroke="#0B3D5C" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+        <path class="seg-hit" data-seg="BC" d="M160,230 L280,230"/>
+        <path class="seg BC" d="M160,230 L280,230" stroke="#1B8A9E" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+        <path class="seg-hit" data-seg="CD" d="M280,230 L430,90"/>
+        <path class="seg CD" d="M280,230 L430,90" stroke="#1B8A9E" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+        <path class="seg-hit" data-seg="DE" d="M430,90 L560,90"/>
+        <path class="seg DE" d="M430,90 L560,90" stroke="#F2A65A" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+        <path class="seg-hit" data-seg="EF" d="M560,90 L700,30"/>
+        <path class="seg EF" d="M560,90 L700,30" stroke="#E1543D" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+        <!-- nodes -->
+        <g font-family="IBM Plex Mono" font-size="13" fill="#12202A">
+          <circle class="node" cx="60" cy="300" r="6" fill="#0B3D5C" data-seg="AB"/><text x="52" y="318">A</text>
+          <circle class="node" cx="160" cy="230" r="6" fill="#0B3D5C" data-seg="BC"/><text x="152" y="216">B</text>
+          <circle class="node" cx="280" cy="230" r="6" fill="#1B8A9E" data-seg="CD"/><text x="272" y="216">C</text>
+          <circle class="node" cx="430" cy="90" r="6" fill="#1B8A9E" data-seg="DE"/><text x="422" y="76">D</text>
+          <circle class="node" cx="560" cy="90" r="6" fill="#F2A65A" data-seg="EF"/><text x="552" y="76">E</text>
+          <circle class="node" cx="700" cy="30" r="6" fill="#E1543D"/><text x="692" y="18">F</text>
+        </g>
+      </svg>
+
+      <div class="legend">
+        <span><span class="dot" style="background:#0B3D5C"></span>AB · warming solid</span>
+        <span><span class="dot" style="background:#1B8A9E"></span>BC · melting plateau</span>
+        <span><span class="dot" style="background:#1B8A9E"></span>CD · warming liquid</span>
+        <span><span class="dot" style="background:#F2A65A"></span>DE · boiling plateau</span>
+        <span><span class="dot" style="background:#E1543D"></span>EF · warming gas</span>
+      </div>
+
+      <div class="info-panel" id="infoPanel"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 3: FACTORS ============ -->
+<section id="factors">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">03 — What Shifts The Curve</div>
+      <h2>Factors affecting melting &amp; boiling points</h2>
+      <p class="lede">A pure substance has a fixed melting/boiling point only at normal atmospheric pressure. Two things move it: pressure, and purity.</p>
+    </div>
+
+    <div class="factor-grid">
+      <div class="factor-card">
+        <div class="num">FACTOR 01</div>
+        <h3>Atmospheric pressure</h3>
+        <p style="font-size:.92rem; color:#3d4d54;">At sea level, pressure is described as <em>normal atmospheric pressure</em>: ice melts at 0 °C and water boils at 100 °C. As altitude rises above sea level, atmospheric pressure drops below normal — and both fixed points shift.</p>
+
+        <div class="fm-toggle">
+          <button class="fm-btn active" data-panel="boil">🔥 Boiling Point</button>
+          <button class="fm-btn" data-panel="melt">❄️ Melting Point</button>
+        </div>
+        <div class="fm-panel" id="fmBoil">
+          <ul>
+            <li>Decreases below 100 °C as altitude increases.</li>
+            <li>Falls by about 1 °C for every 300 m of altitude gained.</li>
+          </ul>
+        </div>
+        <div class="fm-panel" id="fmMelt" style="display:none;">
+          <ul>
+            <li>Increases above 0 °C when atmospheric pressure decreases.</li>
+            <li><strong>Vice versa:</strong> when atmospheric pressure increases, the boiling point increases and the melting point decreases.</li>
+          </ul>
+        </div>
+
+        <div class="mountain">
+          <svg viewBox="0 0 320 200">
+            <polygon points="10,190 160,20 310,190" fill="#E9EEEA" stroke="#B9C4C0"/>
+            <line x1="10" y1="150" x2="310" y2="150" stroke="#DCE4E1" stroke-dasharray="3 3"/>
+            <line x1="10" y1="100" x2="310" y2="100" stroke="#DCE4E1" stroke-dasharray="3 3"/>
+            <circle cx="160" cy="35" r="5" fill="#0B3D5C"/>
+            <text class="mlabel big" x="172" y="32">3000 m · 90°C</text>
+            <text class="mlabel" x="172" y="46">0.69 atm</text>
+            <circle cx="120" cy="95" r="5" fill="#1B8A9E"/>
+            <text class="mlabel big" x="132" y="92">1800 m · 94°C</text>
+            <text class="mlabel" x="132" y="106">0.8 atm</text>
+            <circle cx="60" cy="180" r="5" fill="#E1543D"/>
+            <text class="mlabel big" x="72" y="178">0 m · 100°C</text>
+            <text class="mlabel" x="72" y="192">1 atm · sea level</text>
+          </svg>
+        </div>
+
+        <div class="altitude-slider">
+          <div class="slider-head">
+            <span>🏔️ Try it — drag the altitude</span>
+            <span class="slider-readout"><span id="altVal">0</span> m</span>
+          </div>
+          <input type="range" id="altRange" min="0" max="4800" step="100" value="0">
+          <div class="slider-result">
+            Boiling point of water ≈ <strong id="boilResult">100.0</strong> °C
+          </div>
+        </div>
+
+        <div class="worked-example">
+          <div class="we-q">Worked example — Q. What is the boiling point of water at the Alps' highest peak, ≈4,800 m above sea level?</div>
+          <button class="we-toggle" id="weToggle">Show solution</button>
+          <div class="we-a" id="weAnswer" style="display:none;">
+            <p>Temperature decreases 1 °C per 300 m.</p>
+            <p>Decrease = 4800 ÷ 300 = <strong>16 °C</strong></p>
+            <p>Boiling point = 100 − 16 = <strong>84 °C</strong></p>
+          </div>
+        </div>
+
+        <div class="ar">كل ما ارتفعنا فوق سطح البحر، الضغط الجوي بيقل، فالميه بتغلي عند حرارة أقل من 100°م — وده بيزيد نقطة انصهار الجليد فوق 0°م. والعكس صحيح: لما الضغط يزيد، الغليان بيزيد والانصهار بينزل. جرّب حرّك المؤشر شوف الحساب بنفسك.</div>
+      </div>
+
+      <div class="factor-card">
+        <div class="num">FACTOR 02</div>
+        <h3>Degree of purity</h3>
+        <p style="font-size:.92rem; color:#3d4d54;">Impurities disturb the attraction forces between particles, changing the energy needed to shift state. Purity is tested by comparing a substance's melting/boiling point to its known pure value.</p>
+        <p style="font-size:.86rem; color:#5a6b71; margin-top:10px;"><em>180 g glucose dissolved in 1 L distilled water:</em></p>
+        <div class="shift-row">
+          <div class="shift-box">
+            <div class="from">0°C</div>
+            <div class="to down">−1.86°C</div>
+            <div class="lbl">freezing point ↓ 1.86°C</div>
+          </div>
+          <div class="shift-box">
+            <div class="from">100°C</div>
+            <div class="to up">100.5°C</div>
+            <div class="lbl">boiling point ↑ 0.5°C</div>
+          </div>
+        </div>
+        <div class="ar">لما تدوّب حاجة (شوائب) في الميه، بيتغير الجهد اللازم لتغيير الحالة: نقطة التجمد بتنزل ونقطة الغليان بتزيد — والقد ده بيتوقف على تركيز المحلول.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 3.5: TEST YOURSELF ============ -->
+<section id="quiz">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">Check Yourself</div>
+      <h2>Two quick questions from the textbook</h2>
+      <p class="lede">Tap the arrows and the substances to reveal each answer.</p>
+    </div>
+
+    <div class="quiz-grid">
+      <!-- Diagram quiz -->
+      <div class="quiz-card">
+        <h3>Q1 — Which two processes increase particle energy?</h3>
+        <div class="diagram-quiz">
+          <svg viewBox="0 0 480 140">
+            <text x="30" y="78" class="dq-state">Ice</text>
+            <text x="205" y="78" class="dq-state">Water</text>
+            <text x="380" y="65" class="dq-state">Water</text>
+            <text x="380" y="82" class="dq-state">vapour</text>
+
+            <line x1="70" y1="55" x2="185" y2="55" stroke="#B9C4C0" stroke-width="2" marker-end="url(#arrL)"/>
+            <text x="122" y="45" class="dq-label" data-key="X">X</text>
+
+            <line x1="185" y1="90" x2="70" y2="90" stroke="#B9C4C0" stroke-width="2" marker-end="url(#arrL)" transform="rotate(180 127.5 90)"/>
+            <text x="122" y="112" class="dq-label" data-key="Y">Y</text>
+
+            <line x1="250" y1="55" x2="355" y2="55" stroke="#B9C4C0" stroke-width="2" marker-end="url(#arrL)" transform="rotate(180 302.5 55)"/>
+            <text x="300" y="45" class="dq-label" data-key="W">W</text>
+
+            <line x1="250" y1="90" x2="355" y2="90" stroke="#B9C4C0" stroke-width="2" marker-end="url(#arrL)"/>
+            <text x="300" y="112" class="dq-label" data-key="Z">Z</text>
+
+            <defs><marker id="arrL" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#8b98a0"/></marker></defs>
+          </svg>
+        </div>
+        <p style="font-size:.86rem; color:#5a6b71; margin-top:8px;">Click each letter — X, Y, W, Z — to see if that arrow gains or releases energy.</p>
+        <div class="dq-panel" id="dqPanel">Tap a letter above to begin.</div>
+        <button class="we-toggle" id="dqReveal" style="margin-top:12px;">Reveal full answer</button>
+        <div class="we-a" id="dqAnswer" style="display:none;">
+          <p>The increase in particle energy raises temperature — as in melting and boiling (evaporation).</p>
+          <p>So particle energy increases in both process <strong>Y</strong> (ice → water) and process <strong>Z</strong> (water → vapour).</p>
+        </div>
+        <div class="ar">اضغط على أي حرف من X أو Y أو W أو Z تعرف الاتجاه ده طاقة الجزيئات فيه بتزيد ولا بتقل. الإجابة النهائية: Y و Z (اتجاه اكتساب الحرارة).</div>
+      </div>
+
+      <!-- Table quiz -->
+      <div class="quiz-card">
+        <h3>Q2 — State of each substance at 100 °C?</h3>
+        <table class="mtable" style="margin-top:6px;">
+          <tr><th>Substance</th><th>Boiling pt</th><th>Melting pt</th><th>State @100°C</th></tr>
+          <tr class="sub-row" data-key="X"><td>X</td><td>84°C</td><td>5°C</td><td class="sub-answer">?</td></tr>
+          <tr class="sub-row" data-key="Y"><td>Y</td><td>125°C</td><td>25°C</td><td class="sub-answer">?</td></tr>
+          <tr class="sub-row" data-key="Z"><td>Z</td><td>315°C</td><td>102°C</td><td class="sub-answer">?</td></tr>
+        </table>
+        <p style="font-size:.82rem; color:#5a6b71; margin-top:10px;">Click each row to reveal its physical state, then check the reasoning.</p>
+        <div class="dq-panel" id="tqPanel">Tap a row above to begin.</div>
+        <div class="ar">اضغط على أي صف تعرف حالة المادة عند 100°م: لو نقطة الغليان أقل من 100 يبقى غاز، لو بين نقطتين يبقى سائل، ولو نقطة الانصهار أعلى من 100 يبقى صلب.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 4: PRESSURE COOKER ============ -->
+<section style="background:#F3F7F5;">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">04 — Technological Application</div>
+      <h2>The pressure cooker</h2>
+      <p class="lede">A direct use of the pressure–boiling point relationship, running in reverse.</p>
+    </div>
+
+    <div class="cooker-wrap">
+      <div class="cooker-visual">
+        <svg viewBox="0 0 220 220">
+          <ellipse cx="110" cy="190" rx="70" ry="12" fill="#E9EEEA"/>
+          <rect x="45" y="90" width="130" height="90" rx="14" fill="#1B8A9E"/>
+          <rect x="45" y="90" width="130" height="14" rx="7" fill="#0B3D5C"/>
+          <rect x="90" y="60" width="40" height="34" rx="6" fill="#0B3D5C"/>
+          <circle cx="110" cy="52" r="10" fill="#F2A65A"/>
+          <path d="M100,40 q10,-20 20,0" stroke="#E1543D" stroke-width="3" fill="none"/>
+          <rect x="60" y="130" width="16" height="30" rx="3" fill="#fff" opacity=".6"/>
+          <rect x="145" y="130" width="16" height="30" rx="3" fill="#fff" opacity=".6"/>
+        </svg>
+      </div>
+      <div class="cooker-text">
+        <h3>Why it saves time and fuel</h3>
+        <ul>
+          <li><strong>Importance:</strong> cooks food faster than a normal pot, saving energy.</li>
+          <li><strong>Idea of work:</strong> traps steam inside → pressure rises inside the pot → boiling point of water is pushed above 100 °C → food cooks faster, using less fuel.</li>
+        </ul>
+        <span class="badge-save">saves 70–90% of energy vs. an open pot</span>
+        <div class="ar" style="margin-top:16px;">قدرة الضغط بتحبس البخار جوه، فالضغط بيعلى، وده بيرفع درجة غليان الميه فوق 100°م — فالأكل بيستوي أسرع وبوقود أقل.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 5: QUICK REFERENCE ============ -->
+<section id="ref">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">05 — Quick Reference</div>
+      <h2>Normal atmospheric pressure, at a glance</h2>
+    </div>
+    <div class="ref-grid">
+      <div class="ref-card">
+        <div class="val">0°C</div>
+        <div class="lbl">melting point of ice</div>
+      </div>
+      <div class="ref-card">
+        <div class="val">100°C</div>
+        <div class="lbl">boiling point of water</div>
+      </div>
+      <div class="ref-card">
+        <div class="val">≈1°C / 300m</div>
+        <div class="lbl">boiling point drop with altitude</div>
+      </div>
+    </div>
+    <p class="lede" style="margin-top:26px;">Ice ⇌ Water ⇌ Vapour: the two energy-gaining directions (melting, then evaporation) are the ones where particle energy rises; the reverse directions (freezing, condensation) release it.</p>
+    <div class="ar">يعني بالعامية: كل ما اتجهنا من جليد لميه لبخار (باتجاه اكتساب حرارة)، طاقة الجزيئات بتزيد. لما نرجع تاني (تجمد، تكثيف) الطاقة دي بتتحرر.</div>
+  </div>
+</section>
+
+<footer>Summarised from Unit 1 · Lesson 2 — Changes in the States of Matter</footer>
+
+<script>
+const data = {
+  AB: {
+    title: "A → B · Ice warms up",
+    color: "#0B3D5C",
+    points: [
+      "Continuous temperature rise from A to B.",
+      "The substance is entirely solid.",
+      "Particles vibrate faster in their fixed positions as they gain thermal energy — kinetic energy increases."
+    ]
+  },
+  BC: {
+    title: "B → C · Melting plateau",
+    color: "#1B8A9E",
+    points: [
+      "No change in temperature — the absorbed heat weakens attraction forces instead of raising temperature.",
+      "Both solid and liquid states exist together in this interval.",
+      "Point B (or C) marks the melting point of the substance."
+    ]
+  },
+  CD: {
+    title: "C → D · Liquid warms up",
+    color: "#1B8A9E",
+    points: [
+      "Continuous temperature rise from C to D.",
+      "The substance is entirely liquid.",
+      "Particle speed — and kinetic energy — increases as more thermal energy is gained."
+    ]
+  },
+  DE: {
+    title: "D → E · Boiling plateau",
+    color: "#F2A65A",
+    points: [
+      "No change in temperature — heat is consumed weakening the remaining attraction forces until the liquid fully converts to gas.",
+      "Both liquid and gaseous states exist together here.",
+      "Point D marks the boiling point of the substance."
+    ]
+  },
+  EF: {
+    title: "E → F · Gas warms up",
+    color: "#E1543D",
+    points: [
+      "Continuous temperature rise from E to F.",
+      "The substance is entirely gaseous.",
+      "Gas particle speed keeps increasing with more thermal energy."
+    ]
+  }
+};
+
+const panel = document.getElementById('infoPanel');
+function render(key){
+  const d = data[key];
+  panel.innerHTML = `
+    <div class="info-title" style="color:${d.color}">${key} interval</div>
+    <div class="info-body">
+      <h4>${d.title}</h4>
+      <ul>${d.points.map(p=>`<li>${p}</li>`).join('')}</ul>
+    </div>`;
+  document.querySelectorAll('.node').forEach(n=>n.classList.remove('active'));
+  document.querySelectorAll(`.node[data-seg="${key}"]`).forEach(n=>n.classList.add('active'));
+}
+document.querySelectorAll('.seg-hit, .node').forEach(el=>{
+  el.addEventListener('click', ()=> render(el.dataset.seg));
+  el.addEventListener('mouseenter', ()=> render(el.dataset.seg));
+});
+render('AB');
+
+// fire / snowflake toggle
+document.querySelectorAll('.fm-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.fm-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const show = btn.dataset.panel;
+    document.getElementById('fmBoil').style.display = show==='boil' ? 'block':'none';
+    document.getElementById('fmMelt').style.display = show==='melt' ? 'block':'none';
+  });
+});
+
+// altitude slider
+const altRange = document.getElementById('altRange');
+const altVal = document.getElementById('altVal');
+const boilResult = document.getElementById('boilResult');
+function updateAlt(){
+  const alt = +altRange.value;
+  altVal.textContent = alt;
+  const boil = 100 - (alt/300);
+  boilResult.textContent = boil.toFixed(1);
+}
+if(altRange){ altRange.addEventListener('input', updateAlt); updateAlt(); }
+
+// worked example toggle
+const weToggle = document.getElementById('weToggle');
+if(weToggle){
+  weToggle.addEventListener('click', ()=>{
+    const a = document.getElementById('weAnswer');
+    const showing = a.style.display === 'block';
+    a.style.display = showing ? 'none' : 'block';
+    weToggle.textContent = showing ? 'Show solution' : 'Hide solution';
+  });
+}
+
+// diagram quiz (X, Y, W, Z)
+const dqInfo = {
+  X: {dir:'energy-down', text:'X: water → ice (freezing). Particle energy DECREASES — heat is released.'},
+  Y: {dir:'energy-up', text:'Y: ice → water (melting). Particle energy INCREASES — heat is gained.'},
+  W: {dir:'energy-down', text:'W: vapour → water (condensation). Particle energy DECREASES — heat is released.'},
+  Z: {dir:'energy-up', text:'Z: water → vapour (evaporation/boiling). Particle energy INCREASES — heat is gained.'}
+};
+document.querySelectorAll('.dq-label').forEach(lab=>{
+  lab.addEventListener('click', ()=>{
+    document.querySelectorAll('.dq-label').forEach(l=>l.classList.remove('energy-up','energy-down'));
+    const key = lab.dataset.key;
+    const info = dqInfo[key];
+    lab.classList.add(info.dir);
+    document.getElementById('dqPanel').textContent = info.text;
+  });
+});
+const dqReveal = document.getElementById('dqReveal');
+if(dqReveal){
+  dqReveal.addEventListener('click', ()=>{
+    const a = document.getElementById('dqAnswer');
+    const showing = a.style.display === 'block';
+    a.style.display = showing ? 'none' : 'block';
+    dqReveal.textContent = showing ? 'Reveal full answer' : 'Hide answer';
+  });
+}
+
+// table quiz (X, Y, Z substances)
+const tqInfo = {
+  X: {state:'Gaseous', reason:'X: melting (5°C) and boiling (84°C) points are both below 100°C — at 100°C it has already boiled, so it is a gas.'},
+  Y: {state:'Liquid', reason:'Y: melting point (25°C) is below 100°C but boiling point (125°C) is above 100°C — so at 100°C it is still liquid.'},
+  Z: {state:'Solid', reason:'Z: melting point (102°C) and boiling point (315°C) are both above 100°C — at 100°C it has not melted yet, so it is a solid.'}
+};
+document.querySelectorAll('.sub-row').forEach(row=>{
+  row.addEventListener('click', ()=>{
+    const key = row.dataset.key;
+    const info = tqInfo[key];
+    row.querySelector('.sub-answer').textContent = info.state;
+    document.getElementById('tqPanel').textContent = info.reason;
+  });
+});
+
+// floating particles in hero
+const field = document.getElementById('particles');
+for(let i=0;i<26;i++){
+  const p = document.createElement('div');
+  p.className='p';
+  const size = 3+Math.random()*5;
+  p.style.width=size+'px'; p.style.height=size+'px';
+  p.style.left=Math.random()*100+'%';
+  p.style.top=Math.random()*100+'%';
+  p.style.animationDuration=(4+Math.random()*5)+'s';
+  p.style.animationDelay=(Math.random()*3)+'s';
+  field.appendChild(p);
+}
+</script>
+</body>
+</html>
