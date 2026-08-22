@@ -2,7 +2,7 @@
   "name": "2nd Prep. Funny Science lab",
   "short_name": "Science Lab",
   "description": "تجارب علمية تفاعلية - By Dr. Wael Aboagiza",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#EEF1EA",
   "theme_color": "#1E2A33",
