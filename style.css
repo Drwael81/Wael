@@ -148,3 +148,8 @@ html.reveal-on .reveal.is-visible{ opacity: 1; transform: none; }
   }
   .scroll-progress{ display: none; }
 }
+
+/* ---------- 8) إتاحة: زر "التالي" في quiz.html وهو مخفي لا بد أن يكون
+   غير قابل للتركيز بلوحة المفاتيح (كان opacity:0 فقط فبيوصل له التاب) ---------- */
+.next-btn{ visibility: hidden; }
+.next-btn.show{ visibility: visible; }

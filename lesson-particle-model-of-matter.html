@@ -344,6 +344,11 @@
 
 <script>
   document.querySelectorAll('.tab').forEach(tab => {
+    tab.setAttribute('tabindex', '0');
+    tab.setAttribute('role', 'tab');
+    tab.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tab.click(); }
+    });
     tab.addEventListener('click', () => {
       document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
       document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));

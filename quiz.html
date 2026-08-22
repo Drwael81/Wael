@@ -50,7 +50,7 @@
   }
   .q-tag{
     font-family: var(--font-head, 'Cairo', sans-serif); font-weight:800; font-size:12px;
-    color: var(--liquid, #1D6FE0);
+    color: #1554B8;
     background: color-mix(in srgb, var(--liquid, #1D6FE0) 10%, white);
     display:inline-block; padding:4px 12px; border-radius:999px; margin-bottom:14px;
   }
@@ -199,11 +199,11 @@
         });
         html += '</div>';
       } else {
-        html += '<input type="text" class="text-answer-input" id="textAnswerInput" placeholder="اكتب إجابتك هنا...">';
+        html += '<input type="text" class="text-answer-input" id="textAnswerInput" placeholder="اكتب إجابتك هنا..." aria-label="اكتب إجابتك هنا">';
       }
 
       html += '<button class="check-btn" id="checkBtn">✔ تحقق من الإجابة</button>';
-      html += '<div class="feedback-box" id="feedbackBox"></div>';
+      html += '<div class="feedback-box" id="feedbackBox" aria-live="polite"></div>';
       html += '<button class="next-btn" id="nextBtn">السؤال التالي ←</button>';
 
       quizCard.innerHTML = html;
