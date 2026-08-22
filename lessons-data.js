@@ -48,5 +48,16 @@ const lessonsData = [
     cta: "ابدأ الدرس ←",
     href: "lesson-changes-in-states-of-matter.html",
     lang: "en"
+  },
+  {
+    id: "lesson-changes-in-states-of-matter-2",
+    order: 4,
+    status: "published",
+    icon: "🔥🧊💧",
+    title: "Changes in the States of Matter",
+    desc: "Part 2 of the unit: evaporation vs boiling, variables & factors affecting evaporation, sublimation & deposition, the water cycle, and instant coffee technology.",
+    cta: "ابدأ الدرس ←",
+    href: "lesson-changes-in-states-of-matter-2.html",
+    lang: "en"
   }
 ];
