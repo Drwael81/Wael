@@ -81,5 +81,16 @@ const lessonsData = [
     cta: "ابدأ الدرس ←",
     href: "lesson-methods-of-heat-transfer.html",
     lang: "ar"
+  },
+  {
+    id: "lesson-convection-and-radiation",
+    order: 7,
+    status: "published",
+    icon: "🌊☀️",
+    title: "Heat Transfer: Convection & Radiation",
+    desc: "تيارات الحمل في السوائل والغازات مع محاكي برمنجنات البوتاسيوم، نسيم البحر، الإشعاع والامتصاص، التصوير الحراري، والمقارنة بين الطرق الثلاثة.",
+    cta: "ابدأ الدرس ←",
+    href: "lesson-convection-and-radiation.html",
+    lang: "ar"
   }
 ];
