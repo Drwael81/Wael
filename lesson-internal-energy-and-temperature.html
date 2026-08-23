@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Internal Energy & Temperature | الطاقة الداخلية ودرجة الحرارة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060b16;--card:#0f1a2e;--card2:#12203a;--line:#24345a;--text:#eaf2ff;--muted:#93a6cc;--acc:#22d3ee;--acc2:#4f8cff;--hot:#fb923c;--cold:#38bdf8;--ok:#34d399;--bad:#f87171;--gold:#fbbf24;--r:20px}
+body[data-theme="light"]{--bg:#eef3fb;--card:#fff;--card2:#f4f8ff;--line:#c9d6ee;--text:#10203c;--muted:#5a6b8c}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;transition:background .4s,color .4s;overflow-x:hidden}
+::selection{background:var(--acc);color:#032}
+/* bilingual: EN on top, AR below — no badges */
+.en{display:block;direction:ltr;text-align:left;font-family:'Space Grotesk','Cairo',sans-serif;font-size:.93rem;line-height:1.7;color:var(--text)}
+.ar{display:block;direction:rtl;text-align:right;font-size:.96rem;line-height:2;color:var(--text);margin-top:2px}
+.mut{color:var(--muted)!important}
+h1,h2,h3{line-height:1.5}
+section{scroll-margin-top:95px}
+#progress{position:fixed;top:0;right:0;height:4px;width:0;background:linear-gradient(90deg,var(--acc),var(--hot));z-index:99;border-radius:99px}
+.topbar{position:fixed;top:0;right:0;left:0;z-index:90;display:flex;align-items:center;gap:10px;padding:10px 14px;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand{font-weight:900;font-size:.85rem;white-space:nowrap}
+nav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;padding:2px}
+nav::-webkit-scrollbar{display:none}
+nav a{padding:5px 12px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:.72rem;font-weight:700;white-space:nowrap;text-decoration:none;transition:.25s}
+nav a.active{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#041018;border-color:transparent}
+#themeBtn{cursor:pointer;border:1px solid var(--line);background:var(--card);border-radius:12px;width:40px;height:40px;font-size:1.1rem}
+#rail{position:fixed;inset-inline-end:12px;top:50%;transform:translateY(-50%);z-index:80;display:flex;flex-direction:column;align-items:center;gap:6px}
+#rail .tube{width:12px;height:36vh;border:2px solid var(--line);border-radius:99px;position:relative;overflow:hidden;background:rgba(128,160,220,.08)}
+#rail .bulb{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ff8a6b,#ef4444);margin-top:-4px}
+#railFill{position:absolute;bottom:0;width:100%;height:0;background:linear-gradient(0deg,#ef4444,#fb923c 40%,#22d3ee)}
+#railVal{font-family:'Space Grotesk';font-size:.72rem;color:var(--muted)}
+@media(max-width:1000px){#rail{display:none}}
+#hero{min-height:94vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:110px 18px 60px}
+#heroCv{position:absolute;inset:0;width:100%;height:100%}
+.heroIn{position:relative;z-index:2;max-width:920px}
+.kicker{display:inline-block;padding:6px 18px;border:1px solid var(--line);border-radius:999px;color:var(--acc);font-weight:800;font-size:.78rem;background:var(--card)}
+#hero h1{font-size:clamp(1.9rem,5.5vw,3.3rem);font-weight:900;margin:16px 0 4px;background:linear-gradient(90deg,var(--acc),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+#hero h1 .ar{font-size:clamp(1.5rem,4.5vw,2.6rem);background:linear-gradient(90deg,var(--gold),var(--acc));-webkit-background-clip:text;background-clip:text;color:transparent;margin:0}
+#hero p.desc{margin:16px auto;max-width:70ch;color:var(--muted)}
+.badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:20px}
+.badge{padding:8px 16px;border-radius:14px;border:1px solid var(--line);background:var(--card);font-size:.78rem;font-weight:700;text-align:center}
+.badge.vip{border-color:var(--gold);color:var(--gold)}
+.scrollHint{margin-top:40px;font-size:1.6rem;animation:bnc 1.6s infinite}
+@keyframes bnc{50%{transform:translateY(10px)}}
+main{max-width:1150px;margin:auto;padding:30px 16px 90px;display:flex;flex-direction:column;gap:34px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:clamp(18px,3.4vw,36px);box-shadow:0 14px 40px rgba(0,0,0,.25)}
+.chead{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.cnum{font-family:'Space Grotesk';font-size:1.7rem;font-weight:700;background:linear-gradient(180deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;border:1px solid var(--line);border-radius:16px;padding:6px 14px}
+.chead h2{font-size:clamp(1.05rem,2.6vw,1.45rem);font-weight:900}
+/* grids tuned to keep items SIDE BY SIDE */
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px}
+.tile{background:var(--card2);border:1px solid var(--line);border-radius:16px;padding:18px;transition:.25s}
+.tile:hover{transform:translateY(-4px);border-color:var(--acc)}
+.note{border-inline-start:4px solid var(--acc);background:var(--card2);border-radius:12px;padding:12px 16px;margin-top:14px;font-size:.9rem}
+.note.hot{border-color:var(--hot)} .note.gold{border-color:var(--gold)}
+.tag{display:inline-block;font-size:.7rem;font-weight:800;color:#041018;background:var(--acc);border-radius:99px;padding:2px 12px;margin-bottom:8px}
+.tag.hot{background:var(--hot)} .tag.gold{background:var(--gold)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal.vis{opacity:1;transform:none}
+.btn{cursor:pointer;border:none;border-radius:14px;padding:10px 22px;font-family:inherit;font-weight:800;font-size:.9rem;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#041018;transition:.2s;box-shadow:0 6px 18px rgba(34,211,238,.25)}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line);box-shadow:none}
+.quiz{margin-top:10px}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.opt{cursor:pointer;border:1px solid var(--line);background:var(--card2);color:var(--text);border-radius:14px;padding:7px 16px;font-family:inherit;font-weight:700;font-size:.83rem;transition:.2s}
+.opt:hover{border-color:var(--acc)}
+.opt.ok{background:var(--ok);border-color:var(--ok);color:#03210f;animation:pop .35s}
+.opt.bad{background:var(--bad);border-color:var(--bad);color:#3b0708;animation:shk .35s}
+@keyframes pop{50%{transform:scale(1.08)}}
+@keyframes shk{25%{transform:translateX(5px)}75%{transform:translateX(-5px)}}
+.exp{display:none;margin-top:10px;border-inline-start:4px solid var(--ok);background:color-mix(in srgb,var(--ok) 12%,transparent);padding:10px 14px;border-radius:10px;font-size:.88rem}
+.exp.show{display:block}
+details{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin-top:10px}
+summary{cursor:pointer;font-weight:800;list-style:none}
+summary::after{content:'＋';color:var(--acc);font-weight:900;float:left}
+details[open] summary::after{content:'－'}
+details .body{padding-top:10px;font-size:.9rem}
+table{width:100%;border-collapse:collapse;margin-top:10px;font-size:.85rem}
+th,td{border:1px solid var(--line);padding:7px 8px;text-align:center}
+th{background:var(--card);color:var(--acc)}
+.steam{animation:stm 2.2s infinite}.steam.s2{animation-delay:.7s}.steam.s3{animation-delay:1.3s}
+@keyframes stm{to{transform:translateY(-26px);opacity:0}}
+.pulse{animation:pl 1.6s infinite}@keyframes pl{50%{opacity:.25}}
+.dash{stroke-dasharray:6 6;animation:dsh 1.2s linear infinite}@keyframes dsh{to{stroke-dashoffset:-24}}
+#plab{width:100%;height:280px;border:1px solid var(--line);border-radius:16px;background:var(--card2)}
+.plCtrls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:14px}
+.meter{flex:1;min-width:140px;height:12px;border-radius:99px;border:1px solid var(--line);overflow:hidden;background:var(--card2)}
+.meter i{display:block;height:100%;width:25%;background:linear-gradient(90deg,var(--cold),var(--hot));transition:width .3s}
+input[type=range]{accent-color:var(--hot);flex:1;min-width:130px}
+/* ===== beakers: ALWAYS side by side ===== */
+.beakers{display:flex;justify-content:center;gap:36px;flex-wrap:nowrap;padding:10px 0}
+.bcol{display:flex;flex-direction:column;align-items:center;gap:6px}
+.tb{font-family:'Space Grotesk';font-weight:700;font-size:1.05rem;padding:4px 14px;border-radius:99px;border:1px solid var(--line);background:var(--card2)}
+.brow{display:flex;gap:10px;align-items:flex-end}
+.tg{width:12px;height:170px;border:2px solid var(--line);border-radius:99px;position:relative;overflow:hidden;background:var(--card2)}
+.tg i{position:absolute;bottom:0;width:100%;height:25%;background:linear-gradient(0deg,#ef4444,#fb923c);transition:height .2s}
+.beaker{position:relative;width:150px;height:170px;border:3px solid var(--line);border-top:none;border-radius:0 0 26px 26px;background:rgba(128,160,220,.05);overflow:hidden}
+.liquid{position:absolute;bottom:0;left:0;right:0;border-radius:0 0 22px 22px;background:linear-gradient(180deg,rgba(56,189,248,.65),rgba(37,99,235,.85))}
+.beaker.oil .liquid{background:linear-gradient(180deg,rgba(251,191,36,.7),rgba(217,119,6,.85))}
+.beaker.ice .liquid{background:linear-gradient(180deg,rgba(190,242,255,.85),rgba(125,211,252,.9))}
+.bub{position:absolute;bottom:8px;width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.55);opacity:0}
+.bub:nth-child(1){left:20%}.bub:nth-child(2){left:50%}.bub:nth-child(3){left:75%}
+.heating .bub{opacity:1;animation:bbl 1.5s infinite}
+@keyframes bbl{to{transform:translateY(-130px);opacity:0}}
+.flame{font-size:1.5rem;opacity:0;transition:.3s}
+.heating .flame{opacity:1;animation:fl .4s infinite alternate}
+@keyframes fl{to{transform:scale(1.18)}}
+.blab{font-weight:800;font-size:.82rem;text-align:center}
+@media(max-width:520px){
+ .beakers{gap:12px}
+ .beaker{width:104px;height:124px}
+ .tg{height:124px}
+ .blab{font-size:.68rem}
+ .tb{font-size:.85rem;padding:3px 10px}
+}
+.labctrl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin:14px 0 6px}
+.dt{font-family:'Space Grotesk';font-weight:700;font-size:.85rem;color:var(--muted);background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:8px 14px}
+.dt b{color:var(--hot)}
+.speedRow{display:flex;gap:8px;align-items:center;justify-content:center;margin:8px 0;font-size:.8rem;font-weight:800;color:var(--muted)}
+.spBtn{cursor:pointer;border:1px solid var(--line);background:var(--card2);color:var(--muted);border-radius:10px;padding:4px 14px;font-family:'Space Grotesk';font-weight:700;transition:.2s}
+.spBtn.active{background:var(--hot);color:#311004;border-color:var(--hot)}
+canvas.chart{width:100%;height:250px;border-radius:14px;background:var(--card2);border:1px solid var(--line)}
+.legend{display:flex;gap:20px;justify-content:center;margin-top:10px;font-size:.8rem;font-weight:700;color:var(--muted)}
+.legend i{display:inline-block;width:14px;height:5px;border-radius:99px;margin-inline-end:6px;vertical-align:middle}
+.vars{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px;font-size:.75rem}
+.vars span{border:1px dashed var(--line);border-radius:12px;padding:5px 14px;color:var(--muted);text-align:center}
+.shrow{display:grid;grid-template-columns:150px 1fr 70px;gap:12px;align-items:center;margin-top:10px;font-size:.82rem}
+.shbar{height:14px;border-radius:99px;background:var(--card2);border:1px solid var(--line);overflow:hidden}
+.shbar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--acc),var(--acc2));transition:width 1.2s}
+.shrow.top .shbar i{background:linear-gradient(90deg,var(--hot),var(--gold))}
+.shval{font-family:'Space Grotesk';font-weight:700;color:var(--muted)}
+@media(max-width:560px){.shrow{grid-template-columns:100px 1fr 55px}}
+.calc{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:14px}
+.calc label{font-size:.75rem;font-weight:800;color:var(--muted);display:block;margin-bottom:4px}
+.calc select,.calc input{width:100%;padding:10px;border-radius:12px;border:1px solid var(--line);background:var(--card2);color:var(--text);font-family:inherit;font-weight:700}
+.qOut{margin-top:14px;text-align:center;font-size:1.05rem;font-weight:900;padding:14px;border-radius:14px;border:1px dashed var(--acc);background:color-mix(in srgb,var(--acc) 8%,transparent)}
+.qOut b{color:var(--acc);font-family:'Space Grotesk'}
+.rbar{height:16px;background:var(--card);border:1px solid var(--line);border-radius:99px;overflow:hidden;margin-top:10px}
+.rbar i{display:block;height:100%;width:0;transition:width 2.4s cubic-bezier(.2,.8,.2,1)}
+.raceNum{font-family:'Space Grotesk';font-size:2rem;font-weight:700;text-align:center;color:var(--hot);margin-top:6px}
+/* ===== VS compare layout ===== */
+.vsRow{display:flex;align-items:center;justify-content:center;gap:22px;margin-top:18px;flex-wrap:nowrap}
+.vessel{text-align:center;flex:0 1 auto}
+.vesselBox{position:relative;width:130px;height:150px;border:3px solid var(--line);border-top:none;border-radius:0 0 22px 22px;background:rgba(128,160,220,.05);overflow:hidden;margin:auto}
+.vesselBox i{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(180deg,rgba(56,189,248,.65),rgba(37,99,235,.85));border-radius:0 0 18px 18px}
+.vesselBox .vt{position:absolute;top:8px;left:50%;transform:translateX(-50%);font-family:'Space Grotesk';font-weight:700;font-size:.78rem;background:var(--card);border:1px solid var(--line);border-radius:99px;padding:2px 10px;z-index:2}
+.vsBadge{font-family:'Space Grotesk';font-weight:700;font-size:1.3rem;background:linear-gradient(135deg,var(--hot),var(--gold));color:#331303;border-radius:50%;width:56px;height:56px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.vlab{margin-top:8px;font-size:.78rem;font-weight:800}
+@media(max-width:480px){.vesselBox{width:96px;height:115px}.vsBadge{width:44px;height:44px;font-size:1rem}}
+/* ===== hands simulator: side by side ===== */
+.basins{display:flex;gap:12px;justify-content:center;flex-wrap:nowrap;margin-top:16px}
+.basin{cursor:pointer;border-radius:18px;border:2px solid var(--line);padding:12px 16px;font-family:inherit;font-weight:800;font-size:.82rem;background:var(--card2);color:var(--text);transition:.25s;flex:1;min-width:0;max-width:190px}
+.basin.hot{border-color:var(--hot);box-shadow:0 0 20px rgba(251,146,60,.2)}
+.basin.warm{border-color:var(--gold)}
+.basin.cold{border-color:var(--cold);box-shadow:0 0 20px rgba(56,189,248,.2)}
+.basin:hover{transform:translateY(-3px)}
+.handsRow{display:flex;gap:16px;justify-content:center;flex-wrap:nowrap;margin-top:18px}
+.handCard{background:var(--card2);border:2px solid var(--line);border-radius:18px;padding:16px;flex:1;min-width:0;transition:border-color .3s}
+.handCard.feelHot{border-color:var(--hot)} .handCard.feelCold{border-color:var(--cold)}
+.hFeel{display:flex;align-items:center;gap:10px;margin:8px 0;font-weight:800}
+.hEmoji{font-size:1.8rem}
+.hMeter{height:12px;border-radius:99px;background:linear-gradient(90deg,var(--cold),#8899bb 50%,var(--hot));position:relative;margin:10px 0}
+.hNeedle{position:absolute;top:-4px;width:6px;height:20px;border-radius:99px;background:#fff;box-shadow:0 0 8px #fff;left:50%;transition:left .3s}
+.hBtns{display:flex;gap:8px;justify-content:center}
+.hBtns button{cursor:pointer;font-size:1.2rem;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:6px 14px;transition:.2s}
+.hBtns button:hover{transform:scale(1.15)}
+.hIn{font-size:.78rem;color:var(--muted);font-weight:700}
+@media(max-width:620px){.handCard{padding:10px}.hBtns button{padding:4px 10px;font-size:1rem}.hEmoji{font-size:1.4rem}.basin{padding:8px 6px;font-size:.72rem}}
+#simMsg{margin-top:16px;border:1px dashed var(--gold);border-radius:14px;padding:12px 16px;background:color-mix(in srgb,var(--gold) 7%,transparent);font-size:.9rem}
+#topBtn{position:fixed;bottom:20px;inset-inline-start:20px;z-index:85;width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,var(--hot),var(--gold));font-size:1.2rem;opacity:0;pointer-events:none;transition:.3s}
+#topBtn.show{opacity:1;pointer-events:auto}
+footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
+.verified{display:inline-flex;align-items:center;gap:12px;border:1px solid var(--gold);border-radius:18px;padding:12px 22px;background:var(--card);color:var(--gold);font-weight:800}
+@media(max-width:440px){.verified{flex-wrap:wrap;justify-content:center}}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<header class="topbar">
+  <div class="brand">🌡️ Internal Energy · الطاقة الداخلية</div>
+  <nav id="nav">
+    <a href="#hero" class="active">Start · البداية</a><a href="#system">System · النظام</a><a href="#types">Types · الأنواع</a>
+    <a href="#internal">Internal · الداخلية</a><a href="#temp">Temp · الحرارة</a><a href="#heating">Heating · التسخين</a>
+    <a href="#compare">Compare · مقارنة</a><a href="#factors">Factors · العوامل</a><a href="#act1">Mass · الكتلة</a>
+    <a href="#act2">Type · النوع</a><a href="#act3">State · الحالة</a><a href="#specific">Specific · النوعية</a><a href="#final">Final · ختامي</a>
+  </nav>
+  <button id="themeBtn" title="Theme · المظهر">☀️</button>
+</header>
+<div id="rail"><div class="tube"><i id="railFill"></i></div><div class="bulb"></div><b id="railVal">0°</b></div>
+
+<section id="hero">
+  <canvas id="heroCv"></canvas>
+  <div class="heroIn">
+    <span class="kicker">Lesson 3 · Matter & Energy Unit <span style="opacity:.6">|</span> الدرس 3 · وحدة المادة والطاقة</span>
+    <h1><span class="en">Internal Energy & Temperature</span><span class="ar">الطاقة الداخلية ودرجة الحرارة</span></h1>
+    <p class="desc en">An interactive bilingual infographic — scroll through systems, particle energy, specific heat, and run three real lab activities yourself with the interactive heaters below.</p>
+    <p class="desc ar">إنفوجرافيك تفاعلي ثنائي اللغة — إسكرول جوه الأنظمة وطاقة الجسيمات والحرارة النوعية، ونفّذ تلات تجارب حقيقية بنفسك بالسخانات التفاعلية تحت.</p>
+    <div class="badges">
+      <span class="badge"><span class="en">🧪 3 Interactive Experiments</span><span class="ar">🧪  تجارب تفاعلية</span></span>
+      <span class="badge"><span class="en">🌡️ Live Thermometer Rail</span><span class="ar">🌡️ ترمومتر حي</span></span>
+      <span class="badge"><span class="en">⏱️ Speed Timer Control</span><span class="ar">⏱️ مؤقت سرعة</span></span>
+      <span class="badge"><span class="en">🖐️ Feeling Simulator</span><span class="ar">🖐️ محاكي الإحساس</span></span>
+      <span class="badge vip"><span class="en">✔️ Reviewed by Dr. Wael Aboagiza</span><span class="ar">✔️ مراجعة د. وائل أبو عجيزة</span></span>
+    </div>
+    <div class="scrollHint">⌄</div>
+  </div>
+</section>
+
+<main>
+<!-- 01 -->
+<section id="system" class="card reveal">
+  <div class="chead"><span class="cnum">01</span><div><h2><span class="en">Concept of a System</span><span class="ar">مفهوم النظام</span></h2></div></div>
+  <div class="grid2">
+    <div class="tile"><span class="tag">The System · النظام</span>
+      <p class="en">Any part of the universe that is under study, where the changes in energy and matter are observed.</p>
+      <p class="ar">أي جزء من الكون بندرسه وبنلاحظ فيه التغيرات اللي بتحصل في الطاقة والمادة.</p>
+    </div>
+    <div class="tile"><span class="tag hot">The Surroundings · المحيط</span>
+      <p class="en">The space surrounding the system, which can exchange energy or matter or both with the system.</p>
+      <p class="ar">الفراغ اللي حوالين النظام، وممكن يتبادل معاه طاقة أو مادة أو الاتنين مع بعض.</p>
+    </div>
+  </div>
+  <svg viewBox="0 0 520 240" style="width:100%;margin-top:18px">
+    <rect x="8" y="8" width="504" height="224" rx="22" fill="none" stroke="#8fa3c8" stroke-width="1.5" opacity=".5"/>
+    <text x="26" y="34" fill="#8fa3c8" font-size="13" font-weight="700">المحيط Surroundings</text>
+    <circle cx="260" cy="130" r="78" fill="rgba(34,211,238,.12)" stroke="#22d3ee" stroke-width="2.5" class="dash"/>
+    <text x="260" y="124" text-anchor="middle" fill="#22d3ee" font-size="15" font-weight="800">النظام System</text>
+    <text x="352" y="64" fill="#fbbf24" font-size="11" font-weight="700">الحدود Boundary</text>
+    <line x1="348" y1="70" x2="318" y2="92" stroke="#fbbf24" stroke-width="1.5"/>
+    <g class="pulse"><path d="M120 130 h52" stroke="#fb923c" stroke-width="3"/><text x="104" y="112" fill="#fb923c" font-size="11">طاقة Energy ⇄</text></g>
+    <g class="pulse"><path d="M400 130 h-52" stroke="#38bdf8" stroke-width="3"/><text x="368" y="112" fill="#38bdf8" font-size="11">⇄ مادة Matter</text></g>
+  </svg>
+  <div class="note">
+    <span class="en">Each system has a "boundary" separating it from its surroundings. Matter inside may be solid, liquid, gas, or a mixture.</span>
+    <span class="ar">لكل نظام «حدود» بتفصله عن محيطه، والمادة جواه ممكن تكون صلبة أو سائلة أو غازية أو خليط منهم.</span>
+  </div>
+</section>
+
+<!-- 02 -->
+<section id="types" class="card reveal">
+  <div class="chead"><span class="cnum">02</span><div><h2><span class="en">Types of Systems</span><span class="ar">أنواع الأنظمة</span></h2></div></div>
+  <p class="en">Systems are classified according to their ability to exchange energy and matter with the surroundings.</p>
+  <p class="ar">بيتصنف النظام حسب قدرته على تبادل الطاقة والمادة مع المحيط.</p>
+  <div class="grid3" style="margin-top:16px">
+    <div class="tile"><span class="tag hot">Open · مفتوح</span>
+      <svg viewBox="0 0 120 90" style="width:100%"><circle cx="45" cy="26" r="6" fill="#9fb0d0" class="steam"/><circle cx="62" cy="22" r="7" fill="#9fb0d0" class="steam s2"/><circle cx="78" cy="26" r="6" fill="#9fb0d0" class="steam s3"/><path d="M25 40 h70 v8 c0 22 -14 34 -35 34 s-35 -12 -35 -34 z" fill="rgba(56,189,248,.25)" stroke="#38bdf8" stroke-width="2.5"/></svg>
+      <p class="en">🍲 An open pot of boiling water — both energy and matter are exchanged.</p>
+      <p class="ar">🍲 قدر مية بتغلي من غير غطا — بيتبادل مادة وطاقة.</p>
+      <p class="en mut">G.R.: heat and water vapour are exchanged with the air.</p>
+      <p class="ar mut">علل: لأن الحرارة وبخار الماء بيتبادلوا مع الهوا.</p>
+    </div>
+    <div class="tile"><span class="tag">Closed · مغلق</span>
+      <svg viewBox="0 0 120 90" style="width:100%"><rect x="40" y="18" width="40" height="60" rx="8" fill="rgba(251,191,36,.2)" stroke="#fbbf24" stroke-width="2.5"/><rect x="44" y="12" width="32" height="8" rx="4" fill="#fbbf24"/><path d="M22 45 h12 M98 45 h-12" stroke="#fb923c" stroke-width="3" class="pulse"/></svg>
+      <p class="en">🥤 A sealed cold-drink can — only energy is exchanged, matter is not.</p>
+      <p class="ar">🥤 علبة مشروب غازي مقفولة — بتتبادل طاقة بس من غير مادة.</p>
+      <p class="en mut">G.R.: only heat is exchanged with the air, not matter.</p>
+      <p class="ar mut">علل: بتتبادل حرارة بس مع الهوا مش مادة.</p>
+    </div>
+    <div class="tile"><span class="tag gold">Isolated · معزول</span>
+      <svg viewBox="0 0 120 90" style="width:100%"><rect x="45" y="14" width="30" height="64" rx="10" fill="rgba(52,211,153,.15)" stroke="#34d399" stroke-width="2.5"/><rect x="50" y="8" width="20" height="8" rx="4" fill="#34d399"/><text x="22" y="50" fill="#f87171" font-size="14" font-weight="900">✕</text><text x="88" y="50" fill="#f87171" font-size="14" font-weight="900">✕</text></svg>
+      <p class="en">🧴 A thermos flask — neither energy nor matter is exchanged.</p>
+      <p class="ar">🧴 الترمس — مفيش تبادل طاقة ولا مادة خالص.</p>
+      <p class="en mut">G.R.: it keeps the drink's temperature for a long time.</p>
+      <p class="ar mut">علل: بيحافظ على حرارة المشروب لفترة طويلة.</p>
+    </div>
+  </div>
+  <div class="quiz" style="margin-top:20px">
+    <p class="en"><strong>Q:</strong> Match each figure to its system type — cups (A) & (C) exchange heat, but (C) also loses vapour.</p>
+    <p class="ar"><strong>س:</strong> وصّل كل شكل بنوع نظامه — الكوبين (A) و(C) بيتبادلا حرارة، لكن (C) بيفقد بخار كمان.</p>
+    <div class="grid3" style="margin-top:10px">
+      <div class="quiz tile">🍵 <span class="en">Cup (A) with saucer</span><span class="ar">كوب (A) بصحن</span>
+        <div class="opts"><button class="opt">Open · مفتوح</button><button class="opt" data-ok>Closed · مغلق</button><button class="opt">Isolated · معزول</button></div>
+        <div class="exp"><span class="en">✔️ Closed: exchanges heat only.</span><span class="ar">✔️ مغلق: بيتبادل حرارة بس.</span></div>
+      </div>
+      <div class="quiz tile">🧴 <span class="en">Thermos (B)</span><span class="ar">ترموس (B)</span>
+        <div class="opts"><button class="opt">Open · مفتوح</button><button class="opt">Closed · مغلق</button><button class="opt" data-ok>Isolated · معزول</button></div>
+        <div class="exp"><span class="en">✔️ Isolated: exchanges nothing.</span><span class="ar">✔️ معزول: لا يتبادل أي حاجة.</span></div>
+      </div>
+      <div class="quiz tile">☕ <span class="en">Open cup (C)</span><span class="ar">كوب مفتوح (C)</span>
+        <div class="opts"><button class="opt" data-ok>Open · مفتوح</button><button class="opt">Closed · مغلق</button><button class="opt">Isolated · معزول</button></div>
+        <div class="exp"><span class="en">✔️ Open: exchanges heat and vapour.</span><span class="ar">✔️ مفتوح: بيتبادل حرارة وبخار.</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="note gold">
+    <span class="en">💡 G.R.: A medical thermometer is a closed system — because only energy is exchanged with the surroundings as heat.</span>
+    <span class="ar">💡 علل: الترمومتر الطبي نظام مغلق — لأنه بيتبادل طاقة بس مع المحيط في صورة حرارة.</span>
+  </div>
+</section>
+
+<!-- 03 -->
+<section id="internal" class="card reveal">
+  <div class="chead"><span class="cnum">03</span><div><h2><span class="en">Internal Energy of the System</span><span class="ar">الطاقة الداخلية للنظام</span></h2></div></div>
+  <p class="en">According to the particle theory, any system consists of particles — each has potential energy (P.E.) and kinetic energy (K.E.), differing by state of matter.</p>
+  <p class="ar">حسب نظرية الجسيمات، أي نظام بيتكون من جسيمات، وكل جسيم ليه طاقة وضع وطاقة حركة بتختلف باختلاف حالة المادة.</p>
+  <div class="plCtrls">
+    <button class="btn pmBtn" data-mode="solid">🧊 Solid · صلب</button>
+    <button class="btn pmBtn ghost" data-mode="liquid">💧 Liquid · سائل</button>
+    <button class="btn pmBtn ghost" data-mode="gas">☁️ Gas · غاز</button>
+    <label style="font-weight:800;font-size:.8rem">🌡️ Temp · الحرارة</label>
+    <input type="range" id="ptemp" min="0" max="100" value="25">
+    <div class="meter"><i id="keMeter"></i></div>
+  </div>
+  <canvas id="plab"></canvas>
+  <div class="note">
+    <span class="en">Try it: switch the state, then drag the temperature slider — particle speed IS the "average kinetic energy", i.e. temperature!</span>
+    <span class="ar">جرّب: غيّر الحالة وحرّك سلايدر الحرارة — سرعة الجسيمات دي «متوسط طاقة الحركة» يعني درجة الحرارة!</span>
+  </div>
+  <div class="grid3" style="margin-top:16px">
+    <div class="tile"><h3>🧊 <span class="en">Solids</span><span class="ar">المواد الصلبة</span></h3>
+      <table><tr><th>P.E. · وضع</th><td>Maximum · قصوى</td></tr><tr><th>K.E. · حركة</th><td>Small · صغيرة</td></tr></table>
+      <p class="en mut" style="font-size:.8rem">G.R.: very strong attraction, tiny spaces → max P.E.; particles only vibrate → small K.E.</p>
+      <p class="ar mut" style="font-size:.82rem">علل: قوى تجاذب قوية جدًا ومسافات صغيرة → طاقة وضع قصوى، وبتهتز حوالين مكانها بس → طاقة حركة صغيرة.</p>
+    </div>
+    <div class="tile"><h3>💧 <span class="en">Liquids</span><span class="ar">السوائل</span></h3>
+      <table><tr><th>P.E. · وضع</th><td>Medium · متوسطة</td></tr><tr><th>K.E. · حركة</th><td>Medium · متوسطة</td></tr></table>
+      <p class="en mut" style="font-size:.8rem">G.R.: relatively large forces & spaces → medium P.E.; particles move relatively freely → medium K.E.</p>
+      <p class="ar mut" style="font-size:.82rem">علل: قوى تجاذب ومسافات متوسطة → طاقة وضع متوسطة، وبتتحرك بحرية نسبية → طاقة حركة متوسطة.</p>
+    </div>
+    <div class="tile"><h3>☁️ <span class="en">Gases</span><span class="ar">الغازات</span></h3>
+      <table><tr><th>P.E. · وضع</th><td>≈ Zero · صفر تقريبًا</td></tr><tr><th>K.E. · حركة</th><td>Very high · عالية جدًا</td></tr></table>
+      <p class="en mut" style="font-size:.8rem">G.R.: very weak forces, huge spaces → ~zero P.E.; particles move completely freely → very high K.E.</p>
+      <p class="ar mut" style="font-size:.82rem">علل: قوى تجاذب ضعيفة جدًا ومسافات كبيرة → طاقة وضع ≈ صفر، وبتتحرك بحرية تامة → طاقة حركة عالية جدًا.</p>
+    </div>
+  </div>
+  <div class="qOut"><span class="en">Internal Energy = P.E. + K.E. of the particles</span><span class="ar">الطاقة الداخلية = طاقة الوضع + طاقة الحركة (لجسيمات النظام)</span></div>
+</section>
+
+<!-- 04 -->
+<section id="temp" class="card reveal">
+  <div class="chead"><span class="cnum">04</span><div><h2><span class="en">Temperature</span><span class="ar">درجة الحرارة</span></h2></div></div>
+  <div class="tile"><span class="tag">Definition · تعريف</span>
+    <p class="en">Temperature of a system: a measure of the <strong>average kinetic energy</strong> of its particles.</p>
+    <p class="ar">درجة حرارة النظام: مقياس لـ<strong>متوسط طاقة الحركة</strong> لجسيمات النظام.</p>
+  </div>
+  <div class="qOut"><span class="en">Avg K.E. = Total K.E. of all particles ÷ Number of particles</span><span class="ar">متوسط طاقة الحركة = مجموع طاقات حركة كل الجسيمات ÷ عددها</span></div>
+  <div class="quiz">
+    <p class="en"><strong>Q:</strong> Why is temperature a measure of the AVERAGE kinetic energy, not of individual particles?</p>
+    <p class="ar"><strong>س:</strong> ليه درجة الحرارة مقياس لـ«متوسط» طاقة الحركة مش طاقة كل جسيم لوحده؟</p>
+    <div class="opts">
+      <button class="opt"><span class="en" style="display:inline">All particles have equal energy</span> · <span class="ar" style="display:inline">كل الجسيمات طاقتها متساوية</span></button>
+      <button class="opt" data-ok><span class="en" style="display:inline">Each particle's K.E. differs, so the average represents all</span> · <span class="ar" style="display:inline">طاقة كل جسيم بتختلف، فالمتوسط بيمثل الكل</span></button>
+      <button class="opt"><span class="en" style="display:inline">The average is just easier</span> · <span class="ar" style="display:inline">المتوسط أسهل بس</span></button>
+    </div>
+    <div class="exp"><span class="en">✔️ Correct! In the same substance each particle's K.E. differs — the average is one representative measure.</span><span class="ar">✔️ صح! في نفس المادة طاقة حركة كل جسيم بتختلف عن التاني، فبنستخدم المتوسط كمقياس واحد يمثلهم كلهم.</span></div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section id="heating" class="card reveal">
+  <div class="chead"><span class="cnum">05</span><div><h2><span class="en">What Does Internal Energy Depend On?</span><span class="ar">الطاقة الداخلية بتعتمد على إيه؟</span></h2></div></div>
+  <div class="badges" style="margin:0 0 16px">
+    <span class="badge"><span class="en">1️⃣ Temperature</span><span class="ar">1️⃣ درجة الحرارة</span></span>
+    <span class="badge"><span class="en">2️⃣ Mass (no. of particles)</span><span class="ar">2️⃣ الكتلة (عدد الجسيمات)</span></span>
+    <span class="badge"><span class="en">3️⃣ Type of matter</span><span class="ar">3️⃣ نوع المادة</span></span>
+    <span class="badge"><span class="en">4️⃣ Physical state</span><span class="ar">4️⃣ الحالة الفيزيائية</span></span>
+  </div>
+  <h3><span class="en">Effect of Heating on P.E. & K.E.</span><span class="ar">تأثير التسخين على طاقتي الوضع والحركة</span></h3>
+  <p class="en">When a substance gains thermal energy, the average K.E. of its particles increases → temperature rises (and vice versa).</p>
+  <p class="ar">لما المادة تكتسب طاقة حرارية، متوسط طاقة حركة جسيماتها بيزيد → درجة الحرارة بترتفع (والعكس صحيح).</p>
+  <div class="grid2" style="margin-top:14px">
+    <div class="tile" style="border-color:var(--hot)"><span style="font-size:2rem">💥💧</span>
+      <p class="en">Hot water 90°C — greater average K.E., particles move fast.</p>
+      <p class="ar">مية سخنة 90°م — متوسط طاقة حركة أكبر، الجسيمات بتتحرك بسرعة.</p></div>
+    <div class="tile" style="border-color:var(--cold)"><span style="font-size:2rem">💧 💧</span>
+      <p class="en">Cold water 10°C — lower average K.E., particles move slowly.</p>
+      <p class="ar">مية باردة 10°م — متوسط طاقة حركة أقل، الجسيمات بتتحرك ببطء.</p></div>
+  </div>
+  <div class="note hot">
+    <span class="en">👃 G.R.: Odours spread faster in hot air — because hot-air particles have greater average K.E. than cold-air particles.</span>
+    <span class="ar">👃 علل: الروايح بتنتشر أسرع في الهوا الساخن — لأن متوسط طاقة حركة جزيئاته أكبر من الهوا البارد.</span>
+  </div>
+  <div class="quiz">
+    <p class="en"><strong>Evaluate:</strong> The average K.E. of water particles is greatest at…</p>
+    <p class="ar"><strong>قيّم فهمك:</strong> متوسط طاقة حركة جسيمات المية بيكون أكبر عند…</p>
+    <div class="opts"><button class="opt">0°C</button><button class="opt">50°C</button><button class="opt">98°C</button><button class="opt" data-ok>100°C</button></div>
+    <div class="exp"><span class="en">✔️ The higher the temperature, the greater the average K.E. — 100°C is the highest.</span><span class="ar">✔️ كلما ارتفعت درجة الحرارة زاد متوسط طاقة الحركة — وأعلى اختيار 100°م.</span></div>
+  </div>
+</section>
+
+<!-- compare: NEW side-by-side VS layout -->
+<section id="compare" class="card reveal">
+  <div class="chead"><span class="cnum">⇄</span><div><h2><span class="en">Compare Two Containers</span><span class="ar">قارن بين إناءين</span></h2></div></div>
+  <p class="en">Container (1) has more water than (2) — both at the SAME temperature. Look at them side by side, think, then answer each card!</p>
+  <p class="ar">إناء (1) فيه مية أكتر من إناء (2) — والاتنين في نفس درجة الحرارة. بصّ عليهم جنب بعض، فكّر، وبعدين جاوب على كل كارت!</p>
+  <div class="vsRow">
+    <div class="vessel">
+      <div class="vesselBox"><i style="height:72%"></i><span class="vt">40°C</span></div>
+      <div class="vlab"><span class="en">Container (1) — more water</span><span class="ar">إناء (1) — مية أكتر</span></div>
+    </div>
+    <div class="vsBadge">VS</div>
+    <div class="vessel">
+      <div class="vesselBox"><i style="height:35%"></i><span class="vt">40°C</span></div>
+      <div class="vlab"><span class="en">Container (2) — less water</span><span class="ar">إناء (2) — مية أقل</span></div>
+    </div>
+  </div>
+  <div class="grid3" style="margin-top:18px">
+    <div class="tile quiz">
+      <h3>🔢 <span class="en">Number of particles</span><span class="ar">عدد الجسيمات</span></h3>
+      <p class="en">Equal in both containers?</p><p class="ar">متساوي في الإناءين؟</p>
+      <div class="opts"><button class="opt">✓ Yes · نعم</button><button class="opt" data-ok>✕ No · لا</button></div>
+      <div class="exp"><span class="en">✕ No — (1) has more volume → more particles.</span><span class="ar">✕ لا — إناء (1) حجمه أكبر فعدد جسيماته أكتر.</span></div>
+    </div>
+    <div class="tile quiz">
+      <h3>⚡ <span class="en">Average K.E.</span><span class="ar">متوسط طاقة الحركة</span></h3>
+      <p class="en">Equal in both containers?</p><p class="ar">متساوي في الإناءين؟</p>
+      <div class="opts"><button class="opt" data-ok>✓ Yes · نعم</button><button class="opt">✕ No · لا</button></div>
+      <div class="exp"><span class="en">✓ Yes — same temperature → same average K.E., regardless of amount.</span><span class="ar">✓ نعم — نفس درجة الحرارة → نفس متوسط طاقة الحركة بغض النظر عن الكمية.</span></div>
+    </div>
+    <div class="tile quiz">
+      <h3>🔥 <span class="en">Internal energy</span><span class="ar">الطاقة الداخلية</span></h3>
+      <p class="en">Equal in both containers?</p><p class="ar">متساوية في الإناءين؟</p>
+      <div class="opts"><button class="opt">✓ Yes · نعم</button><button class="opt" data-ok>✕ No · لا</button></div>
+      <div class="exp"><span class="en">✕ No — (1) has more particles → greater total internal energy.</span><span class="ar">✕ لا — إناء (1) جسيماته أكتر → طاقته الداخلية الكلية أكبر.</span></div>
+    </div>
+  </div>
+  <div class="note">
+    <span class="en">Average K.E. expresses temperature, so it stays equal even if amounts differ; number of particles & internal energy depend on mass.</span>
+    <span class="ar">متوسط طاقة الحركة هو اللي بيعبر عن درجة الحرارة فبيفضل واحد حتى لو الكمية اختلفت؛ أما عدد الجسيمات والطاقة الداخلية فيعتمدوا على الكتلة.</span>
+  </div>
+</section>
+
+<!-- factors + hands simulator -->
+<section id="factors" class="card reveal">
+  <div class="chead"><span class="cnum">🖐️</span><div><h2><span class="en">Factors Affecting Temperature Change</span><span class="ar">العوامل المؤثرة في تغيّر درجة الحرارة</span></h2></div></div>
+  <p class="en"><strong>Relative-Feeling Simulator:</strong> put each hand in a basin; it thermally adapts over time. Then move it and feel the surprise!</p>
+  <p class="ar"><strong>محاكي الإحساس النسبي:</strong> حط كل إيد في حوض؛ بتتأقلم حراريًا مع الوقت. بعدين انقلها وشوف المفاجأة!</p>
+  <div class="basins">
+    <button class="basin hot">🔥 <span class="en">Hot 60°C</span><span class="ar">سخنة 60°م</span></button>
+    <button class="basin warm">🌊 <span class="en">Warm 30°C</span><span class="ar">دافئة 30°م</span></button>
+    <button class="basin cold">❄️ <span class="en">Cold 8°C</span><span class="ar">باردة 8°م</span></button>
+  </div>
+  <div class="handsRow">
+    <div class="handCard" id="h1">
+      <div class="hTitle"><span class="en">🖐️ Hand 1</span><span class="ar">🖐️ اليد 1</span></div>
+      <div class="hIn en">in: <b class="hBasin">air (25°C)</b> · adapted: <b class="hAd">25°C</b></div>
+      <div class="hIn ar">في: <b class="hBasinAr">الهواء</b> · متأقلمة مع: <b class="hAdAr">25°م</b></div>
+      <div class="hFeel"><span class="hEmoji">😐</span><span><span class="en hFeelEn">Normal</span><span class="ar hFeelAr">عادي</span></span></div>
+      <div class="hMeter"><i class="hNeedle"></i></div>
+      <div class="hBtns"><button data-h="0" data-b="hot">🔥</button><button data-h="0" data-b="warm">🌊</button><button data-h="0" data-b="cold">❄️</button></div>
+    </div>
+    <div class="handCard" id="h2">
+      <div class="hTitle"><span class="en">🖐️ Hand 2</span><span class="ar">🖐️ اليد 2</span></div>
+      <div class="hIn en">in: <b class="hBasin">air (25°C)</b> · adapted: <b class="hAd">25°C</b></div>
+      <div class="hIn ar">في: <b class="hBasinAr">الهواء</b> · متأقلمة مع: <b class="hAdAr">25°م</b></div>
+      <div class="hFeel"><span class="hEmoji">😐</span><span><span class="en hFeelEn">Normal</span><span class="ar hFeelAr">عادي</span></span></div>
+      <div class="hMeter"><i class="hNeedle"></i></div>
+      <div class="hBtns"><button data-h="1" data-b="hot">🔥</button><button data-h="1" data-b="warm">🌊</button><button data-h="1" data-b="cold">❄️</button></div>
+    </div>
+  </div>
+  <div style="display:flex;gap:10px;justify-content:center;margin-top:14px">
+    <button class="btn" id="demoBtn">▶ <span class="en" style="display:inline">Run the classic experiment</span> · <span class="ar" style="display:inline">نفّذ التجربة الكلاسيكية</span></button>
+  </div>
+  <div id="simMsg">
+    <span class="en">💡 Move the hands between basins with the 🔥🌊❄️ buttons and watch how the SAME water feels different!</span>
+    <span class="ar">💡 حرّك الإيدين بين الأحواض بأزرار 🔥🌊❄️ وراقب إزاي نفس المية بتحسّ بيها بشكل مختلف!</span>
+  </div>
+  <div class="note hot">
+    <span class="en">Feeling is RELATIVE, not an accurate thermometer! Heat transfer to/from your body is what shows as a temperature change.</span>
+    <span class="ar">الإحساس نسبي مش مقياس دقيق! انتقال الحرارة من/إلى جسمك هو اللي بيظهر كتغيّر في درجة الحرارة.</span>
+  </div>
+  <h3 style="margin-top:16px"><span class="en">Temperature change depends on 3 factors:</span><span class="ar">تغيّر درجة الحرارة بيعتمد على 3 عوامل:</span></h3>
+  <div class="badges" style="margin-top:10px">
+    <span class="badge"><span class="en">1️⃣ Mass</span><span class="ar">1️⃣ الكتلة</span></span>
+    <span class="badge"><span class="en">2️⃣ Type</span><span class="ar">2️⃣ النوع</span></span>
+    <span class="badge"><span class="en">3️⃣ State</span><span class="ar">3️⃣ الحالة</span></span>
+  </div>
+</section>
+
+<!-- labs -->
+<section id="act1" class="card reveal"><div class="chead"><span class="cnum">A1</span><div><h2><span class="en">Effect of Mass on Temperature Change</span><span class="ar">تأثير الكتلة على تغيّر درجة الحرارة</span></h2></div></div>
+  <p class="en">Beaker (A): 1 kg water · (B): ½ kg — same source, same time. Press "Heat" and watch the graph.</p>
+  <p class="ar">إناء (A) فيه 1 كجم مية و(B) نص كجم — بنفس المصدر ونفس الوقت. دوس «سخّن» وراقب الرسم.</p></section>
+<section id="act2" class="card reveal"><div class="chead"><span class="cnum">A2</span><div><h2><span class="en">Effect of Type of Substance</span><span class="ar">تأثير نوع المادة</span></h2></div></div>
+  <p class="en">1 kg water (A) & 1 kg oil (B), both at 20°C — heated equally.</p>
+  <p class="ar">1 كجم مية (A) و1 كجم زيت (B) بيبدأوا من 20°م — بيتسخنوا بنفس القدر.</p></section>
+<section id="act3" class="card reveal"><div class="chead"><span class="cnum">A3</span><div><h2><span class="en">Effect of State of the Substance</span><span class="ar">تأثير حالة المادة</span></h2></div></div>
+  <p class="en">500 g water at 20°C & 500 g ice at −5°C — heated over a steady flame. (Real ice pauses at 0°C while melting — simplified here.)</p>
+  <p class="ar">500 جم مية عند 20°م و500 جم تلج عند −5°م — بيتسخنوا بنفس اللهب. (التلج الحقيقي بيقف عند 0°م أثناء الذوبان — مبسّط هنا للتوضيح.)</p></section>
+
+<!-- specific -->
+<section id="specific" class="card reveal">
+  <div class="chead"><span class="cnum">06</span><div><h2><span class="en">Specific Heat</span><span class="ar">الحرارة النوعية</span></h2></div></div>
+  <div class="tile"><span class="tag">Definition · تعريف</span>
+    <p class="en">The quantity of heat required to raise the temperature of <strong>1 kg</strong> of a substance by <strong>1°C</strong>.</p>
+    <p class="ar">كمية الحرارة اللازمة لرفع درجة حرارة <strong>1 كجم</strong> من المادة بمقدار <strong>1°م</strong>.</p>
+  </div>
+  <div class="note">
+    <span class="en">"Specific heat of iron = 450 J/kg.°C" means: 450 J raises 1 kg of iron by 1°C.</span>
+    <span class="ar">«الحرارة النوعية للحديد 450» معناها: رفع حرارة 1 كجم حديد بمقدار 1°م يحتاج 450 چول.</span>
+  </div>
+  <h3 style="margin-top:18px">📊 <span class="en">Visual comparison (J/kg.°C)</span><span class="ar">مقارنة بصرية</span></h3>
+  <div id="shbars"></div>
+  <div class="note gold" style="margin-top:16px">
+    <span class="en">⚠️ When specific heat is LARGE: heat needed per 1°C is large; rise for a given heat is small; and it cools slowly (takes long to lose heat).</span>
+    <span class="ar">⚠️ لما الحرارة النوعية تكون كبيرة: الحرارة اللازمة للرفع بتكون كبيرة، والارتفاع بيكون قليل عند اكتساب حرارة معينة، والمادة بتبرد ببطء (بتاخد وقت طويل تفقد حرارتها).</span>
+  </div>
+  <h3 style="margin-top:20px">🏁 <span class="en">Heating race — 5 g of each, same heat</span><span class="ar">سباق التسخين — 5 جم من كلٍ، نفس الحرارة</span></h3>
+  <div class="grid2" style="margin-top:12px">
+    <div class="tile">
+      <h3>🟠 <span class="en">Copper</span> · <span class="ar">نحاس</span> <span class="shval">c = 385</span></h3>
+      <div class="raceNum" id="cuVal" style="direction:ltr">20°C</div>
+      <div class="rbar"><i id="cuBar" style="background:linear-gradient(90deg,#fb923c,#ef4444)"></i></div>
+      <p class="en mut" style="font-size:.8rem">Lower specific heat → heats MORE (→ cookware).</p>
+      <p class="ar mut" style="font-size:.8rem">حرارة نوعية أقل → بيسخن أكتر (→ أواني الطهي).</p>
+    </div>
+    <div class="tile">
+      <h3>⚪ <span class="en">Aluminum</span> · <span class="ar">ألومنيوم</span> <span class="shval">c = 900</span></h3>
+      <div class="raceNum" id="alVal" style="direction:ltr;color:var(--cold)">20°C</div>
+      <div class="rbar"><i id="alBar" style="background:linear-gradient(90deg,#94a3b8,#e2e8f0)"></i></div>
+      <p class="en mut" style="font-size:.8rem">Higher specific heat → heats LESS.</p>
+      <p class="ar mut" style="font-size:.8rem">حرارة نوعية أعلى → بيسخن أقل.</p>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:12px"><button class="btn" id="raceBtn">🔥 <span class="en" style="display:inline">Heat equally</span> · <span class="ar" style="display:inline">سخّن بالتساوي</span></button></div>
+  <p class="en mut">Same heat & mass, but copper's specific heat is lower → greater rise → preferable for cookware.</p>
+  <p class="ar mut">نفس الحرارة والكتلة، لكن الحرارة النوعية للنحاس أقل → بيسخن أكتر — عشان كده مفضّل في أواني الطهي.</p>
+  <h3 style="margin-top:20px">🧮 <span class="en">Heat calculator: Q = m × c × ΔT</span><span class="ar">حاسبة الحرارة</span></h3>
+  <div class="calc">
+    <div><label>Substance · المادة</label><select id="cSub"></select></div>
+    <div><label>Mass m (kg) · الكتلة</label><input type="number" id="cM" value="2" min="0" step="0.1"></div>
+    <div><label>ΔT (°C) · التغيّر</label><input type="number" id="cT" value="10" step="1"></div>
+  </div>
+  <div class="qOut">Q = <b id="qRes">—</b> J · چول</div>
+  <h3 style="margin-top:20px">❓ <span class="en">Question bank</span><span class="ar">بنك الأسئلة</span></h3>
+  <details><summary><span class="en">Why is mercury used in thermometers?</span><span class="ar">ليه الزئبق بيُستخدم في الترمومترات؟</span></summary>
+    <div class="body"><span class="en">Because its specific heat is low → its temperature rises quickly with any gained heat.</span><span class="ar">لأن حرارته النوعية منخفضة، فدرجة حرارته بترتفع بسرعة بمجرد اكتساب أي حرارة.</span></div></details>
+  <details><summary><span class="en">Why does the human body contain much water?</span><span class="ar">ليه جسم الإنسان فيه نسبة مية كبيرة؟</span></summary>
+    <div class="body"><span class="en">Water's high specific heat keeps body temperature fairly constant despite surroundings' changes.</span><span class="ar">الحرارة النوعية العالية للمية بتحافظ على درجة حرارة الجسم ثابتة تقريبًا رغم تغيّر المحيط.</span></div></details>
+  <details><summary><span class="en">Equal masses of water & oil heated equally — which takes longer to reach 60°C?</span><span class="ar">مية وزيت بكتل متساوية اتسخنوا بنفس المصدر — مين بياخد وقت أطول ليوصل 60°م؟</span></summary>
+    <div class="body"><span class="en">Water — its specific heat is greater than oil's.</span><span class="ar">المية — لأن حرارتها النوعية أكبر من الزيت.</span></div></details>
+  <details><summary><span class="en">Cups kept 80°C water hot for W:30, X:15, Y:60, Z:45 min — best for ice boxes?</span><span class="ar">أكواب حافظت على مية 80°م لمدد: W:30، X:15، Y:60، Z:45 دقيقة — أنسب مادة لصندوق الثلج؟</span></summary>
+    <div class="body"><span class="en">Substance (Y) — a good insulator must lose heat slowly, and Y took longest (60 min).</span><span class="ar">المادة (Y) — العازل الجيد لازم يفقد حرارته ببطء، و(Y) أطولهم (60 دقيقة).</span></div></details>
+  <div class="note hot" style="margin-top:16px">
+    <span class="en">🚗 Radiator: water cools car engines because its high specific heat absorbs much energy without a big rise in its own temperature.</span>
+    <span class="ar">🚗 الرادياتير: المية بتبرد محرك العربية لأن حرارتها النوعية عالية، فبتمتص حرارة كتيرة من غير ما درجة حرارتها ترتفع كتير.</span>
+  </div>
+</section>
+
+<!-- final -->
+<section id="final" class="card reveal">
+  <div class="chead"><span class="cnum">🏆</span><div><h2><span class="en">Final Challenge Questions</span><span class="ar">أسئلة تحدي ختامية</span></h2></div></div>
+  <div class="quiz">
+    <p class="en"><strong>Q1:</strong> Four steel blocks (a–d) of different volumes are heated by the same source for the same time — which shows the LEAST rise? (a = largest)</p>
+    <p class="ar"><strong>س1:</strong> أربع قطع فولاذ بأحجام مختلفة اتسخنت بنفس المصدر ونفس الوقت — أيّها أقل ارتفاعًا في الحرارة؟ (a أكبرها)</p>
+    <div class="opts"><button class="opt" data-ok>(a)</button><button class="opt">(b)</button><button class="opt">(c)</button><button class="opt">(d)</button></div>
+    <div class="exp"><span class="en">✔️ Block (a): greatest volume → greatest mass → heat spreads over more particles → smallest rise.</span><span class="ar">✔️ القطعة (a): أكبر حجم → أكبر كتلة → الحرارة بتتوزع على جسيمات أكتر → أقل ارتفاع.</span></div>
+  </div>
+  <div class="quiz">
+    <p class="en"><strong>Q2:</strong> Identical hot blocks (80°C) go into beakers (a:50mL/80°, b:100mL/20°, c:50mL/20°, d:100mL/80°) — where does water rise MOST?</p>
+    <p class="ar"><strong>س2:</strong> قطع معدنية سخنة (80°م) متطابقة وُضعت في 4 إناءات: (a:50مل/80°، b:100مل/20°، c:50مل/20°، d:100مل/80°) — فين بترتفع حرارة المية أكتر؟</p>
+    <div class="opts"><button class="opt">(a)</button><button class="opt">(b)</button><button class="opt" data-ok>(c)</button><button class="opt">(d)</button></div>
+    <div class="exp"><span class="en">✔️ Beaker (c): (a)&(d) already match the block (no change); between (b)&(c), (c) has less water → greatest rise.</span><span class="ar">✔️ إناء (c): (a) و(d) أصلاً بنفس حرارة القطعة فمفيش تغيير، وبين (b) و(c)، كمية المية في (c) أقل فترتفع أكتر.</span></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="verified">🛡️ <span class="en">Reviewed & signed: Dr. Wael Aboagiza</span><span class="ar">مراجعة وتوقيع: د. وائل أبو عجيزة</span> <span style="font-family:'Space Grotesk'">#Dr_Wael_Aboagiza</span></div>
+  <p style="margin-top:14px;font-size:.82rem"><span class="en">Internal Energy & Temperature — Unit 1: Matter and Energy · Interactive Infographic</span><span class="ar">الطاقة الداخلية ودرجة الحرارة — الوحدة الأولى: المادة والطاقة · إنفوجرافيك تفاعلي</span></p>
+</footer>
+<button id="topBtn" title="Top · لفوق">⬆</button>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+addEventListener('scroll',()=>{const h=document.documentElement,p=h.scrollTop/(h.scrollHeight-h.clientHeight);
+ $('#progress').style.width=(p*100)+'%';$('#railFill').style.height=(p*100)+'%';$('#railVal').textContent=Math.round(p*100)+'°';
+ $('#topBtn').classList.toggle('show',h.scrollTop>600);},{passive:true});
+$('#topBtn').onclick=()=>scrollTo({top:0,behavior:'smooth'});
+$('#themeBtn').onclick=()=>{const l=document.body.dataset.theme==='light';document.body.dataset.theme=l?'':'light';$('#themeBtn').textContent=l?'☀️':'🌙';};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}}),{threshold:.1});
+$$('.reveal').forEach(el=>io.observe(el));
+const spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)$$('nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));}),{rootMargin:'-35% 0px -55% 0px'});
+$$('section[id]').forEach(s=>spy.observe(s));
+document.addEventListener('click',e=>{const b=e.target.closest('.opt');if(!b)return;const q=b.closest('.quiz');if(q.dataset.done)return;
+ if(b.dataset.ok!==undefined){b.classList.add('ok');q.dataset.done=1;const x=q.querySelector('.exp');x&&x.classList.add('show');}
+ else{b.classList.add('bad');setTimeout(()=>b.classList.remove('bad'),450);}});
+const hc=$('#heroCv'),hx=hc.getContext('2d');let HP=[];
+function hSize(){hc.width=hc.offsetWidth;hc.height=hc.offsetHeight;HP=Array.from({length:70},()=>({x:Math.random()*hc.width,y:Math.random()*hc.height,r:1+Math.random()*2.5,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6,c:Math.random()>.5?'34,211,238':'251,146,60'}));}
+hSize();addEventListener('resize',hSize);
+const pc=$('#plab'),px=pc.getContext('2d');const PM={mode:'solid',temp:25};let PP=[],tickT=0;
+function initP(){pc.width=pc.offsetWidth;pc.height=280;PP=[];const W=pc.width,H=pc.height;
+ if(PM.mode==='solid'){for(let r=0;r<5;r++)for(let c=0;c<12;c++)PP.push({bx:W*.1+c*(W*.8/11),by:H*.25+r*(H*.55/4),ph:Math.random()*6.28});}
+ else{const n=PM.mode==='liquid'?70:55;for(let i=0;i<n;i++)PP.push({x:Math.random()*W,y:PM.mode==='liquid'?H*.35+Math.random()*H*.6:Math.random()*H,vx:(Math.random()-.5)*2,vy:(Math.random()-.5)*2});}}
+initP();addEventListener('resize',initP);
+$$('.pmBtn').forEach(b=>b.onclick=()=>{$$('.pmBtn').forEach(x=>x.classList.add('ghost'));b.classList.remove('ghost');PM.mode=b.dataset.mode;initP();});
+$('#ptemp').oninput=e=>{PM.temp=+e.target.value;$('#keMeter').style.width=PM.temp+'%';};
+function drawP(){const W=pc.width,H=pc.height;px.clearRect(0,0,W,H);tickT++;
+ const sp=.3+PM.temp/100*2.2,hue=Math.max(5,205-PM.temp*1.9),amp=1.5+PM.temp*.07;
+ px.fillStyle=`hsl(${hue} 90% 60%)`;
+ PP.forEach(p=>{let x,y;
+  if(PM.mode==='solid'){x=p.bx+Math.sin(tickT*.06*sp+p.ph)*amp;y=p.by+Math.cos(tickT*.05*sp+p.ph)*amp;}
+  else{const v=PM.mode==='liquid'?sp*.7:sp*1.8;p.x+=p.vx*v;p.y+=p.vy*v+(PM.mode==='liquid'?.15:0);
+   if(p.x<6||p.x>W-6)p.vx*=-1;if(p.y<6||p.y>H-6)p.vy*=-1;p.x=Math.max(6,Math.min(W-6,p.x));p.y=Math.max(6,Math.min(H-6,p.y));x=p.x;y=p.y;}
+  px.beginPath();px.arc(x,y,PM.mode==='gas'?4:5,0,7);px.fill();});}
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function loop(){if(!reduced){hx.clearRect(0,0,hc.width,hc.height);HP.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>hc.width)p.vx*=-1;if(p.y<0||p.y>hc.height)p.vy*=-1;hx.beginPath();hx.fillStyle=`rgba(${p.c},.5)`;hx.arc(p.x,p.y,p.r,0,7);hx.fill();});drawP();}requestAnimationFrame(loop);}
+loop();
+/* hands simulator */
+const BT={hot:60,warm:30,cold:8,air:25};
+const BN={hot:['hot 60°C','سخنة 60°م'],warm:['warm 30°C','دافئة 30°م'],cold:['cold 8°C','باردة 8°م'],air:['air (25°C)','الهواء']};
+const hands=[{el:$('#h1'),adapt:25,basin:'air'},{el:$('#h2'),adapt:25,basin:'air'}];
+function feel(d){if(d>=18)return['🥵','Very HOT!','ساخنة جدًا!'];if(d>=8)return['🔥','HOT!','ساخنة!'];if(d>=3)return['♨️','Warm','دافئة'];if(d>-3)return['😐','Normal','عادي'];if(d>-8)return['🌬️','Cool','باردة شوي'];if(d>-18)return['❄️','COLD!','باردة!'];return['🥶','Very COLD!','باردة جدًا!'];}
+function place(i,b){hands[i].basin=b;}
+$$('.hBtns button').forEach(b=>b.onclick=()=>place(+b.dataset.h,b.dataset.b));
+function handTick(){hands.forEach(h=>{const target=BT[h.basin];h.adapt+=(target-h.adapt)*0.015;
+ const d=target-h.adapt,[em,en,ar]=feel(d),el=h.el;
+ el.querySelector('.hEmoji').textContent=em;
+ el.querySelector('.hFeelEn').textContent=en;el.querySelector('.hFeelAr').textContent=ar;
+ el.querySelector('.hBasin').textContent=BN[h.basin][0];el.querySelector('.hBasinAr').textContent=BN[h.basin][1];
+ el.querySelector('.hAd').textContent=Math.round(h.adapt)+'°C';el.querySelector('.hAdAr').textContent=Math.round(h.adapt)+'°م';
+ el.querySelector('.hNeedle').style.left=(50+Math.max(-30,Math.min(30,d))/30*48)+'%';
+ el.classList.toggle('feelHot',d>=8);el.classList.toggle('feelCold',d<=-8);});}
+setInterval(handTick,60);
+let demoRun=false;
+function setMsg(en,ar){$('#simMsg').innerHTML=`<span class="en">${en}</span><span class="ar">${ar}</span>`;}
+$('#demoBtn').onclick=()=>{if(demoRun)return;demoRun=true;
+ place(0,'hot');place(1,'cold');
+ setMsg('⏳ Step 1: Hand 1 → hot, Hand 2 → cold… wait for adaptation.','⏳ الخطوة 1: اليد 1 في السخنة واليد 2 في الباردة… استنى التأقلم.');
+ setTimeout(()=>{place(0,'warm');place(1,'warm');
+  setMsg('🌊 Step 2: BOTH hands now in the WARM water…','🌊 الخطوة 2: الإيدين الاتنين دلوقتي في المية الدافئة…');},4200);
+ setTimeout(()=>{setMsg('🤯 Same 30°C water: Hand 1 feels COLD ❄️ (adapted to 60°) while Hand 2 feels WARM 🔥 (adapted to 8°) — feeling is RELATIVE!','🤯 نفس المية 30°م: اليد 1 حست بالبرودة ❄️ (كانت متأقلمة على 60°) واليد 2 حست بالدفء 🔥 (كانت متأقلمة على 8°) — الإحساس نسبي!');demoRun=false;},6800);};
+/* labs with speed timer */
+const LABS=[
+ {el:'act1',power:8000,dur:20,A:{name:'(A) Water 1kg · ماء 1كجم',m:1,c:4180,T0:20,fill:80,cls:''},B:{name:'(B) Water ½kg · ماء ½كجم',m:.5,c:4180,T0:20,fill:42,cls:''},
+  conclEn:'The temperature change of different masses of the same substance varies when gaining/losing the same heat — the smaller mass rises more.',
+  conclAr:'كمية تغيّر درجة الحرارة بتختلف باختلاف كتل نفس المادة عند نفس كمية الحرارة — الكتلة الأصغر بترتفع أكتر.',
+  grEn:'G.R.: the same heat distributed over fewer particles → greater average K.E. increase → bigger rise.',
+  grAr:'علل: نفس الحرارة اتوزعت على جسيمات أقل → متوسط طاقة الحركة زاد أكتر → ارتفاع أكبر.',
+  varsEn:'Independent: mass · Controlled: time & substance · Dependent: ΔT',
+  varsAr:'المستقل: الكتلة · الثابت: الزمن والنوع · التابع: مقدار التغيّر'},
+ {el:'act2',power:6000,dur:20,A:{name:'(A) Water · ماء',m:1,c:4180,T0:20,fill:62,cls:''},B:{name:'(B) Oil · زيت',m:1,c:2000,T0:20,fill:62,cls:'oil'},
+  conclEn:'Equal masses of different substances change temperature by different amounts for the same heat — oil heats faster.',
+  conclAr:'كتل متساوية من مواد مختلفة يتغير حرارتها بمقادير مختلفة لنفس الحرارة — الزيت بيسخن أسرع.',
+  grEn:'G.R.: the specific heat of oil is less than that of water.',
+  grAr:'علل: الحرارة النوعية للزيت أقل من حرارة المية النوعية.',
+  varsEn:'Independent: substance · Controlled: mass & heat · Dependent: ΔT',
+  varsAr:'المستقل: النوع · الثابت: الكتلة والحرارة · التابع: مقدار التغيّر'},
+ {el:'act3',power:5000,dur:16,A:{name:'Ice (solid) · تلج',m:.5,c:2090,T0:-5,fill:55,cls:'ice'},B:{name:'Water (liquid) · ماء',m:.5,c:4180,T0:20,fill:55,cls:''},
+  conclEn:'Equal masses of different states of the same substance change temperature differently — ice rises faster.',
+  conclAr:'كتل متساوية من حالات مختلفة لنفس المادة يتغير حرارتها بشكل مختلف — التلج بيرتفع أسرع.',
+  grEn:'G.R.: the specific heat of ice is less than that of water.',
+  grAr:'علل: الحرارة النوعية للتلج أقل من حرارة المية النوعية.',
+  varsEn:'Independent: state · Controlled: mass & heat · Dependent: ΔT',
+  varsAr:'المستقل: الحالة · الثابت: الكتلة والحرارة · التابع: مقدار التغيّر'}];
+function bek(k,S){return `<div class="bcol"><div class="tb t${k}">${S.T0}°C</div>
+ <div class="brow"><div class="tg"><i class="f${k}"></i></div>
+ <div class="beaker ${S.cls}"><div class="liquid" style="height:${S.fill}%"><span class="bub"></span><span class="bub"></span><span class="bub"></span></div></div></div>
+ <div class="flame">🔥</div><div class="blab">${S.name}</div></div>`;}
+LABS.forEach(L=>{const host=document.getElementById(L.el);
+ host.insertAdjacentHTML('beforeend',`<div class="labwrap"><div class="beakers">${bek('A',L.A)}${bek('B',L.B)}</div>
+ <div class="labctrl">
+  <button class="btn heat">🔥 Heat both beakers · سخّن الإناءين</button>
+  <button class="btn ghost reset">↺ Reset · إعادة</button>
+  <div class="dt" dir="ltr">⏱ <b class="tm">0.0</b>s · ΔT(A)=<b class="da">0</b>° · ΔT(B)=<b class="db">0</b>°</div>
+ </div>
+ <div class="speedRow"><span>⏩ Speed · السرعة:</span>
+  <button class="spBtn active" data-sp="1">1×</button><button class="spBtn" data-sp="2">2×</button><button class="spBtn" data-sp="4">4×</button></div>
+ <canvas class="chart"></canvas>
+ <div class="legend" dir="ltr"><span><i style="background:#22d3ee"></i>${L.A.name}</span><span><i style="background:#fb923c"></i>${L.B.name}</span></div>
+ <div class="note" style="margin-top:14px"><span class="en">📌 Conclusion: ${L.conclEn}</span><span class="ar">📌 الاستنتاج: ${L.conclAr}</span><span class="en mut">${L.grEn}</span><span class="ar mut">${L.grAr}</span></div>
+ <div class="vars"><span><span class="en">${L.varsEn}</span><span class="ar">${L.varsAr}</span></span></div></div>`);
+ const w=host.querySelector('.labwrap'),cv=w.querySelector('.chart');
+ const st={t:0,iv:null,pts:[],speed:1,yMin:Math.floor((Math.min(L.A.T0,L.B.T0)-5)/10)*10};
+ const T=(S,t)=>Math.min(100,S.T0+L.power*t/(S.m*S.c));
+ function draw(){cv.width=cv.offsetWidth*2;cv.height=500;const c=cv.getContext('2d'),W=cv.width,H=cv.height,X=t=>80+(t/L.dur)*(W-120),Y=v=>H-60-((v-st.yMin)/(110-st.yMin))*(H-100);
+  c.clearRect(0,0,W,H);c.direction='ltr';c.font='20px Space Grotesk';c.lineWidth=1.5;
+  for(let v=0;v<=100;v+=20){c.strokeStyle='rgba(140,165,210,.2)';c.beginPath();c.moveTo(80,Y(v));c.lineTo(W-40,Y(v));c.stroke();c.fillStyle='rgba(140,165,210,.8)';c.fillText(v+'°',30,Y(v)+6);}
+  for(let t=0;t<=L.dur;t+=5){c.fillStyle='rgba(140,165,210,.8)';c.fillText(t+'s',X(t)-10,H-20);}
+  const line=(k,col)=>{c.strokeStyle=col;c.lineWidth=4;c.beginPath();st.pts.forEach((p,i)=>i?c.lineTo(X(p[0]),Y(p[k])):c.moveTo(X(p[0]),Y(p[k])));c.stroke();
+   const lp=st.pts[st.pts.length-1];if(lp){c.fillStyle=col;c.beginPath();c.arc(X(lp[0]),Y(lp[k]),7,0,7);c.fill();}};
+  if(st.pts.length){line(1,'#22d3ee');line(2,'#fb923c');}}
+ function ui(){const a=T(L.A,st.t),b=T(L.B,st.t);
+  w.querySelector('.tm').textContent=st.t.toFixed(1);
+  w.querySelector('.tA').textContent=Math.round(a)+'°C';w.querySelector('.tB').textContent=Math.round(b)+'°C';
+  w.querySelector('.fA').style.height=((a+10)/120*100)+'%';w.querySelector('.fB').style.height=((b+10)/120*100)+'%';
+  w.querySelector('.da').textContent=Math.round(a-L.A.T0);w.querySelector('.db').textContent=Math.round(b-L.B.T0);draw();}
+ function stop(){clearInterval(st.iv);st.iv=null;w.classList.remove('heating');}
+ w.querySelector('.heat').onclick=()=>{if(st.iv)return;w.classList.add('heating');st.iv=setInterval(()=>{st.t=Math.min(L.dur,st.t+0.1*st.speed);st.pts.push([st.t,T(L.A,st.t),T(L.B,st.t)]);ui();if(st.t>=L.dur)stop();},50);};
+ w.querySelector('.reset').onclick=()=>{stop();st.t=0;st.pts=[];ui();};
+ w.querySelectorAll('.spBtn').forEach(b=>b.onclick=()=>{st.speed=+b.dataset.sp;w.querySelectorAll('.spBtn').forEach(x=>x.classList.toggle('active',x===b));});
+ ui();});
+const SH=[['Mercury · زئبق',140],['Copper · نحاس',385],['Iron · حديد',450],['Aluminum · ألومنيوم',900],['Corn oil · زيت ذرة',2000],['Ice · تلج',2090],['Water · ماء (highest الأعلى)',4180]];
+$('#shbars').innerHTML=SH.map(([n,v])=>`<div class="shrow ${v===4180?'top':''}"><span>${n}</span><div class="shbar"><i data-w="${v/4180*100}"></i></div><span class="shval">${v}</span></div>`).join('');
+new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){$$('#shbars .shbar i').forEach(i=>i.style.width=i.dataset.w+'%');o.disconnect();}}),{threshold:.3}).observe($('#shbars'));
+$('#cSub').innerHTML=SH.map(([n,v])=>`<option value="${v}">${n} — ${v}</option>`).join('');
+function calc(){const c=+$('#cSub').value,m=+$('#cM').value||0,t=+$('#cT').value||0;$('#qRes').textContent=(c*m*t).toLocaleString('en');}
+['cSub','cM','cT'].forEach(id=>$('#'+id).addEventListener('input',calc));calc();
+$('#raceBtn').onclick=()=>{const t0=performance.now();
+ requestAnimationFrame(function f(n){const k=Math.min(1,(n-t0)/2400),e=1-Math.pow(1-k,3);
+  const a=20+77.9*e,b=20+33.33*e;
+  $('#cuVal').textContent=a.toFixed(1)+'°C';$('#alVal').textContent=b.toFixed(1)+'°C';
+  $('#cuBar').style.width=((a-20)/80*100)+'%';$('#alBar').style.width=((b-20)/80*100)+'%';
+  if(k<1)requestAnimationFrame(f);});};
+</script>
+</body>
+</html>

@@ -59,5 +59,16 @@ const lessonsData = [
     cta: "ابدأ الدرس ←",
     href: "lesson-changes-in-states-of-matter-2.html",
     lang: "en"
+  },
+  {
+    id: "lesson-internal-energy-and-temperature",
+    order: 5,
+    status: "published",
+    icon: "🌡️🔥",
+    title: "Internal Energy & Temperature",
+    desc: "إنفوجرافيك تفاعلي ثنائي اللغة: الأنظمة، الطاقة الداخلية، درجة الحرارة كمتوسط طاقة حركة، الحرارة النوعية مع حاسبة Q=mcΔT، وتلات تجارب تسخين حقيقية.",
+    cta: "ابدأ الدرس ←",
+    href: "lesson-internal-energy-and-temperature.html",
+    lang: "ar"
   }
 ];
