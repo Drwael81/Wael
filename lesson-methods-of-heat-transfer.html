@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Methods of Heat Transfer | طرق انتقال الحرارة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060b16;--card:#0f1a2e;--card2:#12203a;--line:#24345a;--text:#eaf2ff;--muted:#93a6cc;--acc:#22d3ee;--acc2:#4f8cff;--hot:#fb923c;--cold:#38bdf8;--ok:#34d399;--bad:#f87171;--gold:#fbbf24;--r:20px}
+body[data-theme="light"]{--bg:#eef3fb;--card:#fff;--card2:#f4f8ff;--line:#c9d6ee;--text:#10203c;--muted:#5a6b8c}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;transition:background .4s,color .4s;overflow-x:hidden}
+::selection{background:var(--acc);color:#032}
+.en{display:block;direction:ltr;text-align:left;font-family:'Space Grotesk','Cairo',sans-serif;font-size:.93rem;line-height:1.7;color:var(--text)}
+.ar{display:block;direction:rtl;text-align:right;font-size:.96rem;line-height:2;color:var(--text);margin-top:2px}
+.mut{color:var(--muted)!important}
+h1,h2,h3{line-height:1.5}
+section{scroll-margin-top:95px}
+#progress{position:fixed;top:0;right:0;height:4px;width:0;background:linear-gradient(90deg,var(--acc),var(--hot));z-index:99;border-radius:99px}
+.topbar{position:fixed;top:0;right:0;left:0;z-index:90;display:flex;align-items:center;gap:10px;padding:10px 14px;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand{font-weight:900;font-size:.85rem;white-space:nowrap}
+nav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;padding:2px}
+nav::-webkit-scrollbar{display:none}
+nav a{padding:5px 12px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:.72rem;font-weight:700;white-space:nowrap;text-decoration:none;transition:.25s}
+nav a.active{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#041018;border-color:transparent}
+#themeBtn{cursor:pointer;border:1px solid var(--line);background:var(--card);border-radius:12px;width:40px;height:40px;font-size:1.1rem}
+#rail{position:fixed;inset-inline-end:12px;top:50%;transform:translateY(-50%);z-index:80;display:flex;flex-direction:column;align-items:center;gap:6px}
+#rail .tube{width:12px;height:36vh;border:2px solid var(--line);border-radius:99px;position:relative;overflow:hidden;background:rgba(128,160,220,.08)}
+#rail .bulb{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ff8a6b,#ef4444);margin-top:-4px}
+#railFill{position:absolute;bottom:0;width:100%;height:0;background:linear-gradient(0deg,#ef4444,#fb923c 40%,#22d3ee)}
+#railVal{font-family:'Space Grotesk';font-size:.72rem;color:var(--muted)}
+@media(max-width:1000px){#rail{display:none}}
+#hero{min-height:94vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:110px 18px 60px}
+#heroCv{position:absolute;inset:0;width:100%;height:100%}
+.heroIn{position:relative;z-index:2;max-width:920px}
+.kicker{display:inline-block;padding:6px 18px;border:1px solid var(--line);border-radius:999px;color:var(--acc);font-weight:800;font-size:.78rem;background:var(--card)}
+#hero h1{font-size:clamp(1.9rem,5.5vw,3.3rem);font-weight:900;margin:16px 0 4px;background:linear-gradient(90deg,var(--acc),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+#hero h1 .ar{font-size:clamp(1.5rem,4.5vw,2.6rem);background:linear-gradient(90deg,var(--gold),var(--acc));-webkit-background-clip:text;background-clip:text;color:transparent;margin:0}
+#hero p.desc{margin:16px auto;max-width:70ch;color:var(--muted)}
+.badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:20px}
+.badge{padding:8px 16px;border-radius:14px;border:1px solid var(--line);background:var(--card);font-size:.78rem;font-weight:700;text-align:center}
+.badge.vip{border-color:var(--gold);color:var(--gold)}
+.scrollHint{margin-top:40px;font-size:1.6rem;animation:bnc 1.6s infinite}
+@keyframes bnc{50%{transform:translateY(10px)}}
+main{max-width:1150px;margin:auto;padding:30px 16px 90px;display:flex;flex-direction:column;gap:34px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:clamp(18px,3.4vw,36px);box-shadow:0 14px 40px rgba(0,0,0,.25)}
+.chead{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.cnum{font-family:'Space Grotesk';font-size:1.6rem;font-weight:700;background:linear-gradient(180deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;border:1px solid var(--line);border-radius:16px;padding:6px 14px}
+.chead h2{font-size:clamp(1.05rem,2.6vw,1.45rem);font-weight:900}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px}
+.tile{background:var(--card2);border:1px solid var(--line);border-radius:16px;padding:18px;transition:.25s}
+.tile:hover{transform:translateY(-4px);border-color:var(--acc)}
+.note{border-inline-start:4px solid var(--acc);background:var(--card2);border-radius:12px;padding:12px 16px;margin-top:14px;font-size:.9rem}
+.note.hot{border-color:var(--hot)} .note.gold{border-color:var(--gold)} .note.ok{border-color:var(--ok)}
+.tag{display:inline-block;font-size:.7rem;font-weight:800;color:#041018;background:var(--acc);border-radius:99px;padding:2px 12px;margin-bottom:8px}
+.tag.hot{background:var(--hot)} .tag.gold{background:var(--gold)} .tag.ok{background:var(--ok)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal.vis{opacity:1;transform:none}
+.btn{cursor:pointer;border:none;border-radius:14px;padding:10px 22px;font-family:inherit;font-weight:800;font-size:.9rem;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#041018;transition:.2s;box-shadow:0 6px 18px rgba(34,211,238,.25)}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line);box-shadow:none}
+.labctrl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin:14px 0 6px}
+.dt{font-family:'Space Grotesk';font-weight:700;font-size:.85rem;color:var(--muted);background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:8px 14px}
+.dt b{color:var(--hot)}
+.speedRow{display:flex;gap:8px;align-items:center;justify-content:center;margin:8px 0;font-size:.8rem;font-weight:800;color:var(--muted)}
+.spBtn{cursor:pointer;border:1px solid var(--line);background:var(--card2);color:var(--muted);border-radius:10px;padding:4px 14px;font-family:'Space Grotesk';font-weight:700;transition:.2s}
+.spBtn.active{background:var(--hot);color:#311004;border-color:var(--hot)}
+.quiz{margin-top:10px}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.opt{cursor:pointer;border:1px solid var(--line);background:var(--card2);color:var(--text);border-radius:14px;padding:7px 16px;font-family:inherit;font-weight:700;font-size:.83rem;transition:.2s}
+.opt:hover{border-color:var(--acc)}
+.opt.ok{background:var(--ok);border-color:var(--ok);color:#03210f;animation:pop .35s}
+.opt.bad{background:var(--bad);border-color:var(--bad);color:#3b0708;animation:shk .35s}
+@keyframes pop{50%{transform:scale(1.08)}}
+@keyframes shk{25%{transform:translateX(5px)}75%{transform:translateX(-5px)}}
+.exp{display:none;margin-top:10px;border-inline-start:4px solid var(--ok);background:color-mix(in srgb,var(--ok) 12%,transparent);padding:10px 14px;border-radius:10px;font-size:.88rem}
+.exp.show{display:block}
+details{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin-top:10px}
+summary{cursor:pointer;font-weight:800;list-style:none}
+summary::after{content:'＋';color:var(--acc);font-weight:900;float:left}
+details[open] summary::after{content:'－'}
+details .body{padding-top:10px;font-size:.9rem}
+.steam{animation:stm 2.2s infinite}.steam.s2{animation-delay:.7s}.steam.s3{animation-delay:1.3s}
+@keyframes stm{to{transform:translateY(-26px);opacity:0}}
+.pulse{animation:pl 1.6s infinite}@keyframes pl{50%{opacity:.25}}
+.fl{animation:fl .4s infinite alternate}@keyframes fl{to{transform:scale(1.18)}}
+/* ===== equilibrium simulator ===== */
+.eqWrap{display:flex;align-items:stretch;justify-content:center;gap:14px;flex-wrap:nowrap;margin-top:16px}
+.sysBox{flex:1;max-width:230px;background:var(--card2);border:1px solid var(--line);border-radius:16px;padding:14px;text-align:center}
+.sysTemp{font-family:'Space Grotesk';font-size:2.1rem;font-weight:700;margin:6px 0}
+.sysBox input[type=range]{width:100%}
+.eqFill{height:12px;border-radius:99px;background:var(--card);border:1px solid var(--line);overflow:hidden;margin-top:10px}
+.eqFill i{display:block;height:100%;width:70%;border-radius:99px}
+.eqMid{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:86px;gap:6px;font-size:.7rem;font-weight:800;color:var(--muted)}
+.flowArr{font-size:1.7rem;transition:.3s}
+.flowArr.toR{animation:toR 1s infinite}@keyframes toR{50%{transform:translateX(10px)}}
+.flowArr.toL{animation:toL 1s infinite}@keyframes toL{50%{transform:translateX(-10px)}}
+@media(max-width:560px){.sysTemp{font-size:1.5rem}.eqMid{min-width:56px}.flowArr{font-size:1.2rem}}
+/* ===== balls activity ===== */
+.ballScene{display:flex;justify-content:center;gap:40px;flex-wrap:nowrap;margin-top:14px}
+.bUnit{display:flex;flex-direction:column;align-items:center;gap:8px}
+.bGlass{position:relative;width:150px;height:160px;border:3px solid var(--line);border-top:none;border-radius:0 0 26px 26px;background:rgba(128,160,220,.05);overflow:hidden}
+.bWater{position:absolute;bottom:0;left:0;right:0;height:68%;background:linear-gradient(180deg,rgba(56,189,248,.55),rgba(37,99,235,.75));border-radius:0 0 22px 22px}
+.bWater.hotW{background:linear-gradient(180deg,rgba(251,146,60,.6),rgba(239,68,68,.75))}
+.bub{position:absolute;bottom:8px;width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.55);opacity:0}
+.bub:nth-child(1){left:20%}.bub:nth-child(2){left:50%}.bub:nth-child(3){left:75%}
+.boiling .bub{opacity:1;animation:bbl 1.4s infinite}
+@keyframes bbl{to{transform:translateY(-100px);opacity:0}}
+/* metallic balls (realistic) */
+.mBall{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:3px;z-index:2}
+.mBall i{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#f8fafc,#94a3b8 45%,#475569 78%,#1e293b);box-shadow:0 3px 6px rgba(0,0,0,.45),inset -3px -4px 6px rgba(0,0,0,.35)}
+.mBall.drop{animation:drp .8s ease-in}
+@keyframes drp{from{transform:translate(-50%,-150px)}to{transform:translate(-50%,0)}}
+.hidden{display:none!important}
+.bTherm{position:absolute;top:6px;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:2px 12px;font-family:'Space Grotesk';font-weight:700;font-size:.85rem;z-index:3;white-space:nowrap}
+.bTherm.flash{animation:flsh .9s}
+@keyframes flsh{50%{box-shadow:0 0 0 5px var(--acc)}}
+.bFlame{font-size:1.5rem;opacity:0;transition:.3s}
+.bFlame.on{opacity:1;animation:fl .4s infinite alternate}
+.bTag{font-size:.72rem;font-weight:800;text-align:center}
+.stepB{opacity:.35;pointer-events:none}
+.stepB.ready{opacity:1;pointer-events:auto}
+.stepB.done{background:var(--ok);color:#03210f;box-shadow:none}
+.obs{display:none;margin-top:14px}
+.obs.show{display:block}
+.obs li{list-style:none;margin-top:6px;font-size:.88rem}
+@media(max-width:520px){.ballScene{gap:14px}.bGlass{width:106px;height:122px}.bTherm{font-size:.7rem;padding:2px 8px}.mBall i{width:16px;height:16px}}
+/* ===== pins experiment ===== */
+.rodScene{position:relative;padding:44px 10px 46px}
+.candle{position:absolute;left:10px;top:26px;font-size:2rem;z-index:2;filter:grayscale(1);transition:.4s}
+.candle.lit{filter:none}
+.candle .cfl{position:absolute;top:-16px;left:8px;font-size:1rem;opacity:0;transition:.4s}
+.candle.lit .cfl{opacity:1;animation:fl .4s infinite alternate}
+.rod{position:relative;height:18px;border-radius:9px;background:linear-gradient(90deg,#8a97ad,#5d6b84);margin:0 16px 0 70px}
+.heatWave{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:9px;background:linear-gradient(90deg,#ff5722,#fb923c,#fbbf24)}
+.pin{position:absolute;top:-30px;font-size:1.15rem;transition:transform .9s ease-in,opacity .9s}
+.pin.fall{transform:translateY(80px) rotate(110deg);opacity:0}
+.rodLbl{position:absolute;right:16px;top:-24px;font-size:.68rem;color:var(--muted);font-weight:800}
+#chainCv{width:100%;height:150px;border:1px solid var(--line);border-radius:14px;background:var(--card2)}
+/* ===== race ===== */
+.raceRod{position:relative;height:16px;border-radius:8px;background:linear-gradient(90deg,#7c8aa5,#5d6b84);margin:26px 8px 14px;flex:1}
+.rrFill{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:8px;background:linear-gradient(90deg,#ff5722,#fb923c,#fbbf24)}
+.rpin{position:absolute;top:-24px;font-size:1rem;transition:transform .8s ease-in,opacity .8s}
+.rpin.fall{transform:translateY(52px) rotate(100deg);opacity:0}
+.raceRow{display:flex;align-items:center;gap:8px}
+.rFlame{font-size:1.2rem;opacity:0;transition:.3s}
+.rFlame.on{opacity:1;animation:fl .4s infinite alternate}
+.rtStatus{font-size:.78rem;font-weight:800;color:var(--muted);text-align:center}
+.podium{display:flex;align-items:flex-end;justify-content:center;gap:14px;margin-top:18px}
+.pod{width:130px;text-align:center;border-radius:14px 14px 0 0;padding:12px 8px;font-weight:800;font-size:.82rem;border:1px solid var(--line)}
+.pod.p1{height:150px;background:linear-gradient(180deg,rgba(251,191,36,.3),transparent);border-color:var(--gold)}
+.pod.p2{height:115px;background:linear-gradient(180deg,rgba(203,213,225,.25),transparent)}
+.pod.p3{height:88px;background:linear-gradient(180deg,rgba(251,146,60,.25),transparent);border-color:var(--hot)}
+.pod .medal{font-size:1.6rem;display:block}
+/* cups */
+.cupsRow{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:nowrap;margin-top:16px}
+.cupC{text-align:center;font-size:.75rem;font-weight:800}
+.cupBody{width:74px;height:80px;border:3px solid var(--line);border-top:none;border-radius:0 0 18px 18px;position:relative;overflow:hidden;background:rgba(128,160,220,.05);margin:auto}
+.cupBody i{position:absolute;bottom:0;left:0;right:0;height:75%;border-radius:0 0 14px 14px}
+.cupBody b{position:absolute;top:6px;left:50%;transform:translateX(-50%);font-family:'Space Grotesk';font-size:.72rem;background:var(--card);border:1px solid var(--line);border-radius:99px;padding:1px 8px;z-index:2;white-space:nowrap}
+.mixArr{font-size:1.6rem;color:var(--acc);animation:toR 1.2s infinite}
+@media(max-width:520px){.cupsRow{gap:8px}.cupBody{width:58px;height:64px}.mixArr{font-size:1.1rem}}
+/* ice race */
+.iceScene{display:flex;flex-direction:column;align-items:center;margin-top:12px}
+.iceCube{width:56px;height:56px;background:linear-gradient(180deg,#e0f2fe,#7dd3fc);border-radius:8px;border:1px solid #bae6fd;transition:height .2s}
+.iceBlock{width:130px;height:28px;border-radius:6px;text-align:center;font-size:.62rem;font-weight:800;line-height:28px;color:#111}
+.iceBlock.plastic{background:repeating-linear-gradient(45deg,#e2b6d9,#e2b6d9 8px,#d3a0c6 8px,#d3a0c6 16px)}
+.iceBlock.metal{background:linear-gradient(180deg,#cbd5e1,#8fa3b8)}
+.hotSurf{width:160px;height:18px;background:linear-gradient(90deg,#ef4444,#fb923c);border-radius:4px;font-size:.55rem;font-weight:800;color:#fff;text-align:center;line-height:18px;margin-top:3px}
+.iceStatus{font-size:.78rem;font-weight:800;text-align:center;margin-top:8px;color:var(--muted);min-height:20px}
+.sceneLine{display:flex;align-items:center;justify-content:center;gap:14px;font-weight:800;font-size:.9rem;margin-top:12px;flex-wrap:nowrap}
+.heatArr{color:var(--hot);font-size:1.3rem;animation:toR 1.2s infinite}
+.qOut{margin-top:14px;text-align:center;font-size:1.02rem;font-weight:900;padding:14px;border-radius:14px;border:1px dashed var(--acc);background:color-mix(in srgb,var(--acc) 8%,transparent)}
+.ppage{font-family:'Space Grotesk';font-size:.62rem;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:1px 10px;margin-inline-start:auto}
+#topBtn{position:fixed;bottom:20px;inset-inline-start:20px;z-index:85;width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,var(--hot),var(--gold));font-size:1.2rem;opacity:0;pointer-events:none;transition:.3s}
+#topBtn.show{opacity:1;pointer-events:auto}
+footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
+.verified{display:inline-flex;align-items:center;gap:12px;border:1px solid var(--gold);border-radius:18px;padding:12px 22px;background:var(--card);color:var(--gold);font-weight:800}
+@media(max-width:440px){.verified{flex-wrap:wrap;justify-content:center}}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<header class="topbar">
+  <div class="brand">🔥 Heat Transfer · انتقال الحرارة</div>
+  <nav id="nav">
+    <a href="#hero" class="active">Start · البداية</a><a href="#equil">Equilibrium · التوازن</a><a href="#heat">Heat · الحرارة</a>
+    <a href="#balls">Balls Exp · الكور</a><a href="#eqtheory">Notes · ملاحظات</a><a href="#eval1">Evaluate · اختبر</a>
+    <a href="#methods">Methods · الطرق</a><a href="#pins">Pins · الدبابيس</a><a href="#howcon">Particles · الجسيمات</a>
+    <a href="#race">Cu vs Fe · السباق</a><a href="#conduct">Conductors · الموصلات</a><a href="#apps">Apps · تطبيقات</a><a href="#final">Final · النهائي</a>
+  </nav>
+  <button id="themeBtn" title="Theme · المظهر">☀️</button>
+</header>
+<div id="rail"><div class="tube"><i id="railFill"></i></div><div class="bulb"></div><b id="railVal">0°</b></div>
+
+<section id="hero">
+  <canvas id="heroCv"></canvas>
+  <div class="heroIn">
+    <span class="kicker">Lesson 4 · Matter & Energy · Pages 93–100 <span style="opacity:.6">|</span> الدرس 4 · وحدة المادة والطاقة</span>
+    <h1><span class="en">Methods of Heat Transfer</span><span class="ar">طرق انتقال الحرارة</span></h1>
+    <p class="desc en">Everything from pages 93–100: thermal equilibrium, heat, conduction, thermal conductivity, conductors & insulators — with every experiment made interactive.</p>
+    <p class="desc ar">هنا هتلاقي الدرس كله من غير ما نستغنى عن ولا معلومة، بس متبسّط ومرتب، ومعاه كل تجربة من تجارب الدرس تقدر «تلعب» بيها بنفسك.</p>
+    <div class="badges">
+      <span class="badge"><span class="en">⚡ Equilibrium Simulator</span><span class="ar">⚡ محاكي التوازن</span></span>
+      <span class="badge"><span class="en">🧪 6 Interactive Experiments</span><span class="ar">🧪 ٦ تجارب تفاعلية</span></span>
+      <span class="badge"><span class="en">⏱️ Speed Timer Control</span><span class="ar">⏱️ مؤقت سرعة</span></span>
+      <span class="badge"><span class="en">📘 Full Bilingual Content</span><span class="ar">📘 محتوى ثنائي اللغة</span></span>
+      <span class="badge vip"><span class="en">✔️ Reviewed by Dr. Wael Aboagiza</span><span class="ar">✔️ مراجعة د. وائل أبو عجيزة</span></span>
+    </div>
+    <div class="scrollHint">⌄</div>
+  </div>
+</section>
+
+<main>
+<!-- ============ EQUILIBRIUM SIMULATOR ============ -->
+<section id="equil" class="card reveal">
+  <div class="chead"><span class="cnum">⚡</span><div><h2><span class="en">Thermal Equilibrium Simulator</span><span class="ar">محاكي التوازن الحراري</span></h2></div><span class="ppage">p.93</span></div>
+  <p class="en">Set two temperatures with the sliders, then press "Bring into contact" to see heat flow toward equilibrium.</p>
+  <p class="ar">حدد درجتي الحرارة بالسلايدرز، وبعدين اضغط «لمس النظامين» عشان تشوف الحرارة بتنتقل لحد التوازن.</p>
+  <div class="eqWrap" dir="ltr">
+    <div class="sysBox">
+      <span class="en">System (A)</span><span class="ar">النظام (A)</span>
+      <div class="sysTemp" id="eqAV">70°C</div>
+      <input type="range" id="eqAI" min="0" max="100" value="70">
+      <div class="eqFill"><i id="eqAF"></i></div>
+    </div>
+    <div class="eqMid">
+      <div class="flowArr toR" id="flowArr">🔥➜</div>
+      <span class="en">heat flow</span><span class="ar">انتقال الحرارة</span>
+      <div class="dt" style="padding:4px 10px">⏱ <b id="eqTime">0.0</b>s</div>
+    </div>
+    <div class="sysBox">
+      <span class="en">System (B)</span><span class="ar">النظام (B)</span>
+      <div class="sysTemp" id="eqBV">20°C</div>
+      <input type="range" id="eqBI" min="0" max="100" value="20">
+      <div class="eqFill"><i id="eqBF"></i></div>
+    </div>
+  </div>
+  <div class="labctrl">
+    <button class="btn" id="eqGo">🤝 Bring into contact · لمس النظامين</button>
+    <button class="btn ghost" id="eqReset">↺ Reset · إعادة</button>
+  </div>
+  <div class="speedRow" data-spd="eq"><span>⏩ Speed · السرعة:</span>
+    <button class="spBtn active" data-sp="1">1×</button><button class="spBtn" data-sp="2">2×</button><button class="spBtn" data-sp="4">4×</button></div>
+  <div id="eqMsg" class="note">
+    <span class="en">💡 For equal masses of the same substance, the equilibrium temperature = the average of the two temperatures.</span>
+    <span class="ar">💡 لو الكتلتين متساويتين من نفس المادة، درجة حرارة التوازن = متوسط الدرجتين.</span>
+  </div>
+</section>
+
+<!-- ============ WHAT IS HEAT ============ -->
+<section id="heat" class="card reveal">
+  <div class="chead"><span class="cnum">93</span><div><h2><span class="en">What is Heat?</span><span class="ar">إيه هي الحرارة؟</span></h2></div><span class="ppage">p.93</span></div>
+  <div class="tile">
+    <div class="sceneLine" dir="ltr"><span>🍲 100°C</span><span class="heatArr">♨️ ➜ ️</span><span>🏠 25°C</span></div>
+    <p class="en" style="margin-top:10px">A pot of boiling water at 100°C placed in a room at 25°C cools down quickly. Why?</p>
+    <p class="ar">لو حطيت حلة مية بتغلي (100°م) في أوضة درجة حرارتها 25°م، هتلاقيها بتبرد بسرعة… ليه؟</p>
+    <details><summary><span class="en">Reveal answer</span> · <span class="ar">اظهر الإجابة</span></summary>
+      <div class="body">
+        <span class="en">Because of heat transfer — thermal energy transfers from the water (the system) to the room (the surroundings), in what is known as heat.</span>
+        <span class="ar">علشان فيه طاقة حرارية بتنتقل من الميه (النظام) للأوضة (المحيط)، وده اسمه حرارة.</span>
+      </div></details>
+  </div>
+  <div class="tile" style="margin-top:16px"><span class="tag hot">Heat · الحرارة</span>
+    <p class="en">Is the energy that is transferred from one system to another, or to the surroundings, due to a difference in their temperatures.</p>
+    <p class="ar">هي الطاقة اللي بتنتقل من نظام لنظام تاني أو للمحيط بسبب اختلاف درجة الحرارة بينهم.</p>
+  </div>
+</section>
+
+<!-- ============ BALLS ACTIVITY ============ -->
+<section id="balls" class="card reveal">
+  <div class="chead"><span class="cnum">🧪</span><div><h2><span class="en">Practical Activity: How Heat Flows</span><span class="ar">تجربة: إزاي الحرارة بتسري</span></h2></div><span class="ppage">p.93</span></div>
+  <p class="en">Try the three steps yourself — press the buttons in order and watch the temperatures change moment by moment.</p>
+  <p class="ar">جرّب بنفسك الخطوات الثلاثة بالترتيب، وشوف درجات الحرارة بتتغير لحظة بلحظة.</p>
+  <div class="ballScene" dir="ltr">
+    <div class="bUnit">
+      <div class="bTag"><span class="en">Boiling water bath</span><span class="ar">حمام مية بتغلي</span></div>
+      <div class="bGlass" id="bathG">
+        <div class="bWater hotW" id="bathW"><span class="bub"></span><span class="bub"></span><span class="bub"></span></div>
+        <div class="mBall" id="ballA"><i></i><i></i><i></i></div>
+        <div class="bTherm" id="tBath">? °C</div>
+      </div>
+      <div class="bFlame" id="flameB">🔥</div>
+    </div>
+    <div class="bUnit">
+      <div class="bTag"><span class="en">Insulated container (cold water)</span><span class="ar">وعاء معزول (مية باردة)</span></div>
+      <div class="bGlass">
+        <div class="bWater"><span class="bub"></span><span class="bub"></span><span class="bub"></span></div>
+        <div class="mBall hidden" id="ballB"><i></i><i></i><i></i></div>
+        <div class="bTherm" id="tCold">20°C</div>
+      </div>
+      <div style="font-size:1.5rem;opacity:0">🔥</div>
+    </div>
+  </div>
+  <div class="labctrl">
+    <button class="btn stepB ready" id="st1">1️⃣ <span class="en" style="display:inline">Record water: 20°C</span> · <span class="ar" style="display:inline">سجّل المية: 20°م</span></button>
+    <button class="btn stepB" id="st2">2️⃣ <span class="en" style="display:inline">Heat the balls 🔥</span> · <span class="ar" style="display:inline">سخّن الكور 🔥</span></button>
+    <button class="btn stepB" id="st3">3️⃣ <span class="en" style="display:inline">Transfer & mix 🌀</span> · <span class="ar" style="display:inline">انقل واخلط 🌀</span></button>
+    <button class="btn ghost" id="ballsReset">↺ Reset · إعادة</button>
+  </div>
+  <div class="speedRow" data-spd="balls"><span>⏩ Speed · السرعة:</span>
+    <button class="spBtn active" data-sp="1">1×</button><button class="spBtn" data-sp="2">2×</button><button class="spBtn" data-sp="4">4×</button></div>
+  <div class="obs" id="obsBox">
+    <div class="note ok"><span class="en" style="font-weight:800">Observations · الملاحظات</span>
+      <li>✅ <span class="en">Cold water temperature increases from 20°C to 28°C.</span><span class="ar">درجة حرارة الميه الباردة بتزيد من 20 لـ28°م.</span></li>
+      <li>✅ <span class="en">Metal balls' temperature decreases from 100°C to 28°C.</span><span class="ar">درجة حرارة الكور المعدنية بتقل من 100 لـ28°م.</span></li>
+      <li>✅ <span class="en">The mixture reaches 28°C — thermal equilibrium.</span><span class="ar">وفي الآخر الاتنين بيوصلوا لنفس الدرجة 28°م — توازن حراري.</span></li>
+    </div>
+    <div class="note gold">
+      <span class="en">⚠️ Take care: water's temperature increases at a slower rate, while the metal balls cool at a greater rate — because the specific heat of water is greater than that of metals.</span>
+      <span class="ar">⚠️ خد بالك: الميه بتسخن ببطء والكور بتبرد بسرعة أكبر، لأن السعة الحرارية النوعية للميه أكبر من بتاعة المعادن.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THERMAL EQUILIBRIUM THEORY ============ -->
+<section id="eqtheory" class="card reveal">
+  <div class="chead"><span class="cnum">94</span><div><h2><span class="en">Thermal Equilibrium</span><span class="ar">التوازن الحراري</span></h2></div><span class="ppage">p.94</span></div>
+  <div class="note hot">
+    <span class="en"><strong>Conclusion:</strong> When two non-isolated systems with different temperatures come into contact (cause), thermal energy flows from the higher-temperature system to the lower-temperature one (effect), until they reach the same temperature — thermal equilibrium.</span>
+    <span class="ar"><strong>الاستنتاج:</strong> لما نظامين مش معزولين ودرجة حرارتهم مختلفة يتلامسوا (السبب)، الطاقة الحرارية بتتنقل من الأعلى درجة للأقل (النتيجة)، وده مستمر لحد ما يوصلوا لنفس الدرجة = توازن حراري.</span>
+  </div>
+  <div class="tile" style="margin-top:16px"><span class="tag hot">Thermal Equilibrium · التوازن الحراري</span>
+    <p class="en">The state reached by two systems with different temperatures after they come into contact and their temperatures become equal.</p>
+    <p class="ar">الحالة اللي بيوصلها نظامين مختلفين في درجة الحرارة بعد ما يتلامسوا وتبقى درجة حرارتهم متساوية.</p>
+  </div>
+  <div class="grid2" style="margin-top:16px">
+    <div class="tile"><span class="tag">Note 1 — equal mass, same substance</span>
+      <span class="ar" style="font-weight:800">ملاحظة 1 — كتل متساوية، نفس المادة</span>
+      <p class="en" style="margin-top:6px">Equilibrium temperature = average of the two temperatures before contact.</p>
+      <p class="ar">درجة حرارة التوازن = متوسط الدرجتين قبل التلامس.</p>
+      <div class="qOut" dir="ltr">(50 + 30) ÷ 2 = 40°C</div>
+    </div>
+    <div class="tile"><span class="tag gold">Note 2 — equal temperature</span>
+      <span class="ar" style="font-weight:800">ملاحظة 2 — نفس درجة الحرارة</span>
+      <p class="en" style="margin-top:6px">Two objects at the same temperature in contact → no change in temperature → no heat transfer.</p>
+      <p class="ar">جسمين بنفس درجة الحرارة لما يتلامسوا → مفيش تغيير في درجة الحرارة → مفيش انتقال حرارة.</p>
+      <div class="qOut" dir="ltr">30°C ✕ no transfer ✕ 30°C</div>
+    </div>
+  </div>
+  <div class="tile" style="margin-top:16px"><span class="tag ok">Application · تطبيق: القهوة واللبن</span>
+    <div class="cupsRow" dir="ltr">
+      <div class="cupC"><div class="cupBody"><i style="background:linear-gradient(180deg,#92400e,#78350f)"></i><b>☕ 70°C</b></div><span class="en">Coffee</span><span class="ar">قهوة</span></div>
+      <div class="mixArr">＋</div>
+      <div class="cupC"><div class="cupBody"><i style="background:linear-gradient(180deg,#f8fafc,#e2e8f0)"></i><b>🥛 20°C</b></div><span class="en">Milk</span><span class="ar">لبن</span></div>
+      <div class="mixArr">➜</div>
+      <div class="cupC"><div class="cupBody"><i style="background:linear-gradient(180deg,#d4a373,#b08050)"></i><b>&gt;20 &lt;70</b></div><span class="en">Mixture</span><span class="ar">الخليط</span></div>
+    </div>
+    <p class="en" style="margin-top:10px">Coffee at 70°C mixed with milk at 20°C → the mixture's temperature is greater than 20°C and less than 70°C.</p>
+    <p class="ar">قهوة سخنة 70°م مع لبن بارد 20°م → درجة حرارة الخليط هتكون أكبر من 20 وأصغر من 70.</p>
+  </div>
+  <details><summary><span class="en">Explain: metal at 30°C mixed with water at 20°C — why isn't equilibrium 25°C?</span><span class="ar">علل: معدن 30°م مع مية 20°م — ليه درجة التوازن مبتساويش 25°م؟</span></summary>
+    <div class="body">
+      <span class="en">Because the mixture consists of two substances different in mass and type, and therefore in specific heat — the average rule only works for equal masses of the same substance.</span>
+      <span class="ar">لأن الخليط مادتين مختلفين في الكتلة والنوع، يعني السعة الحرارية النوعية مختلفة، فقاعدة «المتوسط» هنا مش هتنطبق.</span>
+    </div></details>
+</section>
+
+<!-- ============ EVALUATE 1 (p.95) ============ -->
+<section id="eval1" class="card reveal">
+  <div class="chead"><span class="cnum">95</span><div><h2><span class="en">Evaluate Your Understanding</span><span class="ar">اختبر فهمك</span></h2></div><span class="ppage">p.95</span></div>
+  <h3>🧱 <span class="en">The Metal Block Experiment</span> · <span class="ar">تجربة القطعة المعدنية</span></h3>
+  <p class="en">A metal block at 30°C is placed in boiling water in beaker (2), then transferred to beaker (1) containing tap water at 20°C.</p>
+  <p class="ar">قطعة معدن درجة حرارتها 30°م اتحطت في مية بتغلي (100°م) في إناء (2)، بعدين اتنقلت لإناء (1) فيه مية حنفية (20°م).</p>
+  <div class="ballScene" dir="ltr" style="margin-top:12px">
+    <div class="bUnit"><div class="bTag">Beaker (2) · إناء 2</div>
+      <div class="bGlass"><div class="bWater hotW boiling"><span class="bub"></span><span class="bub"></span><span class="bub"></span></div><div class="mBall"><i></i><i></i><i></i></div><div class="bTherm">100°C</div></div>
+      <div class="bFlame on">🔥</div></div>
+    <div class="bUnit"><div class="bTag">Beaker (1) · إناء 1</div>
+      <div class="bGlass"><div class="bWater"></div><div class="bTherm">20°C</div></div>
+      <div style="font-size:1.5rem;opacity:0">🔥</div></div>
+  </div>
+  <div class="quiz">
+    <p class="en"><strong>Q1:</strong> In which direction does heat flow in beaker (2)?</p>
+    <p class="ar"><strong>س1:</strong> الحرارة هتنتقل في اتجاه إيه جوه إناء (2)؟</p>
+    <div class="opts">
+      <button class="opt" data-ok><span class="en" style="display:inline">From boiling water to the metal block</span> · <span class="ar" style="display:inline">من المية المغلية للقطعة المعدنية</span></button>
+      <button class="opt"><span class="en" style="display:inline">From the metal block to the water</span> · <span class="ar" style="display:inline">من القطعة المعدنية للمية</span></button>
+    </div>
+    <div class="exp"><span class="en">✔️ Heat flows from the boiling water (100°C) to the metal block (30°C) — from higher to lower temperature.</span><span class="ar">✔️ الحرارة بتنتقل من المية الغالية (100°م) للمعدن (30°م) — من الأعلى للأقل.</span></div>
+  </div>
+  <div class="quiz">
+    <p class="en"><strong>Q2:</strong> What happens to beaker (1)'s water after the hot block is added?</p>
+    <p class="ar"><strong>س2:</strong> إيه اللي هيحصل لمية إناء (1) بعد إضافة القطعة السخنة؟</p>
+    <div class="opts">
+      <button class="opt" data-ok><span class="en" style="display:inline">Its temperature increases</span> · <span class="ar" style="display:inline">درجة حرارتها هتزيد</span></button>
+      <button class="opt"><span class="en" style="display:inline">Its temperature decreases</span> · <span class="ar" style="display:inline">درجة حرارتها هتقل</span></button>
+      <button class="opt"><span class="en" style="display:inline">No change</span> · <span class="ar" style="display:inline">مفيش تغيير</span></button>
+    </div>
+    <div class="exp"><span class="en">✔️ Its temperature increases — heat transfers from the hotter metal block to the cooler tap water until thermal equilibrium.</span><span class="ar">✔️ هتزيد، لأن الحرارة بتنتقل من المعدن الساخن للمية لحد ما يوصلوا لتوازن حراري.</span></div>
+  </div>
+  <h3 style="margin-top:22px">☕ <span class="en">Cups A, B & C</span> · <span class="ar">الأكواب A وB وC</span></h3>
+  <p class="en">Cup (A): 100 g water at 80°C · Cup (B): 100 g water at 30°C — mixed together in cup (C).</p>
+  <p class="ar">كوب (A) فيه 100 جم مية 80°م، وكوب (B) فيه 100 جم مية 30°م — اتخلطوا في كوب (C).</p>
+  <div class="cupsRow" dir="ltr">
+    <div class="cupC"><div class="cupBody"><i style="background:linear-gradient(180deg,#f87171,#dc2626)"></i><b>80°C</b></div>A · 100g</div>
+    <div class="mixArr">＋</div>
+    <div class="cupC"><div class="cupBody"><i style="background:linear-gradient(180deg,#7dd3fc,#38bdf8)"></i><b>30°C</b></div>B · 100g</div>
+    <div class="mixArr">➜</div>
+    <div class="cupC"><div class="cupBody" id="cupCbody"><i id="cupCfill" style="background:linear-gradient(180deg,#a5b4c8,#7c8aa5)"></i><b id="cupAns">? °C</b></div>C</div>
+  </div>
+  <div class="quiz" data-fx="revealCup">
+    <p class="en"><strong>Q1:</strong> What is the possible temperature of the water in cup (C)?</p>
+    <p class="ar"><strong>س1:</strong> إيه درجة الحرارة الممكنة للمية في كوب (C)؟</p>
+    <div class="opts"><button class="opt">a) 28°C</button><button class="opt">b) 30°C</button><button class="opt" data-ok>c) 55°C</button><button class="opt">d) 110°C</button></div>
+    <div class="exp"><span class="en">✔️ At thermal equilibrium, cup (C)'s temperature is greater than 30°C and less than 80°C → (c) 55°C (equal masses of the same substance → the average).</span><span class="ar">✔️ عند التوازن، درجة حرارة كوب (C) أكبر من 30 وأصغر من 80 → الإجابة (c) 55°م (كتل متساوية نفس المادة → المتوسط).</span></div>
+  </div>
+  <div class="quiz">
+    <p class="en"><strong>Q2:</strong> Which cup has the greatest average kinetic energy of water molecules? Explain.</p>
+    <p class="ar"><strong>س2:</strong> أي كوب فيه أكبر متوسط طاقة حركية لجزيئات المية؟ علل.</p>
+    <div class="opts"><button class="opt" data-ok>Cup (A) · كوب A</button><button class="opt">Cup (B) · كوب B</button><button class="opt">Cup (C) · كوب C</button><button class="opt">All equal · كلهم متساويين</button></div>
+    <div class="exp"><span class="en">✔️ Temperature measures the average K.E. of particles — cup (A) has the highest temperature (80°C), so it has the greatest average K.E.</span><span class="ar">✔️ درجة الحرارة مقياس لمتوسط الطاقة الحركية للجزيئات، وبما إن كوب (A) أعلى درجة حرارة (80°م)، يبقى هو صاحب أكبر متوسط طاقة حركية.</span></div>
+  </div>
+</section>
+
+<!-- ============ METHODS ============ -->
+<section id="methods" class="card reveal">
+  <div class="chead"><span class="cnum">96</span><div><h2><span class="en">Methods of Heat Transfer</span><span class="ar">طرق انتقال الحرارة</span></h2></div><span class="ppage">p.96</span></div>
+  <div class="grid3">
+    <div class="tile" style="border-color:var(--hot)"><span class="tag hot">① Conduction · التوصيل</span>
+      <p class="en">🎯 The topic of today's lesson in detail.</p><p class="ar">🎯 موضوع درسنا النهاردة بالتفصيل.</p></div>
+    <div class="tile"><span class="tag">② Convection · الحمل</span>
+      <p class="en">📅 In the coming lessons.</p><p class="ar">📅 في الدروس الجاية.</p></div>
+    <div class="tile"><span class="tag">③ Radiation · الإشعاع</span>
+      <p class="en">📅 In the coming lessons.</p><p class="ar">📅 في الدروس الجاية.</p></div>
+  </div>
+  <div class="tile" style="margin-top:16px"><span class="tag hot">Heat transfer by conduction · انتقال الحرارة بالتوصيل</span>
+    <svg viewBox="0 0 240 120" style="width:100%;max-width:420px;display:block;margin:6px auto">
+      <path d="M50 55 h95 v22 a28 18 0 0 1 -28 18 h-39 a28 18 0 0 1 -28 -18 z" fill="rgba(251,146,60,.22)" stroke="#fb923c" stroke-width="2.5"/>
+      <circle cx="75" cy="42" r="5" fill="#9fb0d0" class="steam"/><circle cx="98" cy="38" r="6" fill="#9fb0d0" class="steam s2"/><circle cx="120" cy="42" r="5" fill="#9fb0d0" class="steam s3"/>
+      <line x1="118" y1="92" x2="205" y2="26" stroke="#94a3b8" stroke-width="6" stroke-linecap="round"/>
+      <g class="pulse"><path d="M138 74 l10 -8" stroke="#fb923c" stroke-width="3" stroke-linecap="round"/><path d="M158 58 l10 -8" stroke="#fb923c" stroke-width="3" stroke-linecap="round"/><path d="M178 42 l10 -8" stroke="#fb923c" stroke-width="3" stroke-linecap="round"/></g>
+      <text x="206" y="20" fill="#fb923c" font-size="13">🖐️</text>
+    </svg>
+    <p class="en">When a metal spoon in a hot cup of tea is touched by hand, heat flows from the tea to the spoon, and from the spoon to the hand — this method is known as thermal conduction.</p>
+    <p class="ar">الملعقة المعدنية في الشاي الساخن: الحرارة بتمشي من الشاي للملعقة، ومن الملعقة للإيد اللي ماسكاها — الطريقة دي اسمها التوصيل الحراري.</p>
+  </div>
+</section>
+
+<!-- ============ PINS & WAX ============ -->
+<section id="pins" class="card reveal">
+  <div class="chead"><span class="cnum">📌</span><div><h2><span class="en">Experiment: Conduction Along a Rod (Pins & Wax)</span><span class="ar">تجربة الدبابيس والشمع</span></h2></div><span class="ppage">p.96</span></div>
+  <p class="en">A metal rod with pins fixed by small pieces of wax. Press "Light the candle" and watch the pins fall one after another.</p>
+  <p class="ar">قضيب معدني عليه دبابيس مثبتة بقطع شمع صغيرة. اضغط «أشعل الشمعة» وشوف الدبابيس بتقع واحد ورا التاني.</p>
+  <div class="rodScene" dir="ltr">
+    <div class="candle" id="candle">🕯️<span class="cfl">🔥</span></div>
+    <div class="rod">
+      <div class="rodLbl">metal rod · قضيب معدني</div>
+      <div class="heatWave" id="heatWave"></div>
+      <span class="pin" style="left:8%">📌</span>
+      <span class="pin" style="left:33%">📌</span>
+      <span class="pin" style="left:58%">📌</span>
+      <span class="pin" style="left:83%">📌</span>
+    </div>
+  </div>
+  <div class="labctrl">
+    <button class="btn" id="lightBtn">🕯️ Light the candle · أشعل الشمعة</button>
+    <button class="btn ghost" id="pinsReset">↺ Reset · إعادة</button>
+  </div>
+  <div class="speedRow" data-spd="pins"><span>⏩ Speed · السرعة:</span>
+    <button class="spBtn active" data-sp="1">1×</button><button class="spBtn" data-sp="2">2×</button><button class="spBtn" data-sp="4">4×</button></div>
+  <div class="note" id="pinsObs" style="display:none">
+    <span class="en">👁️ Observed: the pins fall one by one, from the closest to the candle to the farthest.</span>
+    <span class="ar">👁️ الملاحظ: الدبابيس بتقع واحد ورا التاني، من الأقرب للشمعة للأبعد.</span>
+    <span class="en" style="margin-top:6px"><strong>Conclusion:</strong> Heat is transferred along the metal rod from the highest-temperature point to the lowest-temperature point by conduction.</span>
+    <span class="ar"><strong>الاستنتاج:</strong> الحرارة بتنتقل جوه القضيب من النقطة الأسخن للنقطة الأبرد بالتوصيل.</span>
+  </div>
+</section>
+
+<!-- ============ HOW CONDUCTION WORKS ============ -->
+<section id="howcon" class="card reveal">
+  <div class="chead"><span class="cnum">97</span><div><h2><span class="en">How Conduction Really Works</span><span class="ar">إزاي التوصيل بيحصل فعليًا</span></h2></div><span class="ppage">p.97</span></div>
+  <p class="en">When one end of a metal rod is heated, the average K.E. of its particles increases → they vibrate more strongly, colliding with neighbouring particles and passing on part of the energy — and so on — without the particles leaving their positions.</p>
+  <p class="ar">لما تسخن طرف من القضيب، جزيئاته بتهتز أكتر (طاقة حركية أعلى)، وبتصطدم بالجزيئات اللي جنبها فتنقلها جزء من الطاقة، وهكذا الطاقة بتمشي من جزيء للتاني من غير ما الجزيئات نفسها تتحرك من مكانها.</p>
+  <canvas id="chainCv"></canvas>
+  <div class="labctrl">
+    <button class="btn" id="chainBtn">🔥 Heat one end · سخّن طرفًا</button>
+    <button class="btn ghost" id="chainReset">↺ Reset · إعادة</button>
+  </div>
+  <div class="grid2" style="margin-top:14px">
+    <div class="tile"><span class="tag hot">Thermal Conduction · التوصيل الحراري</span>
+      <p class="en">The transfer of thermal energy through solid objects from one point to another without the particles moving from their positions.</p>
+      <p class="ar">انتقال الطاقة الحرارية خلال الأجسام الصلبة من نقطة لنقطة من غير ما الجسيمات تتحرك من مكانها.</p></div>
+    <div class="tile"><span class="tag">Thermal Conductivity · التوصيلية الحرارية</span>
+      <p class="en">A measure for the extent to which a substance can conduct heat through it.</p>
+      <p class="ar">مقياس لمدى قدرة المادة على توصيل الحرارة خلالها.</p></div>
+  </div>
+</section>
+
+<!-- ============ RACE CU VS FE ============ -->
+<section id="race" class="card reveal">
+  <div class="chead"><span class="cnum">🏁</span><div><h2><span class="en">Race: Copper vs Iron</span><span class="ar">سباق: النحاس ضد الحديد</span></h2></div><span class="ppage">p.97</span></div>
+  <p class="en">Two rods of copper and iron, same dimensions, each with wax-fixed pins. Press "Heat the rods" and see which conducts heat faster.</p>
+  <p class="ar">قضيبين من نحاس وحديد بنفس الأبعاد، عليهم دبابيس بالشمع. اضغط «سخّن القضيبين» وشوف مين هيوصل الحرارة أسرع.</p>
+  <div class="grid2" style="margin-top:14px">
+    <div class="tile" id="cuTile">
+      <h3>🟠 <span class="en">Copper</span> · <span class="ar">نحاس</span></h3>
+      <div class="raceRow" dir="ltr"><span class="rFlame" id="cuFl">🔥</span>
+        <div class="raceRod"><div class="rrFill" id="cuFill"></div>
+          <span class="rpin" style="left:20%">📌</span><span class="rpin" style="left:50%">📌</span><span class="rpin" style="left:80%">📌</span></div></div>
+      <div class="rtStatus" id="cuSt">waiting… · في الانتظار</div>
+    </div>
+    <div class="tile" id="feTile">
+      <h3>⚙️ <span class="en">Iron</span> · <span class="ar">حديد</span></h3>
+      <div class="raceRow" dir="ltr"><span class="rFlame" id="feFl">🔥</span>
+        <div class="raceRod"><div class="rrFill" id="feFill"></div>
+          <span class="rpin" style="left:20%">📌</span><span class="rpin" style="left:50%">📌</span><span class="rpin" style="left:80%">📌</span></div></div>
+      <div class="rtStatus" id="feSt">waiting… · في الانتظار</div>
+    </div>
+  </div>
+  <div class="labctrl">
+    <button class="btn" id="raceBtn">🔥 Heat the rods · سخّن القضيبين</button>
+    <button class="btn ghost" id="raceReset">↺ Reset · إعادة</button>
+  </div>
+  <div class="speedRow" data-spd="race"><span>⏩ Speed · السرعة:</span>
+    <button class="spBtn active" data-sp="1">1×</button><button class="spBtn" data-sp="2">2×</button><button class="spBtn" data-sp="4">4×</button></div>
+  <div class="note hot" id="raceObs" style="display:none">
+    <span class="en">🏆 The thermal conductivity of copper is greater than iron — the wax on the copper rod melts faster and its pins fall more quickly. In general: metals are good heat conductors.</span>
+    <span class="ar">🏆 التوصيلية الحرارية للنحاس أكبر من الحديد، فالشمع على النحاس بيدوب أسرع والدبابيس بتقع بسرعة أكبر. عمومًا: المعادن موصلات حرارية جيدة.</span>
+  </div>
+  <h3 style="margin-top:18px">🏅 <span class="en">Ranking by thermal conductivity</span> · <span class="ar">الترتيب حسب التوصيلية الحرارية</span></h3>
+  <div class="podium">
+    <div class="pod p2"><span class="medal">🥈</span><span class="en">2nd — Silver</span><span class="ar">التاني — الفضة</span></div>
+    <div class="pod p1"><span class="medal">🥇</span><span class="en">1st — Diamond 💎</span><span class="ar">الأول — الألماس 💎</span></div>
+    <div class="pod p3"><span class="medal">🥉</span><span class="en">3rd — Copper</span><span class="ar">التالت — النحاس</span></div>
+  </div>
+</section>
+
+<!-- ============ CONDUCTORS VS INSULATORS ============ -->
+<section id="conduct" class="card reveal">
+  <div class="chead"><span class="cnum">98</span><div><h2><span class="en">Conductors vs Insulators</span><span class="ar">موصلات ومواد عازلة</span></h2></div><span class="ppage">p.98</span></div>
+  <div class="grid2">
+    <div class="tile" style="border-color:var(--hot)"><span class="tag hot">Thermal Conductors · موصلات حرارية</span>
+      <p class="en">Good heat-conducting substances (high thermal conductivity).</p>
+      <p class="ar">مواد موصلة جيدة للحرارة (توصيلية عالية).</p>
+      <p class="en mut">Examples: diamonds 💎; metals in general, such as aluminum and copper.</p>
+      <p class="ar mut">أمثلة: الألماس، والمعادن عمومًا زي الألومنيوم والنحاس.</p></div>
+    <div class="tile" style="border-color:var(--cold)"><span class="tag">Thermal Insulators · مواد عازلة</span>
+      <p class="en">Poor heat-conducting substances (low thermal conductivity).</p>
+      <p class="ar">مواد ضعيفة في توصيل الحرارة (توصيلية قليلة).</p>
+      <p class="en mut">Examples: wood 🪵, plastic 🧴.</p>
+      <p class="ar mut">أمثلة: الخشب والبلاستيك.</p></div>
+  </div>
+  <div class="tile" style="margin-top:16px">
+    <svg viewBox="0 0 240 120" style="width:100%;max-width:420px;display:block;margin:0 auto">
+      <rect x="55" y="38" width="95" height="58" rx="10" fill="rgba(148,163,184,.35)" stroke="#94a3b8" stroke-width="3"/>
+      <rect x="150" y="56" width="52" height="13" rx="6" fill="#a16207"/>
+      <text x="102" y="30" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="700">Aluminum · ألومنيوم (موصل)</text>
+      <text x="176" y="88" text-anchor="middle" fill="#a16207" font-size="11" font-weight="700">Wood · خشب (عازل)</text>
+    </svg>
+    <p class="en">🍳 A cooking pot's body is made of aluminum (conductor) while its handle is made of wood (insulator) — the classic real-life pairing.</p>
+    <p class="ar">حلة الطبخ: جسمها ألومنيوم (موصل) ومقبضها خشب (عازل) — أشهر مثال في حياتنا.</p>
+  </div>
+  <div class="quiz">
+    <p class="en"><strong>Q1:</strong> Rod (X) has wax-fixed pins and a burning candle beside it; the wax melts. Is rod (X) aluminum or wood?</p>
+    <p class="ar"><strong>س1:</strong> قضيب واحد (X) عليه دبابيس بالشمع وجنبه شمعة مشتعلة، والشمع داب. القضيب (X) ألومنيوم ولا خشب؟</p>
+    <div class="opts">
+      <button class="opt" data-ok><span class="en" style="display:inline">Aluminum — a thermal conductor</span> · <span class="ar" style="display:inline">ألومنيوم — موصل حراري</span></button>
+      <button class="opt"><span class="en" style="display:inline">Wood — a thermal insulator</span> · <span class="ar" style="display:inline">خشب — عازل حراري</span></button>
+    </div>
+    <div class="exp">
+      <span class="en">✔️ (1) The rod is aluminum because it is a thermal conductor — indicated by the melting of the wax fixing the pins. (2) Conclusion: heat energy transfers from the highest-temperature point to the lowest through the aluminum rod, by conduction.</span>
+      <span class="ar">✔️ (1) القضيب ألومنيوم لأنه موصل، والدليل ذوبان الشمع المثبت للدبابيس. (2) الاستنتاج: الحرارة بتنتقل من النقطة الأعلى حرارة للأقل خلال قضيب الألومنيوم بالتوصيل.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APPS ============ -->
+<section id="apps" class="card reveal">
+  <div class="chead"><span class="cnum">99</span><div><h2><span class="en">Reasoning & Life Applications</span><span class="ar">التعليل والتطبيقات الحياتية</span></h2></div><span class="ppage">p.99</span></div>
+  <details><summary>🍕 <span class="en">Give reason: pizza is placed in cardboard boxes.</span><span class="ar">علل: البيتزا توضع في صناديق كرتون.</span></summary>
+    <div class="body"><span class="en">To keep it warm, because cardboard is a thermal insulator.</span><span class="ar">عشان تفضل سخنة، لأن الكرتون مادة عازلة للحرارة.</span></div></details>
+  <h3 style="margin-top:18px">🏠 <span class="en">Life Applications</span> · <span class="ar">تطبيقات من حياتنا</span></h3>
+  <div class="grid3" style="margin-top:10px">
+    <div class="tile"><span class="tag hot">1 · Cookware · أواني الطبخ</span>
+      <p class="en">Utensils are made of metals (high conductivity), while handles are made of plastic or wood (low conductivity) — to protect hands.</p>
+      <p class="ar">أواني الطبخ من معدن (توصيلية عالية) ومقابضها بلاستيك أو خشب (توصيلية قليلة) عشان الإيد متتحرقش.</p></div>
+    <div class="tile"><span class="tag">2 · Walls · الحوائط</span>
+      <p class="en">Polystyrene panels are placed between hollow clay bricks during wall construction — polystyrene and the air in the cavities are heat insulators that prevent rapid temperature change inside buildings.</p>
+      <p class="ar">حط ألواح بوليسترين بين الطوب المفرغ في الحوائط، لأن البوليسترين والهواء جوه الطوب عازلين، فبيمنعوا التغير السريع في درجة حرارة المبنى.</p></div>
+    <div class="tile"><span class="tag ok">3 · Cooling · التبريد</span>
+      <p class="en">Cooling systems inside electronic devices (computers, smartphones) are made of good conductors like silver — to dissipate excessive heat that may cause poor performance or damage.</p>
+      <p class="ar">أنظمة التبريد جوه الأجهزة الإلكترونية بتتصنع من موصلات جيدة زي الفضة، عشان تتخلص من الحرارة الزيادة اللي ممكن تخرب الجهاز.</p></div>
+  </div>
+</section>
+
+<!-- ============ FINAL ============ -->
+<section id="final" class="card reveal">
+  <div class="chead"><span class="cnum">100</span><div><h2><span class="en">Notes & Evaluate Yourself</span><span class="ar">ملاحظات واختبر نفسك</span></h2></div><span class="ppage">p.100</span></div>
+  <div class="grid2">
+    <div class="tile"><span class="tag">Note 1 — hollow bricks 🧱</span>
+      <span class="ar" style="font-weight:800">ملاحظة 1 — الطوب المفرغ</span>
+      <p class="en" style="margin-top:6px">Hollow clay bricks are preferred over solid ones for exterior walls, because the thermal conductivity of the air in the hollow cavities is about 20 times less than that of clay.</p>
+      <p class="ar">بيفضّلوا الطوب المفرغ عن المصمت في الحوائط الخارجية، لأن توصيلية الهواء جوه الفراغات أقل من توصيلية الطوب بحوالي 20 مرة.</p></div>
+    <div class="tile"><span class="tag ok">Note 2 — polystyrene walls 🏠</span>
+      <span class="ar" style="font-weight:800">ملاحظة 2 — حوائط البوليسترين</span>
+      <p class="en" style="margin-top:6px">Using polystyrene insulation panels between building walls, plus the air between them, reduces the cost of air conditioning inside these buildings.</p>
+      <p class="ar">استخدام ألواح البوليسترين العازلة بين الحوائط، مع الهواء بينهم، بيقلل تكلفة التكييف جوه المباني.</p></div>
+  </div>
+  <div class="quiz" style="margin-top:18px">
+    <p class="en"><strong>Evaluate 1 — Q1:</strong> Heat is transferred from one point to another through a piece of iron, by:</p>
+    <p class="ar"><strong>اختبر 1 — س1:</strong> الحرارة بتنتقل من نقطة لنقطة خلال قطعة حديد عن طريق:</p>
+    <div class="opts">
+      <button class="opt">a) convection only · الحمل فقط</button>
+      <button class="opt" data-ok>b) conduction only · التوصيل فقط</button>
+      <button class="opt">c) convection & conduction · الحمل والتوصيل</button>
+      <button class="opt">d) conduction & radiation · التوصيل والإشعاع</button>
+    </div>
+    <div class="exp"><span class="en">✔️ Iron is a solid metal, so heat moves through it only by conduction (particle-to-particle vibration/collision).</span><span class="ar">✔️ الحديد جسم صلب، فالحرارة بتنتقل فيه بالتوصيل بس (اهتزاز وتصادم الجسيمات ببعضها).</span></div>
+  </div>
+  <h3 style="margin-top:22px">🧊 <span class="en">Evaluate 1 — Q2: The Ice Cube Race</span> · <span class="ar">اختبر 1 — س2: سباق مكعبات الثلج</span></h3>
+  <p class="en">Two identical ice cubes: one on a plastic block, the other on a metal block — both on a hot iron surface. Press "Start".</p>
+  <p class="ar">مكعبين ثلج متطابقين، واحد فوق قطعة بلاستيك والتاني فوق قطعة معدن، والاتنين فوق سطح حديد ساخن. اضغط «ابدأ».</p>
+  <div class="grid2" style="margin-top:12px">
+    <div class="tile">
+      <h3>🧊 <span class="en">Cube (1) — on Plastic</span> · <span class="ar">مكعب (1) — على بلاستيك</span></h3>
+      <div class="iceScene"><div class="iceCube" id="ic1"></div><div class="iceBlock plastic">PLASTIC · بلاستيك</div><div class="hotSurf">🔥 HOT IRON SURFACE · سطح حديد ساخن</div></div>
+      <div class="iceStatus" id="ic1St">ready · جاهز</div>
+    </div>
+    <div class="tile">
+      <h3>🧊 <span class="en">Cube (2) — on Metal</span> · <span class="ar">مكعب (2) — على معدن</span></h3>
+      <div class="iceScene"><div class="iceCube" id="ic2"></div><div class="iceBlock metal">METAL · معدن</div><div class="hotSurf">🔥 HOT IRON SURFACE · سطح حديد ساخن</div></div>
+      <div class="iceStatus" id="ic2St">ready · جاهز</div>
+    </div>
+  </div>
+  <div class="labctrl">
+    <button class="btn" id="iceBtn">▶ Start · ابدأ</button>
+    <button class="btn ghost" id="iceReset">↺ Reset · إعادة</button>
+  </div>
+  <div class="speedRow" data-spd="ice"><span>⏩ Speed · السرعة:</span>
+    <button class="spBtn active" data-sp="1">1×</button><button class="spBtn" data-sp="2">2×</button><button class="spBtn" data-sp="4">4×</button></div>
+  <div class="quiz">
+    <p class="en"><strong>Q:</strong> Which of the two identical ice cubes melts faster?</p>
+    <p class="ar"><strong>س:</strong> أي المكعبين المتطابقين هيدوب أسرع؟</p>
+    <div class="opts">
+      <button class="opt">a) Cube (1), because plastic is a thermal insulator · المكعب 1 لأن البلاستيك عازل</button>
+      <button class="opt">b) Cube (1), because plastic is a thermal conductor · المكعب 1 لأن البلاستيك موصل</button>
+      <button class="opt" data-ok>c) Cube (2), because metal is a thermal conductor · المكعب 2 لأن المعدن موصل</button>
+      <button class="opt">d) Cube (2), because metal is a thermal insulator · المكعب 2 لأن المعدن عازل</button>
+    </div>
+    <div class="exp"><span class="en">✔️ Metal conducts heat from the hot surface into the ice much faster than plastic does, so cube (2) melts first.</span><span class="ar">✔️ المعدن بينقل الحرارة من السطح الساخن للثلج بسرعة أكبر من البلاستيك، فمكعب (2) بيدوب الأول.</span></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="verified">🛡️ <span class="en">Reviewed & signed: Dr. Wael Aboagiza</span><span class="ar">مراجعة وتوقيع: د. وائل أبو عجيزة</span> <span style="font-family:'Space Grotesk'">#Dr_Wael_Aboagiza</span></div>
+  <p style="margin-top:14px;font-size:.82rem"><span class="en">Unit 1: Matter and Energy · Lesson 4: Methods of Heat Transfer · pages 93–100</span><span class="ar">الوحدة الأولى: المادة والطاقة · الدرس الرابع: طرق انتقال الحرارة · صفحات 93–100</span></p>
+</footer>
+<button id="topBtn" title="Top · لفوق">⬆</button>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const SPDS={eq:{speed:1},balls:{speed:1},pins:{speed:1},race:{speed:1},ice:{speed:1}};
+$$('.speedRow').forEach(row=>{row.querySelectorAll('.spBtn').forEach(b=>b.onclick=()=>{SPDS[row.dataset.spd].speed=+b.dataset.sp;row.querySelectorAll('.spBtn').forEach(x=>x.classList.toggle('active',x===b));});});
+addEventListener('scroll',()=>{const h=document.documentElement,p=h.scrollTop/(h.scrollHeight-h.clientHeight);
+ $('#progress').style.width=(p*100)+'%';$('#railFill').style.height=(p*100)+'%';$('#railVal').textContent=Math.round(p*100)+'°';
+ $('#topBtn').classList.toggle('show',h.scrollTop>600);},{passive:true});
+$('#topBtn').onclick=()=>scrollTo({top:0,behavior:'smooth'});
+$('#themeBtn').onclick=()=>{const l=document.body.dataset.theme==='light';document.body.dataset.theme=l?'':'light';$('#themeBtn').textContent=l?'☀️':'🌙';};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}}),{threshold:.1});
+$$('.reveal').forEach(el=>io.observe(el));
+const spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)$$('nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));}),{rootMargin:'-35% 0px -55% 0px'});
+$$('section[id]').forEach(s=>spy.observe(s));
+document.addEventListener('click',e=>{const b=e.target.closest('.opt');if(!b)return;const q=b.closest('.quiz');if(q.dataset.done)return;
+ if(b.dataset.ok!==undefined){b.classList.add('ok');q.dataset.done=1;const x=q.querySelector('.exp');x&&x.classList.add('show');const fx=q.dataset.fx;if(fx&&window[fx])window[fx]();}
+ else{b.classList.add('bad');setTimeout(()=>b.classList.remove('bad'),450);}});
+window.revealCup=function(){$('#cupAns').textContent='55°C';$('#cupAns').style.color='#fb923c';$('#cupCfill').style.background='linear-gradient(180deg,#fb923c,#ea580c)';};
+const hc=$('#heroCv'),hx=hc.getContext('2d');let HP=[];
+function hSize(){hc.width=hc.offsetWidth;hc.height=hc.offsetHeight;HP=Array.from({length:70},()=>({x:Math.random()*hc.width,y:Math.random()*hc.height,r:1+Math.random()*2.5,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6,c:Math.random()>.5?'251,146,60':'34,211,238'}));}
+hSize();addEventListener('resize',hSize);
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function heroLoop(){if(!reduced){hx.clearRect(0,0,hc.width,hc.height);HP.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>hc.width)p.vx*=-1;if(p.y<0||p.y>hc.height)p.vy*=-1;hx.beginPath();hx.fillStyle=`rgba(${p.c},.5)`;hx.arc(p.x,p.y,p.r,0,7);hx.fill();});}requestAnimationFrame(heroLoop);}
+heroLoop();
+/* equilibrium */
+const EQ={a:70,b:20,t:0,iv:null};
+function tColor(T){return `hsl(${Math.max(8,210-T*2)} 90% 55%)`;}
+function eqUI(){
+ $('#eqAV').textContent=Math.round(EQ.a)+'°C';$('#eqAV').style.color=tColor(EQ.a);
+ $('#eqBV').textContent=Math.round(EQ.b)+'°C';$('#eqBV').style.color=tColor(EQ.b);
+ $('#eqAF').style.width=EQ.a+'%';$('#eqAF').style.background=tColor(EQ.a);
+ $('#eqBF').style.width=EQ.b+'%';$('#eqBF').style.background=tColor(EQ.b);
+ $('#eqTime').textContent=EQ.t.toFixed(1);}
+function eqMsg(en,ar){$('#eqMsg').innerHTML=`<span class="en">${en}</span><span class="ar">${ar}</span>`;}
+$('#eqAI').oninput=e=>{if(!EQ.iv){EQ.a=+e.target.value;eqUI();}};
+$('#eqBI').oninput=e=>{if(!EQ.iv){EQ.b=+e.target.value;eqUI();}};
+$('#eqGo').onclick=()=>{if(EQ.iv)return;
+ if(Math.abs(EQ.a-EQ.b)<1){eqMsg('⚖️ Same temperature → no heat transfer between the two systems.','⚖️ نفس درجة الحرارة → لا انتقال للحرارة بين النظامين.');return;}
+ $('#eqAI').disabled=true;$('#eqBI').disabled=true;
+ const target=(EQ.a+EQ.b)/2;
+ const fa=$('#flowArr');
+ if(EQ.a>EQ.b){fa.textContent='🔥➜';fa.className='flowArr toR';}else{fa.textContent='⬅🔥';fa.className='flowArr toL';}
+ eqMsg(EQ.a>EQ.b?'🔥 Heat flows from (A) to (B) — from higher to lower temperature…':'🔥 Heat flows from (B) to (A) — from higher to lower temperature…',
+        EQ.a>EQ.b?'🔥 الحرارة بتنتقل من (A) إلى (B) — من الأعلى للأقل…':'🔥 الحرارة بتنتقل من (B) إلى (A) — من الأعلى للأقل…');
+ EQ.iv=setInterval(()=>{EQ.t+=0.06*SPDS.eq.speed;
+  EQ.a+=(target-EQ.a)*0.035*SPDS.eq.speed;EQ.b+=(target-EQ.b)*0.035*SPDS.eq.speed;eqUI();
+  if(Math.abs(EQ.a-target)<0.4){EQ.a=target;EQ.b=target;eqUI();clearInterval(EQ.iv);EQ.iv=null;
+   fa.textContent='⚖️';fa.className='flowArr';
+   eqMsg(`🎉 Thermal equilibrium reached at ${Math.round(target)}°C — both systems now have the same temperature!`,`🎉 تم التوازن الحراري عند ${Math.round(target)}°م — النظامين دلوقتي في نفس درجة الحرارة!`);}},60);};
+$('#eqReset').onclick=()=>{clearInterval(EQ.iv);EQ.iv=null;EQ.a=70;EQ.b=20;EQ.t=0;
+ $('#eqAI').value=70;$('#eqBI').value=20;$('#eqAI').disabled=false;$('#eqBI').disabled=false;
+ const fa=$('#flowArr');fa.textContent='🔥➜';fa.className='flowArr toR';eqUI();
+ eqMsg('💡 For equal masses of the same substance, the equilibrium temperature = the average of the two temperatures.','💡 لو الكتلتين متساويتين من نفس المادة، درجة حرارة التوازن = متوسط الدرجتين.');};
+eqUI();
+/* balls activity */
+const BA={iv:null,step:0};
+function ballsReset(){clearInterval(BA.iv);BA.iv=null;BA.step=0;
+ $('#tBath').textContent='? °C';$('#tCold').textContent='20°C';
+ $('#ballA').classList.remove('hidden');$('#ballB').classList.add('hidden','drop');
+ $('#flameB').classList.remove('on');$('#bathW').classList.remove('boiling');
+ $('#obsBox').classList.remove('show');
+ $$('#balls .stepB').forEach(b=>b.classList.remove('done','ready'));$('#st1').classList.add('ready');}
+$('#st1').onclick=()=>{if(BA.step!==0)return;BA.step=1;
+ $('#tCold').classList.add('flash');setTimeout(()=>$('#tCold').classList.remove('flash'),900);
+ $('#st1').classList.remove('ready');$('#st1').classList.add('done');$('#st2').classList.add('ready');};
+$('#st2').onclick=()=>{if(BA.step!==1)return;BA.step=2;
+ $('#flameB').classList.add('on');$('#bathW').classList.add('boiling');
+ let t=0;const iv=setInterval(()=>{t+=0.02*SPDS.balls.speed;const T=20+80*Math.min(1,t);
+  $('#tBath').textContent=Math.round(T)+'°C';
+  if(t>=1){clearInterval(iv);$('#tBath').textContent='100°C';
+   $('#st2').classList.remove('ready');$('#st2').classList.add('done');$('#st3').classList.add('ready');}},60);};
+$('#st3').onclick=()=>{if(BA.step!==2)return;BA.step=3;
+ $('#st3').classList.remove('ready');$('#st3').classList.add('done');
+ $('#ballA').classList.add('hidden');$('#ballB').classList.remove('hidden');$('#ballB').classList.add('drop');
+ $('#flameB').classList.remove('on');$('#bathW').classList.remove('boiling');
+ let ts=0;BA.iv=setInterval(()=>{ts+=0.05*SPDS.balls.speed;
+  const ballT=28+72*Math.exp(-1.0*ts),waterT=28-8*Math.exp(-0.32*ts);
+  $('#tBath').textContent=Math.round(ballT)+'°C';$('#tCold').textContent=Math.round(waterT)+'°C';
+  if(ballT<28.4&&waterT>27.6){clearInterval(BA.iv);BA.iv=null;
+   $('#tBath').textContent='28°C';$('#tCold').textContent='28°C';
+   $('#obsBox').classList.add('show');}},60);};
+$('#ballsReset').onclick=ballsReset;
+/* pins */
+const PN={iv:null,prog:0};
+$('#lightBtn').onclick=()=>{if(PN.iv)return;$('#candle').classList.add('lit');
+ const pins=$$('#pins .pin');PN.iv=setInterval(()=>{PN.prog=Math.min(100,PN.prog+0.32*SPDS.pins.speed);
+  $('#heatWave').style.width=PN.prog+'%';
+  pins.forEach(p=>{if(PN.prog>=parseFloat(p.style.left)+8)p.classList.add('fall');});
+  if(PN.prog>=100){clearInterval(PN.iv);PN.iv=null;$('#pinsObs').style.display='block';}},50);};
+$('#pinsReset').onclick=()=>{clearInterval(PN.iv);PN.iv=null;PN.prog=0;
+ $('#heatWave').style.width='0%';$('#candle').classList.remove('lit');$('#pinsObs').style.display='none';
+ $$('#pins .pin').forEach(p=>p.classList.remove('fall'));};
+/* particle chain */
+const CC=$('#chainCv'),cx=CC.getContext('2d');const CH={h:new Array(14).fill(0),iv:null,t:0};
+function chainDraw(){CC.width=CC.offsetWidth*2;CC.height=300;const W=CC.width,H=CC.height,gap=(W-80)/13;
+ cx.clearRect(0,0,W,H);CH.t++;
+ for(let i=0;i<14;i++){const h=CH.h[i];
+  const amp=1.5+h*9,ox=Math.sin(CH.t*(0.04+h*0.12)+i)*amp,oy=Math.cos(CH.t*(0.05+h*0.1)+i*1.3)*amp;
+  cx.beginPath();cx.fillStyle=`hsl(${Math.max(8,210-h*200)} 90% 58%)`;
+  cx.arc(40+i*gap+ox,H/2+oy,15,0,7);cx.fill();
+  if(h>0.05){cx.beginPath();cx.strokeStyle='rgba(251,146,60,.35)';cx.arc(40+i*gap+ox,H/2+oy,22,0,7);cx.stroke();}}}
+$('#chainBtn').onclick=()=>{if(CH.iv)return;
+ CH.iv=setInterval(()=>{CH.h[0]=1;for(let i=1;i<14;i++)CH.h[i]+=(CH.h[i-1]-CH.h[i])*0.022;chainDraw();},40);};
+$('#chainReset').onclick=()=>{clearInterval(CH.iv);CH.iv=null;CH.h.fill(0);chainDraw();};
+new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){chainDraw();o.disconnect();}}),{threshold:.2}).observe(CC);
+addEventListener('resize',chainDraw);
+/* race */
+const RC={iv:null,cu:0,fe:0};
+const RCTH=[22,52,82];
+$('#raceBtn').onclick=()=>{if(RC.iv)return;$('#cuFl').classList.add('on');$('#feFl').classList.add('on');
+ const cuP=$$('#cuTile .rpin'),feP=$$('#feTile .rpin');
+ RC.iv=setInterval(()=>{RC.cu=Math.min(100,RC.cu+0.85*SPDS.race.speed);RC.fe=Math.min(100,RC.fe+0.36*SPDS.race.speed);
+  $('#cuFill').style.width=RC.cu+'%';$('#feFill').style.width=RC.fe+'%';
+  cuP.forEach((p,i)=>{if(RC.cu>=RCTH[i]+8)p.classList.add('fall');});
+  feP.forEach((p,i)=>{if(RC.fe>=RCTH[i]+8)p.classList.add('fall');});
+  $('#cuSt').textContent=RC.cu>=100?'🏁 all pins fell! · وقعت كلها!':'melting wax… · الشمع بيدوب…';
+  $('#feSt').textContent=RC.fe>=100?'🏁 all pins fell! · وقعت كلها!':'melting wax… · الشمع بيدوب…';
+  if(RC.cu>=100&&RC.fe>=100){clearInterval(RC.iv);RC.iv=null;$('#raceObs').style.display='block';}},50);};
+$('#raceReset').onclick=()=>{clearInterval(RC.iv);RC.iv=null;RC.cu=0;RC.fe=0;
+ $('#cuFill').style.width='0%';$('#feFill').style.width='0%';
+ $('#cuFl').classList.remove('on');$('#feFl').classList.remove('on');
+ $('#cuSt').textContent='waiting… · في الانتظار';$('#feSt').textContent='waiting… · في الانتظار';
+ $$('#race .rpin').forEach(p=>p.classList.remove('fall'));$('#raceObs').style.display='none';};
+/* ice race */
+const IC={iv:null,c1:56,c2:56};
+$('#iceBtn').onclick=()=>{if(IC.iv)return;
+ $('#ic1St').textContent='melting… · بيدوب…';$('#ic2St').textContent='melting… · بيدوب…';
+ IC.iv=setInterval(()=>{IC.c1=Math.max(4,IC.c1-0.1*SPDS.ice.speed);IC.c2=Math.max(4,IC.c2-0.55*SPDS.ice.speed);
+  $('#ic1').style.height=IC.c1+'px';$('#ic2').style.height=IC.c2+'px';
+  if(IC.c2<=4.1){$('#ic2St').textContent='🏆 melted first! · داب الأول!';$('#ic2St').style.color='#fb923c';
+   clearInterval(IC.iv);IC.iv=null;
+   $('#ic1St').textContent='still melting slowly… · لسه بيدوب ببطء…';}},60);};
+$('#iceReset').onclick=()=>{clearInterval(IC.iv);IC.iv=null;IC.c1=56;IC.c2=56;
+ $('#ic1').style.height='56px';$('#ic2').style.height='56px';
+ $('#ic1St').textContent='ready · جاهز';$('#ic2St').textContent='ready · جاهز';$('#ic2St').style.color='';};
+</script>
+</body>
+</html>

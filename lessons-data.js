@@ -70,5 +70,16 @@ const lessonsData = [
     cta: "ابدأ الدرس ←",
     href: "lesson-internal-energy-and-temperature.html",
     lang: "ar"
+  },
+  {
+    id: "lesson-methods-of-heat-transfer",
+    order: 6,
+    status: "published",
+    icon: "🔥🧪",
+    title: "Methods of Heat Transfer",
+    desc: "الصفحات 93–100 كاملة: التوازن الحراري مع محاكي تفاعلي، تجربة الكور المعدنية، الدبابيس والشمع، سلسلة الجسيمات، سباق النحاس والحديد، والموصلات والعوازل مع سباق مكعبات الثلج.",
+    cta: "ابدأ الدرس ←",
+    href: "lesson-methods-of-heat-transfer.html",
+    lang: "ar"
   }
 ];
