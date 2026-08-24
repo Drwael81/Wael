@@ -1,804 +1,534 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>States of Matter & Their Properties</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>States of Matter & Their Properties | حالات المادة وخصائصها</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg: #0d1b2a;
-    --bg-soft: #142a40;
-    --card: #17304a;
-    --card-2: #1c3a59;
-    --ink: #f2ede2;
-    --ink-dim: #b9c6d3;
-    --solid: #e8963f;
-    --solid-soft: #3a2b1c;
-    --liquid: #3fb6d3;
-    --liquid-soft: #12313d;
-    --gas: #7bd99a;
-    --gas-soft: #17362a;
-    --line: rgba(242,237,226,0.12);
-    --gold: #e8c468;
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    background: radial-gradient(ellipse at top, #16324a 0%, var(--bg) 55%);
-    color: var(--ink);
-    font-family:'Inter', sans-serif;
-    line-height:1.7;
-    overflow-x:hidden;
-  }
-  .wrap{max-width:980px; margin:0 auto; padding: 0 18px;}
-
-  .particles{position:absolute; inset:0; overflow:hidden; pointer-events:none; opacity:0.55;}
-  .p-dot{position:absolute; border-radius:50%;}
-
-  /* ---------- HERO ---------- */
-  .hero{
-    position:relative;
-    min-height: 80vh;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    text-align:center;
-    padding: 60px 18px 30px;
-    border-bottom: 1px solid var(--line);
-    overflow:hidden;
-  }
-  .hero::before{
-    content:"";
-    position:absolute; inset:0;
-    background:
-      radial-gradient(circle at 15% 20%, rgba(232,150,63,0.16), transparent 40%),
-      radial-gradient(circle at 85% 30%, rgba(63,182,211,0.18), transparent 42%),
-      radial-gradient(circle at 50% 90%, rgba(123,217,154,0.14), transparent 45%);
-  }
-  .eyebrow{
-    position:relative;
-    font-family:'Sora',sans-serif; font-weight:700; letter-spacing:1px;
-    color: var(--gold); font-size:13px; text-transform:uppercase;
-    border:1px solid rgba(232,196,104,0.4);
-    padding:6px 18px; border-radius:999px;
-    margin-bottom:26px;
-    background: rgba(232,196,104,0.06);
-  }
-  .hero h1{
-    position:relative;
-    font-family:'Sora',sans-serif; font-weight:800;
-    font-size: clamp(36px, 7.5vw, 64px);
-    line-height:1.14;
-    background: linear-gradient(90deg, var(--solid), var(--gold) 35%, var(--liquid) 65%, var(--gas));
-    -webkit-background-clip:text; background-clip:text; color:transparent;
-    margin-bottom:18px;
-  }
-  .hero p.sub{
-    position:relative;
-    color: var(--ink-dim); font-size: clamp(15px,2.4vw,19px);
-    max-width:580px;
-  }
-  .hero .states-row{
-    position:relative;
-    display:flex; gap:28px; margin-top:44px; flex-wrap:wrap; justify-content:center;
-  }
-  .state-chip{
-    display:flex; flex-direction:column; align-items:center; gap:10px;
-    font-family:'Sora',sans-serif; font-weight:700; font-size:14px;
-  }
-  .chip-icon{
-    width:74px; height:74px; border-radius:22px;
-    display:flex; align-items:center; justify-content:center;
-    position:relative; overflow:hidden;
-  }
-  .chip-icon.solid{background:var(--solid-soft); border:1.5px solid var(--solid);}
-  .chip-icon.liquid{background:var(--liquid-soft); border:1.5px solid var(--liquid);}
-  .chip-icon.gas{background:var(--gas-soft); border:1.5px solid var(--gas);}
-  .dot{position:absolute; border-radius:50%;}
-  .chip-icon.solid .dot{width:8px; height:8px; background:var(--solid);}
-  .chip-icon.liquid .dot{width:8px; height:8px; background:var(--liquid); animation: jitter 2.6s ease-in-out infinite;}
-  .chip-icon.gas .dot{width:7px; height:7px; background:var(--gas); animation: fly 3.4s linear infinite;}
-  @keyframes jitter{
-    0%,100%{transform:translate(0,0);}
-    25%{transform:translate(2px,-2px);}
-    50%{transform:translate(-2px,2px);}
-    75%{transform:translate(2px,1px);}
-  }
-  @keyframes fly{
-    0%{transform:translate(0,0);}
-    20%{transform:translate(18px,-10px);}
-    40%{transform:translate(-14px,12px);}
-    60%{transform:translate(10px,16px);}
-    80%{transform:translate(-16px,-8px);}
-    100%{transform:translate(0,0);}
-  }
-
-  .credit-tag{
-    position:relative;
-    margin-top:38px;
-    font-family:'Sora',sans-serif; font-weight:700; font-size:13.5px;
-    color:var(--bg); background: linear-gradient(90deg, var(--gold), #f3dfa2);
-    padding:8px 20px; border-radius:999px; letter-spacing:0.3px;
-    box-shadow: 0 4px 18px rgba(232,196,104,0.25);
-  }
-
-  section{position:relative; padding: 70px 0;}
-  .section-head{margin-bottom:34px; text-align:center;}
-  .section-head .tag{
-    font-family:'Sora',sans-serif; font-weight:700; font-size:12.5px;
-    color: var(--gold); letter-spacing:1px; margin-bottom:10px; display:block;
-    text-transform:uppercase;
-  }
-  .section-head h2{
-    font-family:'Sora',sans-serif; font-weight:800; font-size: clamp(23px,4.2vw,32px);
-    color: var(--ink);
-  }
-  .section-head p{color:var(--ink-dim); max-width:640px; margin:12px auto 0; font-size:15.5px;}
-
-  .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
-  .reveal.in{opacity:1; transform:translateY(0);}
-
-  /* ---------- definition card ---------- */
-  .def-card{
-    background: var(--card);
-    border:1px solid var(--line);
-    border-radius:20px;
-    padding: 30px 28px;
-    display:grid; grid-template-columns: repeat(3,1fr); gap:20px;
-  }
-  .def-item{text-align:center; padding: 14px;}
-  .def-item .label{font-family:'Sora',sans-serif; font-weight:700; color:var(--gold); font-size:14.5px; margin-bottom:8px;}
-  .def-item .txt{color:var(--ink-dim); font-size:14.5px;}
-  @media(max-width:720px){ .def-card{grid-template-columns:1fr;} }
-
-  /* ---------- qa card ---------- */
-  .qa{
-    background: var(--card-2);
-    border-left: 4px solid var(--gold);
-    border-radius:14px;
-    padding:22px 24px;
-    margin: 18px 0;
-  }
-  .qa .q{font-family:'Sora',sans-serif; font-weight:700; color:var(--ink); margin-bottom:10px; font-size:15px;}
-  .qa .a{color:var(--ink-dim); font-size:14.5px;}
-  .qa .a b{color:var(--gold); font-weight:700;}
-  .qa .a.hidden-ans{display:none;}
-
-  .btn{
-    font-family:'Sora',sans-serif; font-weight:700; font-size:13.5px;
-    background: transparent; color:var(--gold); border:1.5px solid var(--gold);
-    padding:9px 18px; border-radius:999px; cursor:pointer;
-    transition: all .25s ease; display:inline-flex; align-items:center; gap:8px;
-  }
-  .btn:hover{background:var(--gold); color:var(--bg);}
-  .btn:active{transform:scale(0.97);}
-  .btn.small{padding:6px 14px; font-size:12.5px;}
-  .btn-row{display:flex; gap:12px; flex-wrap:wrap; margin-top:14px;}
-
-  /* ---------- three column property comparison ---------- */
-  .prop-title{display:flex; align-items:center; gap:14px; margin-bottom:22px;}
-  .tri-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:16px;}
-  @media(max-width:760px){ .tri-grid{grid-template-columns:1fr;} }
-
-  .state-card{
-    border-radius:18px; padding:22px 20px; position:relative; overflow:hidden;
-    border:1px solid var(--line); display:flex; flex-direction:column;
-  }
-  .state-card.solid{background:linear-gradient(160deg, var(--solid-soft), var(--card));}
-  .state-card.liquid{background:linear-gradient(160deg, var(--liquid-soft), var(--card));}
-  .state-card.gas{background:linear-gradient(160deg, var(--gas-soft), var(--card));}
-
-  .state-card .head{display:flex; align-items:center; gap:10px; margin-bottom:14px;}
-  .swatch{width:12px; height:12px; border-radius:50%;}
-  .swatch.solid{background:var(--solid);}
-  .swatch.liquid{background:var(--liquid);}
-  .swatch.gas{background:var(--gas);}
-  .state-card .head span.name{font-family:'Sora',sans-serif; font-weight:700; font-size:15.5px;}
-
-  .mini-particles{height:44px; position:relative; border-radius:10px; margin-bottom:14px; overflow:hidden; background:rgba(255,255,255,0.03);}
-  .mini-particles .dot{position:absolute; border-radius:50%; width:6px; height:6px;}
-  .mini-particles.solid .dot{background:var(--solid);}
-  .mini-particles.liquid .dot{background:var(--liquid); animation: jitter 2.2s ease-in-out infinite;}
-  .mini-particles.gas .dot{background:var(--gas); animation: fly 2.8s linear infinite;}
-
-  .state-card .result{font-family:'Sora',sans-serif; font-weight:700; font-size:14.5px; margin-bottom:8px; color:var(--ink);}
-  .state-card .desc{font-size:13.8px; color:var(--ink-dim); margin-bottom:10px;}
-  .state-card .example{font-size:13px; font-weight:700; color:var(--gold); border-top:1px dashed var(--line); padding-top:10px; margin-top:auto;}
-
-  .note-box{
-    margin-top:20px; padding:16px 20px; border-radius:12px;
-    background: rgba(232,196,104,0.06); border:1px dashed rgba(232,196,104,0.35);
-    font-size:14px; color:var(--ink-dim);
-  }
-  .note-box b{color:var(--gold);}
-  .note-box .note-title{font-family:'Sora',sans-serif; font-weight:700; color:var(--gold); display:block; margin-bottom:6px; font-size:14px; text-transform:uppercase; letter-spacing:0.5px;}
-
-  /* ---------- INTERACTIVE: syringe experiment ---------- */
-  .syringe-exp{
-    display:flex; flex-direction:column; align-items:center; gap:10px; margin-bottom:14px;
-  }
-  .syringe{
-    width:56px; height:110px; border:2px solid rgba(242,237,226,0.4); border-radius:6px;
-    position:relative; overflow:hidden; background:rgba(255,255,255,0.03);
-  }
-  .syringe .fill{
-    position:absolute; bottom:0; left:0; right:0; height:70%;
-    transition: height 0.8s cubic-bezier(.4,1.6,.4,1);
-  }
-  .syringe.solid .fill{background: repeating-linear-gradient(45deg, var(--solid), var(--solid) 4px, rgba(232,150,63,0.5) 4px, rgba(232,150,63,0.5) 8px);}
-  .syringe.liquid .fill{background: var(--liquid);}
-  .syringe.gas .fill{background: repeating-radial-gradient(circle, rgba(123,217,154,0.55) 1px, transparent 2px, transparent 8px); }
-  .syringe .piston{
-    position:absolute; top:0; left:0; right:0; height:26%;
-    background: rgba(242,237,226,0.55); border-bottom:2px solid rgba(242,237,226,0.7);
-    transition: height 0.8s cubic-bezier(.4,1.6,.4,1);
-  }
-  .gauge{font-family:'Sora',sans-serif; font-weight:700; font-size:12.5px; color:var(--ink-dim);}
-  .gauge b{color:var(--ink);}
-
-  /* ---------- INTERACTIVE: bottle squeeze ---------- */
-  .bottle-exp{display:flex; flex-direction:column; align-items:center; gap:16px;}
-  .bottle{
-    width:70px; height:150px; position:relative; cursor:pointer; transition: transform .5s ease;
-    border-radius: 14px 14px 26px 26px;
-    background: linear-gradient(180deg, rgba(63,182,211,0.35), rgba(63,182,211,0.12));
-    border: 2px solid rgba(63,182,211,0.55);
-  }
-  .bottle::before{
-    content:""; position:absolute; top:-16px; left:50%; transform:translateX(-50%);
-    width:20px; height:18px; background:var(--liquid); border-radius:4px 4px 0 0;
-  }
-  .bottle.squeezed{
-    transform: scaleX(0.68) scaleY(0.92) rotate(-2deg);
-    border-radius: 22px 8px 34px 14px / 30px 10px 40px 16px;
-  }
-  .bottle-hint{font-size:12.5px; color:var(--ink-dim); font-weight:600;}
-
-  /* ---------- INTERACTIVE: diffusion tube ---------- */
-  .tube-exp{
-    background:var(--card); border:1px solid var(--line); border-radius:16px; padding:26px 22px;
-  }
-  .tube-wrap{position:relative; height:70px; margin: 20px 0;}
-  .tube{
-    position:absolute; top:50%; left:0; right:0; height:26px; transform:translateY(-50%);
-    border-radius:14px; border:2px solid rgba(242,237,226,0.35); background:rgba(255,255,255,0.03);
-    overflow:hidden;
-  }
-  .cotton{
-    position:absolute; top:50%; width:22px; height:22px; border-radius:50%; transform:translateY(-50%);
-    display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; font-family:'Sora',sans-serif;
-  }
-  .cotton.hcl{left:6px; background: rgba(63,182,211,0.85); color:var(--bg);}
-  .cotton.nh3{right:6px; background: rgba(232,150,63,0.85); color:var(--bg);}
-  .gas-particle{position:absolute; top:50%; width:8px; height:8px; border-radius:50%; transform:translateY(-50%); opacity:0; transition: none;}
-  .gas-particle.hcl{background:var(--liquid);}
-  .gas-particle.nh3{background:var(--solid);}
-  .cloud{
-    position:absolute; top:50%; width:26px; height:26px; border-radius:50%; transform:translate(-50%,-50%) scale(0);
-    background: radial-gradient(circle, #ffffff, rgba(255,255,255,0.2));
-    transition: transform 0.6s ease, opacity 0.6s ease;
-    opacity:0;
-  }
-  .tube-labels{display:flex; justify-content:space-between; font-size:11.5px; color:var(--ink-dim); font-weight:600; padding: 0 4px;}
-  .tube-result{
-    margin-top:16px; font-size:14px; color:var(--ink-dim); min-height:24px;
-  }
-  .tube-result b{color:var(--gold);}
-
-  /* ---------- INTERACTIVE: diffusion speed race ---------- */
-  .race-grid{display:grid; grid-template-columns: repeat(3,1fr); gap:16px; margin-bottom:14px;}
-  @media(max-width:760px){ .race-grid{grid-template-columns:1fr;} }
-  .race-card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px;}
-  .race-track{height:14px; border-radius:8px; background:rgba(255,255,255,0.06); overflow:hidden; margin: 12px 0;}
-  .race-fill{height:100%; width:0%; border-radius:8px; transition: width linear;}
-  .race-fill.solid{background:var(--solid);}
-  .race-fill.liquid{background:var(--liquid);}
-  .race-fill.gas{background:var(--gas);}
-  .race-time{font-size:12px; color:var(--ink-dim); font-weight:600;}
-
-  /* ---------- comparison table ---------- */
-  .table-wrap{overflow-x:auto; border-radius:16px; border:1px solid var(--line);}
-  table{width:100%; border-collapse:collapse; min-width:640px; font-size:14px;}
-  thead th{font-family:'Sora',sans-serif; font-weight:700; font-size:14px; padding:16px 14px; text-align:center; color:var(--bg);}
-  thead th:first-child{background:var(--card-2); color:var(--ink); text-align:left;}
-  thead th.solid{background:var(--solid);}
-  thead th.liquid{background:var(--liquid);}
-  thead th.gas{background:var(--gas);}
-  tbody td{padding:16px 14px; border-top:1px solid var(--line); text-align:center; color:var(--ink-dim); vertical-align:top;}
-  tbody td:first-child{text-align:left; font-family:'Sora',sans-serif; font-weight:700; color:var(--gold); background:rgba(255,255,255,0.02);}
-  tbody tr:nth-child(even){background:rgba(255,255,255,0.02);}
-
-  .summary-strip{display:flex; gap:14px; flex-wrap:wrap; justify-content:center; margin-top:10px;}
-  .pill{
-    font-family:'Sora',sans-serif; font-weight:700; font-size:13px;
-    background:var(--card); border:1px solid var(--line); border-radius:999px;
-    padding:10px 18px; color:var(--ink-dim);
-  }
-  .pill b{color:var(--gold);}
-
-  footer{text-align:center; padding:44px 18px 60px; color:var(--ink-dim); font-size:13px; border-top:1px solid var(--line);}
-  footer .brand{font-family:'Sora',sans-serif; font-weight:800; color:var(--ink); margin-bottom:8px; font-size:15px;}
-  footer .credit{
-    display:inline-block; margin-top:14px; font-family:'Sora',sans-serif; font-weight:700; font-size:13.5px;
-    color:var(--gold); border:1px solid rgba(232,196,104,0.35); padding:8px 20px; border-radius:999px;
-  }
+:root{--bg:#060b16;--card:#0f1a2e;--card2:#12203a;--line:#24345a;--text:#eaf2ff;--muted:#93a6cc;--acc:#22d3ee;--acc2:#4f8cff;--hot:#fb923c;--cold:#38bdf8;--ok:#34d399;--bad:#f87171;--gold:#fbbf24;--pur:#a855f7;--r:20px}
+body[data-theme="light"]{--bg:#eef3fb;--card:#fff;--card2:#f4f8ff;--line:#c9d6ee;--text:#10203c;--muted:#5a6b8c}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;transition:background .4s,color .4s;overflow-x:hidden}
+::selection{background:var(--acc);color:#032}
+.en{display:block;direction:ltr;text-align:left;font-family:'Space Grotesk','Cairo',sans-serif;font-size:.93rem;line-height:1.7;color:var(--text)}
+.ar{display:block;direction:rtl;text-align:right;font-size:.96rem;line-height:2;color:var(--text);margin-top:2px}
+.mut{color:var(--muted)!important}
+h1,h2,h3{line-height:1.5}
+section{scroll-margin-top:95px}
+#progress{position:fixed;top:0;right:0;height:4px;width:0;background:linear-gradient(90deg,var(--acc),var(--hot));z-index:99;border-radius:99px}
+.topbar{position:fixed;top:0;right:0;left:0;z-index:90;display:flex;align-items:center;gap:10px;padding:10px 14px;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand{font-weight:900;font-size:.85rem;white-space:nowrap}
+nav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;padding:2px}
+nav::-webkit-scrollbar{display:none}
+nav a{padding:5px 12px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:.72rem;font-weight:700;white-space:nowrap;text-decoration:none;transition:.25s}
+nav a.active{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#041018;border-color:transparent}
+#themeBtn{cursor:pointer;border:1px solid var(--line);background:var(--card);border-radius:12px;width:40px;height:40px;font-size:1.1rem}
+#rail{position:fixed;inset-inline-end:12px;top:50%;transform:translateY(-50%);z-index:80;display:flex;flex-direction:column;align-items:center;gap:6px}
+#rail .tube{width:12px;height:36vh;border:2px solid var(--line);border-radius:99px;position:relative;overflow:hidden;background:rgba(128,160,220,.08)}
+#rail .bulb{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ff8a6b,#ef4444);margin-top:-4px}
+#railFill{position:absolute;bottom:0;width:100%;height:0;background:linear-gradient(0deg,#ef4444,#fb923c 40%,#22d3ee)}
+#railVal{font-family:'Space Grotesk';font-size:.72rem;color:var(--muted)}
+@media(max-width:1000px){#rail{display:none}}
+#hero{min-height:94vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:110px 18px 60px}
+#heroCv{position:absolute;inset:0;width:100%;height:100%}
+.heroIn{position:relative;z-index:2;max-width:920px}
+.kicker{display:inline-block;padding:6px 18px;border:1px solid var(--line);border-radius:999px;color:var(--acc);font-weight:800;font-size:.78rem;background:var(--card)}
+#hero h1{font-size:clamp(1.9rem,5.5vw,3.3rem);font-weight:900;margin:16px 0 4px;background:linear-gradient(90deg,var(--acc),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+#hero h1 .ar{font-size:clamp(1.5rem,4.5vw,2.6rem);background:linear-gradient(90deg,var(--gold),var(--acc));-webkit-background-clip:text;background-clip:text;color:transparent;margin:0}
+#hero p.desc{margin:16px auto;max-width:70ch;color:var(--muted)}
+.badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:20px}
+.badge{padding:8px 16px;border-radius:14px;border:1px solid var(--line);background:var(--card);font-size:.78rem;font-weight:700;text-align:center}
+.badge.vip{border-color:var(--gold);color:var(--gold)}
+.scrollHint{margin-top:40px;font-size:1.6rem;animation:bnc 1.6s infinite}
+@keyframes bnc{50%{transform:translateY(10px)}}
+main{max-width:1150px;margin:auto;padding:30px 16px 90px;display:flex;flex-direction:column;gap:34px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:clamp(18px,3.4vw,36px);box-shadow:0 14px 40px rgba(0,0,0,.25)}
+.chead{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.cnum{font-family:'Space Grotesk';font-size:1.5rem;font-weight:700;background:linear-gradient(180deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;border:1px solid var(--line);border-radius:16px;padding:6px 14px}
+.chead h2{font-size:clamp(1.05rem,2.6vw,1.45rem);font-weight:900}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px}
+/* side-by-side pairs (never stack) */
+.row2{display:flex;gap:14px;flex-wrap:nowrap;align-items:stretch}
+.row2>.tile{flex:1;min-width:0}
+.tile{background:var(--card2);border:1px solid var(--line);border-radius:16px;padding:18px;transition:.25s}
+.tile:hover{transform:translateY(-4px);border-color:var(--acc)}
+.note{border-inline-start:4px solid var(--acc);background:var(--card2);border-radius:12px;padding:12px 16px;margin-top:14px;font-size:.9rem}
+.note.hot{border-color:var(--hot)} .note.gold{border-color:var(--gold)} .note.ok{border-color:var(--ok)} .note.pur{border-color:var(--pur)}
+.tag{display:inline-block;font-size:.7rem;font-weight:800;color:#041018;background:var(--acc);border-radius:99px;padding:2px 12px;margin-bottom:8px}
+.tag.hot{background:var(--hot)} .tag.gold{background:var(--gold)} .tag.ok{background:var(--ok)}
+.defBox{border:2px dashed var(--line);border-radius:12px;padding:12px 16px;margin-top:14px;background:var(--card2)}
+.defBox b.dT{color:var(--bad);font-size:1rem}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal.vis{opacity:1;transform:none}
+.btn{cursor:pointer;border:none;border-radius:14px;padding:10px 22px;font-family:inherit;font-weight:800;font-size:.9rem;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#041018;transition:.2s;box-shadow:0 6px 18px rgba(34,211,238,.25)}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line);box-shadow:none}
+.labctrl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin:14px 0 6px}
+.speedRow{display:flex;gap:8px;align-items:center;justify-content:center;margin:8px 0;font-size:.8rem;font-weight:800;color:var(--muted)}
+.spBtn{cursor:pointer;border:1px solid var(--line);background:var(--card2);color:var(--muted);border-radius:10px;padding:4px 14px;font-family:'Space Grotesk';font-weight:700;transition:.2s}
+.spBtn.active{background:var(--hot);color:#311004;border-color:var(--hot)}
+.quiz{margin-top:10px}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.opt{cursor:pointer;border:1px solid var(--line);background:var(--card2);color:var(--text);border-radius:14px;padding:7px 16px;font-family:inherit;font-weight:700;font-size:.83rem;transition:.2s}
+.opt:hover{border-color:var(--acc)}
+.opt.ok{background:var(--ok);border-color:var(--ok);color:#03210f;animation:pop .35s}
+.opt.bad{background:var(--bad);border-color:var(--bad);color:#3b0708;animation:shk .35s}
+@keyframes pop{50%{transform:scale(1.08)}}
+@keyframes shk{25%{transform:translateX(5px)}75%{transform:translateX(-5px)}}
+.exp{display:none;margin-top:10px;border-inline-start:4px solid var(--ok);background:color-mix(in srgb,var(--ok) 12%,transparent);padding:10px 14px;border-radius:10px;font-size:.88rem}
+.exp.show{display:block}
+details{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin-top:10px}
+summary{cursor:pointer;font-weight:800;list-style:none}
+summary::after{content:'＋';color:var(--acc);font-weight:900;float:left}
+details[open] summary::after{content:'－'}
+details .body{padding-top:10px;font-size:.9rem}
+.pulse{animation:pl 1.6s infinite}@keyframes pl{50%{opacity:.25}}
+/* syringes */
+.syrRow{display:flex;gap:22px;justify-content:center;flex-wrap:nowrap;margin-top:16px}
+.syr{display:flex;flex-direction:column;align-items:center;gap:6px;flex:0 1 120px}
+.plug{width:22px;height:40px;background:var(--muted);border-radius:6px;position:relative;z-index:2;transition:transform .6s}
+.plug::after{content:'';position:absolute;top:-9px;left:-16px;width:54px;height:10px;background:var(--muted);border-radius:6px}
+.barrel{position:relative;width:74px;height:160px;border:3px solid var(--line);border-radius:12px;overflow:hidden;background:rgba(128,160,220,.05)}
+.sub{position:absolute;bottom:0;left:0;right:0;height:80%;transition:height .6s}
+.sub.sand{background:repeating-linear-gradient(45deg,#d4b06a,#d4b06a 4px,#c19a4f 4px,#c19a4f 8px)}
+.sub.water{background:linear-gradient(180deg,rgba(56,189,248,.7),rgba(37,99,235,.85))}
+.sub.air{background:linear-gradient(180deg,rgba(147,197,253,.3),rgba(147,197,253,.1))}
+.syr.pressed .plug{transform:translateY(42px)}
+.syr.pressed .sub.air{height:34%}
+.syr.deny{animation:shk .4s}
+.vol{font-family:'Space Grotesk';font-weight:700;font-size:.9rem;color:var(--muted)}
+.sTag{font-size:.75rem;font-weight:800;text-align:center}
+@media(max-width:560px){.syrRow{gap:10px}.barrel{width:58px;height:130px}.plug{height:32px}}
+/* pour */
+.pourCont{position:relative;width:170px;height:160px;border:3px solid var(--line);border-top:none;border-radius:0 0 26px 26px;margin:14px auto;background:rgba(128,160,220,.05);overflow:hidden}
+.pFill{position:absolute;transition:all .7s}
+.pFill.solid{bottom:12px;left:50%;transform:translateX(-50%);width:52px;height:52px;border-radius:10px;background:linear-gradient(135deg,#94a3b8,#475569)}
+.pFill.liquid{bottom:0;left:0;right:0;height:50%;background:linear-gradient(180deg,rgba(56,189,248,.65),rgba(37,99,235,.85));border-radius:0 0 22px 22px}
+.pFill.gas{inset:0;background:rgba(147,197,253,.18)}
+/* diffusion tube */
+.dTube{position:relative;height:64px;border:3px solid var(--line);border-radius:99px;margin:18px 6px;background:rgba(128,160,220,.05);overflow:hidden}
+.cot{position:absolute;top:0;bottom:0;width:44px;display:flex;align-items:center;justify-content:center;font-size:.55rem;font-weight:800;color:#041018;z-index:2}
+.cot.c1{left:0;background:linear-gradient(90deg,#fbbf24,#fbbf2400)}
+.cot.c2{right:0;background:linear-gradient(-90deg,#34d399,#34d39900)}
+.front{position:absolute;top:0;bottom:0;width:0}
+.front.f1{left:44px;background:linear-gradient(90deg,rgba(251,191,36,.5),rgba(251,191,36,.05))}
+.front.f2{right:44px;background:linear-gradient(-90deg,rgba(52,211,153,.5),rgba(52,211,153,.05))}
+.cloud{position:absolute;left:36%;top:50%;transform:translate(-50%,-50%) scale(0);font-size:1.6rem;transition:transform .6s;z-index:3}
+.cloud.on{transform:translate(-50%,-50%) scale(1)}
+.rRow{display:grid;grid-template-columns:120px 1fr;gap:10px;align-items:center;margin-top:10px;font-size:.82rem}
+.rBar{height:16px;background:var(--card);border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.rBar i{display:block;height:100%;width:0;border-radius:99px}
+/* tea cups — ALWAYS side by side */
+.teaCup{position:relative;width:120px;height:110px;border:3px solid var(--line);border-top:none;border-radius:0 0 24px 24px;margin:12px auto 6px;overflow:hidden;background:rgba(128,160,220,.05)}
+.tea{position:absolute;bottom:0;left:0;right:0;height:78%;background:rgba(146,64,14,0);transition:background .2s}
+.teaBag{position:absolute;top:-4px;left:50%;font-size:1.2rem;transform:translateX(-50%);z-index:2}
+.teaPct{font-family:'Space Grotesk';font-weight:700;text-align:center;color:var(--muted)}
+@media(max-width:520px){.row2{gap:8px}.row2 .tile{padding:12px}.teaCup{width:96px;height:92px}.row2 h3{font-size:.85rem}}
+/* molecule race */
+.mLane{display:grid;grid-template-columns:150px 1fr 70px;gap:10px;align-items:center;margin-top:12px;font-size:.8rem;font-weight:800}
+.mTrack{position:relative;height:34px;background:var(--card);border:1px solid var(--line);border-radius:99px}
+.mTrack::after{content:'🏁';position:absolute;right:6px;top:50%;transform:translateY(-50%);font-size:.8rem}
+.mB{position:absolute;top:50%;transform:translateY(-50%);left:2%;border-radius:50%}
+.mB.h{width:16px;height:16px;background:radial-gradient(circle at 32% 30%,#fff,#cbd5e1 60%,#94a3b8)}
+.mB.o{width:26px;height:26px;background:radial-gradient(circle at 32% 30%,#fca5a5,#dc2626 60%,#7f1d1d)}
+@media(max-width:560px){.mLane{grid-template-columns:90px 1fr 50px}}
+/* playground */
+#pgCv{width:100%;height:170px;border:1px solid var(--line);border-radius:14px;background:var(--card2)}
+.meter{flex:1;min-width:140px;height:12px;border-radius:99px;border:1px solid var(--line);overflow:hidden;background:var(--card2)}
+.meter i{display:block;height:100%;width:25%;background:linear-gradient(90deg,var(--cold),var(--hot));transition:width .2s}
+input[type=range]{accent-color:var(--hot);width:100%}
+.bottleSvg{cursor:pointer;display:block;margin:10px auto;transition:transform .3s}
+.bottleSvg.sq{transform:scaleX(.82) scaleY(.94)}
+footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
+.verified{display:inline-flex;align-items:center;gap:12px;border:1px solid var(--gold);border-radius:18px;padding:12px 22px;background:var(--card);color:var(--gold);font-weight:800}
+@media(max-width:440px){.verified{flex-wrap:wrap;justify-content:center}}
+#topBtn{position:fixed;bottom:20px;inset-inline-start:20px;z-index:85;width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,var(--hot),var(--gold));font-size:1.2rem;opacity:0;pointer-events:none;transition:.3s}
+#topBtn.show{opacity:1;pointer-events:auto}
 </style>
 </head>
 <body>
+<div id="progress"></div>
+<header class="topbar">
+  <div class="brand">🧊 States of Matter · حالات المادة</div>
+  <nav id="nav">
+    <a href="#hero" class="active">Start · البداية</a><a href="#matter">Matter · المادة</a><a href="#shape">Shape · الشكل</a>
+    <a href="#compress">Compress · الانضغاط</a><a href="#diffuse">Diffuse · الانتشار</a><a href="#factors">Factors · العوامل</a>
+    <a href="#play">Playground · الملعب</a><a href="#table">Table · الجدول</a><a href="#recap">Recap · الخلاصة</a>
+  </nav>
+  <button id="themeBtn" title="Theme · المظهر">☀️</button>
+</header>
+<div id="rail"><div class="tube"><i id="railFill"></i></div><div class="bulb"></div><b id="railVal">0°</b></div>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="particles" id="heroParticles"></div>
-  <span class="eyebrow">Unit 1 · Matter and Energy · Lesson 1</span>
-  <h1>States of Matter<br>&amp; Their Properties</h1>
-  <p class="sub">An interactive visual summary of solid, liquid and gas properties: shape, volume, compressibility, and diffusion speed — with live experiments and worked questions.</p>
-  <div class="states-row">
-    <div class="state-chip"><div class="chip-icon solid" id="iconSolid"></div>Solid</div>
-    <div class="state-chip"><div class="chip-icon liquid" id="iconLiquid"></div>Liquid</div>
-    <div class="state-chip"><div class="chip-icon gas" id="iconGas"></div>Gas</div>
+<section id="hero">
+  <canvas id="heroCv"></canvas>
+  <div class="heroIn">
+    <span class="kicker">Unit 1 · Matter and Energy · Lesson 1 <span style="opacity:.6">|</span> الوحدة 1 · الدرس 1</span>
+    <h1><span class="en">States of Matter & Their Properties</span><span class="ar">حالات المادة وخصائصها</span></h1>
+    <p class="desc en">An interactive visual summary of solid, liquid and gas properties: shape, volume, compressibility and diffusion speed — with live experiments and worked questions.</p>
+    <p class="desc ar">ملخص بصري تفاعلي لخصائص الصلب والسائل والغاز: الشكل، الحجم، الانضغاطية وسرعة الانتشار — مع تجارب حية وأسئلة محلولة.</p>
+    <div class="badges">
+      <span class="badge"><span class="en">💉 Syringe Compress Lab</span><span class="ar">💉 معمل الحقن</span></span>
+      <span class="badge"><span class="en">☁️ NH₃/HCl Tube</span><span class="ar">☁️ أنبوبة الانتشار</span></span>
+      <span class="badge"><span class="en">🍵 Tea Diffusion Sim</span><span class="ar">🍵 محاكي الشاي</span></span>
+      <span class="badge"><span class="en">🏁 H₂ vs O₂ Race</span><span class="ar">🏁 سباق الجزيئات</span></span>
+      <span class="badge"><span class="en">🎚️ Relationships Playground</span><span class="ar">🎚️ ملعب العلاقات</span></span>
+      <span class="badge vip"><span class="en">✔️ Reviewed by Dr. Wael Aboagiza</span><span class="ar">✔️ مراجعة د. وائل أبو عجيزة</span></span>
+    </div>
+    <div class="scrollHint">⌄</div>
   </div>
-  <div class="credit-tag">Prepared by #Dr_Wael_Aboagiza</div>
-</div>
+</section>
 
-<div class="wrap">
+<main>
+<!-- ============ MATTER ============ -->
+<section id="matter" class="card reveal">
+  <div class="chead"><span class="cnum">01</span><div><h2><span class="en">Core Concept: What is Matter?</span><span class="ar">المفهوم الأساسي: إيه هي المادة؟</span></h2></div></div>
+  <div class="grid3">
+    <div class="tile"><span class="tag">Definition · تعريف</span>
+      <p class="en">Everything that has mass and occupies space.</p>
+      <p class="ar">كل شيء له كتلة ويشغل حيزًا من الفراغ.</p></div>
+    <div class="tile"><span class="tag hot">Classified by · تُصنَّف حسب</span>
+      <p class="en">Its physical state into: solid, liquid and gaseous.</p>
+      <p class="ar">حالتها الفيزيائية إلى: صلبة وسائلة وغازية.</p></div>
+    <div class="tile"><span class="tag ok">Its mass · كتلتها</span>
+      <p class="en">A constant quantity that does not change from one place to another.</p>
+      <p class="ar">مقدار ثابت لا يتغير من مكان لآخر.</p></div>
+  </div>
+  <div class="quiz">
+    <p class="en"><strong>Q:</strong> All of the following have the properties of matter, EXCEPT:</p>
+    <p class="ar"><strong>س:</strong> كل مما يلي له خصائص المادة، عدا:</p>
+    <div class="opts">
+      <button class="opt">Copper · النحاس</button><button class="opt" data-ok>Music · الموسيقى</button>
+      <button class="opt">Ruler · المسطرة</button><button class="opt">Computer · الكمبيوتر</button>
+    </div>
+    <div class="exp"><span class="en">✔️ Music — copper, ruler and computer have mass and occupy space, while music is sound ENERGY, not matter.</span><span class="ar">✔️ الموسيقى — النحاس والمسطرة والكمبيوتر مواد لها كتلة وتشغل حيزًا، أما الموسيقى فهي طاقة صوتية وليست مادة.</span></div>
+  </div>
+</section>
 
-  <!-- DEFINITION -->
-  <section class="reveal">
-    <div class="section-head">
-      <span class="tag">Core Concept</span>
-      <h2>What is Matter?</h2>
-    </div>
-    <div class="def-card">
-      <div class="def-item">
-        <div class="label">Definition</div>
-        <div class="txt">Everything that has mass and occupies space.</div>
-      </div>
-      <div class="def-item">
-        <div class="label">Classified according to</div>
-        <div class="txt">Its physical state, into: solid, liquid, and gaseous.</div>
-      </div>
-      <div class="def-item">
-        <div class="label">Its mass</div>
-        <div class="txt">Is a constant quantity that does not change from one place to another.</div>
-      </div>
-    </div>
+<!-- ============ SHAPE ============ -->
+<section id="shape" class="card reveal">
+  <div class="chead"><span class="cnum">02</span><div><h2><span class="en">Property 1: Shape & Fluidity</span><span class="ar">الخاصية 1: الشكل والانسيابية</span></h2></div></div>
+  <p class="en">When materials are transferred from one container to another, some change shape and some don't. Try it:</p>
+  <p class="ar">لما بننقل مواد من وعاء لآخر، في مواد بتغيّر شكلها ومواد لأ. جرّب بنفسك:</p>
+  <div class="pourCont" dir="ltr"><div class="pFill" id="pFill"></div></div>
+  <div class="opts" style="justify-content:center">
+    <button class="opt" data-p="solid">🧊 Iron cube · مكعب حديد</button>
+    <button class="opt" data-p="liquid">💧 Water · ماء</button>
+    <button class="opt" data-p="gas">💨 Gas · غاز</button>
+    <button class="opt" data-p="" style="border-style:dashed">✖ Empty · فضّي</button>
+  </div>
+  <div id="pourMsg" class="note" style="display:none"></div>
+  <div class="grid3" style="margin-top:16px">
+    <div class="tile"><span class="tag">Solid · صلب (wood, iron)</span>
+      <p class="en">Neither flows nor changes shape — fixed, definite shape.</p>
+      <p class="ar">لا ينساب ولا يتغير شكله — شكله ثابت ومحدد.</p></div>
+    <div class="tile"><span class="tag hot">Liquid · سائل (water, oil)</span>
+      <p class="en">Flows and changes shape — takes the shape of its container.</p>
+      <p class="ar">ينساب ويتغير شكله — يأخذ شكل وعائه.</p></div>
+    <div class="tile"><span class="tag ok">Gas · غاز (air, oxygen)</span>
+      <p class="en">Flows and changes shape — takes the shape of its container.</p>
+      <p class="ar">ينساب ويتغير شكله — يأخذ شكل وعائه.</p></div>
+  </div>
+  <div class="note ok">
+    <span class="en"><strong>We conclude:</strong> liquids & gases share fluidity → they are grouped as <strong>fluids</strong>. A solid's shape does not change when transferred.</span>
+    <span class="ar"><strong>نستنتج:</strong> السوائل والغازات تشترك في الانسيابية → تُجمع باسم <strong>الموائع</strong>. أما شكل الصلب فلا يتغير عند نقله.</span>
+  </div>
+  <div class="note gold">
+    <span class="en">⚠️ Take care: liquids differ in fluidity according to their <strong>viscosity</strong>. When transferred, the volume of a liquid stays constant, while the volume of a gas changes.</span>
+    <span class="ar">⚠️ خد بالك: السوائل تختلف في انسيابيتها حسب <strong>لزوجتها</strong>. عند النقل، حجم السائل ثابت بينما حجم الغاز يتغير.</span>
+  </div>
+</section>
 
-    <div class="qa reveal">
-      <div class="q">❓ All of the following are objects that have the properties of matter, except: copper – music – ruler – computer</div>
-      <div class="a">✅ Answer: <b>Music</b> — copper, a ruler and a computer are materials that have mass and occupy space, while music is sound energy, not matter.</div>
+<!-- ============ COMPRESS ============ -->
+<section id="compress" class="card reveal">
+  <div class="chead"><span class="cnum">03</span><div><h2><span class="en">Property 2: Volume & Compressibility</span><span class="ar">الخاصية 2: الحجم والانضغاطية</span></h2></div></div>
+  <p class="en">Three identical sealed syringes hold equal volumes. Press each plunger and watch what happens.</p>
+  <p class="ar">تلات حقن متطابقة مقفولة فيها حجوم متساوية. اضغط كل مكبس وشوف اللي هيحصل.</p>
+  <div class="syrRow" dir="ltr">
+    <div class="syr" id="syS"><div class="plug"></div><div class="barrel"><div class="sub sand"></div></div><div class="vol" id="vS">100%</div><div class="sTag"><span class="en">Solid · sand</span><span class="ar">صلب · رمل</span></div><button class="btn pBtn" data-s="S">▶ Press · اضغط</button></div>
+    <div class="syr" id="syW"><div class="plug"></div><div class="barrel"><div class="sub water"></div></div><div class="vol" id="vW">100%</div><div class="sTag"><span class="en">Liquid · water</span><span class="ar">سائل · ماء</span></div><button class="btn pBtn" data-s="W">▶ Press · اضغط</button></div>
+    <div class="syr" id="syA"><div class="plug"></div><div class="barrel"><div class="sub air"></div></div><div class="vol" id="vA">100%</div><div class="sTag"><span class="en">Gas · air</span><span class="ar">غاز · هوا</span></div><button class="btn pBtn" data-s="A">▶ Press · اضغط</button></div>
+  </div>
+  <div class="labctrl"><button class="btn ghost" id="syrReset">↺ Reset all · إعادة الكل</button></div>
+  <div class="note ok">
+    <span class="en"><strong>We conclude:</strong> solids & liquids have a fixed volume and are <strong>incompressible</strong>; gases have no definite volume and are <strong>compressible</strong>.</span>
+    <span class="ar"><strong>نستنتج:</strong> الصلب والسائل لهما حجم ثابت و<strong>لا ينضغطان</strong>؛ أما الغاز فحجمه غير محدد و<strong>قابل للانضغاط</strong>.</span>
+  </div>
+  <div class="defBox">
+    <b class="dT">📌 Compressibility · الانضغاطية</b>
+    <p class="en">The possibility of decreasing the volume of gases by increasing the pressure exerted on them.</p>
+    <p class="ar">إمكانية إنقاص حجم الغازات بزيادة الضغط المؤثر عليها.</p>
+  </div>
+  <div class="quiz">
+    <p class="en"><strong>Q:</strong> A CLOSED bottle is squeezed and deforms — what happened to the air inside? (tap the bottle to squeeze it)</p>
+    <p class="ar"><strong>س:</strong> زجاجة مقفولة اتضغطت فاتغير شكلها — حصل إيه للهوا اللي جواها؟ (دوس على الزجاجة)</p>
+    <svg class="bottleSvg" id="bottle" viewBox="0 0 90 150" width="80" dir="ltr">
+      <rect x="34" y="4" width="22" height="14" rx="4" fill="#94a3b8"/>
+      <path d="M30 20 h30 v18 c10 8 14 20 14 34 v50 a14 14 0 0 1 -14 14 h-30 a14 14 0 0 1 -14 -14 v-50 c0 -14 4 -26 14 -34 z" fill="rgba(147,197,253,.2)" stroke="#38bdf8" stroke-width="3"/>
+      <text x="45" y="95" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="700">AIR · هوا</text>
+    </svg>
+    <div class="opts">
+      <button class="opt">It flowed out · خرج بره</button>
+      <button class="opt" data-ok>It was compressed · انضغط</button>
+      <button class="opt">It diffused · انتشر</button>
+      <button class="opt">Its volume increased · زاد حجمه</button>
     </div>
-  </section>
+    <div class="exp"><span class="en">✔️ The bottle is closed → no air flow, no diffusion, no volume increase. The deformation shows the air inside was COMPRESSED by the applied pressure.</span><span class="ar">✔️ الزجاجة مقفولة → مفيش سريان ولا انتشار ولا زيادة حجم. تغيّر الشكل بيوضح إن الهوا انضغط بفعل الضغط الخارجي.</span></div>
+  </div>
+</section>
 
-  <!-- PROPERTY 1: SHAPE & FLUIDITY -->
-  <section class="reveal">
-    <div class="section-head">
-      <span class="tag">Property 1</span>
-      <h2>Shape and Fluidity</h2>
-      <p>When different materials are transferred from one container to another, it can be noticed that some change shape and some don't.</p>
-    </div>
+<!-- ============ DIFFUSION ============ -->
+<section id="diffuse" class="card reveal">
+  <div class="chead"><span class="cnum">04</span><div><h2><span class="en">Property 3: Diffusibility</span><span class="ar">الخاصية 3: القدرة على الانتشار</span></h2></div></div>
+  <div class="defBox">
+    <b class="dT">Diffusion · الانتشار</b>
+    <p class="en">The movement of particles of matter from a region of high concentration to a region of low concentration.</p>
+    <p class="ar">حركة جسيمات المادة من منطقة التركيز العالي لمنطقة التركيز المنخفض.</p>
+  </div>
+  <h3 style="margin-top:18px">🧪 <span class="en">Experiment: Ammonia (NH₃) meets Hydrogen Chloride (HCl)</span> · <span class="ar">تجربة: الأمونيا تقابل كلوريد الهيدروجين</span></h3>
+  <p class="en">Cotton (1) wetted with HCl on one end, cotton (2) wetted with ammonia on the other. Where the gases meet — a white cloud forms. Press Run!</p>
+  <p class="ar">قطنة (1) مبللة بحمض HCl في طرف، وقطنة (2) مبللة بالأمونيا في الطرف التاني. عند التقاء الغازين بتتكون سحابة بيضاء. اضغط تشغيل!</p>
+  <div class="dTube" dir="ltr">
+    <div class="cot c1">Cotton 1 · HCl</div>
+    <div class="front f1" id="fHCl"></div>
+    <div class="front f2" id="fNH3"></div>
+    <div class="cloud" id="cloud">☁️</div>
+    <div class="cot c2">Cotton 2 · NH₃</div>
+  </div>
+  <div class="labctrl">
+    <button class="btn" id="tubeRun">▶ Run diffusion · شغّل الانتشار</button>
+    <button class="btn ghost" id="tubeReset">↺ Reset · إعادة</button>
+  </div>
+  <div class="speedRow" data-spd="tube"><span>⏩ Speed · السرعة:</span>
+    <button class="spBtn active" data-sp="1">1×</button><button class="spBtn" data-sp="2">2×</button><button class="spBtn" data-sp="4">4×</button></div>
+  <div class="note pur" id="tubeObs" style="display:none">
+    <span class="en">👁️ The white cloud forms NEARER to cotton (1) (HCl) → ammonia diffused FASTER (travelled a longer distance in the same time).</span>
+    <span class="ar">👁️ السحابة البيضاء تكوّنت أقرب لقطنة (1) (HCl) → يعني الأمونيا انتشرت أسرع (قطعت مسافة أطول في نفس الوقت).</span>
+  </div>
+  <h3 style="margin-top:20px">🏁 <span class="en">Race the diffusion speeds of the three states</span> · <span class="ar">سباق سرعة الانتشار للحالات الثلاث</span></h3>
+  <div class="rRow"><span><span class="en">🧊 Solid · very slow</span><span class="ar">صلب · بطيء جدًا</span></span><div class="rBar"><i id="rS" style="background:#94a3b8"></i></div></div>
+  <div class="rRow"><span><span class="en">💧 Liquid · moderate</span><span class="ar">سائل · متوسط</span></span><div class="rBar"><i id="rL" style="background:#38bdf8"></i></div></div>
+  <div class="rRow"><span><span class="en">☁️ Gas · very fast</span><span class="ar">غاز · سريع جدًا</span></span><div class="rBar"><i id="rG" style="background:#fb923c"></i></div></div>
+  <div class="labctrl">
+    <button class="btn" id="raceRun">▶ Run all three · شغّل الثلاثة</button>
+    <button class="btn ghost" id="raceReset">↺ Reset · إعادة</button>
+  </div>
+  <div class="speedRow" data-spd="race"><span>⏩ Speed · السرعة:</span>
+    <button class="spBtn active" data-sp="1">1×</button><button class="spBtn" data-sp="2">2×</button><button class="spBtn" data-sp="4">4×</button></div>
+  <p class="en mut" style="font-size:.8rem">Examples: dye in a sponge (solid) · potassium permanganate in water — hours (liquid) · bromine vapour in air — minutes (gas).</p>
+  <p class="ar mut" style="font-size:.8rem">أمثلة: صبغة في إسفنج (صلب) · برمنجنات في ماء — ساعات (سائل) · بخار بروم في الهواء — دقائق (غاز).</p>
+  <div class="note ok">
+    <span class="en"><strong>We conclude — diffusion speed:</strong> solids &lt; liquids &lt; gases.</span>
+    <span class="ar"><strong>نستنتج — سرعة الانتشار:</strong> صلب &lt; سائل &lt; غاز.</span>
+  </div>
+  <div class="quiz">
+    <p class="en"><strong>Q1:</strong> Which gas diffuses faster in the tube experiment?</p>
+    <p class="ar"><strong>س1:</strong> أي الغازين انتشر أسرع في تجربة الأنبوبة؟</p>
+    <div class="opts"><button class="opt" data-ok>Ammonia NH₃ · الأمونيا</button><button class="opt">Hydrogen chloride HCl · كلوريد الهيدروجين</button></div>
+    <div class="exp"><span class="en">✔️ Ammonia — the white cloud forms nearer to cotton (1) wetted with HCl, so ammonia travelled a longer distance in the same time.</span><span class="ar">✔️ الأمونيا — لأن السحابة تكوّنت أقرب لقطنة (1)، يعني الأمونيا قطعت مسافة أطول في نفس الوقت.</span></div>
+  </div>
+  <div class="quiz">
+    <p class="en"><strong>Q2:</strong> Which gas molecule has the GREATER mass?</p>
+    <p class="ar"><strong>س2:</strong> أي جزيء له الكتلة الأكبر؟</p>
+    <div class="opts"><button class="opt">Ammonia NH₃ · الأمونيا</button><button class="opt" data-ok>Hydrogen chloride HCl · كلوريد الهيدروجين</button></div>
+    <div class="exp"><span class="en">✔️ HCl — its diffusion speed is lower, because mass and diffusion speed are inversely related.</span><span class="ar">✔️ كلوريد الهيدروجين — لأن سرعة انتشاره أقل، والكتلة وسرعة الانتشار علاقتهما عكسية.</span></div>
+  </div>
+</section>
 
-    <div class="tri-grid">
-      <div class="state-card solid">
-        <div class="head"><span class="swatch solid"></span><span class="name">Solid — e.g. wood, iron</span></div>
-        <div class="mini-particles solid"></div>
-        <div class="result">Neither flows nor changes shape</div>
-        <div class="desc">Its shape is fixed and definite; it does not take the shape of the container.</div>
-      </div>
-      <div class="state-card liquid">
-        <div class="head"><span class="swatch liquid"></span><span class="name">Liquid — e.g. water, oil</span></div>
-        <div class="mini-particles liquid"></div>
-        <div class="result">Flows and changes shape</div>
-        <div class="desc">Takes the shape of the container that holds it.</div>
-      </div>
-      <div class="state-card gas">
-        <div class="head"><span class="swatch gas"></span><span class="name">Gas — e.g. air, oxygen</span></div>
-        <div class="mini-particles gas"></div>
-        <div class="result">Flows and changes shape</div>
-        <div class="desc">Takes the shape of the container that holds it.</div>
-      </div>
-    </div>
+<!-- ============ FACTORS ============ -->
+<section id="factors" class="card reveal">
+  <div class="chead"><span class="cnum">05</span><div><h2><span class="en">Factors on Which the Diffusion Rate Depends</span><span class="ar">العوامل التي يعتمد عليها معدل الانتشار</span></h2></div></div>
+  <div class="row2">
+    <div class="tile" style="border-color:var(--hot)"><span class="tag hot">1 · Temperature of the diffusion medium</span>
+      <span class="ar" style="font-weight:800">1 · درجة حرارة وسط الانتشار</span>
+      <p class="en" style="margin-top:6px">The diffusion rate <strong>increases ⬆</strong> as the temperature of the medium <strong>increases ⬆</strong> — <strong>(Direct relationship)</strong>.</p>
+      <p class="ar">معدل الانتشار <strong>بيزيد ⬆</strong> بزيادة درجة حرارة الوسط — <strong>(علاقة طردية)</strong>.</p></div>
+    <div class="tile" style="border-color:var(--cold)"><span class="tag">2 · Mass of diffusing molecules</span>
+      <span class="ar" style="font-weight:800">2 · كتلة الجزيئات المنتشرة</span>
+      <p class="en" style="margin-top:6px">The diffusion rate <strong>decreases ⬇</strong> as the mass of the diffusing particles <strong>increases ⬆</strong> — <strong>(Inverse relationship)</strong>.</p>
+      <p class="ar">معدل الانتشار <strong>بيقل ⬇</strong> بزيادة كتلة الجسيمات المنتشرة — <strong>(علاقة عكسية)</strong>.</p></div>
+  </div>
+  <h3 style="margin-top:20px">🍵 <span class="en">Live proof 1: tea in cold vs hot water — side by side, compare!</span> · <span class="ar">دليل حي 1: الشاي في ماء بارد وساخن — جنب بعض وقارن!</span></h3>
+  <div class="row2" style="margin-top:8px">
+    <div class="tile"><h3>❄️ <span class="en">Cold water</span> · <span class="ar">ماء بارد</span></h3>
+      <div class="teaCup" dir="ltr"><div class="tea" id="teaC"></div><span class="teaBag">🍵</span></div>
+      <div class="teaPct" id="teaCp" dir="ltr">diffusion 0%</div></div>
+    <div class="tile"><h3>🔥 <span class="en">Hot water</span> · <span class="ar">ماء ساخن</span></h3>
+      <div class="teaCup" dir="ltr"><div class="tea" id="teaH"></div><span class="teaBag">🍵</span></div>
+      <div class="teaPct" id="teaHp" dir="ltr">diffusion 0%</div></div>
+  </div>
+  <div class="labctrl">
+    <button class="btn" id="teaBtn">🍵 Drop tea bags · ضَع كيسَي الشاي</button>
+    <button class="btn ghost" id="teaReset">↺ Reset · إعادة</button>
+  </div>
+  <div class="speedRow" data-spd="tea"><span>⏩ Speed · السرعة:</span>
+    <button class="spBtn active" data-sp="1">1×</button><button class="spBtn" data-sp="2">2×</button><button class="spBtn" data-sp="4">4×</button></div>
+  <div class="note hot" id="teaObs" style="display:none">
+    <span class="en">👁️ Tea particles diffuse in hot water FASTER than in cold water → direct relationship with temperature.</span>
+    <span class="ar">👁️ جسيمات الشاي بتنتشر في الماء الساخن أسرع من البارد → علاقة طردية مع درجة الحرارة.</span>
+  </div>
+  <h3 style="margin-top:20px">🏁 <span class="en">Live proof 2: H₂ (lower mass) vs O₂ (greater mass)</span> · <span class="ar">دليل حي 2: H₂ (أقل كتلة) ضد O₂ (أكبر كتلة)</span></h3>
+  <div class="mLane" dir="ltr"><span><span class="en">H₂ — lower mass</span><span class="ar">H₂ — كتلة أقل</span></span><div class="mTrack"><i class="mB h" id="mH"></i></div><b class="en" style="color:var(--ok)">Faster ⬆</b></div>
+  <div class="mLane" dir="ltr"><span><span class="en">O₂ — greater mass</span><span class="ar">O₂ — كتلة أكبر</span></span><div class="mTrack"><i class="mB o" id="mO"></i></div><b class="en" style="color:var(--bad)">Slower ⬇</b></div>
+  <div class="labctrl">
+    <button class="btn" id="mBtn">🏁 Start race · ابدأ السباق</button>
+    <button class="btn ghost" id="mReset">↺ Reset · إعادة</button>
+  </div>
+  <div class="speedRow" data-spd="mol"><span>⏩ Speed · السرعة:</span>
+    <button class="spBtn active" data-sp="1">1×</button><button class="spBtn" data-sp="2">2×</button><button class="spBtn" data-sp="4">4×</button></div>
+  <div class="note" id="mObs" style="display:none">
+    <span class="en">🏆 H₂ (lower mass) diffuses faster than O₂ (greater mass) → inverse relationship with mass.</span>
+    <span class="ar">🏆 الهيدروجين (الأقل كتلة) انتشر أسرع من الأكسجين (الأكبر كتلة) → علاقة عكسية مع الكتلة.</span>
+  </div>
+</section>
 
-    <div class="note-box">
-      <span class="note-title">We conclude</span>
-      Liquids and gases share the property of <b>fluidity</b>, so they are grouped together as <b>fluids</b> (materials that flow and take the shape of their container). A solid's shape does not change when transferred from place to place.
-      <br><br>
-      ⚠️ Take care: Liquids differ in fluidity according to their <b>viscosity</b>. When fluids flow from one container to another, the <b>volume of a liquid stays constant</b>, while the <b>volume of a gas changes</b>.
-    </div>
-  </section>
+<!-- ============ PLAYGROUND ============ -->
+<section id="play" class="card reveal">
+  <div class="chead"><span class="cnum">🎚️</span><div><h2><span class="en">Relationships Playground — apply it yourself!</span><span class="ar">ملعب العلاقات — طبّق بنفسك!</span></h2></div></div>
+  <p class="en">Move the two sliders and watch the particles: diffusion speed rises with temperature ⬆ and falls with mass ⬇.</p>
+  <p class="ar">حرّك السلايدرز الاتنين وراقب الجسيمات: سرعة الانتشار بتزيد مع الحرارة ⬆ وتقل مع الكتلة ⬇.</p>
+  <div class="labctrl" style="margin-top:10px">
+    <div style="flex:1;min-width:200px"><span class="en">🌡️ Medium temperature · حرارة الوسط</span><input type="range" id="pgT" min="0" max="100" value="30"></div>
+    <div style="flex:1;min-width:200px"><span class="en">⚖️ Molecule mass · كتلة الجزيء</span><input type="range" id="pgM" min="5" max="100" value="30"></div>
+  </div>
+  <canvas id="pgCv"></canvas>
+  <div class="labctrl"><span style="font-weight:800;font-size:.8rem">⚡ <span class="en">Relative diffusion speed</span> · <span class="ar">السرعة النسبية للانتشار</span></span><div class="meter"><i id="pgMeter"></i></div><b class="en" id="pgVal" style="font-family:'Space Grotesk'">—</b></div>
+</section>
 
-  <!-- PROPERTY 2: VOLUME & COMPRESSIBILITY (INTERACTIVE) -->
-  <section class="reveal">
-    <div class="section-head">
-      <span class="tag">Property 2 · Interactive</span>
-      <h2>Volume and Compressibility</h2>
-      <p>Three identical syringes, sealed with plugs, hold equal volumes of different substances. Press each plunger and watch what happens.</p>
-    </div>
+<!-- ============ TABLE ============ -->
+<section id="table" class="card reveal">
+  <div class="chead"><span class="cnum">📊</span><div><h2><span class="en">Full Comparison of the States of Matter</span><span class="ar">المقارنة الكاملة لحالات المادة</span></h2></div></div>
+  <div class="grid3">
+    <div class="tile"><span class="tag">🧊 Solid · صلب</span>
+      <p class="en">Shape: does NOT change (fixed, definite).</p><p class="ar">الشكل: لا يتغير (ثابت ومحدد).</p>
+      <p class="en mut">Fluidity: does not flow.</p><p class="ar mut">الانسيابية: لا ينساب.</p>
+      <p class="en mut">Compressibility: incompressible.</p><p class="ar mut">الانضغاطية: لا ينضغط.</p>
+      <p class="en mut">Volume on compression: does not change.</p><p class="ar mut">الحجم عند الضغط: لا يتغير.</p>
+      <p class="en mut">Diffusion: very slow.</p><p class="ar mut">الانتشار: بطيء جدًا.</p></div>
+    <div class="tile"><span class="tag hot">💧 Liquid · سائل</span>
+      <p class="en">Shape: changes (takes container's shape).</p><p class="ar">الشكل: يتغير (يأخذ شكل الوعاء).</p>
+      <p class="en mut">Fluidity: flows, depending on viscosity.</p><p class="ar mut">الانسيابية: ينساب حسب لزوجته.</p>
+      <p class="en mut">Compressibility: incompressible.</p><p class="ar mut">الانضغاطية: لا ينضغط.</p>
+      <p class="en mut">Volume on compression: does not change.</p><p class="ar mut">الحجم عند الضغط: لا يتغير.</p>
+      <p class="en mut">Diffusion: moderate.</p><p class="ar mut">الانتشار: متوسط.</p></div>
+    <div class="tile"><span class="tag ok">☁️ Gas · غاز</span>
+      <p class="en">Shape: changes (takes container's shape).</p><p class="ar">الشكل: يتغير (يأخذ شكل الوعاء).</p>
+      <p class="en mut">Fluidity: flows readily.</p><p class="ar mut">الانسيابية: ينساب بسهولة.</p>
+      <p class="en mut">Compressibility: compressible.</p><p class="ar mut">الانضغاطية: قابل للانضغاط.</p>
+      <p class="en mut">Volume on compression: decreases (takes container's volume).</p><p class="ar mut">الحجم عند الضغط: يقل (يأخذ حجم الوعاء).</p>
+      <p class="en mut">Diffusion: very fast.</p><p class="ar mut">الانتشار: سريع جدًا.</p></div>
+  </div>
+</section>
 
-    <div class="tri-grid">
-      <div class="state-card solid">
-        <div class="head"><span class="swatch solid"></span><span class="name">Solid — fine sand</span></div>
-        <div class="syringe-exp">
-          <div class="syringe solid" id="syrSolid"><div class="piston" id="pistonSolid" style="height:26%"></div><div class="fill"></div></div>
-          <div class="gauge" id="gaugeSolid">Volume: <b>100%</b></div>
-        </div>
-        <div class="btn-row" style="justify-content:center;"><button class="btn small" onclick="pressSyringe('Solid')">▶ Press plunger</button></div>
-        <div class="desc" style="margin-top:10px; text-align:center;">Cannot be compressed — volume stays constant.</div>
-      </div>
-      <div class="state-card liquid">
-        <div class="head"><span class="swatch liquid"></span><span class="name">Liquid — water</span></div>
-        <div class="syringe-exp">
-          <div class="syringe liquid" id="syrLiquid"><div class="piston" id="pistonLiquid" style="height:26%"></div><div class="fill"></div></div>
-          <div class="gauge" id="gaugeLiquid">Volume: <b>100%</b></div>
-        </div>
-        <div class="btn-row" style="justify-content:center;"><button class="btn small" onclick="pressSyringe('Liquid')">▶ Press plunger</button></div>
-        <div class="desc" style="margin-top:10px; text-align:center;">Cannot be compressed — volume stays constant.</div>
-      </div>
-      <div class="state-card gas">
-        <div class="head"><span class="swatch gas"></span><span class="name">Gas — air</span></div>
-        <div class="syringe-exp">
-          <div class="syringe gas" id="syrGas"><div class="piston" id="pistonGas" style="height:26%"></div><div class="fill"></div></div>
-          <div class="gauge" id="gaugeGas">Volume: <b>100%</b></div>
-        </div>
-        <div class="btn-row" style="justify-content:center;"><button class="btn small" onclick="pressSyringe('Gas')">▶ Press plunger</button></div>
-        <div class="desc" style="margin-top:10px; text-align:center;">Can be compressed — volume decreases.</div>
-      </div>
-    </div>
-    <div style="text-align:center; margin-top:16px;">
-      <button class="btn" onclick="resetSyringes()">↺ Reset all</button>
-    </div>
-
-    <div class="note-box">
-      <span class="note-title">We conclude</span>
-      Solids and liquids have a fixed (definite) volume and are both <b>incompressible</b>. Gases do not have a definite volume and <b>are compressible</b>.
-      <br><br>
-      📌 <b>Compressibility</b>: the possibility of decreasing the volume of gases by increasing the pressure exerted on them.
-    </div>
-
-    <div class="qa reveal">
-      <div class="q">❓ A closed bottle is squeezed and its shape deforms. What happened to the air inside it? <span style="color:var(--gold);">(Click the bottle to squeeze it)</span></div>
-      <div class="bottle-exp">
-        <div class="bottle" id="bottle" onclick="squeezeBottle()"></div>
-        <div class="bottle-hint" id="bottleHint">Tap the bottle to squeeze it →</div>
-      </div>
-      <div class="btn-row" style="justify-content:center;">
-        <button class="btn small" onclick="toggleAnswer('bottleAnswer')">Show / hide answer</button>
-      </div>
-      <div class="a hidden-ans" id="bottleAnswer" style="margin-top:14px;">
-        Since the bottle is <b>closed</b>: there is no air flow, no diffusion, and no increase in air volume.
-        <br>✅ Therefore, the deformation of the bottle shows that the air inside it was <b>compressed</b> due to the pressure applied on the bottle.
-      </div>
-    </div>
-  </section>
-
-  <!-- PROPERTY 3: DIFFUSIBILITY (INTERACTIVE) -->
-  <section class="reveal">
-    <div class="section-head">
-      <span class="tag">Property 3 · Interactive</span>
-      <h2>Diffusibility</h2>
-      <p><b style="color:var(--gold)">Diffusion:</b> the movement of particles of matter from a region of high concentration to a region of low concentration.</p>
-    </div>
-
-    <div class="tube-exp">
-      <div class="section-head" style="margin-bottom:6px;">
-        <h3 style="font-family:'Sora',sans-serif; font-size:17px; font-weight:700;">Experiment: Ammonia (NH₃) meets Hydrogen Chloride (HCl)</h3>
-        <p style="margin-top:8px;">An open-ended tube has cotton (1) wetted with HCl acid on one end, releasing hydrogen chloride gas, and cotton (2) wetted with ammonia solution on the other end, releasing ammonia gas. Where the two gases meet, a white cloud forms.</p>
-      </div>
-      <div class="tube-wrap" id="tubeWrap">
-        <div class="tube">
-          <div class="cotton hcl">HCl</div>
-          <div class="cotton nh3">NH₃</div>
-          <div class="cloud" id="cloud"></div>
-        </div>
-      </div>
-      <div class="tube-labels"><span>Cotton (1): HCl</span><span>Cotton (2): NH₃</span></div>
-      <div class="btn-row" style="justify-content:center;">
-        <button class="btn" onclick="runTube()">▶ Run diffusion experiment</button>
-        <button class="btn" onclick="resetTube()">↺ Reset</button>
-      </div>
-      <div class="tube-result" id="tubeResult"></div>
-    </div>
-
-    <div class="tri-grid" style="margin-top:26px;">
-      <div class="state-card solid">
-        <div class="head"><span class="swatch solid"></span><span class="name">Solid</span></div>
-        <div class="result">Very slow diffusion</div>
-        <div class="example">Example: diffusion of a dye in a sponge</div>
-      </div>
-      <div class="state-card liquid">
-        <div class="head"><span class="swatch liquid"></span><span class="name">Liquid</span></div>
-        <div class="result">Moderate diffusion</div>
-        <div class="example">Example: diffusion of potassium permanganate in water (hours)</div>
-      </div>
-      <div class="state-card gas">
-        <div class="head"><span class="swatch gas"></span><span class="name">Gas</span></div>
-        <div class="result">Very fast diffusion</div>
-        <div class="example">Example: diffusion of bromine vapour in the air (minutes)</div>
-      </div>
-    </div>
-
-    <div class="section-head" style="margin-top:36px; margin-bottom:10px;">
-      <h3 style="font-family:'Sora',sans-serif; font-size:17px; font-weight:700;">Race the diffusion speeds</h3>
-      <p>Press "Run" and watch how fast each state diffuses, relative to the others.</p>
-    </div>
-    <div class="race-grid">
-      <div class="race-card">
-        <div class="head"><span class="swatch solid"></span><span class="name" style="font-family:'Sora',sans-serif; font-weight:700;">Solid</span></div>
-        <div class="race-track"><div class="race-fill solid" id="raceSolid"></div></div>
-        <div class="race-time" id="raceTimeSolid">Duration: very slow</div>
-      </div>
-      <div class="race-card">
-        <div class="head"><span class="swatch liquid"></span><span class="name" style="font-family:'Sora',sans-serif; font-weight:700;">Liquid</span></div>
-        <div class="race-track"><div class="race-fill liquid" id="raceLiquid"></div></div>
-        <div class="race-time" id="raceTimeLiquid">Duration: moderate</div>
-      </div>
-      <div class="race-card">
-        <div class="head"><span class="swatch gas"></span><span class="name" style="font-family:'Sora',sans-serif; font-weight:700;">Gas</span></div>
-        <div class="race-track"><div class="race-fill gas" id="raceGas"></div></div>
-        <div class="race-time" id="raceTimeGas">Duration: very fast</div>
-      </div>
-    </div>
-    <div style="text-align:center; margin:16px 0 6px;">
-      <button class="btn" onclick="runRace()">▶ Run all three</button>
-      <button class="btn" onclick="resetRace()">↺ Reset</button>
-    </div>
-
-    <div class="note-box">
-      <span class="note-title">We conclude</span>
-      Speed of diffusion: <b>solids &lt; liquids &lt; gases</b>
-      <br><br>
-      ⚠️ Take care:
-      <br>• The speed of diffusion depends on the temperature of the medium — it increases as temperature increases.
-      <br>• The speed of diffusion of gas molecules increases as their mass decreases.
-    </div>
-
-    <div class="qa reveal">
-      <div class="q">❓ Based on the tube experiment above:</div>
-      <div class="a">
-        <b>1) Which gas diffuses faster?</b> Ammonia gas diffuses faster than hydrogen chloride gas, because the white cloud forms nearer to cotton (1), wetted with HCl acid — meaning ammonia molecules travelled a longer distance in the same time.
-        <br><br>
-        <b>2) Which gas molecule has greater mass?</b> The hydrogen chloride molecule has greater mass, because its speed of diffusion is lower (mass and diffusion speed are inversely related).
-      </div>
-    </div>
-  </section>
-
-  <!-- COMPARISON TABLE -->
-  <section class="reveal">
-    <div class="section-head">
-      <span class="tag">Reference Table</span>
-      <h2>Full Comparison of the States of Matter</h2>
-    </div>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr><th>Property</th><th class="solid">Solid Matter</th><th class="liquid">Liquid Matter</th><th class="gas">Gaseous Matter</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Change in shape when the container is changed</td><td>Does not change (fixed, definite shape)</td><td>Changes (takes the shape of the container)</td><td>Changes (takes the shape of the container)</td></tr>
-          <tr><td>Fluidity</td><td>Does not have the ability to flow</td><td>Flows, depending on its viscosity</td><td>Has the ability to flow</td></tr>
-          <tr><td>Compressibility</td><td>Incompressible</td><td>Incompressible</td><td>Compressible</td></tr>
-          <tr><td>Change in volume due to compression</td><td>Does not change (fixed, definite volume)</td><td>Does not change (fixed, definite volume)</td><td>Changes (decreases, takes the volume of the container)</td></tr>
-          <tr><td>Speed of diffusion</td><td>Very slow</td><td>Moderate (average)</td><td>Very fast</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- SUMMARY -->
-  <section class="reveal">
-    <div class="section-head">
-      <span class="tag">Quick Recap</span>
-      <h2>Key Takeaways</h2>
-    </div>
-    <div class="summary-strip">
-      <div class="pill"><b>Fluids</b> = liquids + gases (they flow)</div>
-      <div class="pill">Solids &amp; liquids: <b>fixed volume</b>, incompressible</div>
-      <div class="pill">Gases only: <b>compressible</b></div>
-      <div class="pill">Diffusion speed: solid &lt; liquid &lt; <b>gas</b></div>
-      <div class="pill">Molecule mass ↑ ⇒ diffusion speed ↓</div>
-      <div class="pill">Temperature ↑ ⇒ diffusion speed ↑</div>
-    </div>
-  </section>
-
-</div>
+<!-- ============ RECAP ============ -->
+<section id="recap" class="card reveal">
+  <div class="chead"><span class="cnum">🔑</span><div><h2><span class="en">Quick Recap — Key Takeaways</span><span class="ar">خلاصة سريعة — أهم النقاط</span></h2></div></div>
+  <div class="badges" style="margin:0;justify-content:flex-start">
+    <span class="badge"><span class="en">Fluids = liquids + gases</span><span class="ar">الموائع = سوائل + غازات</span></span>
+    <span class="badge"><span class="en">Solids & liquids: fixed volume, incompressible</span><span class="ar">الصلب والسائل: حجم ثابت، لا ينضغطان</span></span>
+    <span class="badge"><span class="en">Gases only: compressible</span><span class="ar">الغازات فقط: قابلة للانضغاط</span></span>
+    <span class="badge"><span class="en">Diffusion: solid &lt; liquid &lt; gas</span><span class="ar">الانتشار: صلب &lt; سائل &lt; غاز</span></span>
+    <span class="badge"><span class="en">Mass ⬆ ⇒ diffusion ⬇</span><span class="ar">الكتلة ⬆ ⇒ الانتشار ⬇</span></span>
+    <span class="badge"><span class="en">Temperature ⬆ ⇒ diffusion ⬆</span><span class="ar">الحرارة ⬆ ⇒ الانتشار ⬆</span></span>
+  </div>
+  <div class="note gold" style="margin-top:16px">
+    <span class="en">💡 Memory trick: "Hot & light = fast flight" — hot medium + light molecules = fastest diffusion!</span>
+    <span class="ar">💡 حيلة للحفظ: «الساخن والخفيف = طيران سريع» — وسط ساخن + جزيئات خفيفة = أسرع انتشار!</span>
+  </div>
+</section>
+</main>
 
 <footer>
-  <div class="brand">States of Matter &amp; Their Properties</div>
-  Interactive visual summary — Unit 1: Matter and Energy · Lesson 1
-  <br>
-  <span class="credit">Prepared by #Dr_Wael_Aboagiza</span>
+  <div class="verified">🛡️ <span class="en">Reviewed & signed: Dr. Wael Aboagiza</span><span class="ar">مراجعة وتوقيع: د. وائل أبو عجيزة</span> <span style="font-family:'Space Grotesk'">#Dr_Wael_Aboagiza</span></div>
+  <p style="margin-top:14px;font-size:.82rem"><span class="en">Unit 1 · Lesson 1: States of Matter & Their Properties</span><span class="ar">الوحدة الأولى · الدرس 1: حالات المادة وخصائصها</span></p>
 </footer>
+<button id="topBtn" title="Top · لفوق">⬆</button>
 
 <script>
-  // Reveal on scroll
-  const revealEls = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, {threshold:0.12});
-  revealEls.forEach(el=>io.observe(el));
-
-  // Hero particles
-  const heroParticles = document.getElementById('heroParticles');
-  const colors = ['#e8963f','#3fb6d3','#7bd99a'];
-  for(let i=0;i<26;i++){
-    const d = document.createElement('div');
-    d.className='p-dot';
-    const size = 3 + Math.random()*5;
-    d.style.width = size+'px'; d.style.height = size+'px';
-    d.style.left = Math.random()*100+'%'; d.style.top = Math.random()*100+'%';
-    d.style.background = colors[i%3];
-    d.style.opacity = 0.25 + Math.random()*0.35;
-    heroParticles.appendChild(d);
-  }
-
-  function fillGrid(el){
-    const w = el.clientWidth, h = el.clientHeight, cols=4, rows=4;
-    for(let r=0;r<rows;r++) for(let c=0;c<cols;c++){
-      const dot=document.createElement('div'); dot.className='dot';
-      dot.style.left=(c*(w/cols)+w/cols/2-4)+'px'; dot.style.top=(r*(h/rows)+h/rows/2-4)+'px';
-      dot.style.animationDelay=(Math.random()*2)+'s';
-      el.appendChild(dot);
-    }
-  }
-  function fillSparse(el,count){
-    const w=el.clientWidth,h=el.clientHeight;
-    for(let i=0;i<count;i++){
-      const dot=document.createElement('div'); dot.className='dot';
-      dot.style.left=(Math.random()*(w-10))+'px'; dot.style.top=(Math.random()*(h-10))+'px';
-      dot.style.animationDelay=(Math.random()*2)+'s'; dot.style.animationDuration=(2.4+Math.random()*2)+'s';
-      el.appendChild(dot);
-    }
-  }
-  window.addEventListener('load', ()=>{
-    fillGrid(document.getElementById('iconSolid'));
-    fillGrid(document.getElementById('iconLiquid'));
-    fillSparse(document.getElementById('iconGas'), 9);
-    document.querySelectorAll('.mini-particles.solid').forEach(el=>fillGrid(el));
-    document.querySelectorAll('.mini-particles.liquid').forEach(el=>fillGrid(el));
-    document.querySelectorAll('.mini-particles.gas').forEach(el=>fillSparse(el,8));
-  });
-
-  // ---------- Syringe experiment ----------
-  const syrState = {Solid:false, Liquid:false, Gas:false};
-  function pressSyringe(name){
-    const piston = document.getElementById('piston'+name);
-    const gauge = document.getElementById('gauge'+name);
-    if(name==='Gas'){
-      syrState[name] = !syrState[name];
-      if(syrState[name]){
-        piston.style.height='60%';
-        gauge.innerHTML = 'Volume: <b>45%</b> (compressed!)';
-      } else {
-        piston.style.height='26%';
-        gauge.innerHTML = 'Volume: <b>100%</b>';
-      }
-    } else {
-      // solids/liquids barely budge - a tiny "resist" animation
-      piston.style.transition='height 0.15s ease';
-      const original = '26%';
-      piston.style.height='29%';
-      gauge.innerHTML = 'Volume: <b>100%</b> (cannot compress)';
-      setTimeout(()=>{ piston.style.height=original; piston.style.transition='height 0.8s cubic-bezier(.4,1.6,.4,1)'; }, 180);
-    }
-  }
-  function resetSyringes(){
-    ['Solid','Liquid','Gas'].forEach(name=>{
-      document.getElementById('piston'+name).style.height='26%';
-      document.getElementById('gauge'+name).innerHTML = 'Volume: <b>100%</b>';
-      syrState[name]=false;
-    });
-  }
-
-  // ---------- Bottle squeeze ----------
-  let squeezed = false;
-  function squeezeBottle(){
-    const bottle = document.getElementById('bottle');
-    const hint = document.getElementById('bottleHint');
-    squeezed = !squeezed;
-    bottle.classList.toggle('squeezed', squeezed);
-    hint.textContent = squeezed ? 'The bottle is squeezed — the air inside was compressed!' : 'Tap the bottle to squeeze it →';
-  }
-  function toggleAnswer(id){
-    const el = document.getElementById(id);
-    el.classList.toggle('hidden-ans');
-  }
-
-  // ---------- Diffusion tube ----------
-  let tubeRunning = false;
-  function runTube(){
-    if(tubeRunning) return;
-    tubeRunning = true;
-    const tube = document.querySelector('#tubeWrap .tube');
-    const resultEl = document.getElementById('tubeResult');
-    resultEl.innerHTML = 'Gases are diffusing toward each other...';
-
-    // clear old particles
-    document.querySelectorAll('.gas-particle').forEach(p=>p.remove());
-
-    const tubeWidth = tube.clientWidth;
-    const meetPoint = tubeWidth * 0.38; // closer to HCl side (left), since NH3 travels farther/faster
-
-    // spawn HCl particles moving right, slower & shorter distance
-    for(let i=0;i<5;i++){
-      const p = document.createElement('div');
-      p.className='gas-particle hcl';
-      p.style.left='34px'; p.style.opacity='1';
-      tube.appendChild(p);
-      setTimeout(()=>{
-        p.style.transition = 'left 2.6s ease-out';
-        p.style.left = (meetPoint - 8 + Math.random()*10) + 'px';
-      }, 60*i + 30);
-    }
-    // spawn NH3 particles moving left, faster & longer distance
-    for(let i=0;i<5;i++){
-      const p = document.createElement('div');
-      p.className='gas-particle nh3';
-      p.style.right='34px'; p.style.opacity='1';
-      tube.appendChild(p);
-      setTimeout(()=>{
-        p.style.transition = 'right 1.7s ease-out';
-        p.style.right = (tubeWidth - meetPoint - 8 + Math.random()*10) + 'px';
-      }, 60*i + 30);
-    }
-
-    setTimeout(()=>{
-      const cloud = document.getElementById('cloud');
-      cloud.style.left = meetPoint + 'px';
-      cloud.style.opacity = '1';
-      cloud.style.transform = 'translate(-50%,-50%) scale(1)';
-      resultEl.innerHTML = 'A white cloud forms <b>closer to the HCl side</b> — proof that <b>ammonia (NH₃) diffused faster</b> and travelled farther in the same time.';
-      tubeRunning = false;
-    }, 1900);
-  }
-  function resetTube(){
-    document.querySelectorAll('.gas-particle').forEach(p=>p.remove());
-    const cloud = document.getElementById('cloud');
-    cloud.style.transition='none';
-    cloud.style.opacity='0';
-    cloud.style.transform='translate(-50%,-50%) scale(0)';
-    document.getElementById('tubeResult').innerHTML='';
-    tubeRunning = false;
-    requestAnimationFrame(()=>{ cloud.style.transition='transform 0.6s ease, opacity 0.6s ease'; });
-  }
-
-  // ---------- Diffusion race ----------
-  let raceRunning = false;
-  function runRace(){
-    if(raceRunning) return;
-    raceRunning = true;
-    resetRace(false);
-    const solid = document.getElementById('raceSolid');
-    const liquid = document.getElementById('raceLiquid');
-    const gas = document.getElementById('raceGas');
-
-    requestAnimationFrame(()=>{
-      gas.style.transition = 'width 1.4s linear';
-      gas.style.width = '100%';
-
-      liquid.style.transition = 'width 4.5s linear';
-      liquid.style.width = '100%';
-
-      solid.style.transition = 'width 9s linear';
-      solid.style.width = '100%';
-    });
-
-    document.getElementById('raceTimeGas').textContent = 'Reached full spread in ~1.4s (fast)';
-    document.getElementById('raceTimeLiquid').textContent = 'Diffusing... (moderate speed)';
-    document.getElementById('raceTimeSolid').textContent = 'Diffusing... (very slow)';
-
-    setTimeout(()=>{ document.getElementById('raceTimeLiquid').textContent = 'Reached full spread in ~4.5s (moderate)'; }, 4500);
-    setTimeout(()=>{ document.getElementById('raceTimeSolid').textContent = 'Reached full spread in ~9s (very slow)'; raceRunning=false; }, 9000);
-  }
-  function resetRace(clearFlag=true){
-    ['raceSolid','raceLiquid','raceGas'].forEach(id=>{
-      const el = document.getElementById(id);
-      el.style.transition='none'; el.style.width='0%';
-    });
-    document.getElementById('raceTimeSolid').textContent = 'Duration: very slow';
-    document.getElementById('raceTimeLiquid').textContent = 'Duration: moderate';
-    document.getElementById('raceTimeGas').textContent = 'Duration: very fast';
-    if(clearFlag) raceRunning = false;
-  }
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const SPDS={tube:{speed:1},race:{speed:1},tea:{speed:1},mol:{speed:1}};
+$$('.speedRow').forEach(row=>{row.querySelectorAll('.spBtn').forEach(b=>b.onclick=()=>{SPDS[row.dataset.spd].speed=+b.dataset.sp;row.querySelectorAll('.spBtn').forEach(x=>x.classList.toggle('active',x===b));});});
+addEventListener('scroll',()=>{const h=document.documentElement,p=h.scrollTop/(h.scrollHeight-h.clientHeight);
+ $('#progress').style.width=(p*100)+'%';$('#railFill').style.height=(p*100)+'%';$('#railVal').textContent=Math.round(p*100)+'°';
+ $('#topBtn').classList.toggle('show',h.scrollTop>600);},{passive:true});
+$('#topBtn').onclick=()=>scrollTo({top:0,behavior:'smooth'});
+$('#themeBtn').onclick=()=>{const l=document.body.dataset.theme==='light';document.body.dataset.theme=l?'':'light';$('#themeBtn').textContent=l?'☀️':'';};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}}),{threshold:.1});
+$$('.reveal').forEach(el=>io.observe(el));
+const spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)$$('nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));}),{rootMargin:'-35% 0px -55% 0px'});
+$$('section[id]').forEach(s=>spy.observe(s));
+document.addEventListener('click',e=>{const b=e.target.closest('.opt');if(!b)return;
+ if(b.dataset.p!==undefined){pour(b.dataset.p);return;}
+ const q=b.closest('.quiz');if(!q||q.dataset.done)return;
+ if(b.dataset.ok!==undefined){b.classList.add('ok');q.dataset.done=1;const x=q.querySelector('.exp');x&&x.classList.add('show');}
+ else{b.classList.add('bad');setTimeout(()=>b.classList.remove('bad'),450);}});
+const hc=$('#heroCv'),hx=hc.getContext('2d');let HP=[];
+function hSize(){hc.width=hc.offsetWidth;hc.height=hc.offsetHeight;HP=Array.from({length:70},()=>({x:Math.random()*hc.width,y:Math.random()*hc.height,r:1+Math.random()*2.5,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6,c:Math.random()>.5?'34,211,238':'251,146,60'}));}
+hSize();addEventListener('resize',hSize);
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function heroLoop(){if(!reduced){hx.clearRect(0,0,hc.width,hc.height);HP.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>hc.width)p.vx*=-1;if(p.y<0||p.y>hc.height)p.vy*=-1;hx.beginPath();hx.fillStyle=`rgba(${p.c},.5)`;hx.arc(p.x,p.y,p.r,0,7);hx.fill();});}requestAnimationFrame(heroLoop);}
+heroLoop();
+function pour(t){const f=$('#pFill');f.className='pFill'+(t?' '+t:'');const m=$('#pourMsg');
+ if(!t){m.style.display='none';return;}
+ const MSG={solid:['🧊 The cube keeps its OWN shape — solids have a fixed, definite shape.','🧊 المكعب بيحتفظ بشكله هو — الصلب شكله ثابت ومحدد.'],
+ liquid:['💧 Water takes the container shape but its volume stays constant.','💧 المية بتاخد شكل الوعاء لكن حجمها ثابت.'],
+ gas:['💨 The gas fills the WHOLE container — its volume changes.','💨 الغاز بيملأ الوعاء كله — حجمه بيتغير.']};
+ m.innerHTML=`<span class="en">${MSG[t][0]}</span><span class="ar">${MSG[t][1]}</span>`;m.style.display='block';}
+$$('.pBtn').forEach(b=>b.onclick=()=>{const k=b.dataset.s,sy=$('#sy'+k);
+ if(k==='A'){sy.classList.add('pressed');$('#vA').textContent='34%';}
+ else{sy.classList.add('deny');setTimeout(()=>sy.classList.remove('deny'),450);}});
+$('#syrReset').onclick=()=>{$$('.syr').forEach(s=>s.classList.remove('pressed','deny'));$('#vA').textContent='100%';};
+$('#bottle').onclick=()=>$('#bottle').classList.toggle('sq');
+const TB={iv:null,h:0,n:0};
+$('#tubeRun').onclick=()=>{if(TB.iv)return;
+ TB.iv=setInterval(()=>{const sp=SPDS.tube.speed;
+  TB.h=Math.min(34,TB.h+0.28*sp);TB.n=Math.min(62,TB.n+0.55*sp);
+  $('#fHCl').style.width=TB.h+'%';$('#fNH3').style.width=TB.n+'%';
+  if(TB.n>=60){$('#cloud').classList.add('on');$('#tubeObs').style.display='block';clearInterval(TB.iv);TB.iv=null;}},50);};
+$('#tubeReset').onclick=()=>{clearInterval(TB.iv);TB.iv=null;TB.h=0;TB.n=0;$('#fHCl').style.width='0%';$('#fNH3').style.width='0%';$('#cloud').classList.remove('on');$('#tubeObs').style.display='none';};
+const RC={iv:null,s:0,l:0,g:0};
+$('#raceRun').onclick=()=>{if(RC.iv)return;
+ RC.iv=setInterval(()=>{const sp=SPDS.race.speed;
+  RC.s=Math.min(100,RC.s+0.06*sp);RC.l=Math.min(100,RC.l+0.6*sp);RC.g=Math.min(100,RC.g+3*sp);
+  $('#rS').style.width=RC.s+'%';$('#rL').style.width=RC.l+'%';$('#rG').style.width=RC.g+'%';
+  if(RC.g>=100&&RC.l>=100&&RC.s>=8){clearInterval(RC.iv);RC.iv=null;}},50);};
+$('#raceReset').onclick=()=>{clearInterval(RC.iv);RC.iv=null;RC.s=RC.l=RC.g=0;$('#rS').style.width='0%';$('#rL').style.width='0%';$('#rG').style.width='0%';};
+const TE={iv:null,c:0,h:0};
+$('#teaBtn').onclick=()=>{if(TE.iv)return;
+ TE.iv=setInterval(()=>{const sp=SPDS.tea.speed;
+  TE.c=Math.min(.85,TE.c+0.004*sp);TE.h=Math.min(.85,TE.h+0.02*sp);
+  $('#teaC').style.background=`rgba(146,64,14,${TE.c})`;$('#teaH').style.background=`rgba(146,64,14,${TE.h})`;
+  $('#teaCp').textContent='diffusion '+Math.round(TE.c/.85*100)+'%';$('#teaHp').textContent='diffusion '+Math.round(TE.h/.85*100)+'%';
+  if(TE.h>=.85){clearInterval(TE.iv);TE.iv=null;$('#teaObs').style.display='block';}},60);};
+$('#teaReset').onclick=()=>{clearInterval(TE.iv);TE.iv=null;TE.c=TE.h=0;
+ $('#teaC').style.background='rgba(146,64,14,0)';$('#teaH').style.background='rgba(146,64,14,0)';
+ $('#teaCp').textContent='diffusion 0%';$('#teaHp').textContent='diffusion 0%';$('#teaObs').style.display='none';};
+const MR={iv:null,h:2,o:2};
+$('#mBtn').onclick=()=>{if(MR.iv)return;
+ MR.iv=setInterval(()=>{const sp=SPDS.mol.speed;
+  MR.h=Math.min(94,MR.h+1.1*sp);MR.o=Math.min(94,MR.o+0.5*sp);
+  $('#mH').style.left=MR.h+'%';$('#mO').style.left=MR.o+'%';
+  if(MR.h>=94){clearInterval(MR.iv);MR.iv=null;$('#mObs').style.display='block';}},50);};
+$('#mReset').onclick=()=>{clearInterval(MR.iv);MR.iv=null;MR.h=MR.o=2;$('#mH').style.left='2%';$('#mO').style.left='2%';$('#mObs').style.display='none';};
+const PG=$('#pgCv'),px=PG.getContext('2d');let PP=[];const PGM={t:30,m:30};
+function pgSize(){PG.width=PG.offsetWidth*2;PG.height=340;PP=Array.from({length:46},()=>({x:Math.random()*PG.width,y:Math.random()*PG.height,vx:(Math.random()-.5)*2,vy:(Math.random()-.5)*2}));}
+pgSize();addEventListener('resize',pgSize);
+function pgSpeed(){return (0.3+PGM.t/100*2.2)*(1.55-PGM.m/100*1.25);}
+function pgDraw(){const W=PG.width,H=PG.height;px.clearRect(0,0,W,H);const sp=pgSpeed();
+ const hue=Math.max(5,205-PGM.t*1.9),r=6+PGM.m*.12;
+ px.fillStyle=`hsl(${hue} 90% 60%)`;
+ PP.forEach(p=>{p.x+=p.vx*sp;p.y+=p.vy*sp;
+  if(p.x<6||p.x>W-6)p.vx*=-1;if(p.y<6||p.y>H-6)p.vy*=-1;
+  p.x=Math.max(6,Math.min(W-6,p.x));p.y=Math.max(6,Math.min(H-6,p.y));
+  px.beginPath();px.arc(p.x,p.y,r,0,7);px.fill();});
+ const pct=Math.round(Math.max(2,Math.min(100,sp/2.8*100)));
+ $('#pgMeter').style.width=pct+'%';$('#pgVal').textContent=pct+'%';}
+$('#pgT').oninput=e=>PGM.t=+e.target.value;
+$('#pgM').oninput=e=>PGM.m=+e.target.value;
+setInterval(pgDraw,40);
 </script>
-
 </body>
 </html>
