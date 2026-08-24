@@ -5,461 +5,560 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Particle Model of Matter | النموذج الجسيمي للمادة</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <style>
+:root{--bg:#060b16;--card:#0f1a2e;--card2:#12203a;--line:#24345a;--text:#eaf2ff;--muted:#93a6cc;--acc:#22d3ee;--acc2:#4f8cff;--hot:#fb923c;--cold:#38bdf8;--ok:#34d399;--bad:#f87171;--gold:#fbbf24;--pur:#a855f7;--r:20px}
+body[data-theme="light"]{--bg:#eef3fb;--card:#fff;--card2:#f4f8ff;--line:#c9d6ee;--text:#10203c;--muted:#5a6b8c}
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#f4f7fb;--card:#ffffff;--ink:#1e293b;--mut:#64748b;--acc:#2563eb;--acc2:#0891b2;--ok:#059669;--warn:#d97706;--bad:#dc2626;--line:#e2e8f0}
-html.dark{--bg:#0b1220;--card:#111a2e;--ink:#e2e8f0;--mut:#8ea3c0;--line:#233350}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:Cairo,system-ui,sans-serif;line-height:1.9}
-.wrap{max-width:1080px;margin:auto;padding:0 18px}
-h2.sec{font-size:clamp(24px,4vw,36px);margin-bottom:6px;display:flex;align-items:center;gap:10px}
-.kick{color:var(--acc);font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
-.sub{color:var(--mut);max-width:760px;margin-bottom:22px;font-size:15px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin:14px 0}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media(max-width:760px){.grid2{grid-template-columns:1fr}}
-.pill{display:inline-flex;align-items:center;gap:6px;background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;padding:4px 12px;border-radius:999px;font-size:13px;font-weight:700;margin:3px 4px 3px 0}
-html.dark .pill{background:#172554;color:#93c5fd;border-color:#1e40af}
-.topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-html.dark .topbar{background:rgba(11,18,32,.85)}
-.topin{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0}
-.brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:17px;white-space:nowrap}
-.brand .dot{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--acc),var(--acc2));display:flex;align-items:center;justify-content:center;font-size:16px}
-nav.links{display:flex;gap:2px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;flex:1;min-width:60px}
-nav.links::-webkit-scrollbar{display:none}
-nav.links a{white-space:nowrap;text-decoration:none;color:var(--mut);font-size:13px;font-weight:700;padding:6px 9px;border-radius:8px}
-nav.links a:hover{background:#eff6ff;color:#1d4ed8}
-html.dark nav.links a:hover{background:#172554}
-.iconbtn{border:1px solid var(--line);background:var(--card);width:34px;height:34px;border-radius:9px;cursor:pointer;font-size:15px;flex-shrink:0}
-#progress{position:absolute;bottom:-1px;right:0;height:3px;width:100%;transform-origin:right;background:linear-gradient(90deg,var(--acc),var(--acc2));transform:scaleX(var(--p,0))}
-.hero{padding:56px 0 30px;text-align:center;position:relative;overflow:hidden}
-.aurora{position:absolute;inset:auto -50% -120px;height:260px;background:radial-gradient(closest-side,rgba(37,99,235,.25),transparent),radial-gradient(closest-side at 70% 40%,rgba(8,145,178,.22),transparent);filter:blur(6px);pointer-events:none}
-.hero h1{font-size:clamp(28px,6vw,52px);font-weight:800;line-height:1.35;margin:12px auto 10px;max-width:900px}
-.hero p{color:var(--mut);max-width:720px;margin:0 auto 22px}
-.cta{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;text-decoration:none;font-weight:700;padding:11px 26px;border-radius:999px;box-shadow:0 8px 22px rgba(37,99,235,.35)}
-.cta:hover{transform:translateY(-2px)}
-.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px}
-.chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:700;color:var(--mut)}
-.solarWrap{max-width:420px;margin:8px auto 0}
-canvas{display:block;max-width:100%}
-.modRow{display:flex;gap:12px;justify-content:center;align-items:stretch}
-.modTile{flex:1;max-width:230px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px;text-align:center}
-.modTile b{font-size:14px}
-.modCanvas{width:100%;height:200px;background:linear-gradient(180deg,#f8fafc,#eef2ff);border-radius:10px;border:1px solid var(--line)}
-html.dark .modCanvas{background:linear-gradient(180deg,#0b1220,#101b33)}
-.meter{height:12px;background:var(--line);border-radius:999px;overflow:hidden;margin:12px 0 6px}
-#modMeter{height:100%;width:33%;background:linear-gradient(90deg,#3b82f6,#06b6d4);transition:width .2s}
-.sliderRow{display:flex;align-items:center;gap:12px;max-width:520px;margin:10px auto}
-input[type=range]{flex:1;accent-color:var(--acc)}
-#modState{font-weight:800;color:var(--acc);min-width:130px;text-align:center}
-.microWrap{max-width:230px;margin:auto}
-.springWrap{max-width:420px;margin:auto}
-.compBox{max-width:240px;margin:auto;text-align:center}
-.btn{display:inline-block;background:var(--acc);color:#fff;border:none;border-radius:999px;padding:9px 20px;font-family:Cairo,sans-serif;font-weight:700;cursor:pointer;font-size:14px;margin:6px 4px 0}
-.btn:hover{filter:brightness(1.08)}
-.btn.ghost{background:transparent;color:var(--acc);border:1px solid var(--acc)}
-.speedRow{display:flex;gap:8px;justify-content:center;margin-top:10px;flex-wrap:wrap}
-.spd{border:1px solid var(--line);background:var(--card);color:var(--mut);border-radius:999px;padding:5px 14px;font-family:Cairo,sans-serif;font-size:12.5px;font-weight:700;cursor:pointer}
-.spd.on{background:var(--acc);color:#fff;border-color:var(--acc)}
-.defBox{background:#eff6ff;border:1px solid #bfdbfe;border-radius:14px;padding:14px 16px;margin-top:12px;font-size:14.5px}
-html.dark .defBox{background:#172554;border-color:#1e40af}
-details.gr{border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin:10px 0;background:var(--card)}
-details.gr summary{cursor:pointer;font-weight:800;font-size:15px}
-details.gr[open]{border-color:#93c5fd}
-table.cmp{width:100%;border-collapse:collapse;font-size:14px;background:var(--card);border-radius:14px;overflow:hidden}
-.cmp th,.cmp td{border:1px solid var(--line);padding:9px 12px;text-align:center}
-.cmp th{background:#eff6ff;color:#1d4ed8}
-html.dark .cmp th{background:#172554;color:#93c5fd}
-.recapGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
-.recapGrid .card{margin:0}
-.flowRow{display:flex;gap:10px;justify-content:center;overflow-x:auto;padding:8px 2px}
-.flowStep{flex:0 0 auto;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;text-align:center;font-weight:700;font-size:14px;min-width:150px}
-.flowArrow{align-self:center;color:var(--acc);font-weight:800}
-footer.site{border-top:1px solid var(--line);margin-top:44px;padding:22px 0 30px;color:var(--mut);font-size:13.5px;text-align:center}
-.verified{display:inline-flex;align-items:center;gap:6px;background:#ecfdf5;border:1px solid #a7f3d0;color:#047857;border-radius:999px;padding:5px 14px;font-size:12.5px;font-weight:700;margin-top:8px}
-html.dark .verified{background:#052e1c;border-color:#065f46;color:#6ee7b7}
-#topBtn{position:fixed;bottom:18px;left:18px;width:42px;height:42px;border-radius:12px;border:none;background:var(--acc);color:#fff;font-size:18px;cursor:pointer;opacity:0;pointer-events:none;transition:.25s;z-index:60}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;transition:background .4s,color .4s;overflow-x:hidden}
+::selection{background:var(--acc);color:#032}
+.en{display:block;direction:ltr;text-align:left;font-family:'Space Grotesk','Cairo',sans-serif;font-size:.93rem;line-height:1.7;color:var(--text)}
+.ar{display:block;direction:rtl;text-align:right;font-size:.96rem;line-height:2;color:var(--text);margin-top:2px}
+.mut{color:var(--muted)!important}
+h1,h2,h3{line-height:1.5}
+section{scroll-margin-top:95px}
+#progress{position:fixed;top:0;right:0;height:4px;width:0;background:linear-gradient(90deg,var(--acc),var(--hot));z-index:99;border-radius:99px}
+.topbar{position:fixed;top:0;right:0;left:0;z-index:90;display:flex;align-items:center;gap:10px;padding:10px 14px;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand{font-weight:900;font-size:.85rem;white-space:nowrap}
+nav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;padding:2px}
+nav::-webkit-scrollbar{display:none}
+nav a{padding:5px 12px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:.72rem;font-weight:700;white-space:nowrap;text-decoration:none;transition:.25s}
+nav a.active{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#041018;border-color:transparent}
+#themeBtn{cursor:pointer;border:1px solid var(--line);background:var(--card);border-radius:12px;width:40px;height:40px;font-size:1.1rem}
+#rail{position:fixed;inset-inline-end:12px;top:50%;transform:translateY(-50%);z-index:80;display:flex;flex-direction:column;align-items:center;gap:6px}
+#rail .tube{width:12px;height:36vh;border:2px solid var(--line);border-radius:99px;position:relative;overflow:hidden;background:rgba(128,160,220,.08)}
+#rail .bulb{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ff8a6b,#ef4444);margin-top:-4px}
+#railFill{position:absolute;bottom:0;width:100%;height:0;background:linear-gradient(0deg,#ef4444,#fb923c 40%,#22d3ee)}
+#railVal{font-family:'Space Grotesk';font-size:.72rem;color:var(--muted)}
+@media(max-width:1000px){#rail{display:none}}
+#hero{min-height:94vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:110px 18px 60px}
+#heroCv{position:absolute;inset:0;width:100%;height:100%}
+.heroIn{position:relative;z-index:2;max-width:920px}
+.kicker{display:inline-block;padding:6px 18px;border:1px solid var(--line);border-radius:999px;color:var(--acc);font-weight:800;font-size:.78rem;background:var(--card)}
+#hero h1{font-size:clamp(1.9rem,5.5vw,3.3rem);font-weight:900;margin:16px 0 4px;background:linear-gradient(90deg,var(--acc),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+#hero h1 .ar{font-size:clamp(1.5rem,4.5vw,2.6rem);background:linear-gradient(90deg,var(--gold),var(--acc));-webkit-background-clip:text;background-clip:text;color:transparent;margin:0}
+#hero p.desc{margin:16px auto;max-width:70ch;color:var(--muted)}
+.badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:20px}
+.badge{padding:8px 16px;border-radius:14px;border:1px solid var(--line);background:var(--card);font-size:.78rem;font-weight:700;text-align:center}
+.badge.vip{border-color:var(--gold);color:var(--gold)}
+.scrollHint{margin-top:40px;font-size:1.6rem;animation:bnc 1.6s infinite}
+@keyframes bnc{50%{transform:translateY(10px)}}
+main{max-width:1150px;margin:auto;padding:30px 16px 90px;display:flex;flex-direction:column;gap:34px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:clamp(18px,3.4vw,36px);box-shadow:0 14px 40px rgba(0,0,0,.25)}
+.chead{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.cnum{font-family:'Space Grotesk';font-size:1.5rem;font-weight:700;background:linear-gradient(180deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;border:1px solid var(--line);border-radius:16px;padding:6px 14px}
+.chead h2{font-size:clamp(1.05rem,2.6vw,1.45rem);font-weight:900}
+.ppage{font-family:'Space Grotesk';font-size:.62rem;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:1px 10px;margin-inline-start:auto}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px}
+.row2{display:flex;gap:14px;flex-wrap:nowrap;align-items:stretch}
+.row2>.tile{flex:1;min-width:0}
+.tile{background:var(--card2);border:1px solid var(--line);border-radius:16px;padding:18px;transition:.25s}
+.tile:hover{transform:translateY(-4px);border-color:var(--acc)}
+.note{border-inline-start:4px solid var(--acc);background:var(--card2);border-radius:12px;padding:12px 16px;margin-top:14px;font-size:.9rem}
+.note.hot{border-color:var(--hot)} .note.gold{border-color:var(--gold)} .note.ok{border-color:var(--ok)} .note.pur{border-color:var(--pur)}
+.tag{display:inline-block;font-size:.7rem;font-weight:800;color:#041018;background:var(--acc);border-radius:99px;padding:2px 12px;margin-bottom:8px}
+.tag.hot{background:var(--hot)} .tag.gold{background:var(--gold)} .tag.ok{background:var(--ok)} .tag.pur{background:var(--pur)}
+.defBox{border:2px dashed var(--line);border-radius:12px;padding:12px 16px;margin-top:14px;background:var(--card2)}
+.defBox b.dT{color:var(--bad);font-size:1rem}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal.vis{opacity:1;transform:none}
+.btn{cursor:pointer;border:none;border-radius:14px;padding:10px 22px;font-family:inherit;font-weight:800;font-size:.9rem;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#041018;transition:.2s;box-shadow:0 6px 18px rgba(34,211,238,.25)}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line);box-shadow:none}
+.btn.purp{background:linear-gradient(135deg,var(--pur),#7c3aed);color:#fff;box-shadow:0 6px 18px rgba(168,85,247,.3)}
+.labctrl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin:14px 0 6px}
+.speedRow{display:flex;gap:8px;align-items:center;justify-content:center;margin:8px 0;font-size:.8rem;font-weight:800;color:var(--muted)}
+.spBtn{cursor:pointer;border:1px solid var(--line);background:var(--card2);color:var(--muted);border-radius:10px;padding:4px 14px;font-family:'Space Grotesk';font-weight:700;transition:.2s}
+.spBtn.active{background:var(--hot);color:#311004;border-color:var(--hot)}
+details{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin-top:10px}
+summary{cursor:pointer;font-weight:800;list-style:none}
+summary::after{content:'＋';color:var(--acc);font-weight:900;float:left}
+details[open] summary::after{content:'－'}
+details .body{padding-top:10px;font-size:.9rem}
+.pulse{animation:pl 1.6s infinite}@keyframes pl{50%{opacity:.25}}
+/* theory flowchart */
+.flowRow{display:flex;align-items:stretch;gap:6px;overflow-x:auto;padding:6px 0;flex-wrap:nowrap}
+.fbub{flex:1;min-width:150px;border:2px dashed var(--acc);border-radius:18px;padding:12px;text-align:center;font-size:.72rem;font-weight:700;background:var(--card2)}
+.fbub.hotb{border-color:var(--hot)}
+.fbub.hotb .en,.fbub.hotb .ar{color:var(--hot)}
+.farr{align-self:center;color:var(--acc);font-size:1.2rem}
+.molRow{display:flex;gap:16px;justify-content:center;align-items:flex-end;flex-wrap:wrap;margin-top:10px}
+.mol{text-align:center;font-size:.68rem;font-weight:800;color:var(--muted)}
+#springCv{width:100%;height:230px;border:1px solid var(--line);border-radius:14px;background:var(--card2)}
+/* modelling canvases */
+.modCanvas{width:100%;height:200px;border:1px solid var(--line);border-radius:14px;background:radial-gradient(circle at 50% 0%,rgba(34,211,238,.08),transparent 60%),var(--card2)}
+.modRow{display:flex;gap:14px;flex-wrap:nowrap;align-items:stretch;margin-top:14px}
+.modRow>.tile{flex:1;min-width:0;text-align:center}
+.meter{flex:1;min-width:140px;height:12px;border-radius:99px;border:1px solid var(--line);overflow:hidden;background:var(--card2)}
+.meter i{display:block;height:100%;width:25%;background:linear-gradient(90deg,var(--cold),var(--hot));transition:width .2s}
+input[type=range]{accent-color:var(--hot);width:100%}
+.solarWrap{position:relative;width:100%;max-width:420px;height:300px;margin:14px auto;border:1px solid var(--line);border-radius:50%;background:radial-gradient(circle,#0a1428,#060b16);overflow:hidden}
+.sun{position:absolute;top:50%;left:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff7c2,#fbbf24 50%,#f59e0b);box-shadow:0 0 40px #fbbf24aa;z-index:3}
+.orbit{position:absolute;top:50%;left:50%;border:1px dashed rgba(148,163,184,.3);border-radius:50%;transform:translate(-50%,-50%)}
+.orbit.o1{width:170px;height:170px;animation:spin 9s linear infinite}
+.orbit.o2{width:270px;height:270px;animation:spin 16s linear infinite}
+.planet{position:absolute;top:-9px;left:50%;margin-left:-9px;width:18px;height:18px;border-radius:50%}
+.planet.earth{background:radial-gradient(circle at 35% 35%,#7dd3fc,#1d6fb8 60%,#0c4a6e)}
+.planet.moon{width:11px;height:11px;margin-left:-5px;top:-5px;background:radial-gradient(circle at 35% 35%,#e2e8f0,#94a3b8)}
+.moonOrbit{position:absolute;top:50%;left:50%;width:46px;height:46px;border:1px dashed rgba(148,163,184,.25);border-radius:50%;transform:translate(-50%,-50%);animation:spin 3s linear infinite}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.microWrap{position:relative;width:230px;height:230px;margin:14px auto;border-radius:50%;border:6px solid #475569;background:radial-gradient(circle at 40% 35%,#1e293b,#0a0f1c);overflow:hidden;box-shadow:inset 0 0 40px rgba(0,0,0,.7),0 0 0 4px #1e293b}
+.microCv{position:absolute;inset:0;width:100%;height:100%}
+.microHint{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);font-size:.6rem;color:var(--muted);background:rgba(0,0,0,.5);padding:2px 10px;border-radius:99px;white-space:nowrap}
+/* states table */
+.stGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.stCol{background:var(--card2);border:1px solid var(--line);border-radius:16px;padding:14px;text-align:center}
+.stRow{border-top:1px dashed var(--line);margin-top:10px;padding-top:8px;font-size:.8rem}
+@media(max-width:640px){.stGrid{grid-template-columns:1fr}.stCol{text-align:right}}
+/* compression */
+.compBox{position:relative;width:240px;height:280px;margin:14px auto;border:4px solid var(--line);border-top:none;border-radius:0 0 20px 20px;overflow:hidden;background:rgba(128,160,220,.05)}
+#compCv{position:absolute;inset:0;width:100%;height:100%}
+.compVol{position:absolute;top:8px;right:10px;font-family:'Space Grotesk';font-weight:700;background:var(--card);border:1px solid var(--line);border-radius:99px;padding:2px 12px;z-index:3}
+.simCv{width:100%;height:260px;border:1px solid var(--line);border-radius:14px;background:var(--card2)}
+.legend{display:flex;gap:16px;justify-content:center;margin-top:10px;font-size:.78rem;font-weight:700;color:var(--muted);flex-wrap:wrap}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-inline-end:6px;vertical-align:-2px}
+.aurora{height:120px;border-radius:16px;background:linear-gradient(180deg,#0b1026 0%,#123 30%,rgba(52,211,153,.55) 55%,rgba(168,85,247,.5) 70%,#0b1026 100%);border:1px solid var(--line);margin-top:12px;position:relative;overflow:hidden}
+.aurora::after{content:'🏔️ ⛵ 🏔️';position:absolute;bottom:6px;width:100%;text-align:center;font-size:1.3rem}
+@media(max-width:520px){.modRow{gap:8px}.modRow>.tile{padding:12px}}
+footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
+.verified{display:inline-flex;align-items:center;gap:12px;border:1px solid var(--gold);border-radius:18px;padding:12px 22px;background:var(--card);color:var(--gold);font-weight:800;flex-wrap:wrap}
+#topBtn{position:fixed;bottom:20px;inset-inline-start:20px;z-index:85;width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,var(--hot),var(--gold));font-size:1.2rem;opacity:0;pointer-events:none;transition:.3s}
 #topBtn.show{opacity:1;pointer-events:auto}
-@media(max-width:520px){.modRow{flex-direction:column;align-items:center}.modTile{max-width:320px;width:100%}.topin{flex-wrap:wrap}.brand{font-size:15px}.flowRow{flex-wrap:wrap}}
-@media(max-width:640px){.stGrid{grid-template-columns:1fr!important}.hero{padding:38px 0 22px}.grid2>.card{min-width:0}}
-@media(max-width:400px){.brand{font-size:13px}.brand .dot{width:24px;height:24px;font-size:13px}}
-section{scroll-margin-top:76px}
 </style>
 </head>
 <body>
-<div class="topbar"><div class="wrap topin">
-  <div class="brand"><div class="dot">⚛️</div>Particle Model · النموذج الجسيمي</div>
-  <nav class="links">
-    <a href="#model">النموذج</a><a href="#theory">النظرية</a><a href="#states">الحالات</a><a href="#gr">G.R.</a><a href="#brownian">براونية</a><a href="#plasma">البلازما</a><a href="#tech">التقنية</a><a href="#table">جدول المقارنة</a><a href="#recap">المراجعة</a>
+<div id="progress"></div>
+<header class="topbar">
+  <div class="brand">⚛️ Particle Model · النموذج الجسيمي</div>
+  <nav id="nav">
+    <a href="#hero" class="active">Start · البداية</a><a href="#model">Modelling · النمذجة</a><a href="#theory">Theory · النظرية</a>
+    <a href="#states">States · الحالات</a><a href="#gr">G.R. · علل</a><a href="#brownian">Brownian · البراونية</a>
+    <a href="#plasma">Plasma · البلازما</a><a href="#tech">Tech · تطبيق</a><a href="#table">Table · الجدول</a><a href="#recap">Recap · الخلاصة</a>
   </nav>
-  <button class="iconbtn" id="themeBtn" title="Theme">☀️</button>
-  <div id="progress"></div>
-</div></div>
-
-<header class="hero wrap" id="hero">
-  <div class="aurora"></div>
-  <span class="kick">Unit 1 · Matter and Energy · Lesson 2 · Pages 16–21</span>
-  <h1>The Particle Model of Matter<br><span style="background:linear-gradient(135deg,#2563eb,#0891b2);-webkit-background-clip:text;background-clip:text;color:transparent">النموذج الجسيمي للمادة</span></h1>
-  <p>كل المادة مكوّنة من جسيمات صغيرة جدًا… في هذا الدرس هنشوف إزاي النموذج الجسيمي بيفسّر حالات المادة الثلاث والانتقال بينها، وبيتوسّع ليفسّر البلازما!</p>
-  <a class="cta" href="#model">ابدأ الاستكشاف ⬇</a>
-  <div class="chips">
-    <span class="chip">🧪 Modelling أولاً</span><span class="chip">🔬 Brownian Motion</span><span class="chip">⚡ Plasma</span><span class="chip">📄 pages 16–21</span>
-  </div>
-  <div class="solarWrap"><canvas id="heroCv"></canvas></div>
+  <button id="themeBtn" title="Theme · المظهر">☀️</button>
 </header>
+<div id="rail"><div class="tube"><i id="railFill"></i></div><div class="bulb"></div><b id="railVal">0°</b></div>
 
-<main class="wrap">
+<section id="hero">
+  <canvas id="heroCv"></canvas>
+  <div class="heroIn">
+    <span class="kicker">Unit 1 · Matter and Energy · Lesson 2 · Pages 16–21 <span style="opacity:.6">|</span> الوحدة 1 · الدرس 2</span>
+    <h1><span class="en">The Particle Model of Matter</span><span class="ar">النموذج الجسيمي للمادة</span></h1>
+    <p class="desc en">How tiny, invisible particles — and the forces between them — explain the shape, volume, compressibility and diffusion behaviour of solids, liquids, gases, and even plasma.</p>
+    <p class="desc ar">إزاي جسيمات صغيرة غير مرئية — والقوى بينها — بتفسر الشكل والحجم والانضغاطية وسلوك الانتشار للصلب والسائل والغاز وحتى البلازما.</p>
+    <div class="badges">
+      <span class="badge"><span class="en">🧱 Modelling (p.16)</span><span class="ar">🧱 النمذجة (ص 16)</span></span>
+      <span class="badge"><span class="en">🌀 Springs & Spheres Model</span><span class="ar">🌀 نموذج النوابض والكرات</span></span>
+      <span class="badge"><span class="en">🔩 Compression Chamber</span><span class="ar">🔩 غرفة الانضغاط</span></span>
+      <span class="badge"><span class="en">🌼 Brownian Motion</span><span class="ar">🌼 الحركة البراونية</span></span>
+      <span class="badge"><span class="en">⚡ Plasma Ionizer</span><span class="ar">⚡ مؤيّن البلازما</span></span>
+      <span class="badge vip"><span class="en">✔️ Reviewed by Dr. Wael Aboagiza</span><span class="ar">✔️ مراجعة د. وائل أبو عجيزة</span></span>
+    </div>
+    <div class="scrollHint">⌄</div>
+  </div>
+</section>
 
-<section id="model">
-  <h2 class="sec">🧪 Modelling Lab — مختبر النمذجة</h2>
-  <p class="sub">قبل ما نشرح النموذج… هنعمل نموذج بأنفسنا! حرّك المؤشر وشوف الجسيمات بتعمل إيه في الحالات الثلاث.</p>
+<main>
+<!-- ============ MODELLING (p.16 — FIRST) ============ -->
+<section id="model" class="card reveal">
+  <div class="chead"><span class="cnum">🧱</span><div><h2><span class="en">Modelling</span><span class="ar">النمذجة</span></h2></div><span class="ppage">p.16</span></div>
+  <div class="defBox">
+    <b class="dT">Modelling · النمذجة</b>
+    <p class="en">A way of presenting a simplified representation of objects that are either too tiny to be seen or too massive to be comprehended — which helps us understand objects and the relationships between them.</p>
+    <p class="ar">طريقة لتقديم تمثيل مبسّط لأشياء إما صغيرة جدًا لا تُرى أو ضخمة جدًا لا يمكن استيعابها — وده بيساعدنا نفهم الأشياء والعلاقات بينها.</p>
+  </div>
+  <p class="en" style="margin-top:14px"><strong>Educational models</strong> provide a simplified visualization of things that are:</p>
+  <p class="ar"><strong>النماذج التعليمية</strong> بتقدّم تصور مبسّط لأشياء إما:</p>
+  <div class="row2">
+    <div class="tile" style="border-color:var(--hot)"><span class="tag hot">① Too tiny to be seen · صغيرة جدًا لا تُرى</span>
+      <p class="en">Like the particles making up different materials.</p><p class="ar">زي الجسيمات اللي بتكوّن المواد المختلفة.</p></div>
+    <div class="tile" style="border-color:var(--cold)"><span class="tag">② Too massive to be comprehended · ضخمة جدًا لا تُستوعب</span>
+      <p class="en">Like the solar system.</p><p class="ar">زي المجموعة الشمسية.</p></div>
+  </div>
+  <h3 style="margin-top:20px">🔬 <span class="en">Interactive ① — An enlarged model of solid, liquid & gas particles</span> · <span class="ar">تفاعلي ① — نموذج مكبّر لجسيمات الصلب والسائل والغاز</span></h3>
   <div class="modRow">
-    <div class="modTile"><b>Solid · صلب</b><canvas id="cvS" class="modCanvas"></canvas></div>
-    <div class="modTile"><b>Liquid · سائل</b><canvas id="cvL" class="modCanvas"></canvas></div>
-    <div class="modTile"><b>Gas · غاز</b><canvas id="cvG" class="modCanvas"></canvas></div>
+    <div class="tile"><span class="tag">🧱 Solid · صلب</span><canvas class="modCanvas" id="cvS"></canvas></div>
+    <div class="tile"><span class="tag hot">🍫 Liquid · سائل</span><canvas class="modCanvas" id="cvL"></canvas></div>
+    <div class="tile"><span class="tag ok">💧 Gas · غاز</span><canvas class="modCanvas" id="cvG"></canvas></div>
   </div>
-  <div class="card">
-    <div class="meter"><div id="modMeter"></div></div>
-    <div class="sliderRow">
-      <input type="range" id="modT" min="0" max="100" value="33" aria-label="Temperature slider">
-      <div id="modState">SOLID · صلب</div>
-    </div>
-    <p style="text-align:center;color:var(--mut);font-size:13.5px">⬆ حرّررررر المؤشر وشوف الجزيئات بتتصرف إزاي مع تغير الطاقة الحركية!</p>
+  <div class="labctrl">
+    <div style="flex:1;min-width:220px"><span class="en">🌡️ Temperature · درجة الحرارة</span><input type="range" id="modT" min="0" max="100" value="15"></div>
+    <div class="meter"><i id="modMeter"></i></div>
+    <b class="en" id="modState" style="font-family:'Space Grotesk';color:var(--acc)">SOLID · صلب</b>
+  </div>
+  <h3 style="margin-top:22px">🌌 <span class="en">Interactive ② — A minimized model of our solar system</span> · <span class="ar">تفاعلي ② — نموذج مصغّر لمجموعتنا الشمسية</span></h3>
+  <div class="solarWrap" dir="ltr">
+    <div class="sun"></div>
+    <div class="orbit o1"><div class="planet earth"><div class="moonOrbit"><div class="planet moon"></div></div></div></div>
+    <div class="orbit o2"></div>
+  </div>
+  <h3 style="margin-top:22px">🔎 <span class="en">Creative extra — The Magic Microscope</span> · <span class="ar">إبداع إضافي — المجهر السحري</span></h3>
+  <p class="en">A brick looks smooth to the naked eye; under the magic microscope you see its tiny, neatly-ordered vibrating particles.</p>
+  <p class="ar">الطوبة شكلها ناعم للعين المجرّدة؛ تحت المجهر السحري هتشوف جسيماتها الصغيرة المرتبة المهتزّة.</p>
+  <div class="microWrap" dir="ltr"><canvas class="microCv" id="microCv"></canvas><div class="microHint">🔍 magnified view · عرض مكبّر</div></div>
+</section>
+
+<!-- ============ THEORY (p.17) ============ -->
+<section id="theory" class="card reveal">
+  <div class="chead"><span class="cnum">🧠</span><div><h2><span class="en">Particle Theory of Matter</span><span class="ar">النظرية الجسيمية للمادة</span></h2></div><span class="ppage">p.17</span></div>
+  <div class="flowRow" dir="ltr">
+    <div class="fbub"><span class="en">Scientists always try to explain different natural phenomena by</span><span class="ar">العلماء دايمًا بيحاولوا يفسّروا الظواهر الطبيعية المختلفة عن طريق</span></div>
+    <div class="farr">➜</div>
+    <div class="fbub"><span class="en">Making assumptions in an attempt to understand how things work</span><span class="ar">وضع فروض في محاولة لفهم كيف تعمل الأشياء</span></div>
+    <div class="farr">➜</div>
+    <div class="fbub"><span class="en">And when these assumptions succeed in explaining many phenomena</span><span class="ar">وعندما تنجح هذه الفروض في تفسير ظواهر كثيرة</span></div>
+    <div class="farr">➜</div>
+    <div class="fbub hotb"><span class="en">They become a Scientific Theory</span><span class="ar">تصبح نظرية علمية</span></div>
+  </div>
+  <p class="en" style="margin-top:12px">One of the theories that has succeeded in explaining much of the behaviour and properties of matter is the <strong>particle theory of matter</strong>.</p>
+  <p class="ar">من النظريات اللي نجحت في تفسير كثير من سلوكيات وخصائص المادة: <strong>النظرية الجسيمية للمادة</strong>.</p>
+  <div class="defBox">
+    <b class="dT">Particle theory of matter · النظرية الجسيمية للمادة</b>
+    <p class="en">Matter is made up of very minute particles that cannot be seen with the naked eye, and are in a state of continuous motion.</p>
+    <p class="ar">المادة تتكوّن من جسيمات دقيقة جدًا لا تُرى بالعين المجردة، وفي حالة حركة مستمرة.</p>
+  </div>
+  <h3 style="margin-top:18px">🧩 <span class="en">Cumulative Knowledge</span> · <span class="ar">معرفة تراكمية</span></h3>
+  <p class="en">The particles of matter are monoatomic molecules or polyatomic molecules. Polyatomic molecules are each formed by the bonding of two or more atoms together by chemical bonds.</p>
+  <p class="ar">جسيمات المادة جزيئات أحادية الذرة أو متعددة الذرات؛ والجزيء متعدد الذرات بيتكوّن من ارتباط ذرّتين أو أكتر معًا بروابط كيميائية.</p>
+  <div class="molRow" dir="ltr">
+    <div class="mol"><svg width="46" height="46"><circle cx="23" cy="23" r="18" fill="url(#g1)"/><defs><radialGradient id="g1"><stop offset="0" stop-color="#f8fafc"/><stop offset="1" stop-color="#94a3b8"/></radialGradient></defs></svg><span class="en">Monoatomic</span><span class="ar">أحادي الذرة</span></div>
+    <div class="mol"><svg width="60" height="46"><circle cx="22" cy="23" r="16" fill="#22c55e"/><circle cx="44" cy="28" r="10" fill="#38bdf8"/></svg><span class="en">Two atoms</span><span class="ar">ذرّتان</span></div>
+    <div class="mol"><svg width="70" height="46"><circle cx="30" cy="22" r="15" fill="#ef4444"/><circle cx="12" cy="30" r="9" fill="#38bdf8"/><circle cx="48" cy="30" r="9" fill="#38bdf8"/></svg><span class="en">Three atoms</span><span class="ar">ثلاث ذرات</span></div>
+    <div class="mol"><svg width="74" height="52"><circle cx="37" cy="26" r="15" fill="#64748b"/><circle cx="37" cy="7" r="8" fill="#38bdf8"/><circle cx="37" cy="45" r="8" fill="#38bdf8"/><circle cx="17" cy="26" r="8" fill="#38bdf8"/><circle cx="57" cy="26" r="8" fill="#38bdf8"/></svg><span class="en">Four atoms</span><span class="ar">أربع ذرات</span></div>
+  </div>
+  <h3 style="margin-top:20px">✍️ <span class="en">Assumptions of the Particle Theory (5)</span> · <span class="ar">فروض النظرية الجسيمية (5)</span></h3>
+  <div class="grid3" style="margin-top:10px">
+    <div class="tile"><span class="tag">1</span><p class="en">Matter is made up of very tiny particles that cannot be seen with the naked eye.</p><p class="ar">المادة تتكوّن من جسيمات صغيرة جدًا لا تُرى بالعين المجردة.</p></div>
+    <div class="tile"><span class="tag">2</span><p class="en">The particles of the same substance are identical, and their types differ from one substance to another.</p><p class="ar">جسيمات المادة الواحدة متطابقة، وأنواعها بتختلف من مادة لأخرى.</p></div>
+    <div class="tile"><span class="tag">3</span><p class="en">There are interparticle spaces between the particles of a substance, which vary depending on its physical state.</p><p class="ar">فيه مسافات بينية بين جسيمات المادة، وبتختلف حسب حالتها الفيزيائية.</p></div>
+    <div class="tile"><span class="tag hot">4</span><p class="en">The particles of matter store <strong>potential energy</strong>… <strong>G.R.:</strong> due to the forces of attraction between them.</p><p class="ar">جسيمات المادة بتخزن <strong>طاقة وضع</strong>… <strong>علل:</strong> بسبب قوى التجاذب بينها.</p></div>
+    <div class="tile"><span class="tag hot">5</span><p class="en">The particles of matter have <strong>kinetic energy</strong>… <strong>G.R.:</strong> because they are in continuous motion in straight lines; their way & speed vary with the state of matter.</p><p class="ar">جسيمات المادة لها <strong>طاقة حركة</strong>… <strong>علل:</strong> لأنها في حركة مستمرة في خطوط مستقيمة، وطريقة وسرعة حركتها بتختلف حسب حالة المادة.</p></div>
+    <div class="tile"><span class="tag ok">💡 The big idea</span><p class="en">Difference in attraction forces (Cause) → differences in behaviour & properties (Effect).</p><p class="ar">اختلاف قوى التجاذب (السبب) → اختلاف السلوك والخصائص (النتيجة).</p></div>
+  </div>
+  <h3 style="margin-top:20px">🌀 <span class="en">Particle model of matter — spheres (particles) & springs (attraction forces)</span> · <span class="ar">نموذج الجسيمات — كرات (جسيمات) ونوابض (قوى تجاذب)</span></h3>
+  <canvas id="springCv" style="margin-top:10px"></canvas>
+  <p class="en mut" style="font-size:.8rem">Springs represent the attractive forces between particles; spheres represent the particles of solid matter.</p>
+  <p class="ar mut" style="font-size:.8rem">النوابض بتمثل قوى التجاذب بين الجسيمات، والكرات بتمثل جسيمات المادة الصلبة.</p>
+</section>
+
+<!-- ============ STATES (p.18) ============ -->
+<section id="states" class="card reveal">
+  <div class="chead"><span class="cnum">📊</span><div><h2><span class="en">Explanation of the Properties of the States of Matter</span><span class="ar">تفسير خصائص حالات المادة</span></h2></div><span class="ppage">p.18</span></div>
+  <p class="en">The properties of the states of matter <strong>differ</strong> according to the <strong>difference</strong> in the force of attraction (bonding) between their particles, as shown in the following table:</p>
+  <p class="ar">خصائص حالات المادة <strong>بتختلف</strong> حسب <strong>اختلاف</strong> قوة التجاذب (الترابط) بين جسيماتها، زي ما موضح في الجدول:</p>
+  <div class="stGrid" dir="ltr">
+    <div class="stCol"><span class="tag" style="background:var(--hot)">Solid matter · صلبة</span>
+      <svg width="90" height="70" viewBox="0 0 90 70"><g fill="#ef4444"><circle cx="20" cy="15" r="8"/><circle cx="38" cy="15" r="8"/><circle cx="56" cy="15" r="8"/><circle cx="74" cy="15" r="8"/><circle cx="29" cy="30" r="8"/><circle cx="47" cy="30" r="8"/><circle cx="65" cy="30" r="8"/><circle cx="20" cy="45" r="8"/><circle cx="38" cy="45" r="8"/><circle cx="56" cy="45" r="8"/><circle cx="74" cy="45" r="8"/><circle cx="29" cy="60" r="8"/><circle cx="47" cy="60" r="8"/><circle cx="65" cy="60" r="8"/></g></svg>
+      <div class="stRow"><span class="en"><strong>Forces:</strong> very strong — tightly bound.</span><span class="ar"><strong>القوى:</strong> قوية جدًا — مترابطة بشدة.</span></div>
+      <div class="stRow"><span class="en"><strong>Spaces:</strong> very small.</span><span class="ar"><strong>المسافات:</strong> صغيرة جدًا.</span></div>
+      <div class="stRow"><span class="en"><strong>Motion:</strong> vibrational (limited) in fixed positions, without translating.</span><span class="ar"><strong>الحركة:</strong> اهتزازية (محدودة) في أماكن ثابتة بدون انتقال.</span></div></div>
+    <div class="stCol"><span class="tag">Liquid matter · سائلة</span>
+      <svg width="90" height="70" viewBox="0 0 90 70"><g fill="#38bdf8"><circle cx="22" cy="16" r="8"/><circle cx="40" cy="14" r="8"/><circle cx="58" cy="17" r="8"/><circle cx="74" cy="14" r="8"/><circle cx="30" cy="31" r="8"/><circle cx="48" cy="29" r="8"/><circle cx="66" cy="32" r="8"/><circle cx="21" cy="46" r="8"/><circle cx="39" cy="45" r="8"/><circle cx="57" cy="47" r="8"/><circle cx="74" cy="45" r="8"/><circle cx="30" cy="60" r="8"/><circle cx="48" cy="59" r="8"/><circle cx="66" cy="61" r="8"/></g></svg>
+      <div class="stRow"><span class="en"><strong>Forces:</strong> relatively weak, but sufficient to hold them together.</span><span class="ar"><strong>القوى:</strong> ضعيفة نسبيًا، بس كافية تمسكهم مع بعض.</span></div>
+      <div class="stRow"><span class="en"><strong>Spaces:</strong> relatively large.</span><span class="ar"><strong>المسافات:</strong> أكبر نسبيًا.</span></div>
+      <div class="stRow"><span class="en"><strong>Motion:</strong> move relatively freely within the container.</span><span class="ar"><strong>الحركة:</strong> بتتحرك بحرية نسبية جوه الوعاء.</span></div></div>
+    <div class="stCol"><span class="tag ok">Gaseous matter · غازية</span>
+      <svg width="90" height="70" viewBox="0 0 90 70"><g fill="#22c55e"><ellipse cx="20" cy="14" rx="9" ry="5" transform="rotate(-20 20 14)"/><ellipse cx="62" cy="12" rx="9" ry="5" transform="rotate(30 62 12)"/><ellipse cx="40" cy="36" rx="9" ry="5" transform="rotate(60 40 36)"/><ellipse cx="75" cy="42" rx="9" ry="5" transform="rotate(-40 75 42)"/><ellipse cx="18" cy="55" rx="9" ry="5" transform="rotate(15 18 55)"/><ellipse cx="58" cy="60" rx="9" ry="5" transform="rotate(-15 58 60)"/></g></svg>
+      <div class="stRow"><span class="en"><strong>Forces:</strong> very weak.</span><span class="ar"><strong>القوى:</strong> ضعيفة جدًا.</span></div>
+      <div class="stRow"><span class="en"><strong>Spaces:</strong> very large.</span><span class="ar"><strong>المسافات:</strong> كبيرة جدًا.</span></div>
+      <div class="stRow"><span class="en"><strong>Motion:</strong> randomly & completely freely in all directions.</span><span class="ar"><strong>الحركة:</strong> عشوائية وبحرية تامة في كل الاتجاهات.</span></div></div>
+  </div>
+  <h3 style="margin-top:20px">❓ <span class="en">G.R. — Why each state behaves so?</span> · <span class="ar">علل — ليه كل حالة بتتصرف كده؟</span></h3>
+  <div class="grid3" style="margin-top:10px">
+    <div class="tile"><span class="tag hot">① Solid · صلب</span>
+      <p class="en">Definite shape & definite volume — <strong>because</strong> forces are very strong and spaces very small.</p>
+      <p class="ar">شكل محدد وحجم محدد — <strong>لأن</strong> قوى التجاذب قوية جدًا والمسافات صغيرة جدًا.</p></div>
+    <div class="tile"><span class="tag">② Liquid · سائل</span>
+      <p class="en">Indefinite shape & definite volume — <strong>because</strong> forces are relatively weak and spaces relatively large.</p>
+      <p class="ar">شكل غير محدد وحجم محدد — <strong>لأن</strong> القوى ضعيفة نسبيًا والمسافات أكبر نسبيًا.</p></div>
+    <div class="tile"><span class="tag ok">③ Gas · غاز</span>
+      <p class="en">No definite shape & no definite volume — <strong>because</strong> forces are very weak and spaces very large.</p>
+      <p class="ar">لا شكل محدد ولا حجم محدد — <strong>لأن</strong> القوى ضعيفة جدًا والمسافات كبيرة جدًا.</p></div>
+  </div>
+  <h3 style="margin-top:20px">🔩 <span class="en">Interactive — Why gases compress: shrinking the gaps</span> · <span class="ar">تفاعلي — ليه الغازات بتنضغط: تضييق الفجوات</span></h3>
+  <p class="en">Compression reduces the interparticle spaces — decreasing total volume — WITHOUT changing the size of the particles. Press down!</p>
+  <p class="ar">الانضغاط بيقلّل المسافات البينية — فيقل الحجم الكلي — من غير ما يتغير حجم الجسيمات. دوس لتحت!</p>
+  <div class="compBox" dir="ltr"><canvas id="compCv"></canvas><div class="compVol" id="compVol">1 L</div></div>
+  <div class="labctrl">
+    <button class="btn" id="compPress">⬇️ Press down · اضغط لتحت</button>
+    <button class="btn ghost" id="compReset">↺ Reset · إعادة</button>
   </div>
 </section>
 
-<section id="theory">
-  <h2 class="sec">📜 Kinetic Theory — النظرية الحركية للغازات</h2>
-  <p class="sub">النموذج الجسيمي بيقول إن الغاز عبارة عن جسيمات كتيرة جدًا بتتحرك بسرعات كبيرة وفي اتجاهات عشوائية.</p>
+<!-- ============ G.R. (p.19 top) ============ -->
+<section id="gr" class="card reveal">
+  <div class="chead"><span class="cnum">❓</span><div><h2><span class="en">Give Reason — Apply the Theory</span><span class="ar">علل — طبّق النظرية</span></h2></div><span class="ppage">p.19</span></div>
   <div class="grid2">
-    <div class="card">
-      <b style="color:var(--acc)">افتراضات النظرية:</b>
-      <ul style="padding-inline-start:20px;font-size:14.5px">
-        <li>عدد الجسيمات كبير جدًا والمسافة بينها كبيرة نسبيًا</li>
-        <li>بتتحرك عشوائيًا وبسرعات مختلفة</li>
-        <li>تصادمات مرنة (لا تفقد طاقة)</li>
-        <li>لا توجد قوى تجاذب أو تنافر بينها</li>
-      </ul>
-      <div style="margin-top:12px">
-        <span class="pill">🎯 Random motion</span><span class="pill">🎯 Elastic collisions</span><span class="pill">🎯 No attraction</span>
-      </div>
-    </div>
-    <div class="card">
-      <b style="color:var(--acc)">إزاي بنمثّلها؟ 🎨</b>
-      <p style="font-size:14.5px">في الرسمة جنب: كل دايرة = جسيم غاز، الأسهم = سرعة واتجاه عشوائي. لاحظ إن السرعات مش متساوية — ده اللي بنسميه <b>توزيع ماكسويل</b>.</p>
-      <canvas id="microCv" class="microWrap" height="180"></canvas>
-    </div>
+    <details><summary>🪨 <span class="en">Difficulty of breaking a piece of rock</span><span class="ar">صعوبة كسر قطعة صخر</span></summary>
+      <div class="body"><span class="en">Because the forces of attraction between the particles of the solid rock are very strong.</span><span class="ar">لأن قوى التجاذب بين جسيمات الصخر الصلب قوية جدًا.</span></div></details>
+    <details><summary>💧 <span class="en">The ability of liquids to flow</span><span class="ar">قدرة السوائل على السريان</span></summary>
+      <div class="body"><span class="en">Because the forces of attraction between their particles are relatively weak.</span><span class="ar">لأن قوى التجاذب بين جسيماتها ضعيفة نسبيًا.</span></div></details>
+    <details><summary>🥄 <span class="en">Dissolving table salt in water</span><span class="ar">إمكانية إذابة ملح الطعام في الماء</span></summary>
+      <div class="body"><span class="en">Because the particles of table salt occupy the intermolecular spaces between the water particles.</span><span class="ar">لأن جسيمات ملح الطعام بتحتل المسافات البينية بين جسيمات الماء.</span></div></details>
+    <details><summary>🎈 <span class="en">The compressibility of gases</span><span class="ar">انضغاطية الغازات</span></summary>
+      <div class="body"><span class="en">Because the interparticle spaces between their particles are very large.</span><span class="ar">لأن المسافات البينية بين جسيماتها كبيرة جدًا.</span></div></details>
   </div>
 </section>
 
-<section id="states">
-  <h2 class="sec">🧊 Three States — حالات المادة الثلاث</h2>
-  <p class="sub">نفس الجسيمات… بس ترتيبها وطاقتها بتختلف! شوف نموذج الزنبركات تحت 👇</p>
-  <div class="card">
-    <div class="springWrap"><canvas id="springCv" height="300"></canvas></div>
-    <div class="stGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px">
-      <div class="defBox" style="margin:0"><b>Solid 🔴</b><br><small>جسيمات متراصة، اهتزاز في مكانها، شكل وحجم ثابتين</small></div>
-      <div class="defBox" style="margin:0"><b>Liquid 🔵</b><br><small>جسيمات قريبة لكن تنزلق فوق بعض، شكل يتغير وحجم ثابت</small></div>
-      <div class="defBox" style="margin:0"><b>Gas ⚪</b><br><small>جسيمات بعيدة، حركة سريعة عشوائية، يملأ أي وعاء</small></div>
-    </div>
+<!-- ============ BROWNIAN (p.19) ============ -->
+<section id="brownian" class="card reveal">
+  <div class="chead"><span class="cnum">🌼</span><div><h2><span class="en">Brownian Motion</span><span class="ar">الحركة البراونية</span></h2></div><span class="ppage">p.19</span></div>
+  <div class="row2">
+    <div class="tile"><span class="tag">🔍 Discovery · الاكتشاف</span>
+      <p class="en">The scientist <strong>Robert Brown</strong> discovered that pollen grains suspended in water are in continuous random motion in all directions — named <strong>Brownian motion</strong> after him.</p>
+      <p class="ar">العالم <strong>روبرت براون</strong> اكتشف إن حبيبات اللقاح المعلّقة في الماء في حركة عشوائية مستمرة في كل الاتجاهات — واتسمت <strong>الحركة البراونية</strong> نسبة ليه.</p></div>
+    <div class="tile"><span class="tag hot">💡 Reason for its occurrence · سبب حدوثها</span>
+      <p class="en">Collisions between the molecules of a fluid (liquid or gas) and relatively large particles in it (pollen in water, dust in air) <strong>lead to</strong> their random motion in all directions.</p>
+      <p class="ar">التصادمات بين جزيئات المائع (سائل أو غاز) والجسيمات الكبيرة نسبيًا فيه (اللقاح في الماء أو الغبار في الهواء) <strong>بتؤدي</strong> لحركتها العشوائية في كل الاتجاهات.</p></div>
   </div>
-  <div class="grid2">
-    <div class="card" style="text-align:center">
-      <b>🫧 Compression — انضغط الغاز</b>
-      <div class="compBox"><canvas id="compCv" width="220" height="220"></canvas></div>
-      <div>الحجم: <b id="compVol">1 L</b></div>
-      <button class="btn ghost" id="compPress">انضغط ↓ Press</button>
-      <button class="btn" id="compReset">↺ Reset</button>
-      <p style="color:var(--mut);font-size:13px;margin-top:6px">السائل والصلب مش قابلين للانضغاط لأن جسيماتهم متراصة أصلًا!</p>
-    </div>
-    <div class="card">
-      <b>💡 ليه الغاز بس اللي بينضغط؟</b>
-      <p style="font-size:14.5px">لأن فيه مسافات فاضية كبيرة بين جسيماته. لما نضغط، الجسيمات بتقرّب من بعض. لكن في السائل والصلب المسافات صغيرة جدًا فمفيش مجال للانضغاط.</p>
-      <div class="flowRow">
-        <div class="flowStep">1 L<br><small>مسافات واسعة</small></div><div class="flowArrow">←</div>
-        <div class="flowStep">0.5 L<br><small>تقارب</small></div><div class="flowArrow">←</div>
-        <div class="flowStep">0.25 L<br><small>تقارب أكتر</small></div>
-      </div>
-    </div>
+  <canvas class="simCv" id="brownCv" style="margin-top:14px"></canvas>
+  <div class="legend"><span><i style="background:#38bdf8"></i><span class="en" style="display:inline">fluid molecules (air/water)</span> · <span class="ar" style="display:inline">جزيئات المائع</span></span><span><i style="background:#fbbf24"></i><span class="en" style="display:inline">dust / pollen grains</span> · <span class="ar" style="display:inline">حبيبات غبار/لقاح</span></span></div>
+  <div class="labctrl">
+    <button class="btn" id="brownStart">▶ Start Brownian motion · شغّل الحركة</button>
+    <button class="btn ghost" id="brownStop">■ Stop · إيقاف</button>
+  </div>
+  <div class="speedRow" data-spd="brown"><span>⏩ Speed · السرعة:</span>
+    <button class="spBtn active" data-sp="1">1×</button><button class="spBtn" data-sp="2">2×</button><button class="spBtn" data-sp="4">4×</button></div>
+  <div class="defBox">
+    <b class="dT">Brownian motion · الحركة البراونية</b>
+    <p class="en">The random motion in all directions of relatively large particles suspended in a fluid, as a result of their continuous collisions with the fluid particles.</p>
+    <p class="ar">الحركة العشوائية في كل الاتجاهات لجسيمات كبيرة نسبيًا معلّقة في مائع، نتيجة تصادمها المستمر مع جسيمات المائع.</p>
+  </div>
+  <div class="note hot">
+    <span class="en">🕯️ G.R. — The diffusion of smoke from a candle wick in the air: because the smoke particles collide with the air particles, so they move randomly in all directions, causing them to spread (diffuse).</span>
+    <span class="ar">🕯️ علل — انتشار دخان فتيل الشمعة في الهواء: لأن جسيمات الدخان بتتصادم مع جزيئات الهواء فتتحرك عشوائيًا في كل الاتجاهات وبتنتشر.</span>
   </div>
 </section>
 
-<section id="gr">
-  <h2 class="sec">📐 G.R. — أسئلة التقويم التراكمي</h2>
-  <p class="sub">أسئلة صفحة 21 من الكتاب — افتح كل سؤال وشوف الإجابة النموذجية.</p>
-  <details class="gr"><summary>G.R.① — ليه الشوكلاتة بتسيح في الجيب؟ 🍫</summary><p>لأن حرارة الجسم بتدي الجسيمات طاقة حركية أكبر فبتقدر تنزلق عن بعض — التحول من صلب إلى سائل (انصهار).</p></details>
-  <details class="gr"><summary>G.R.② — ليه العطر بينتشر في الأوضة؟ 🌸</summary><p>جسيمات العطر بتتحرك عشوائيًا وبسرعة بين جسيمات الهواء (انتشار) حتى تتوزع بالأوضة كلها.</p></details>
-  <details class="gr"><summary>G.R.③ — ليه الغازات قابلة للانضغاط والصلب لأ؟</summary><p>الغاز: مسافات كبيرة بين الجسيمات ← بتقدر تقربها. الصلب: الجسيمات متراصة ومربوطة بمواقع ثابتة فمفيش مجال للتقريب.</p></details>
-  <details class="gr"><summary>G.R.④ — صنّف: الحديد، الماء، الأكسجين، الزجاج 🧾</summary><p>حديد: صلب · ماء: سائل · أكسجين: غاز · زجاج: صلب (أمورفوس لكن بيتصرف كصلب).</p></details>
-</section>
-
-<section id="brownian">
-  <h2 class="sec">🌀 Brownian Motion — الحركة البراونية</h2>
-  <p class="sub">روبرت براون 1827: حبوب اللقاح في الماية كانت بتتحرك عشوائي! ليه؟ لأن جزيئات الماية الصغيرة بتضربها من كل الاتجاهات بشكل غير متساوٍ.</p>
-  <div class="card" style="text-align:center">
-    <canvas id="brownCv"></canvas>
-    <div>
-      <button class="btn" id="brownStart">▶ ابدأ Start</button>
-      <button class="btn ghost" id="brownStop">⏸ وقف Stop</button>
-    </div>
-    <div class="speedRow" data-spd="brown">
-      <button class="spd on" data-v="0.5">بطيء 🐢</button>
-      <button class="spd" data-v="1">عادي 🚶</button>
-      <button class="spd" data-v="2">سريع 🏃</button>
-      <button class="spd" data-v="4">صاروخ 🚀</button>
-    </div>
-    <div class="defBox"><b>ليه مهمة؟</b> الحركة البراونية هي الدليل المباشر على إن المادة فعلاً مكوّنة من جسيمات صغيرة بتتحرك — دليل وجود الذرات قبل ما نقدر نشوفها!</div>
+<!-- ============ PLASMA (p.20) ============ -->
+<section id="plasma" class="card reveal">
+  <div class="chead"><span class="cnum">⚡</span><div><h2><span class="en">Plasma State — The 4th State</span><span class="ar">حالة البلازما — الحالة الرابعة</span></h2></div><span class="ppage">p.20</span></div>
+  <p class="en">When gases (with neutral charge) are <strong>ionized</strong>, they turn into positively charged ions and free negative electrons. This state is known as plasma — the <strong>fourth state</strong> of matter.</p>
+  <p class="ar">لما بتتأين الغازات (متعادلة الشحنة)، بتتحول لأيونات موجبة الشحنة وإلكترونات سالبة حرة. الحالة دي اسمها البلازما — <strong>الحالة الرابعة</strong> للمادة.</p>
+  <canvas class="simCv" id="plasmaCv" style="margin-top:14px"></canvas>
+  <div class="legend"><span><i style="background:#94a3b8"></i><span class="en" style="display:inline">neutral gas</span> · <span class="ar" style="display:inline">غاز متعادل</span></span><span><i style="background:#ef4444"></i><span class="en" style="display:inline">+ ions</span> · <span class="ar" style="display:inline">أيونات +</span></span><span><i style="background:#22d3ee"></i><span class="en" style="display:inline">− free electrons</span> · <span class="ar" style="display:inline">إلكترونات − حرة</span></span></div>
+  <div class="labctrl">
+    <button class="btn purp" id="ionBtn">⚡ Gas → Plasma · أيِّن الغاز</button>
+    <button class="btn ghost" id="plReset">↺ Reset · إعادة</button>
   </div>
-</section>
-
-<section id="plasma">
-  <h2 class="sec">⚡ Plasma — البلازما (الحالة الرابعة)</h2>
-  <p class="sub">لو سخّنت الغاز جدًا جدًا، الإلكترونات هتفكّ من الذرات ← بلازما! شمسك ولمبة النيون والشفق القطبي كلهم بلازما.</p>
-  <div class="card" style="text-align:center">
-    <canvas id="plasmaCv"></canvas>
-    <div>
-      <button class="btn" id="ionBtn">⚡ أيِّن! Ionize</button>
-      <button class="btn ghost" id="plReset">↺ Reset</button>
-    </div>
-    <div class="speedRow" data-spd="plasma">
-      <button class="spd on" data-v="0.5">بطيء 🐢</button>
-      <button class="spd" data-v="1">عادي 🚶</button>
-      <button class="spd" data-v="2">سريع 🏃</button>
-      <button class="spd" data-v="4">صاروخ 🚀</button>
-    </div>
-    <div class="defBox">في البلازما الجسيمات مش محايدة — فيه <b style="color:#ef4444">أيونات موجبة (+)</b> و<b style="color:#22d3ee">إلكترونات سالبة (−)</b> بتتحرك بحرية. عشان كده البلازما بتوصّل الكهرباء وبتتفاعل مع المجالات المغناطيسية!</div>
-  </div>
-</section>
-
-<section id="tech">
-  <h2 class="sec">🔬 Tech Corner — التقنية والحياة</h2>
-  <p class="sub">النموذج الجسيمي مش كلام نظري… ده أساس تقنيات بتستخدمها كل يوم!</p>
-  <div class="recapGrid">
-    <div class="card"><b>💉 حقن الوقود الإلكترونية</b><p style="font-size:14px">بنِفْخَة وقود دقيقة جدًا (mist) لأن تجزيء الوقود لجسيمات أصغر بيحرق أنضف وأكتر كفاءة.</p></div>
-    <div class="card"><b>🌬️ جهاز الاستنشاق Inhaler</b><p style="font-size:14px">الدوا بيتحول لجسيمات متناهية الصغر عشان توصل للحويصلات الهوائية في الرئة بسهولة.</p></div>
-    <div class="card"><b>🧊 التجفيف بالتبريد Freeze-dry</b><p style="font-size:14px">تحويل الجليد مباشرة لبخار (تسامي) للحفاظ على الفاكهة والدوا — تطبيق مباشر لتغير الحالة.</p></div>
-    <div class="card"><b>🌡️ الثرمومتر السائل</b><p style="font-size:14px">الزئبق/الكحول بيتمدد لإن جسيماته بتاخد طاقة أكبر فتبعد عن بعض — ارتفاع العمود = درجة الحرارة.</p></div>
-  </div>
-</section>
-
-<section id="table">
-  <h2 class="sec">📊 جدول المقارنة الشامل</h2>
-  <div style="overflow-x:auto">
-    <table class="cmp">
-      <tr><th>الخاصية</th><th>Solid صلب</th><th>Liquid سائل</th><th>Gas غاز</th><th>Plasma بلازما</th></tr>
-      <tr><td><b>الشكل</b></td><td>ثابت ✅</td><td>شكل الإناء</td><td>يمتلئ الفراغ</td><td>يمتلئ الفراغ</td></tr>
-      <tr><td><b>الحجم</b></td><td>ثابت</td><td>ثابت</td><td>متغير</td><td>متغير</td></tr>
-      <tr><td><b>الانضغاطية</b></td><td>لا</td><td>بالصعب</td><td>سهل ✅</td><td>سهل ✅</td></tr>
-      <tr><td><b>حركة الجسيمات</b></td><td>اهتزاز في المكان</td><td>انزلاق</td><td>حر وسريع</td><td>حر وسريع جدًا</td></tr>
-      <tr><td><b>الطاقة</b></td><td>أقل</td><td>متوسطة</td><td>عالية</td><td>الأعلى ⚡</td></tr>
-      <tr><td><b>مثال</b></td><td>جليد 🧊</td><td>ماء 💧</td><td>بخار ♨️</td><td>شمس ☀️ / نيون</td></tr>
-    </table>
-  </div>
-</section>
-
-<section id="recap">
-  <h2 class="sec">✅ الخلاصة السريعة</h2>
-  <div class="flowRow">
-    <div class="flowStep">Modelling<br><small>نمثّل الأول</small></div><div class="flowArrow">→</div>
-    <div class="flowStep">Kinetic Theory<br><small>نشرح بالنظرية</small></div><div class="flowArrow">→</div>
-    <div class="flowStep">3 States<br><small>صلب/سائل/غاز</small></div><div class="flowArrow">→</div>
-    <div class="flowStep">Brownian Proof<br><small>الدليل البراوني</small></div><div class="flowArrow">→</div>
-    <div class="flowStep">Plasma+<br><small>الحالة الرابعة</small></div>
+  <div class="speedRow" data-spd="plasma"><span>⏩ Speed · السرعة:</span>
+    <button class="spBtn active" data-sp="1">1×</button><button class="spBtn" data-sp="2">2×</button><button class="spBtn" data-sp="4">4×</button></div>
+  <div class="defBox">
+    <b class="dT">Plasma state · حالة البلازما</b>
+    <p class="en">The fourth state of matter, which consists of the ionization of gases into positively charged ions and free negative electrons.</p>
+    <p class="ar">الحالة الرابعة للمادة، واللي بتتكوّن من تأين الغازات لأيونات موجبة الشحنة وإلكترونات سالبة حرة.</p>
   </div>
   <div class="grid2" style="margin-top:14px">
-    <div class="card">🎯 <b>افتكر:</b> كل المادة = جسيمات. المسافات والطاقة هما اللي بيحددوا الحالة.</div>
-    <div class="card">🚀 <b>جاي بعد كده:</b> Changes of State — الانتقالات بين الحالات وانصهار وتجمد وغليان!</div>
+    <div class="tile"><span class="tag gold">Ionization occurs when · بيحصل التأين عندما</span>
+      <p class="en">- They pass through a strong electric field.<br>- They are heated to extremely high temperatures (thousands or millions of degrees).</p>
+      <p class="ar">- بتمر في مجال كهربائي قوي.<br>- بتتسخن لدرجات حرارة عالية جدًا (آلاف أو ملايين الدرجات).</p></div>
+    <div class="tile"><span class="tag hot">Characteristics · الخصائص</span>
+      <p class="en">Its high electrical conductivity.</p><p class="ar">التوصيل الكهربي العالي لها.</p></div>
   </div>
-  <div style="text-align:center;margin-top:18px">
-    <span class="verified">✅ Verified by Dr_Wael_Aboagiza · SPDS</span>
+  <h3 style="margin-top:18px">🌟 <span class="en">Examples of its occurrence</span> · <span class="ar">أمثلة لوجودها</span></h3>
+  <div class="grid3" style="margin-top:10px">
+    <div class="tile"><span class="tag">1</span><p class="en">Most of the matter in outer space (the Sun, stars and cosmic nebulae).</p><p class="ar">أغلب المادة في الفضاء الخارجي (الشمس والنجوم والسدم الكونية).</p></div>
+    <div class="tile"><span class="tag hot">2</span><p class="en">Lightning.</p><p class="ar">البرق.</p></div>
+    <div class="tile"><span class="tag ok">3</span><p class="en">Aurora borealis (Polar lights).</p><p class="ar">الشفق القطبي (الأضواء القطبية).</p></div>
+  </div>
+  <div class="aurora" dir="ltr"></div>
+  <div class="note pur">
+    <span class="en">✦ The aurora borealis: a natural light phenomenon appearing as dazzling coloured light curtains visible from the North and South Poles — as a result of the scattering of harmful charged cosmic radiation away from the Earth's surface.</span>
+    <span class="ar">✦ الشفق القطبي: ظاهرة ضوئية طبيعية بتظهر في السماء في صورة ستائر ضوئية ملونة مبهرة تُرى من القطبين الشمالي والجنوبي — نتيجة تشتيت الإشعاع الكوني المشحون الضار بعيدًا عن سطح الأرض.</span>
   </div>
 </section>
 
-<footer class="site">
-  <p>© SPDS — Dr_Wael_Aboagiza · Unit 1 · Lesson 2: The Particle Model of Matter · pages 16–21 (Modelling first)</p>
-  <p style="opacity:.75;font-size:12px">Made with ❤️ for my students · جميع الحقوق محفوظة © ٢٠٢٥/٢٠٢٦</p>
-</footer>
+<!-- ============ TECH (p.21) ============ -->
+<section id="tech" class="card reveal">
+  <div class="chead"><span class="cnum">⚙️</span><div><h2><span class="en">Technological Application — Plasma Air Conditioners</span><span class="ar">تطبيق تكنولوجي — مكيفات البلازما</span></h2></div><span class="ppage">p.21</span></div>
+  <p class="en">The plasma state is used in air conditioners… <strong>G.R.:</strong> <strong>to</strong> improve air quality in enclosed spaces.</p>
+  <p class="ar">بتستخدم حالة البلازما في المكيفات… <strong>علل:</strong> <strong>لـ</strong>تحسين جودة الهواء في الأماكن المغلقة.</p>
+  <svg viewBox="0 0 420 150" dir="ltr" style="width:100%;margin-top:12px">
+    <rect x="20" y="30" width="90" height="30" rx="6" fill="#b91c1c"/>
+    <path d="M110 62 C180 90 260 100 340 108" stroke="#22d3ee" stroke-width="6" fill="none" class="dash"/>
+    <text x="150" y="120" fill="#22d3ee" font-size="12" font-weight="800">Purified air · هوا نقي</text>
+    <path d="M340 26 C260 18 180 20 112 34" stroke="#22c55e" stroke-width="5" fill="none" class="dash"/>
+    <text x="200" y="16" fill="#22c55e" font-size="12" font-weight="800">Polluted air · هوا ملوث</text>
+    <g fill="#22c55e"><circle cx="200" cy="34" r="6"/><circle cx="250" cy="30" r="7"/><circle cx="300" cy="33" r="6"/></g>
+  </svg>
+  <h3 style="margin-top:14px">🔧 <span class="en">Its operating principle</span> · <span class="ar">مبدأ عملها</span></h3>
+  <div class="grid3" style="margin-top:10px">
+    <div class="tile"><span class="tag">1</span><p class="en">When gases pass through a strong electric field, they turn into plasma (atoms → positive ions + free negative electrons).</p><p class="ar">لما بتعدي الغازات في مجال كهربائي قوي، بتتحول لبلازما (ذرات → أيونات موجبة + إلكترونات سالبة حرة).</p></div>
+    <div class="tile"><span class="tag hot">2</span><p class="en"><strong>Charged gas ions break down</strong> harmful air pollutants, germs and viruses.</p><p class="ar"><strong>الأيونات المشحونة بتفكك</strong> ملوثات الهواء الضارة والجراثيم والفيروسات.</p></div>
+    <div class="tile"><span class="tag ok">3</span><p class="en">The electric field attracts dust and charged particles, <strong>making</strong> the air more pure.</p><p class="ar">المجال الكهربائي بيجذب الغبار والجسيمات المشحونة، <strong>فيخلي</strong> الهواء أنقى.</p></div>
+  </div>
+</section>
+
+<!-- ============ TABLE ============ -->
+<section id="table" class="card reveal">
+  <div class="chead"><span class="cnum">📋</span><div><h2><span class="en">Reference Table — Summarized by the Particle Model</span><span class="ar">الجدول المرجعي — ملخّص بالنموذج الجسيمي</span></h2></div></div>
+  <div class="grid3">
+    <div class="tile"><span class="tag">🧊 Solid · صلب</span>
+      <p class="en">Forces: very strong.</p><p class="ar">القوى: قوية جدًا.</p>
+      <p class="en mut">Shape: definite (no fluidity).</p><p class="ar mut">الشكل: محدد (لا انسيابية).</p>
+      <p class="en mut">Spaces: very small.</p><p class="ar mut">المسافات: صغيرة جدًا.</p>
+      <p class="en mut">Volume: definite, incompressible.</p><p class="ar mut">الحجم: محدد، لا ينضغط.</p>
+      <p class="en mut">Motion: vibrate in fixed position.</p><p class="ar mut">الحركة: اهتزاز في مكان ثابت.</p>
+      <p class="en mut">Diffusion: very slow.</p><p class="ar mut">الانتشار: بطيء جدًا.</p></div>
+    <div class="tile"><span class="tag hot">💧 Liquid · سائل</span>
+      <p class="en">Forces: relatively weak.</p><p class="ar">القوى: ضعيفة نسبيًا.</p>
+      <p class="en mut">Shape: indefinite (has fluidity).</p><p class="ar mut">الشكل: غير محدد (انسيابية).</p>
+      <p class="en mut">Spaces: relatively large.</p><p class="ar mut">المسافات: أكبر نسبيًا.</p>
+      <p class="en mut">Volume: definite, incompressible.</p><p class="ar mut">الحجم: محدد، لا ينضغط.</p>
+      <p class="en mut">Motion: move more freely in container.</p><p class="ar mut">الحركة: أكتر حرية في الوعاء.</p>
+      <p class="en mut">Diffusion: average.</p><p class="ar mut">الانتشار: متوسط.</p></div>
+    <div class="tile"><span class="tag ok">☁️ Gas · غاز</span>
+      <p class="en">Forces: very weak.</p><p class="ar">القوى: ضعيفة جدًا.</p>
+      <p class="en mut">Shape: indefinite (has fluidity).</p><p class="ar mut">الشكل: غير محدد (انسيابية).</p>
+      <p class="en mut">Spaces: very large.</p><p class="ar mut">المسافات: كبيرة جدًا.</p>
+      <p class="en mut">Volume: indefinite, compressible.</p><p class="ar mut">الحجم: غير محدد، ينضغط.</p>
+      <p class="en mut">Motion: random & completely free.</p><p class="ar mut">الحركة: عشوائية وحرة تمامًا.</p>
+      <p class="en mut">Diffusion: very fast.</p><p class="ar mut">الانتشار: سريع جدًا.</p></div>
+  </div>
+</section>
+
+<!-- ============ RECAP ============ -->
+<section id="recap" class="card reveal">
+  <div class="chead"><span class="cnum">🔑</span><div><h2><span class="en">Quick Recap — Key Takeaways</span><span class="ar">خلاصة سريعة — أهم النقاط</span></h2></div></div>
+  <div class="badges" style="margin:0;justify-content:flex-start">
+    <span class="badge"><span class="en">Attraction: solid &gt; liquid &gt; gas</span><span class="ar">التجاذب: صلب &gt; سائل &gt; غاز</span></span>
+    <span class="badge"><span class="en">Spaces: solid &lt; liquid &lt; gas</span><span class="ar">المسافات: صلب &lt; سائل &lt; غاز</span></span>
+    <span class="badge"><span class="en">Diffusion: solid &lt; liquid &lt; gas</span><span class="ar">الانتشار: صلب &lt; سائل &lt; غاز</span></span>
+    <span class="badge"><span class="en">Only gases compress</span><span class="ar">الغازات فقط بتنضغط</span></span>
+    <span class="badge"><span class="en">Brownian = proof particles move</span><span class="ar">البراونية = دليل حركة الجسيمات</span></span>
+    <span class="badge"><span class="en">Plasma = ionized gas (4th state)</span><span class="ar">البلازما = غاز متأين (الحالة 4)</span></span>
+    <span class="badge"><span class="en">P.E. ← attraction forces · K.E. ← motion</span><span class="ar">طاقة الوضع ← قوى التجاذب · طاقة الحركة ← الحركة</span></span>
+  </div>
+  <div class="note gold" style="margin-top:16px">
+    <span class="en">💡 Memory trick: "Strong hugs hold shapes; weak hugs let go" — strong forces = definite shape, weak forces = flow & compress!</span>
+    <span class="ar">💡 حيلة للحفظ: «العناق القوي بيحفظ الشكل، والضعيف بيسيبه» — قوى قوية = شكل محدد، قوى ضعيفة = سريان وانضغاط!</span>
+  </div>
+</section>
 </main>
 
-<button id="topBtn" aria-label="Top">↑</button>
+<footer>
+  <div class="verified">🛡️ <span class="en">Reviewed & signed: Dr. Wael Aboagiza</span><span class="ar">مراجعة وتوقيع: د. وائل أبو عجيزة</span> <span style="font-family:'Space Grotesk'">#Dr_Wael_Aboagiza</span></div>
+  <p style="margin-top:14px;font-size:.82rem"><span class="en">Unit 1 · Lesson 2: The Particle Model of Matter · pages 16–21 (Modelling first)</span><span class="ar">الوحدة الأولى · الدرس 2: النموذج الجسيمي للمادة · صفحات 16–21 (النمذجة أولًا)</span></p>
+</footer>
+<button id="topBtn" title="Top · لفوق">⬆</button>
 
 <script>
-const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
-let dark=false;
-$('#themeBtn').onclick=()=>{dark=!dark;document.documentElement.classList.toggle('dark',dark);$('#themeBtn').textContent=dark?'':'☀️'};
-function sizeCanvas(cv,h){const w=cv.parentElement.clientWidth||300;cv.width=w*2;cv.height=(h||parseInt(getComputedStyle(cv).height))*2;}
-window.addEventListener('resize',()=>{sizeAll();});
-
-function drawHero(){
-  const cv=$('#heroCv'),x=cv.getContext('2d');
-  function frame(){
-    x.clearRect(0,0,cv.width,cv.height);
-    for(let i=0;i<26;i++){
-      const px=cv.width*Math.random(),py=cv.height*Math.random();
-      const r=Math.random()*7+3;
-      x.globalAlpha=.35+Math.random()*.4;
-      const g=x.createRadialGradient(px,py,0,px,py,r*3);
-      g.addColorStop(0,'#60a5fa');g.addColorStop(1,'rgba(96,165,250,0)');
-      x.fillStyle=g;x.beginPath();x.arc(px,py,r*3,0,7);x.fill();
-    }
-    x.globalAlpha=1;
-  }
-  frame();setInterval(frame,900);
-}
-sizeCanvas($('#heroCv'),170);
-
-const ML={cvS:{c:'#ef4444',n:16},cvL:{c:'#3b82f6',n:18},cvG:{c:'#94a3b8',n:14}};
-Object.keys(ML).forEach(id=>{
-  const cv=document.getElementById(id);
-  ML[id].ps=[...Array(ML[id].n)].map(()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,vx:(Math.random()-.5)*2,vy:(Math.random()-.5)*2}));
-});
-function stepMod(k){
-  Object.keys(ML).forEach(id=>{
-    const cv=document.getElementById(id);
-    ML[id].ps.forEach(p=>{
-      if(id==='cvS'){return;}
-      else if(id==='cvL'){p.vx+=(Math.random()-.5)*.3;p.vy+=(Math.random()-.5)*.3;p.vx*=.95;p.vy*=.95;}
-      else{p.vx+=(Math.random()-.5)*.8;p.vy+=(Math.random()-.5)*.8;}
-      p.x+=p.vx;p.y+=p.vy;
-      if(p.x<8||p.x>cv.width-8)p.vx*=-1;
-      if(p.y<8||p.y>cv.height-8)p.vy*=-1;
-      p.x=Math.max(8,Math.min(cv.width-8,p.x));p.y=Math.max(8,Math.min(cv.height-8,p.y));
-    });
-  });
-}
-function drawMod(){
-  Object.keys(ML).forEach(id=>{
-    const cv=document.getElementById(id),x=cv.getContext('2d');
-    x.clearRect(0,0,cv.width,cv.height);
-    x.fillStyle='rgba(148,163,184,.08)';x.fillRect(0,0,cv.width,cv.height);
-    ML[id].ps.forEach(p=>{x.beginPath();x.arc(p.x,p.y,9,0,7);x.fillStyle='#94a3b8';x.fill();});
-  });
-}
-setInterval(()=>{stepMod('');drawMod();},40);
-
-$('#modT').addEventListener('input',e=>{
-  const T=+e.target.value;
-  $('#modMeter').style.width=T+'%';
-  $('#modState').textContent=T<33?'SOLID · صلب':T<66?'LIQUID · سائل':'GAS · غاز';
-});
-
-function drawMicro(){
-  const cv=$('#microCv'),x=cv.getContext('2d');
-  x.clearRect(0,0,cv.width,cv.height);
-  [...Array(9)].forEach(()=>{
-    const px=cv.width*(.1+.8*Math.random()),py=cv.height*(.15+.7*Math.random());
-    const a=Math.random()*Math.PI*2,l=12+Math.random()*26;
-    x.strokeStyle='#94a3b8';x.lineWidth=2;x.beginPath();x.moveTo(px,py);x.lineTo(px+l*Math.cos(a),py+l*Math.sin(a));x.stroke();
-    x.beginPath();x.moveTo(px,py);x.lineTo(px-l*.3*Math.cos(a),py-l*.3*Math.sin(a));x.stroke();
-  });
-}
-setInterval(drawMicro,450);
-
-const SPR=[...Array(16)].map((_,i)=>({bx:(i%4)*90+45,by:Math.floor(i/4)*80+50,x:0,y:0}));
-function drawSpringModel(){
-  const cv=$('#springCv'),x=cv.getContext('2d');
-  x.clearRect(0,0,cv.width,cv.height);
-  SPR.forEach(p=>{
-    const ox=p.bx*2,oy=p.by*2,t=Date.now()/600+p.bx;
-    p.x=ox+Math.sin(t)*6;p.y=oy+Math.cos(t*1.3)*6;
-    x.strokeStyle='#cbd5e1';x.lineWidth=2;
-    x.beginPath();x.moveTo(ox,p.y);x.lineTo(p.x,p.y);x.stroke();
-    x.beginPath();x.arc(p.x,p.y,13,0,7);x.fillStyle='#ef4444';x.fill();
-  });
-}
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const SPDS={brown:{speed:1},plasma:{speed:1}};
+$$('.speedRow').forEach(row=>{row.querySelectorAll('.spBtn').forEach(b=>b.onclick=()=>{SPDS[row.dataset.spd].speed=+b.dataset.sp;row.querySelectorAll('.spBtn').forEach(x=>x.classList.toggle('active',x===b));});});
+addEventListener('scroll',()=>{const h=document.documentElement,p=h.scrollTop/(h.scrollHeight-h.clientHeight);
+ $('#progress').style.width=(p*100)+'%';$('#railFill').style.height=(p*100)+'%';$('#railVal').textContent=Math.round(p*100)+'°';
+ $('#topBtn').classList.toggle('show',h.scrollTop>600);},{passive:true});
+$('#topBtn').onclick=()=>scrollTo({top:0,behavior:'smooth'});
+$('#themeBtn').onclick=()=>{const l=document.body.dataset.theme==='light';document.body.dataset.theme=l?'':'light';$('#themeBtn').textContent=l?'☀️':'';};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}}),{threshold:.1});
+$$('.reveal').forEach(el=>io.observe(el));
+const spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)$$('nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));}),{rootMargin:'-35% 0px -55% 0px'});
+$$('section[id]').forEach(s=>spy.observe(s));
+const hc=$('#heroCv'),hx=hc.getContext('2d');let HP=[];
+function hSize(){hc.width=hc.offsetWidth;hc.height=hc.offsetHeight;HP=Array.from({length:70},()=>({x:Math.random()*hc.width,y:Math.random()*hc.height,r:1+Math.random()*2.5,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6,c:Math.random()>.5?'34,211,238':'251,146,60'}));}
+hSize();addEventListener('resize',hSize);
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function heroLoop(){if(!reduced){hx.clearRect(0,0,hc.width,hc.height);HP.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>hc.width)p.vx*=-1;if(p.y<0||p.y>hc.height)p.vy*=-1;hx.beginPath();hx.fillStyle=`rgba(${p.c},.5)`;hx.arc(p.x,p.y,p.r,0,7);hx.fill();});}requestAnimationFrame(heroLoop);}
+heroLoop();
+/* modelling lab */
+let modT=15,mtick=0;
+const ML=[['cvS','solid'],['cvL','liquid'],['cvG','gas']].map(([id,mode])=>{const cv=$('#'+id),cx=cv.getContext('2d');return{cv,cx,mode,parts:[]};});
+function initMod(){ML.forEach(m=>{m.cv.width=m.cv.offsetWidth*2;m.cv.height=m.cv.offsetHeight*2;const W=m.cv.width,H=m.cv.height;m.parts=[];
+ if(m.mode==='solid'){for(let r=0;r<5;r++)for(let c=0;c<7;c++)m.parts.push({bx:W*.16+c*(W*.68/6),by:H*.22+r*(H*.56/4),ph:Math.random()*6.28});}
+ else{const n=m.mode==='liquid'?34:26;for(let i=0;i<n;i++)m.parts.push({x:Math.random()*W,y:m.mode==='liquid'?H*.4+Math.random()*H*.55:Math.random()*H,vx:(Math.random()-.5)*2,vy:(Math.random()-.5)*2});}});}
+initMod();addEventListener('resize',initMod);
+function drawMod(){mtick++;const T=modT,sp=.3+T/100*2.2,hue=Math.max(5,205-T*1.9),amp=1.5+T*.07;
+ ML.forEach(m=>{const W=m.cv.width,H=m.cv.height,cx=m.cx;cx.clearRect(0,0,W,H);cx.fillStyle=`hsl(${hue} 90% 60%)`;
+  m.parts.forEach(p=>{let x,y;
+   if(m.mode==='solid'){const melt=T/100;x=p.bx+Math.sin(mtick*.06*sp+p.ph)*amp*(1+melt*2);y=p.by+Math.cos(mtick*.05*sp+p.ph)*amp*(1+melt*2);}
+   else{const v=m.mode==='liquid'?sp*.7:sp*1.8;p.x+=p.vx*v;p.y+=p.vy*v+(m.mode==='liquid'?.15:0);
+    if(p.x<6||p.x>W-6)p.vx*=-1;if(p.y<6||p.y>H-6)p.vy*=-1;p.x=Math.max(6,Math.min(W-6,p.x));p.y=Math.max(6,Math.min(H-6,p.y));x=p.x;y=p.y;}
+   cx.beginPath();cx.arc(x,y,m.mode==='gas'?5:6,0,7);cx.fill();});});
+ $('#modMeter').style.width=T+'%';
+ $('#modState').textContent=T<33?'SOLID · صلب':T<66?'LIQUID · سائل':'GAS · غاز';}
+$('#modT').oninput=e=>modT=+e.target.value;
+setInterval(drawMod,40);
+/* microscope */
+const MC=$('#microCv'),mx=MC.getContext('2d');let mp=[],mt2=0;
+function initMicro(){MC.width=MC.offsetWidth*2;MC.height=MC.offsetHeight*2;mp=[];
+ for(let r=0;r<6;r++)for(let c=0;c<6;c++){const dx=c-2.5,dy=r-2.5;if(dx*dx+dy*dy<=8.5)mp.push({bx:MC.width/2+dx*(MC.width*.13),by:MC.height/2+dy*(MC.height*.13),ph:Math.random()*6.28});}}
+initMicro();addEventListener('resize',initMicro);
+function drawMicro(){mt2++;mx.clearRect(0,0,MC.width,MC.height);mx.fillStyle='#fb923c';
+ mp.forEach(p=>{mx.beginPath();mx.arc(p.bx+Math.sin(mt2*.05+p.ph)*3,p.by+Math.cos(mt2*.04+p.ph)*3,11,0,7);mx.fill();});}
+setInterval(drawMicro,45);
+/* springs & spheres model */
+const SC=$('#springCv'),sx=SC.getContext('2d');let st2=0,SPR=[],LNK=[];
+function springSize(){SC.width=SC.offsetWidth*2;SC.height=SC.offsetHeight*2;const W=SC.width,H=SC.height;SPR=[];
+ const pos=[[.28,.18],[.62,.14],[.85,.3],[.75,.55],[.5,.45],[.22,.45],[.35,.78],[.68,.82]];
+ pos.forEach(p=>SPR.push({bx:p[0]*W,by:p[1]*H,ph:Math.random()*6.28,x:0,y:0}));
+ LNK=[[0,1],[1,2],[2,3],[3,4],[4,5],[5,0],[4,0],[4,1],[3,6],[6,7],[7,3],[5,6],[4,7]];}
+springSize();addEventListener('resize',springSize);
+function drawSpring(x1,y1,x2,y2){sx.beginPath();sx.strokeStyle='rgba(148,163,184,.7)';sx.lineWidth=2;
+ const n=8,dx=(x2-x1)/n,dy=(y2-y1)/n,px=-dy,py=dx,L=Math.hypot(px,py)||1;
+ sx.moveTo(x1,y1);for(let i=1;i<n;i++){const o=(i%2?3:-3);sx.lineTo(x1+dx*i+px/L*o,y1+dy*i+py/L*o);}sx.lineTo(x2,y2);sx.stroke();}
+function drawSpringModel(){st2++;const W=SC.width,H=SC.height;sx.clearRect(0,0,W,H);
+ SPR.forEach(p=>{p.x=p.bx+Math.sin(st2*.06+p.ph)*5;p.y=p.by+Math.cos(st2*.05+p.ph)*5;});
+ LNK.forEach(l=>drawSpring(SPR[l[0]].x,SPR[l[0]].y,SPR[l[1]].x,SPR[l[1]].y));
+ SPR.forEach(p=>{sx.beginPath();sx.fillStyle='#38bdf8';sx.arc(p.x,p.y,12,0,7);sx.fill();
+  sx.beginPath();sx.fillStyle='rgba(255,255,255,.5)';sx.arc(p.x-4,p.y-4,4,0,7);sx.fill();});}
 setInterval(drawSpringModel,45);
-
-let compStep=0;
-function drawComp(){
-  const cv=$('#compCv'),x=cv.getContext('2d');
-  x.clearRect(0,0,cv.width,cv.height);
-  const W=cv.width,H=cv.height,top=H*(compStep===0?0.12:compStep===1?0.3:0.55);
-  x.strokeStyle='#64748b';x.lineWidth=6;x.strokeRect(W*.2,W*.1,W*.6,H-W*.2);
-  x.fillStyle='rgba(147,197,253,.25)';x.fillRect(W*.2,top,W*.6,H-W*.2);
-  x.fillStyle='#475569';x.fillRect(W*.18,top-14,W*.64,14);
-  [...Array(14)].forEach(()=>{
-    const px=W*.24+Math.random()*W*.52,py=top+14+Math.random()*(H-top-24);
-    x.beginPath();x.arc(px,py,6,0,7);x.fillStyle='#64748b';x.fill();
-  });
-  x.fillStyle='#1e293b';x.font='bold 20px Cairo';x.textAlign='center';
-  x.fillText(compStep===0?'1 L':compStep===1?'0.5 L':'0.25 L',W/2,H-14);
-}
-setInterval(drawComp,400);
-$('#compPress').onclick=()=>{if(compStep<2){compStep++;$('#compVol').textContent=['1 L','0.5 L','0.25 L'][compStep];drawComp();}};
-$('#compReset').onclick=()=>{compStep=0;$('#compVol').textContent='1 L';};
-
+/* compression */
+const CC=$('#compCv'),ccx=CC.getContext('2d');
+const CP={step:0,levels:[.12,.5,.74],vols:['1 L','0.5 L','0.25 L'],p:.12,parts:[]};
+function compSize(){CC.width=CC.offsetWidth*2;CC.height=CC.offsetHeight*2;
+ CP.parts=Array.from({length:24},()=>({x:Math.random(),y:Math.random(),vx:(Math.random()-.5)*1.6,vy:(Math.random()-.5)*1.6}));}
+compSize();addEventListener('resize',compSize);
+$('#compPress').onclick=()=>{CP.step=Math.min(2,CP.step+1);$('#compVol').textContent=CP.vols[CP.step];};
+$('#compReset').onclick=()=>{CP.step=0;$('#compVol').textContent=CP.vols[0];};
+function drawComp(){const W=CC.width,H=CC.height;ccx.clearRect(0,0,W,H);
+ CP.p+=(CP.levels[CP.step]-CP.p)*.06;const py=CP.p*H;
+ ccx.fillStyle='#64748b';ccx.fillRect(0,0,W,py);ccx.fillStyle='#94a3b8';ccx.fillRect(W/2-14,0,28,Math.max(0,py-6));
+ ccx.fillStyle='#38bdf8';
+ CP.parts.forEach(p=>{p.x+=p.vx*.004;p.y+=p.vy*.004;
+  if(p.x<.03||p.x>.97)p.vx*=-1;if(p.y<.03||p.y>.97)p.vy*=-1;
+  p.x=Math.max(.03,Math.min(.97,p.x));p.y=Math.max(.03,Math.min(.97,p.y));
+  ccx.beginPath();ccx.arc(p.x*W,py+10+p.y*(H-py-20),9,0,7);ccx.fill();});}
+setInterval(drawComp,40);
+/* brownian */
 const BC=$('#brownCv'),bx2=BC.getContext('2d');
-const BR={pol:[...Array(7)].map(()=>({x:Math.random()*BC.width,y:Math.random()*BC.height})),
-           mols:[...Array(40)].map(()=>({x:Math.random()*BC.width,y:Math.random()*BC.height,vx:0,vy:0}))};
-let brownOn=false,brownSpd=.5;
-function drawBrown(){
-  bx2.clearRect(0,0,BC.width,BC.height);
-  bx2.fillStyle='#eff6ff';bx2.fillRect(0,0,BC.width,BC.height);
-  BR.pol.forEach(p=>{
-    if(brownOn){p.x+=(Math.random()-.5)*brownSpd*6;p.y+=(Math.random()-.5)*brownSpd*6;}
-    p.x=Math.max(20,Math.min(BC.width-20,p.x));p.y=Math.max(20,Math.min(BC.height-20,p.y));
-    bx2.beginPath();bx2.arc(p.x,p.y,16,0,7);bx2.fillStyle='#fbbf24';bx2.fill();
-  });
-  BR.mols.forEach(m=>{
-    m.vx+=(Math.random()-.5)*brownSpd*2;m.vy+=(Math.random()-.5)*brownSpd*2;
-    m.x+=m.vx*brownSpd;m.y+=m.vy*brownSpd;
-    if(m.x<6||m.x>BC.width-6)m.vx*=-1;if(m.y<6||m.y>BC.height-6)m.vy*=-1;
-    bx2.beginPath();bx2.arc(m.x,m.y,4,0,7);bx2.fillStyle='#60a5fa';bx2.fill();
-  });
-}
+const BR={on:false,mols:[],pol:[]};
+function brSize(){BC.width=BC.offsetWidth*2;BC.height=BC.offsetHeight*2;
+ BR.mols=Array.from({length:70},()=>({x:Math.random()*BC.width,y:Math.random()*BC.height,vx:(Math.random()-.5)*5,vy:(Math.random()-.5)*5}));
+ BR.pol=Array.from({length:3},()=>({x:BC.width*(.25+Math.random()*.5),y:BC.height*(.25+Math.random()*.5),vx:0,vy:0}));}
+brSize();addEventListener('resize',brSize);
+$('#brownStart').onclick=()=>BR.on=true;
+$('#brownStop').onclick=()=>BR.on=false;
+function drawBrown(){const W=BC.width,H=BC.height,sp=SPDS.brown.speed;bx2.clearRect(0,0,W,H);
+ if(BR.on){BR.mols.forEach(m=>{m.x+=m.vx*sp;m.y+=m.vy*sp;
+   if(m.x<4||m.x>W-4)m.vx*=-1;if(m.y<4||m.y>H-4)m.vy*=-1;});
+  BR.pol.forEach(p=>{p.vx=(p.vx+(Math.random()-.5)*.9*sp)*.985;p.vy=(p.vy+(Math.random()-.5)*.9*sp)*.985;
+   p.x+=p.vx;p.y+=p.vy;p.x=Math.max(20,Math.min(W-20,p.x));p.y=Math.max(20,Math.min(H-20,p.y));});}
+ bx2.fillStyle='#38bdf8';BR.mols.forEach(m=>{bx2.beginPath();bx2.arc(m.x,m.y,4,0,7);bx2.fill();});
+ BR.pol.forEach(p=>{bx2.beginPath();bx2.fillStyle='#fbbf24';bx2.arc(p.x,p.y,16,0,7);bx2.fill();
+  bx2.beginPath();bx2.fillStyle='rgba(0,0,0,.25)';bx2.arc(p.x-4,p.y-4,5,0,7);bx2.fill();});}
 setInterval(drawBrown,40);
-$('#brownStart').onclick=()=>{brownOn=true};
-$('#brownStop').onclick=()=>{brownOn=false};
-$$('.speedRow[data-spd=brown] .spd').forEach(b=>b.onclick=()=>{
-  $$('.speedRow[data-spd=brown] .spd').forEach(x=>x.classList.remove('on'));
-  b.classList.add('on');brownSpd=+b.dataset.v;
-});
-
+/* plasma */
 const PC=$('#plasmaCv'),lx=PC.getContext('2d');
-const PZ={atoms:[...Array(12)].map(()=>({x:Math.random()*PC.width,y:Math.random()*PC.height})),
-           ions:[],els:[],ion:false};
-function drawPlasma(){
-  lx.clearRect(0,0,PC.width,PC.height);
-  lx.fillStyle='#fef3c7';lx.fillRect(0,0,PC.width,PC.height);
-  PZ.atoms.forEach(a=>{
-    a.x+=Math.sin(Date.now()/500+a.y)*1.2;a.y+=Math.cos(Date.now()/600+a.x)*1.2;
-    lx.beginPath();lx.arc(a.x,a.y,12,0,7);lx.strokeStyle=PZ.ion?'#f59e0b':'#94a3b8';lx.lineWidth=3;lx.stroke();
-  });
-  PZ.ions.forEach(i=>{
-    i.x+=i.vx;i.y+=i.vy;if(i.x<0||i.x>PC.width)i.vx*=-1;if(i.y<0||i.y>PC.height)i.vy*=-1;
-    lx.font='bold 22px Cairo';lx.textAlign='center';lx.fillText('+',i.x,i.y);lx.fillStyle='#ef4444';
-  });
-  PZ.els.forEach(e=>{
-    e.x+=e.vx*1.4;e.y+=e.vy*1.4;if(e.x<0||e.x>PC.width)e.vx*=-1;if(e.y<0||e.y>PC.height)e.vy*=-1;
-    lx.beginPath();lx.arc(e.x,e.y,5,0,7);lx.fillStyle='#22d3ee';lx.fill();
-  });
-}
+const PZ={ion:false,parts:[]};
+function plNeutral(){PZ.ion=false;PZ.parts=Array.from({length:26},()=>({t:'n',x:Math.random()*PC.width,y:Math.random()*PC.height,vx:(Math.random()-.5)*2,vy:(Math.random()-.5)*2}));}
+function plSize(){PC.width=PC.offsetWidth*2;PC.height=PC.offsetHeight*2;plNeutral();}
+plSize();addEventListener('resize',plSize);
+$('#ionBtn').onclick=()=>{if(PZ.ion)return;PZ.ion=true;const old=PZ.parts;PZ.parts=[];
+ old.forEach(p=>{PZ.parts.push({t:'+',x:p.x,y:p.y,vx:(Math.random()-.5)*1.2,vy:(Math.random()-.5)*1.2});
+  PZ.parts.push({t:'-',x:p.x,y:p.y,vx:(Math.random()-.5)*6,vy:(Math.random()-.5)*6});});};
+$('#plReset').onclick=plNeutral;
+function drawPlasma(){const W=PC.width,H=PC.height,sp=SPDS.plasma.speed;lx.clearRect(0,0,W,H);
+ PZ.parts.forEach(p=>{p.x+=p.vx*sp;p.y+=p.vy*sp;
+  if(p.x<6||p.x>W-6)p.vx*=-1;if(p.y<6||p.y>H-6)p.vy*=-1;
+  p.x=Math.max(6,Math.min(W-6,p.x));p.y=Math.max(6,Math.min(H-6,p.y));
+  if(p.t==='n'){lx.fillStyle='#94a3b8';lx.beginPath();lx.arc(p.x,p.y,8,0,7);lx.fill();}
+  else if(p.t==='+'){lx.fillStyle='#ef4444';lx.beginPath();lx.arc(p.x,p.y,9,0,7);lx.fill();
+   lx.fillStyle='#fff';lx.font='bold 12px Space Grotesk';lx.fillText('+',p.x-4,p.y+4);}
+  else{lx.fillStyle='#22d3ee';lx.beginPath();lx.arc(p.x,p.y,4,0,7);lx.fill();}});}
 setInterval(drawPlasma,40);
-$('#ionBtn').onclick=()=>{PZ.ion=true;
-  PZ.ions=[...Array(12)].map((_,i)=>({x:PZ.atoms[i].x,y:PZ.atoms[i].y,vx:(Math.random()-.5)*3,vy:(Math.random()-.5)*3}));
-  PZ.els=[...Array(12)].map((_,i)=>({x:PZ.atoms[i].x,y:PZ.atoms[i].y,vx:(Math.random()-.5)*3,vy:(Math.random()-.5)*3}));
-};
-$('#plReset').onclick=()=>{PZ.ion=false;PZ.ions=[];PZ.els=[];};
-$$('.speedRow[data-spd=plasma] .spd').forEach(b=>b.onclick=()=>{
-  $$('.speedRow[data-spd=plasma] .spd').forEach(x=>x.classList.remove('on'));
-  b.classList.add('on');PZ.spd=+b.dataset.v||.5;
-});
-
-const prog=$('#progress'),topBtn=$('#topBtn');
-window.addEventListener('scroll',()=>{
-  const sc=scrollY,max=document.documentElement.scrollHeight-innerHeight,r=sc/max;
-  prog.style.transform=`scaleX(${r})`;
-  topBtn.classList.toggle('show',sc>500);
-},{passive:true});
-topBtn.onclick=()=>scrollTo({top:0,behavior:'smooth'});
-
-sizeAll();
-function sizeAll(){
-  ['cvS','cvL','cvG','microCv','springCv','brownCv','plasmaCv'].forEach(id=>sizeCanvas(document.getElementById(id)));
-}
-sizeAll();drawHero();drawMicro();drawSpringModel();drawComp();drawBrown();drawPlasma();
 </script>
 </body>
 </html>
