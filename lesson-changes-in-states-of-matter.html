@@ -1,749 +1,502 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Changes in the States of Matter</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Changes in the States of Matter | تغيّر حالة المادة</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --ice:#0B3D5C;
-  --water:#1B8A9E;
-  --amber:#F2A65A;
-  --heat:#E1543D;
-  --bg:#FAFAF6;
-  --ink:#12202A;
-  --paper:#FFFFFF;
-  --line:#D8DED9;
-  --mono:'IBM Plex Mono',monospace;
-}
-*{box-sizing:border-box; margin:0; padding:0;}
-html{scroll-behavior:smooth;}
-body{
-  background:var(--bg);
-  color:var(--ink);
-  font-family:'Inter',sans-serif;
-  line-height:1.55;
-  overflow-x:hidden;
-}
-.ar{
-  font-family:'Cairo',sans-serif;
-  direction:rtl;
-  color:#3f5a63;
-  font-size:0.92rem;
-  background:#EEF4F2;
-  border-inline-start:3px solid var(--water);
-  padding:10px 14px;
-  border-radius:4px;
-  margin-top:10px;
-}
-h1,h2,h3,.disp{font-family:'Space Grotesk',sans-serif;}
-.wrap{max-width:960px; margin:0 auto; padding:0 24px;}
-
-/* ---------- HERO ---------- */
-.hero{
-  position:relative;
-  min-height:74vh;
-  display:flex; flex-direction:column; justify-content:center;
-  background:linear-gradient(180deg,var(--ice) 0%, #0e5b7a 45%, var(--water) 100%);
-  color:#fff;
-  overflow:hidden;
-}
-.hero .wrap{position:relative; z-index:2; padding-top:60px; padding-bottom:60px;}
-.eyebrow{
-  font-family:var(--mono); letter-spacing:.12em; text-transform:uppercase;
-  font-size:.75rem; opacity:.85; margin-bottom:18px;
-}
-.hero h1{
-  font-size:clamp(2.4rem,6vw,4.2rem);
-  font-weight:700; line-height:1.02; letter-spacing:-.02em;
-  max-width:11ch;
-}
-.hero p.sub{
-  margin-top:22px; max-width:520px; font-size:1.05rem; color:#dceef0;
-}
-.hero .ar{background:rgba(255,255,255,.08); color:#eafaf7; border-color:var(--amber); backdrop-filter:blur(2px); max-width:560px;}
-.thermo-field{
-  position:absolute; inset:0; z-index:1; opacity:.5;
-  background-image:
-    radial-gradient(circle at 85% 20%, rgba(255,255,255,.25), transparent 40%),
-    radial-gradient(circle at 15% 80%, rgba(242,166,90,.35), transparent 45%);
-}
-.particles{position:absolute; inset:0; z-index:1;}
-.p{
-  position:absolute; border-radius:50%; background:#fff; opacity:.55;
-  animation:float 6s ease-in-out infinite;
-}
-@keyframes float{
-  0%,100%{transform:translateY(0px);}
-  50%{transform:translateY(-18px);}
-}
-
-/* ---------- SECTION SHELL ---------- */
-section{padding:80px 0;}
-.section-head{margin-bottom:36px;}
-.tag{
-  font-family:var(--mono); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase;
-  color:var(--water); font-weight:600;
-}
-h2{font-size:clamp(1.6rem,3.4vw,2.3rem); font-weight:700; margin-top:8px; letter-spacing:-.01em;}
-.lede{max-width:640px; color:#3d4d54; margin-top:10px;}
-
-/* ---------- PHASE DIAGRAM ---------- */
-.phase-row{
-  display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:36px;
-}
-.phase-card{
-  background:var(--paper); border:1px solid var(--line); border-radius:10px;
-  padding:22px 18px; position:relative;
-}
-.phase-card .icon{width:48px; height:48px; margin-bottom:14px;}
-.phase-card h3{font-size:1.05rem; margin-bottom:6px;}
-.phase-card p{font-size:.9rem; color:#4a5b62;}
-.phase-arrow{
-  display:flex; align-items:center; justify-content:center;
-  font-family:var(--mono); font-size:.75rem; color:var(--amber); margin:6px 0;
-}
-.key-points{
-  margin-top:30px; background:#F1F6EE; border:1px solid var(--line); border-radius:10px; padding:22px 24px;
-}
-.key-points ul{list-style:none;}
-.key-points li{position:relative; padding-left:20px; margin-bottom:10px; font-size:.94rem;}
-.key-points li::before{content:'—'; position:absolute; left:0; color:var(--heat); font-family:var(--mono);}
-
-/* ---------- HEATING CURVE (interactive) ---------- */
-.curve-shell{
-  background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:26px 20px 10px;
-  margin-top:30px;
-}
-svg#curveSvg{width:100%; height:auto; display:block;}
-.seg{cursor:pointer;}
-.seg-hit{stroke:transparent; stroke-width:22; fill:none;}
-.node{cursor:pointer; transition:r .15s ease;}
-.node:hover, .node.active{r:8;}
-.info-panel{
-  margin-top:18px; border-top:1px dashed var(--line); padding-top:18px; min-height:120px;
-}
-.info-title{font-family:var(--mono); font-size:.75rem; letter-spacing:.08em; text-transform:uppercase; color:var(--water); margin-bottom:6px;}
-.info-body h4{font-size:1.05rem; margin-bottom:8px;}
-.info-body ul{padding-left:18px; font-size:.92rem; color:#3d4d54;}
-.info-body li{margin-bottom:5px;}
-.legend{display:flex; gap:18px; flex-wrap:wrap; margin-top:14px; font-size:.78rem; font-family:var(--mono); color:#5a6b71;}
-.legend span{display:inline-flex; align-items:center; gap:6px;}
-.dot{width:9px; height:9px; border-radius:50%; display:inline-block;}
-
-/* ---------- FACTORS ---------- */
-.factor-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:30px;}
-.factor-card{background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:24px;}
-.factor-card .num{font-family:var(--mono); color:var(--amber); font-size:.8rem;}
-.factor-card h3{margin-top:6px; margin-bottom:10px; font-size:1.15rem;}
-.mtable{width:100%; border-collapse:collapse; margin-top:14px; font-size:.88rem;}
-.mtable th,.mtable td{padding:8px 6px; border-bottom:1px solid var(--line); text-align:center;}
-.mtable th{font-family:var(--mono); font-weight:600; color:var(--water); font-size:.72rem; text-transform:uppercase;}
-
-/* fire / snow toggle */
-.fm-toggle{display:flex; gap:8px; margin-top:16px;}
-.fm-btn{
-  flex:1; font-family:'Inter',sans-serif; font-weight:600; font-size:.86rem;
-  padding:9px 10px; border-radius:8px; border:1px solid var(--line);
-  background:#F5F8F4; color:#5a6b71; cursor:pointer; transition:.15s ease;
-}
-.fm-btn.active{background:var(--ice); color:#fff; border-color:var(--ice);}
-.fm-panel{
-  background:#F8FAF7; border:1px solid var(--line); border-top:none; border-radius:0 0 8px 8px;
-  padding:14px 16px; margin-top:-1px;
-}
-.fm-panel ul{padding-left:18px; font-size:.9rem; color:#3d4d54;}
-.fm-panel li{margin-bottom:6px;}
-
-/* altitude slider */
-.altitude-slider{
-  margin-top:18px; background:#F8FAF7; border:1px solid var(--line); border-radius:10px; padding:14px 16px;
-}
-.slider-head{display:flex; justify-content:space-between; font-size:.85rem; color:#3d4d54; font-weight:600; margin-bottom:8px;}
-.slider-readout{font-family:var(--mono); color:var(--heat);}
-input#altRange{width:100%; accent-color:var(--heat); cursor:pointer;}
-.slider-result{margin-top:10px; font-size:.92rem; color:#12202A; font-family:var(--mono);}
-
-/* worked example */
-.worked-example{
-  margin-top:18px; background:#EFF5F1; border-left:3px solid var(--water); border-radius:6px; padding:14px 16px;
-}
-.we-q{font-size:.88rem; color:#2b3d43; margin-bottom:10px;}
-.we-toggle{
-  font-family:var(--mono); font-size:.78rem; background:var(--water); color:#fff; border:none;
-  padding:7px 14px; border-radius:20px; cursor:pointer;
-}
-.we-a{margin-top:12px; font-size:.9rem; color:#2b3d43;}
-.we-a p{margin-bottom:6px;}
-
-/* altitude mountain viz */
-.mountain{position:relative; height:210px; margin-top:18px;}
-.mountain svg{width:100%; height:100%;}
-.mlabel{font-family:var(--mono); font-size:.72rem; fill:#2b3d43;}
-.mlabel.big{font-size:.85rem; font-weight:600;}
-
-/* solution shift viz */
-.shift-row{display:flex; gap:14px; margin-top:16px; flex-wrap:wrap;}
-.shift-box{flex:1; min-width:150px; background:#F5F8F4; border-radius:8px; padding:14px; text-align:center;}
-.shift-box .from{font-family:var(--mono); color:#8b98a0; font-size:.8rem; text-decoration:line-through;}
-.shift-box .to{font-family:var(--mono); font-size:1.4rem; font-weight:600; margin-top:4px;}
-.shift-box .to.down{color:var(--water);}
-.shift-box .to.up{color:var(--heat);}
-.shift-box .lbl{font-size:.78rem; color:#5a6b71; margin-top:6px;}
-
-/* ---------- QUIZ ---------- */
-.quiz-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:30px;}
-.quiz-card{background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:22px;}
-.quiz-card h3{font-size:1.02rem; margin-bottom:14px;}
-.diagram-quiz{background:#F8FAF7; border-radius:8px; padding:10px 4px;}
-.diagram-quiz svg{width:100%; height:auto;}
-.dq-state{font-family:'Space Grotesk',sans-serif; font-size:14px; fill:#12202A; font-weight:600;}
-.dq-label{
-  font-family:var(--mono); font-size:13px; fill:var(--water); cursor:pointer; font-weight:600;
-  text-decoration:underline; text-underline-offset:3px;
-}
-.dq-label.energy-up{fill:var(--heat);}
-.dq-label.energy-down{fill:#5a6b71;}
-.dq-panel{
-  margin-top:12px; font-size:.88rem; color:#3d4d54; background:#F5F8F4; border-radius:8px;
-  padding:10px 14px; min-height:20px;
-}
-.sub-row{cursor:pointer;}
-.sub-row:hover{background:#F5F8F4;}
-.sub-answer{font-weight:600; color:var(--water);}
-
-/* ---------- PRESSURE COOKER ---------- */
-.cooker-wrap{display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:30px; align-items:center;}
-.cooker-visual{display:flex; justify-content:center;}
-.cooker-visual svg{width:100%; max-width:260px;}
-.cooker-text h3{margin-bottom:10px;}
-.cooker-text ul{padding-left:18px; font-size:.94rem; color:#3d4d54;}
-.cooker-text li{margin-bottom:8px;}
-.badge-save{
-  display:inline-block; margin-top:14px; background:var(--heat); color:#fff;
-  font-family:var(--mono); font-size:.78rem; padding:6px 12px; border-radius:20px;
-}
-
-/* ---------- QUICK REFERENCE ---------- */
-.ref-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:26px;}
-.ref-card{background:var(--ice); color:#fff; border-radius:10px; padding:18px; text-align:center;}
-.ref-card .val{font-family:var(--mono); font-size:1.5rem; font-weight:600;}
-.ref-card .lbl{font-size:.78rem; opacity:.85; margin-top:4px;}
-
-footer{padding:40px 0 70px; text-align:center; color:#8b98a0; font-size:.8rem; font-family:var(--mono);}
-
-@media(max-width:720px){
-  .phase-row{grid-template-columns:1fr;}
-  .phase-arrow{transform:rotate(90deg);}
-  .factor-grid{grid-template-columns:1fr;}
-  .quiz-grid{grid-template-columns:1fr;}
-  .cooker-wrap{grid-template-columns:1fr;}
-  .ref-grid{grid-template-columns:1fr;}
-  .quiz-card,.factor-card{min-width:0;}
-  .mtable{table-layout:fixed; word-wrap:break-word;}
-}
-@media(prefers-reduced-motion:reduce){
-  .p{animation:none;}
-}
+:root{--bg:#060b16;--card:#0f1a2e;--card2:#12203a;--line:#24345a;--text:#eaf2ff;--muted:#93a6cc;--acc:#22d3ee;--acc2:#4f8cff;--hot:#fb923c;--cold:#38bdf8;--ok:#34d399;--bad:#f87171;--gold:#fbbf24;--pur:#a855f7;--r:22px}
+body[data-theme="light"]{--bg:#eef3fb;--card:#fff;--card2:#f4f8ff;--line:#c9d6ee;--text:#10203c;--muted:#5a6b8c}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);line-height:1.9;transition:background .4s,color .4s;overflow-x:hidden}
+::selection{background:var(--acc);color:#032}
+.en{display:block;direction:ltr;text-align:left;font-family:'Space Grotesk','Cairo',sans-serif;font-size:.92rem;line-height:1.75;color:var(--text)}
+.ar{display:block;direction:rtl;text-align:right;font-size:.95rem;line-height:2;color:var(--text);margin-top:2px}
+.mut{color:var(--muted)!important}
+h1,h2,h3{line-height:1.5}
+section{scroll-margin-top:95px}
+#progress{position:fixed;top:0;right:0;height:4px;width:0;background:linear-gradient(90deg,var(--acc),var(--hot));z-index:99;border-radius:99px}
+.topbar{position:fixed;top:0;right:0;left:0;z-index:90;display:flex;align-items:center;gap:10px;padding:10px 14px;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand{font-weight:900;font-size:.85rem;white-space:nowrap}
+nav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;padding:2px}
+nav::-webkit-scrollbar{display:none}
+nav a{padding:5px 12px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:.72rem;font-weight:700;white-space:nowrap;text-decoration:none;transition:.25s}
+nav a.active{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#041018;border-color:transparent}
+#themeBtn{cursor:pointer;border:1px solid var(--line);background:var(--card);border-radius:12px;width:40px;height:40px;font-size:1.1rem}
+#rail{position:fixed;inset-inline-end:12px;top:50%;transform:translateY(-50%);z-index:80;display:flex;flex-direction:column;align-items:center;gap:6px}
+#rail .tube{width:12px;height:36vh;border:2px solid var(--line);border-radius:99px;position:relative;overflow:hidden;background:rgba(128,160,220,.08)}
+#rail .bulb{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ff8a6b,#ef4444);margin-top:-4px}
+#railFill{position:absolute;bottom:0;width:100%;height:0;background:linear-gradient(0deg,#ef4444,#fb923c 40%,#22d3ee)}
+#railVal{font-family:'Space Grotesk';font-size:.72rem;color:var(--muted)}
+@media(max-width:1000px){#rail{display:none}}
+#hero{min-height:92vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:110px 18px 60px}
+#heroCv{position:absolute;inset:0;width:100%;height:100%}
+.heroIn{position:relative;z-index:2;max-width:880px}
+.kicker{display:inline-block;padding:6px 18px;border:1px solid var(--line);border-radius:999px;color:var(--acc);font-weight:800;font-size:.78rem;background:var(--card)}
+#hero h1{font-size:clamp(1.9rem,5.5vw,3.3rem);font-weight:900;margin:16px 0 4px;background:linear-gradient(90deg,var(--acc),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+#hero h1 .ar{font-size:clamp(1.5rem,4.5vw,2.6rem);background:linear-gradient(90deg,var(--gold),var(--acc));-webkit-background-clip:text;background-clip:text;color:transparent;margin:0}
+#hero p.desc{margin:16px auto;max-width:62ch;color:var(--muted)}
+.badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px}
+.badge{padding:8px 16px;border-radius:14px;border:1px solid var(--line);background:var(--card);font-size:.78rem;font-weight:700;text-align:center}
+.badge.vip{border-color:var(--gold);color:var(--gold)}
+.scrollHint{margin-top:44px;font-size:1.6rem;animation:bnc 1.6s infinite}
+@keyframes bnc{50%{transform:translateY(10px)}}
+main{max-width:1100px;margin:auto;padding:36px 18px 90px;display:flex;flex-direction:column;gap:44px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:clamp(22px,4vw,44px);box-shadow:0 14px 40px rgba(0,0,0,.25)}
+.chead{display:flex;align-items:center;gap:16px;margin-bottom:22px}
+.cnum{font-family:'Space Grotesk';font-size:1.5rem;font-weight:700;background:linear-gradient(180deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;border:1px solid var(--line);border-radius:16px;padding:6px 14px}
+.chead h2{font-size:clamp(1.1rem,2.6vw,1.5rem);font-weight:900}
+.ppage{font-family:'Space Grotesk';font-size:.62rem;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:1px 10px;margin-inline-start:auto}
+.intro{max-width:70ch;color:var(--muted);margin-bottom:18px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px}
+.grid5{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px}
+.row2{display:flex;gap:16px;flex-wrap:nowrap;align-items:stretch}
+.row2>.tile{flex:1;min-width:0}
+.tile{background:var(--card2);border:1px solid var(--line);border-radius:18px;padding:20px;transition:.25s}
+.tile:hover{transform:translateY(-4px);border-color:var(--acc)}
+.tile.lit{border-color:var(--ok);box-shadow:0 0 18px rgba(52,211,153,.25)}
+.note{border-inline-start:4px solid var(--acc);background:var(--card2);border-radius:12px;padding:12px 16px;margin-top:16px;font-size:.9rem}
+.note.hot{border-color:var(--hot)} .note.gold{border-color:var(--gold)} .note.ok{border-color:var(--ok)}
+.tag{display:inline-block;font-size:.7rem;font-weight:800;color:#041018;background:var(--acc);border-radius:99px;padding:2px 12px;margin-bottom:10px}
+.tag.hot{background:var(--hot)} .tag.gold{background:var(--gold)} .tag.ok{background:var(--ok)}
+.defBox{border:2px dashed var(--line);border-radius:12px;padding:12px 16px;margin-top:16px;background:var(--card2)}
+.defBox b.dT{color:var(--bad);font-size:1rem}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal.vis{opacity:1;transform:none}
+.btn{cursor:pointer;border:none;border-radius:14px;padding:10px 22px;font-family:inherit;font-weight:800;font-size:.9rem;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#041018;transition:.2s;box-shadow:0 6px 18px rgba(34,211,238,.25)}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line);box-shadow:none}
+.labctrl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin:16px 0 6px}
+.speedRow{display:flex;gap:8px;align-items:center;justify-content:center;margin:8px 0;font-size:.8rem;font-weight:800;color:var(--muted)}
+.spBtn{cursor:pointer;border:1px solid var(--line);background:var(--card2);color:var(--muted);border-radius:10px;padding:4px 14px;font-family:'Space Grotesk';font-weight:700;transition:.2s}
+.spBtn.active{background:var(--hot);color:#311004;border-color:var(--hot)}
+details{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin-top:12px}
+summary{cursor:pointer;font-weight:800;list-style:none}
+summary::after{content:'＋';color:var(--acc);font-weight:900;float:left}
+details[open] summary::after{content:'－'}
+details .body{padding-top:10px;font-size:.9rem}
+.pulse{animation:pl 1.6s infinite}@keyframes pl{50%{opacity:.25}}
+/* journey */
+.jWrap{display:flex;gap:20px;flex-wrap:nowrap;align-items:stretch;margin-top:18px}
+.jLeft{flex:0 0 230px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.jBeaker{position:relative;width:200px;height:210px;border:4px solid var(--line);border-top:none;border-radius:0 0 30px 30px;overflow:hidden;background:rgba(128,160,220,.05)}
+#jCv{position:absolute;inset:0;width:100%;height:100%}
+.jFlame{font-size:1.6rem;animation:fl .4s infinite alternate}
+@keyframes fl{to{transform:scale(1.18)}}
+.jTemp{font-family:'Space Grotesk';font-size:1.7rem;font-weight:700}
+.jRight{flex:1;min-width:0}
+#jGraph{width:100%;height:150px;border:1px solid var(--line);border-radius:12px;background:var(--card2)}
+.jSteps{display:flex;gap:8px;justify-content:center;margin:12px 0}
+.jSteps b{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk';color:var(--muted);font-size:.85rem}
+.jSteps b.on{background:var(--hot);color:#311004;border-color:var(--hot)}
+#jTxt{font-size:.88rem}
+@media(max-width:700px){.jWrap{flex-direction:column}.jLeft{flex:auto}}
+.seg{cursor:pointer;stroke:transparent;stroke-width:16;fill:none}
+.seg:hover{stroke:rgba(34,211,238,.25)}
+.chevRow{display:flex;gap:8px;align-items:stretch;flex-wrap:nowrap;margin-top:14px}
+.chev{flex:1;min-width:0;background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px 14px 12px 8px;font-size:.78rem;font-weight:700;clip-path:polygon(0 0,calc(100% - 14px) 0,100% 50%,calc(100% - 14px) 100%,0 100%);padding-right:18px}
+.chev.hot{border-color:var(--hot)}
+@media(max-width:640px){.chevRow{flex-direction:column}.chev{clip-path:none;padding:12px}}
+.potRow{display:flex;gap:24px;justify-content:center;flex-wrap:nowrap;margin-top:16px}
+.pot{width:170px;text-align:center}
+.potBody{position:relative;width:130px;height:95px;margin:8px auto;border:4px solid #94a3b8;border-top:none;border-radius:0 0 24px 24px;background:rgba(56,189,248,.25);overflow:hidden}
+.potBody.closed{border-top:4px solid #94a3b8;border-radius:16px}
+.pSteam{position:absolute;bottom:26px;font-size:1rem;opacity:.85}
+.pot.open .pSteam{animation:esc 1.5s infinite}
+@keyframes esc{to{transform:translateY(-80px);opacity:0}}
+.pot.closed .pSteam{animation:trap .8s infinite alternate}
+@keyframes trap{to{transform:translateY(-16px) translateX(5px)}}
+.pTemp{font-family:'Space Grotesk';font-weight:700}
+input[type=range]{accent-color:var(--hot);width:100%}
+.eqBox{background:var(--card2);border:1px dashed var(--gold);border-radius:12px;padding:12px 16px;margin-top:12px;font-family:'Space Grotesk','Cairo';direction:ltr;text-align:center;font-size:.9rem}
+/* ===== MOUNTAIN LAB ===== */
+.mLab{display:flex;gap:20px;flex-wrap:nowrap;margin-top:18px}
+.mScene{flex:1.2;min-width:0;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(180deg,#0b1d3a,#123a6b 60%,#1b4d8a)}
+body[data-theme="light"] .mScene{background:linear-gradient(180deg,#cfe8ff,#e8f4ff 60%,#dff0ff)}
+.mScene svg{width:100%;display:block}
+.mSide{flex:1;min-width:230px;display:flex;flex-direction:column;gap:10px}
+.mCard{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:.78rem;font-weight:700}
+.mCard b{font-family:'Space Grotesk';font-size:1.1rem;white-space:nowrap}
+.mCard .bp{color:var(--hot)} .mCard .pr{color:var(--cold)} .mCard .eg{color:var(--gold)}
+@media(max-width:760px){.mLab{flex-direction:column}}
+footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
+.verified{display:inline-flex;align-items:center;gap:12px;border:1px solid var(--gold);border-radius:18px;padding:12px 22px;background:var(--card);color:var(--gold);font-weight:800;flex-wrap:wrap}
+#topBtn{position:fixed;bottom:20px;inset-inline-start:20px;z-index:85;width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,var(--hot),var(--gold));font-size:1.2rem;opacity:0;pointer-events:none;transition:.3s}
+#topBtn.show{opacity:1;pointer-events:auto}
 </style>
 </head>
 <body>
+<div id="progress"></div>
+<header class="topbar">
+  <div class="brand">🧊 States of Matter · تغيّر الحالة</div>
+  <nav id="nav">
+    <a href="#hero" class="active">Start · البداية</a><a href="#base">Basics · الأساس</a><a href="#journey">Journey · الرحلة</a>
+    <a href="#curve">Curve · المنحنى</a><a href="#chart">Chart · الحالات</a><a href="#questions">Questions · الأسئلة</a>
+    <a href="#mountain">Mountain Lab · الجبل</a><a href="#purity">Purity · النقاء</a><a href="#cooker">Cooker · الحلة</a><a href="#recap">Recap · الخلاصة</a>
+  </nav>
+  <button id="themeBtn" title="Theme · المظهر">☀️</button>
+</header>
+<div id="rail"><div class="tube"><i id="railFill"></i></div><div class="bulb"></div><b id="railVal">0°</b></div>
 
-<!-- ============ HERO ============ -->
-<div class="hero">
-  <div class="thermo-field"></div>
-  <div class="particles" id="particles"></div>
-  <div class="wrap">
-    <div class="eyebrow">Unit 1 · Matter and Energy — Lesson 2</div>
-    <h1 class="disp">Changes in the States of Matter</h1>
-    <p class="sub">How thermal energy reshapes ice, water, and vapour — and why the thermometer sometimes refuses to move.</p>
-    <div class="ar">إنفوجرافيك بيلخّص درس "تغير حالة المادة": يعني احنا هنفهم إزاي الحرارة بتأثر على الجليد والميه والبخار، وليه في لحظات درجة الحرارة "بتتجمد" مكانها وميه بتزيد.</div>
-  </div>
-</div>
-
-<!-- ============ SECTION 1: PHASE CHANGE ============ -->
-<section id="phases">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="tag">01 — The Mechanism</div>
-      <h2>What happens when matter gains heat</h2>
-      <p class="lede">Three states, one rule: heat speeds particles up. But during an actual change of state, that extra energy stops raising temperature and starts breaking bonds instead.</p>
+<section id="hero">
+  <canvas id="heroCv"></canvas>
+  <div class="heroIn">
+    <span class="kicker">Unit 1 · Lesson 2 · Pages 42–49 <span style="opacity:.6">|</span> الوحدة 1 · الدرس 2</span>
+    <h1><span class="en">Changes in the States of Matter</span><span class="ar">تغيّر حالة المادة</span></h1>
+    <p class="desc en">Ice, water, vapour — and the thermometer that sometimes refuses to move. A calmer, cleaner, fully interactive lesson.</p>
+    <p class="desc ar">ثلج، ميه، بخار — والترمومتر اللي ساعات بيرفض يتحرك. درس أهدى وأنضف وتفاعلي بالكامل.</p>
+    <div class="badges">
+      <span class="badge"><span class="en">🎬 Heating Journey</span><span class="ar">🎬 رحلة التسخين</span></span>
+      <span class="badge"><span class="en">🏔️ Mountain Lab</span><span class="ar">🏔️ مختبر الجبل</span></span>
+      <span class="badge"><span class="en">🍲 Pressure Cooker</span><span class="ar">🍲 حلة الضغط</span></span>
+      <span class="badge vip"><span class="en">✔️ Dr. Wael Aboagiza</span><span class="ar">✔️ د. وائل أبو عجيزة</span></span>
     </div>
-
-    <div class="phase-row">
-      <div class="phase-card">
-        <svg class="icon" viewBox="0 0 48 48"><rect x="10" y="10" width="6" height="6" fill="#0B3D5C"/><rect x="20" y="10" width="6" height="6" fill="#0B3D5C"/><rect x="30" y="10" width="6" height="6" fill="#0B3D5C"/><rect x="10" y="20" width="6" height="6" fill="#0B3D5C"/><rect x="20" y="20" width="6" height="6" fill="#0B3D5C"/><rect x="30" y="20" width="6" height="6" fill="#0B3D5C"/><rect x="10" y="30" width="6" height="6" fill="#0B3D5C"/><rect x="20" y="30" width="6" height="6" fill="#0B3D5C"/><rect x="30" y="30" width="6" height="6" fill="#0B3D5C"/></svg>
-        <h3>Solid — Ice</h3>
-        <p>Particles vibrate faster in fixed positions as heat is gained → temperature of the ice rises.</p>
-        <div class="ar">الجليد لما ياخد حرارة، الجزيئات بتهتز أسرع في مكانها، فدرجة حرارته بترتفع عادي.</div>
-      </div>
-      <div class="phase-card">
-        <svg class="icon" viewBox="0 0 48 48"><circle cx="14" cy="16" r="4" fill="#1B8A9E"/><circle cx="26" cy="12" r="4" fill="#1B8A9E"/><circle cx="34" cy="22" r="4" fill="#1B8A9E"/><circle cx="16" cy="28" r="4" fill="#1B8A9E"/><circle cx="28" cy="32" r="4" fill="#1B8A9E"/><circle cx="10" cy="36" r="4" fill="#1B8A9E"/></svg>
-        <h3>Liquid — Water</h3>
-        <p>At the melting point, attraction forces weaken and ice turns to liquid while temperature stays fixed at 0 °C until melting is complete.</p>
-        <div class="ar">عند نقطة الانصهار، قوى التجاذب بتضعف، فالجليد بيبقى ميه — والحرارة بتفضل ثابتة على 0°م لحد ما كل الجليد يدوب.</div>
-      </div>
-      <div class="phase-card">
-        <svg class="icon" viewBox="0 0 48 48"><circle cx="10" cy="10" r="2.5" fill="#F2A65A"/><circle cx="30" cy="8" r="2.5" fill="#F2A65A"/><circle cx="18" cy="24" r="2.5" fill="#F2A65A"/><circle cx="38" cy="20" r="2.5" fill="#F2A65A"/><circle cx="8" cy="34" r="2.5" fill="#F2A65A"/><circle cx="26" cy="38" r="2.5" fill="#F2A65A"/><circle cx="40" cy="38" r="2.5" fill="#F2A65A"/></svg>
-        <h3>Gas — Vapour</h3>
-        <p>Past the boiling point, kinetic energy keeps rising with heat — while temperature plateaus again at 100 °C until evaporation is complete.</p>
-        <div class="ar">بعد نقطة الغليان، الطاقة الحركية للجزيئات بتزيد، وبرضه الحرارة بتقف عند 100°م لحد ما الميه كلها تتبخر.</div>
-      </div>
-    </div>
-
-    <div class="key-points">
-      <h3 style="margin-bottom:14px;">General rules</h3>
-      <ul>
-        <li>Gaining thermal energy → kinetic energy of particles increases → temperature rises (and vice versa).</li>
-        <li>A heated liquid keeps warming gradually until it hits its boiling point.</li>
-        <li>A cooling liquid keeps losing heat gradually until it hits its freezing point.</li>
-        <li>During melting and boiling, temperature stays constant — the absorbed energy is spent weakening attraction forces between particles, not heating them further.</li>
-      </ul>
-      <div class="ar">يعني الخلاصة: الحرارة بتزوّد سرعة الجزيئات، لكن وقت التحول نفسه (دوبان أو غليان) الطاقة بتتصرف في كسر الروابط مش في رفع الحرارة — عشان كده الترمومتر "بيقف" لفترة.</div>
-    </div>
+    <div class="scrollHint">⌄</div>
   </div>
 </section>
 
-<!-- ============ SECTION 2: HEATING CURVE ============ -->
-<section id="curve" style="background:#F3F7F5;">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="tag">02 — Reading The Graph</div>
-      <h2>The heating curve of water, A → F</h2>
-      <p class="lede">Tap or hover any segment to see what's physically happening to the water at that point.</p>
+<main>
+<!-- ============ BASICS ============ -->
+<section id="base" class="card reveal">
+  <div class="chead"><span class="cnum">42</span><div><h2><span class="en">The Physical State Changes</span><span class="ar">تغيّر الحالة الفيزيائية</span></h2></div><span class="ppage">p.42</span></div>
+  <div class="row2">
+    <div class="tile"><span class="tag">At sea level · عند سطح البحر</span>
+      <p class="en">Ice melts at <strong>0°C</strong> · Water boils at <strong>100°C</strong>.</p>
+      <p class="ar">الثلج بيديب عند <strong>0°م</strong> · المية بتغلي عند <strong>100°م</strong>.</p></div>
+    <div class="tile"><span class="tag hot">And it can go further · وممكن أكتر</span>
+      <p class="en">⬇ Ice cools below 0°C · ⬆ Vapour heats above 100°C.</p>
+      <p class="ar">⬇ الثلج بيبرد تحت 0°م · ⬆ البخار بيسخن فوق 100°م.</p></div>
+  </div>
+  <div class="grid3" style="margin-top:18px">
+    <div class="tile" style="text-align:center"><div style="font-size:2.4rem">🧊</div><p class="en">Solid · vibrates in place</p><p class="ar">صلب · يهتز في مكانه</p></div>
+    <div class="tile" style="text-align:center"><div style="font-size:2.4rem">💧</div><p class="en">Liquid · moves more freely</p><p class="ar">سائل · يتحرك بحرية أكبر</p></div>
+    <div class="tile" style="text-align:center"><div style="font-size:2.4rem">💨</div><p class="en">Gas · completely free</p><p class="ar">غاز · حرية تامة</p></div>
+  </div>
+</section>
+
+<!-- ============ JOURNEY ============ -->
+<section id="journey" class="card reveal">
+  <div class="chead"><span class="cnum">🎬</span><div><h2><span class="en">The 5-Step Heating Journey</span><span class="ar">رحلة التسخين بخمس خطوات</span></h2></div><span class="ppage">p.42–43</span></div>
+  <p class="intro en">Press run: ice at −20°C becomes steam above 100°C. Watch when the thermometer stops — and why.</p>
+  <p class="intro ar">اضغط تشغيل: الثلج عند −20°م بيبقى بخار فوق 100°م. لاحظ امتى الترمومتر بيقف — وليه.</p>
+  <div class="jWrap" dir="ltr">
+    <div class="jLeft">
+      <div class="jTemp" id="jTemp">−20°C</div>
+      <div class="jBeaker"><canvas id="jCv"></canvas></div>
+      <div class="jFlame">🔥</div>
     </div>
+    <div class="jRight">
+      <canvas id="jGraph"></canvas>
+      <div class="jSteps"><b id="s1">1</b><b id="s2">2</b><b id="s3">3</b><b id="s4">4</b><b id="s5">5</b></div>
+      <div id="jTxt"></div>
+    </div>
+  </div>
+  <div class="labctrl">
+    <button class="btn" id="jRun">▶ Run · شغّل</button>
+    <button class="btn ghost" id="jReset">↺ Reset · إعادة</button>
+  </div>
+  <div class="speedRow" data-spd="journey"><span>⏩ Speed · السرعة:</span>
+    <button class="spBtn active" data-sp="1">1×</button><button class="spBtn" data-sp="2">2×</button><button class="spBtn" data-sp="4">4×</button></div>
+  <div class="grid2">
+    <div class="defBox" style="margin-top:0"><b class="dT">Melting point · الانصهار</b>
+      <p class="en">Solid → liquid begins.</p><p class="ar">بداية تحوّل الصلب لسائل.</p></div>
+    <div class="defBox" style="margin-top:0"><b class="dT">Boiling point · الغليان</b>
+      <p class="en">Liquid → gas begins.</p><p class="ar">بداية تحوّل السائل لغاز.</p></div>
+  </div>
+  <details><summary><span class="en">📖 Full step-by-step explanation (with G.R.)</span> · <span class="ar">📖 شرح الخطوات كاملًا (بالعلل)</span></summary>
+    <div class="body">
+      <p class="en">① Ice warms to 0°C — K.E. increases. ② Melting: T stays 0°C — energy weakens attraction forces. ③ Water warms to 100°C — K.E. increases. ④ Boiling: T stays 100°C — energy weakens forces into vapour. ⑤ Vapour warms above 100°C.</p>
+      <p class="ar">① الثلج بيسخن لـ0°م (طاقة الحركة بتزيد). ② الانصهار: الحرارة ثابتة 0°م (الطاقة بتضعف قوى التجاذب). ③ المية بتسخن لـ100°م. ④ الغليان: الحرارة ثابتة 100°م (الطاقة بتحوّل المية لبخار). ⑤ البخار بيسخن فوق 100°م.</p>
+    </div></details>
+</section>
 
-    <div class="curve-shell">
-      <svg id="curveSvg" viewBox="0 0 780 340" preserveAspectRatio="xMidYMid meet">
-        <!-- axes -->
-        <line x1="60" y1="20" x2="60" y2="300" stroke="#B9C4C0" stroke-width="1.5"/>
-        <line x1="60" y1="300" x2="740" y2="300" stroke="#B9C4C0" stroke-width="1.5"/>
-        <text x="20" y="90" class="mlabel" transform="rotate(-90 20,90)">Temp (°C)</text>
-        <text x="700" y="320" class="mlabel">Time →</text>
-        <!-- gridlines for 0 and 100 -->
-        <line x1="60" y1="230" x2="740" y2="230" stroke="#DCE4E1" stroke-dasharray="4 4"/>
-        <text x="30" y="234" class="mlabel">0°</text>
-        <line x1="60" y1="90" x2="740" y2="90" stroke="#DCE4E1" stroke-dasharray="4 4"/>
-        <text x="18" y="94" class="mlabel">100°</text>
+<!-- ============ CURVE ============ -->
+<section id="curve" class="card reveal">
+  <div class="chead"><span class="cnum">📈</span><div><h2><span class="en">Heating Curve — tap a segment</span><span class="ar">منحنى التسخين — دوس على قطاع</span></h2></div><span class="ppage">p.44</span></div>
+  <svg viewBox="0 0 500 270" dir="ltr" style="width:100%">
+    <line x1="30" y1="250" x2="490" y2="250" stroke="var(--line)" stroke-width="2"/>
+    <line x1="30" y1="250" x2="30" y2="15" stroke="var(--line)" stroke-width="2"/>
+    <line x1="30" y1="191" x2="490" y2="191" stroke="#38bdf8" stroke-dasharray="5 5" opacity=".5"/>
+    <line x1="30" y1="69" x2="490" y2="69" stroke="#fb923c" stroke-dasharray="5 5" opacity=".5"/>
+    <text x="4" y="195" fill="#38bdf8" font-size="11">0°C</text><text x="0" y="73" fill="#fb923c" font-size="11">100°C</text>
+    <path d="M30 240 L100 191" stroke="#7dd3fc" stroke-width="4" fill="none"/>
+    <path d="M100 191 L160 191" stroke="#38bdf8" stroke-width="4"/>
+    <path d="M160 191 L270 69" stroke="#4f8cff" stroke-width="4" fill="none"/>
+    <path d="M270 69 L390 69" stroke="#fb923c" stroke-width="4"/>
+    <path d="M390 69 L480 25" stroke="#ef4444" stroke-width="4" fill="none"/>
+    <path class="seg" data-s="0" d="M30 240 L100 191"/><path class="seg" data-s="1" d="M100 191 L160 191"/>
+    <path class="seg" data-s="2" d="M160 191 L270 69"/><path class="seg" data-s="3" d="M270 69 L390 69"/>
+    <path class="seg" data-s="4" d="M390 69 L480 25"/>
+    <text x="86" y="265" fill="var(--muted)" font-size="10">Melting · انصهار</text>
+    <text x="150" y="265" fill="var(--muted)" font-size="10">Done · اكتمل</text>
+    <text x="256" y="265" fill="var(--muted)" font-size="10">Boiling · غليان</text>
+    <text x="376" y="265" fill="var(--muted)" font-size="10">Done · اكتمل</text>
+  </svg>
+  <div id="segInfo" class="note" style="display:none"></div>
+  <div class="grid2" style="margin-top:16px">
+    <div class="tile"><span class="tag hot">Gains heat · تكتسب حرارة</span>
+      <p class="en">K.E. ⬆ → temperature rises.</p><p class="ar">طاقة الحركة ⬆ → الحرارة بترتفع.</p></div>
+    <div class="tile"><span class="tag">Loses heat · تفقد حرارة</span>
+      <p class="en">K.E. ⬇ → temperature falls.</p><p class="ar">طاقة الحركة ⬇ → الحرارة بتقل.</p></div>
+  </div>
+  <div class="note gold"><span class="en">🔍 Melting takes LESS time than boiling — compare the two plateaus.</span><span class="ar">🔍 الانصهار بياخد وقت أقل من الغليان — قارن الخطّين الأفقيين.</span></div>
+</section>
 
-        <!-- path segments (A 60,300)(B 160,230)(C 280,230)(D 430,90)(E 560,90)(F 700,30) -->
-        <path class="seg-hit" data-seg="AB" d="M60,300 L160,230"/>
-        <path class="seg AB" d="M60,300 L160,230" stroke="#0B3D5C" stroke-width="4" fill="none" stroke-linecap="round"/>
+<!-- ============ CHART ============ -->
+<section id="chart" class="card reveal">
+  <div class="chead"><span class="cnum">🌡️</span><div><h2><span class="en">State at Any Temperature</span><span class="ar">الحالة عند أي حرارة</span></h2></div><span class="ppage">p.45</span></div>
+  <div class="labctrl"><div style="flex:1;min-width:240px"><span class="en">🌡️ Temperature · الحرارة</span><input type="range" id="stT" min="-15" max="120" value="25"></div><b class="en" id="stVal" style="font-family:'Space Grotesk';font-size:1.3rem;color:var(--hot)">25°C</b></div>
+  <div class="grid5" style="margin-top:14px">
+    <div class="tile" id="c1" style="text-align:center;padding:14px"><div style="font-size:1.5rem">🧊</div><p class="en">&lt; melting</p><p class="ar">&lt; الانصهار</p><p class="en mut">solid · صلب</p></div>
+    <div class="tile" id="c2" style="text-align:center;padding:14px"><div style="font-size:1.5rem">🧊💧</div><p class="en">= melting</p><p class="ar">= الانصهار</p><p class="en mut">solid+liquid</p></div>
+    <div class="tile" id="c3" style="text-align:center;padding:14px"><div style="font-size:1.5rem">💧</div><p class="en">between</p><p class="ar">بينهما</p><p class="en mut">liquid · سائل</p></div>
+    <div class="tile" id="c4" style="text-align:center;padding:14px"><div style="font-size:1.5rem">💧💨</div><p class="en">= boiling</p><p class="ar">= الغليان</p><p class="en mut">liquid+gas</p></div>
+    <div class="tile" id="c5" style="text-align:center;padding:14px"><div style="font-size:1.5rem">💨</div><p class="en">&gt; boiling</p><p class="ar">&gt; الغليان</p><p class="en mut">gas · غاز</p></div>
+  </div>
+</section>
 
-        <path class="seg-hit" data-seg="BC" d="M160,230 L280,230"/>
-        <path class="seg BC" d="M160,230 L280,230" stroke="#1B8A9E" stroke-width="4" fill="none" stroke-linecap="round"/>
+<!-- ============ QUESTIONS ============ -->
+<section id="questions" class="card reveal">
+  <div class="chead"><span class="cnum">❓</span><div><h2><span class="en">Question & Answer</span><span class="ar">سؤال وجواب</span></h2></div><span class="ppage">p.45–46</span></div>
+  <h3>Q1 · <span class="en">Tap each arrow — gain or release?</span> · <span class="ar">دوس على كل سهم — اكتساب أم فقد؟</span></h3>
+  <div class="labctrl" dir="ltr" style="gap:6px">
+    <span class="badge">Ice · ثلج</span>
+    <span style="display:flex;flex-direction:column;gap:4px">
+      <button class="opt" data-arrow="X" style="font-size:.7rem">⬅ (X)</button>
+      <button class="opt" data-arrow="Y" style="font-size:.7rem">➡ (Y)</button>
+    </span>
+    <span class="badge">Water · ماء</span>
+    <span style="display:flex;flex-direction:column;gap:4px">
+      <button class="opt" data-arrow="W" style="font-size:.7rem">⬅ (W)</button>
+      <button class="opt" data-arrow="Z" style="font-size:.7rem">➡ (Z)</button>
+    </span>
+    <span class="badge">Vapour · بخار</span>
+  </div>
+  <div id="arrowMsg" class="note" style="display:none"></div>
+  <div class="note ok"><span class="en">✔️ Energy increases in (Y) melting & (Z) evaporation.</span><span class="ar">✔️ الطاقة بتزيد في (Y) الانصهار و(Z) التبخر.</span></div>
+  <details><summary>Q2 · <span class="en">Solid substance curve (mp, states at 10/30/70 min, K.E. in AB)</span> · <span class="ar">منحنى مادة صلبة (الانصهار، الحالات، طاقة الحركة في AB)</span></summary>
+    <div class="body">
+      <p class="en">Melting point = −20°C · 10 min: solid · 30 min: solid+liquid · 70 min: liquid+gas · K.E. in AB: no change (no temperature change).</p>
+      <p class="ar">الانصهار = −20°م · 10 د: صلبة · 30 د: صلبة+سائلة · 70 د: سائلة+غازية · طاقة الحركة في AB: لا تتغير (لأن الحرارة لا تتغير).</p>
+    </div></details>
+  <details><summary>Q3 · <span class="en">States of X / Y / Z at 100°C</span> · <span class="ar">حالات X / Y / Z عند 100°م</span></summary>
+    <div class="body">
+      <p class="en">X (bp 84): gas · Y (bp 125 / mp 25): liquid · Z (mp 102): solid.</p>
+      <p class="ar">X (غليان 84): غاز · Y (بين 25 و125): سائل · Z (انصهار 102): صلب.</p>
+    </div></details>
+</section>
 
-        <path class="seg-hit" data-seg="CD" d="M280,230 L430,90"/>
-        <path class="seg CD" d="M280,230 L430,90" stroke="#1B8A9E" stroke-width="4" fill="none" stroke-linecap="round"/>
-
-        <path class="seg-hit" data-seg="DE" d="M430,90 L560,90"/>
-        <path class="seg DE" d="M430,90 L560,90" stroke="#F2A65A" stroke-width="4" fill="none" stroke-linecap="round"/>
-
-        <path class="seg-hit" data-seg="EF" d="M560,90 L700,30"/>
-        <path class="seg EF" d="M560,90 L700,30" stroke="#E1543D" stroke-width="4" fill="none" stroke-linecap="round"/>
-
-        <!-- nodes -->
-        <g font-family="IBM Plex Mono" font-size="13" fill="#12202A">
-          <circle class="node" cx="60" cy="300" r="6" fill="#0B3D5C" data-seg="AB"/><text x="52" y="318">A</text>
-          <circle class="node" cx="160" cy="230" r="6" fill="#0B3D5C" data-seg="BC"/><text x="152" y="216">B</text>
-          <circle class="node" cx="280" cy="230" r="6" fill="#1B8A9E" data-seg="CD"/><text x="272" y="216">C</text>
-          <circle class="node" cx="430" cy="90" r="6" fill="#1B8A9E" data-seg="DE"/><text x="422" y="76">D</text>
-          <circle class="node" cx="560" cy="90" r="6" fill="#F2A65A" data-seg="EF"/><text x="552" y="76">E</text>
-          <circle class="node" cx="700" cy="30" r="6" fill="#E1543D"/><text x="692" y="18">F</text>
+<!-- ============ MOUNTAIN LAB (NEW) ============ -->
+<section id="mountain" class="card reveal">
+  <div class="chead"><span class="cnum">🏔️</span><div><h2><span class="en">Mountain Lab — climb & watch the pot!</span><span class="ar">مختبر الجبل — اتسلق وراقب الحلة!</span></h2></div><span class="ppage">p.47–48</span></div>
+  <p class="intro en">Drag the altitude slider: the pot climbs the mountain, the air gets thinner, the boiling point drops — and your egg takes longer to cook!</p>
+  <p class="intro ar">حرّك سلايدر الارتفاع: الحلة بتتسلق الجبل، والهوا بيخف، والغليان بيقل — وسلق البيضة بياخد وقت أطول!</p>
+  <div class="mLab" dir="ltr">
+    <div class="mScene">
+      <svg viewBox="0 0 360 430">
+        <g id="airG"></g>
+        <path d="M52 330 L180 55 L308 330 Z" fill="#64748b" opacity=".85"/>
+        <path d="M158 100 L180 55 L202 100 L192 92 L180 104 L168 92 Z" fill="#f8fafc"/>
+        <rect x="0" y="330" width="360" height="62" fill="rgba(56,189,248,.4)"/>
+        <text x="8" y="346" fill="#eaf2ff" font-size="10" font-weight="700">Sea level · 0 m · boils 100°C</text>
+        <rect x="0" y="392" width="360" height="38" fill="rgba(30,64,175,.75)"/>
+        <text x="8" y="414" fill="#eaf2ff" font-size="10" font-weight="700">Dead Sea · −427 m · boils 101.4°C</text>
+        <g id="potG" transform="translate(300,330)">
+          <text y="-34" font-size="15" text-anchor="middle" class="pulse">💨</text>
+          <text y="-6" font-size="27" text-anchor="middle">🍲</text>
+          <text y="4" font-size="11" text-anchor="middle">🔥</text>
         </g>
       </svg>
-
-      <div class="legend">
-        <span><span class="dot" style="background:#0B3D5C"></span>AB · warming solid</span>
-        <span><span class="dot" style="background:#1B8A9E"></span>BC · melting plateau</span>
-        <span><span class="dot" style="background:#1B8A9E"></span>CD · warming liquid</span>
-        <span><span class="dot" style="background:#F2A65A"></span>DE · boiling plateau</span>
-        <span><span class="dot" style="background:#E1543D"></span>EF · warming gas</span>
-      </div>
-
-      <div class="info-panel" id="infoPanel"></div>
     </div>
+    <div class="mSide">
+      <div class="mCard"><span class="en">⛰️ Altitude · الارتفاع</span><b id="mAlt">0 m</b></div>
+      <div class="mCard"><span class="en">🌬️ Pressure · الضغط</span><b class="pr" id="mPr">1.00 atm</b></div>
+      <div class="mCard"><span class="en">🔥 Boiling point · الغليان</span><b class="bp" id="mBp">100.0°C</b></div>
+      <div class="mCard"><span class="en">🥚 Egg boiling time · سلق بيضة</span><b class="eg" id="mEgg">10.0 min</b></div>
+      <input type="range" id="altR2" min="-427" max="6500" step="25" value="0">
+      <button class="btn" id="chalBtn">🎯 <span class="en" style="display:inline">Challenge: boil at 80°C</span> · <span class="ar" style="display:inline">تحدٍ: غليان عند 80°م</span></button>
+      <div id="chalMsg" class="note" style="display:none"></div>
+    </div>
+  </div>
+  <div class="row2" style="margin-top:18px">
+    <div class="tile" style="text-align:center"><span class="tag hot">⬇ Below sea level · تحت سطح البحر</span>
+      <p class="en">Pressure ⬆ → boiling ⬆ & melting ⬇</p><p class="ar">الضغط ⬆ → الغليان ⬆ والانصهار ⬇</p></div>
+    <div class="tile" style="text-align:center"><span class="tag">⬆ Above sea level · فوق سطح البحر</span>
+      <p class="en">Pressure ⬇ → boiling ⬇ & melting </p><p class="ar">الضغط ⬇ → الغليان ⬇ والانصهار ⬆</p></div>
+  </div>
+  <details><summary>📐 <span class="en">The two equations + solved examples (Alps / 6000 m / Dead Sea)</span> · <span class="ar">📐 المعادلتان + الأمثلة المحلولة (الألب / 6000م / البحر الميت)</span></summary>
+    <div class="body">
+      <div class="eqBox">Decrease = Altitude ÷ 300 ⇒ b.p. = 100 − decrease</div>
+      <div class="eqBox">Increase = Depth ÷ 300 ⇒ b.p. = 100 + increase</div>
+      <p class="en">Alps 4800 m: 4800÷300 = 16 ⇒ 100−16 = <strong>84°C</strong> · Height for 80°C: (100−80)×300 = <strong>6000 m</strong> · Dead Sea −427 m: 427÷300 ≈ 1.4 ⇒ 100+1.4 = <strong>101.4°C</strong>.</p>
+      <p class="ar">الألب 4800م: 4800÷300 = 16 ⇒ 100−16 = <strong>84°م</strong> · ارتفاع الغليان 80°م: (100−80)×300 = <strong>6000م</strong> · البحر الميت −427م: 427÷300 ≈ 1.4 ⇒ 100+1.4 = <strong>101.4°م</strong>.</p>
+    </div></details>
+</section>
+
+<!-- ============ PURITY ============ -->
+<section id="purity" class="card reveal">
+  <div class="chead"><span class="cnum">🧂</span><div><h2><span class="en">Factor 2: Purity</span><span class="ar">العامل الثاني: النقاء</span></h2></div><span class="ppage">p.49</span></div>
+  <div class="chevRow" dir="ltr">
+    <div class="chev"><span class="en">Impurities disturb attraction forces</span><span class="ar">الشوائب بتخلخل قوى التجاذب</span></div>
+    <div class="chev hot"><span class="en">→ energy needed changes</span><span class="ar">→ تتغير الطاقة اللازمة</span></div>
+    <div class="chev"><span class="en">→ both points shift</span><span class="ar">→ تتغير النقطتان معًا</span></div>
+  </div>
+  <div class="row2" style="margin-top:16px">
+    <div class="tile" style="text-align:center"><span class="tag hot">180 g glucose in 1 L water</span>
+      <p class="en">Boils at <strong>100.5°C</strong> · Freezes at <strong>−1.86°C</strong></p>
+      <p class="ar">تغلي عند <strong>100.5°م</strong> · تتجمد عند <strong>−1.86°م</strong></p></div>
+    <div class="tile"><span class="tag">Remember · افتكر</span>
+      <p class="en">Change depends on concentration; purity is checked by comparing the fixed pure values.</p>
+      <p class="ar">التغيّر بيعتمد على التركيز؛ والنقاء بنكشفه بمقارنة القيم الثابتة للمادة النقية.</p></div>
   </div>
 </section>
 
-<!-- ============ SECTION 3: FACTORS ============ -->
-<section id="factors">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="tag">03 — What Shifts The Curve</div>
-      <h2>Factors affecting melting &amp; boiling points</h2>
-      <p class="lede">A pure substance has a fixed melting/boiling point only at normal atmospheric pressure. Two things move it: pressure, and purity.</p>
-    </div>
-
-    <div class="factor-grid">
-      <div class="factor-card">
-        <div class="num">FACTOR 01</div>
-        <h3>Atmospheric pressure</h3>
-        <p style="font-size:.92rem; color:#3d4d54;">At sea level, pressure is described as <em>normal atmospheric pressure</em>: ice melts at 0 °C and water boils at 100 °C. As altitude rises above sea level, atmospheric pressure drops below normal — and both fixed points shift.</p>
-
-        <div class="fm-toggle">
-          <button class="fm-btn active" data-panel="boil">🔥 Boiling Point</button>
-          <button class="fm-btn" data-panel="melt">❄️ Melting Point</button>
-        </div>
-        <div class="fm-panel" id="fmBoil">
-          <ul>
-            <li>Decreases below 100 °C as altitude increases.</li>
-            <li>Falls by about 1 °C for every 300 m of altitude gained.</li>
-          </ul>
-        </div>
-        <div class="fm-panel" id="fmMelt" style="display:none;">
-          <ul>
-            <li>Increases above 0 °C when atmospheric pressure decreases.</li>
-            <li><strong>Vice versa:</strong> when atmospheric pressure increases, the boiling point increases and the melting point decreases.</li>
-          </ul>
-        </div>
-
-        <div class="mountain">
-          <svg viewBox="0 0 320 200">
-            <polygon points="10,190 160,20 310,190" fill="#E9EEEA" stroke="#B9C4C0"/>
-            <line x1="10" y1="150" x2="310" y2="150" stroke="#DCE4E1" stroke-dasharray="3 3"/>
-            <line x1="10" y1="100" x2="310" y2="100" stroke="#DCE4E1" stroke-dasharray="3 3"/>
-            <circle cx="160" cy="35" r="5" fill="#0B3D5C"/>
-            <text class="mlabel big" x="172" y="32">3000 m · 90°C</text>
-            <text class="mlabel" x="172" y="46">0.69 atm</text>
-            <circle cx="120" cy="95" r="5" fill="#1B8A9E"/>
-            <text class="mlabel big" x="132" y="92">1800 m · 94°C</text>
-            <text class="mlabel" x="132" y="106">0.8 atm</text>
-            <circle cx="60" cy="180" r="5" fill="#E1543D"/>
-            <text class="mlabel big" x="72" y="178">0 m · 100°C</text>
-            <text class="mlabel" x="72" y="192">1 atm · sea level</text>
-          </svg>
-        </div>
-
-        <div class="altitude-slider">
-          <div class="slider-head">
-            <span>🏔️ Try it — drag the altitude</span>
-            <span class="slider-readout"><span id="altVal">0</span> m</span>
-          </div>
-          <input type="range" id="altRange" min="0" max="4800" step="100" value="0">
-          <div class="slider-result">
-            Boiling point of water ≈ <strong id="boilResult">100.0</strong> °C
-          </div>
-        </div>
-
-        <div class="worked-example">
-          <div class="we-q">Worked example — Q. What is the boiling point of water at the Alps' highest peak, ≈4,800 m above sea level?</div>
-          <button class="we-toggle" id="weToggle">Show solution</button>
-          <div class="we-a" id="weAnswer" style="display:none;">
-            <p>Temperature decreases 1 °C per 300 m.</p>
-            <p>Decrease = 4800 ÷ 300 = <strong>16 °C</strong></p>
-            <p>Boiling point = 100 − 16 = <strong>84 °C</strong></p>
-          </div>
-        </div>
-
-        <div class="ar">كل ما ارتفعنا فوق سطح البحر، الضغط الجوي بيقل، فالميه بتغلي عند حرارة أقل من 100°م — وده بيزيد نقطة انصهار الجليد فوق 0°م. والعكس صحيح: لما الضغط يزيد، الغليان بيزيد والانصهار بينزل. جرّب حرّك المؤشر شوف الحساب بنفسك.</div>
-      </div>
-
-      <div class="factor-card">
-        <div class="num">FACTOR 02</div>
-        <h3>Degree of purity</h3>
-        <p style="font-size:.92rem; color:#3d4d54;">Impurities disturb the attraction forces between particles, changing the energy needed to shift state. Purity is tested by comparing a substance's melting/boiling point to its known pure value.</p>
-        <p style="font-size:.86rem; color:#5a6b71; margin-top:10px;"><em>180 g glucose dissolved in 1 L distilled water:</em></p>
-        <div class="shift-row">
-          <div class="shift-box">
-            <div class="from">0°C</div>
-            <div class="to down">−1.86°C</div>
-            <div class="lbl">freezing point ↓ 1.86°C</div>
-          </div>
-          <div class="shift-box">
-            <div class="from">100°C</div>
-            <div class="to up">100.5°C</div>
-            <div class="lbl">boiling point ↑ 0.5°C</div>
-          </div>
-        </div>
-        <div class="ar">لما تدوّب حاجة (شوائب) في الميه، بيتغير الجهد اللازم لتغيير الحالة: نقطة التجمد بتنزل ونقطة الغليان بتزيد — والقد ده بيتوقف على تركيز المحلول.</div>
-      </div>
-    </div>
+<!-- ============ COOKER ============ -->
+<section id="cooker" class="card reveal">
+  <div class="chead"><span class="cnum">🍲</span><div><h2><span class="en">The Pressure Cooker</span><span class="ar">حلة الضغط</span></h2></div><span class="ppage">p.49</span></div>
+  <div class="chevRow" dir="ltr">
+    <div class="chev hot"><span class="en">Traps steam inside</span><span class="ar">بتحبس البخار جواها</span></div>
+    <div class="chev"><span class="en">→ pressure ⬆ → boils &gt;100°C</span><span class="ar">→ الضغط ⬆ → الغليان &gt;100°م</span></div>
+    <div class="chev hot"><span class="en">→ faster + saves 70–90% fuel</span><span class="ar">→ أسرع + توفر 70–90% وقود</span></div>
   </div>
+  <div class="potRow" dir="ltr">
+    <div class="pot open"><span class="en">Regular · عادية</span>
+      <div class="potBody"><span class="pSteam" style="left:20%">💨</span><span class="pSteam" style="left:50%">💨</span><span class="pSteam" style="left:75%">💨</span></div>
+      <div class="pTemp" style="color:var(--cold)">100°C</div></div>
+    <div class="pot closed"><span class="en">Pressure · ضغط</span>
+      <div class="potBody closed"><span class="pSteam" style="left:20%">💨</span><span class="pSteam" style="left:50%">💨</span><span class="pSteam" style="left:75%">💨</span></div>
+      <div class="pTemp" style="color:var(--hot)">&gt;100°C</div></div>
+  </div>
+  <div class="note gold"><span class="en">❓ G.R.: cooks faster because trapped steam raises pressure → boiling point above 100°C.</span><span class="ar">❓ علل: بتطبخ أسرع لأن البخار المحبوس بيرفع الضغط → الغليان فوق 100°م.</span></div>
 </section>
 
-<!-- ============ SECTION 3.5: TEST YOURSELF ============ -->
-<section id="quiz">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="tag">Check Yourself</div>
-      <h2>Two quick questions from the textbook</h2>
-      <p class="lede">Tap the arrows and the substances to reveal each answer.</p>
-    </div>
-
-    <div class="quiz-grid">
-      <!-- Diagram quiz -->
-      <div class="quiz-card">
-        <h3>Q1 — Which two processes increase particle energy?</h3>
-        <div class="diagram-quiz">
-          <svg viewBox="0 0 480 140">
-            <text x="30" y="78" class="dq-state">Ice</text>
-            <text x="205" y="78" class="dq-state">Water</text>
-            <text x="380" y="65" class="dq-state">Water</text>
-            <text x="380" y="82" class="dq-state">vapour</text>
-
-            <line x1="70" y1="55" x2="185" y2="55" stroke="#B9C4C0" stroke-width="2" marker-end="url(#arrL)"/>
-            <text x="122" y="45" class="dq-label" data-key="X">X</text>
-
-            <line x1="185" y1="90" x2="70" y2="90" stroke="#B9C4C0" stroke-width="2" marker-end="url(#arrL)" transform="rotate(180 127.5 90)"/>
-            <text x="122" y="112" class="dq-label" data-key="Y">Y</text>
-
-            <line x1="250" y1="55" x2="355" y2="55" stroke="#B9C4C0" stroke-width="2" marker-end="url(#arrL)" transform="rotate(180 302.5 55)"/>
-            <text x="300" y="45" class="dq-label" data-key="W">W</text>
-
-            <line x1="250" y1="90" x2="355" y2="90" stroke="#B9C4C0" stroke-width="2" marker-end="url(#arrL)"/>
-            <text x="300" y="112" class="dq-label" data-key="Z">Z</text>
-
-            <defs><marker id="arrL" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#8b98a0"/></marker></defs>
-          </svg>
-        </div>
-        <p style="font-size:.86rem; color:#5a6b71; margin-top:8px;">Click each letter — X, Y, W, Z — to see if that arrow gains or releases energy.</p>
-        <div class="dq-panel" id="dqPanel">Tap a letter above to begin.</div>
-        <button class="we-toggle" id="dqReveal" style="margin-top:12px;">Reveal full answer</button>
-        <div class="we-a" id="dqAnswer" style="display:none;">
-          <p>The increase in particle energy raises temperature — as in melting and boiling (evaporation).</p>
-          <p>So particle energy increases in both process <strong>Y</strong> (ice → water) and process <strong>Z</strong> (water → vapour).</p>
-        </div>
-        <div class="ar">اضغط على أي حرف من X أو Y أو W أو Z تعرف الاتجاه ده طاقة الجزيئات فيه بتزيد ولا بتقل. الإجابة النهائية: Y و Z (اتجاه اكتساب الحرارة).</div>
-      </div>
-
-      <!-- Table quiz -->
-      <div class="quiz-card">
-        <h3>Q2 — State of each substance at 100 °C?</h3>
-        <table class="mtable" style="margin-top:6px;">
-          <tr><th>Substance</th><th>Boiling pt</th><th>Melting pt</th><th>State @100°C</th></tr>
-          <tr class="sub-row" data-key="X"><td>X</td><td>84°C</td><td>5°C</td><td class="sub-answer">?</td></tr>
-          <tr class="sub-row" data-key="Y"><td>Y</td><td>125°C</td><td>25°C</td><td class="sub-answer">?</td></tr>
-          <tr class="sub-row" data-key="Z"><td>Z</td><td>315°C</td><td>102°C</td><td class="sub-answer">?</td></tr>
-        </table>
-        <p style="font-size:.82rem; color:#5a6b71; margin-top:10px;">Click each row to reveal its physical state, then check the reasoning.</p>
-        <div class="dq-panel" id="tqPanel">Tap a row above to begin.</div>
-        <div class="ar">اضغط على أي صف تعرف حالة المادة عند 100°م: لو نقطة الغليان أقل من 100 يبقى غاز، لو بين نقطتين يبقى سائل، ولو نقطة الانصهار أعلى من 100 يبقى صلب.</div>
-      </div>
-    </div>
+<!-- ============ RECAP ============ -->
+<section id="recap" class="card reveal">
+  <div class="chead"><span class="cnum">🔑</span><div><h2><span class="en">Quick Recap</span><span class="ar">خلاصة سريعة</span></h2></div></div>
+  <div class="badges" style="margin:0;justify-content:flex-start">
+    <span class="badge"><span class="en">0°C / 100°C at sea level</span><span class="ar">0 / 100°م عند سطح البحر</span></span>
+    <span class="badge"><span class="en">Plateaus = breaking bonds</span><span class="ar">الثبات = كسر روابط</span></span>
+    <span class="badge"><span class="en">Altitude ⬆ ⇒ b.p. ⬇</span><span class="ar">الارتفاع ⬆ ⇒ الغليان ⬇</span></span>
+    <span class="badge"><span class="en">Impurities ⇒ b.p. ⬆ f.p. ⬇</span><span class="ar">الشوائب ⇒ الغليان ⬆ التجمد ⬇</span></span>
+    <span class="badge"><span class="en">Cooker = trapped steam</span><span class="ar">حلة الضغط = بخار محبوس</span></span>
   </div>
 </section>
+</main>
 
-<!-- ============ SECTION 4: PRESSURE COOKER ============ -->
-<section style="background:#F3F7F5;">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="tag">04 — Technological Application</div>
-      <h2>The pressure cooker</h2>
-      <p class="lede">A direct use of the pressure–boiling point relationship, running in reverse.</p>
-    </div>
-
-    <div class="cooker-wrap">
-      <div class="cooker-visual">
-        <svg viewBox="0 0 220 220">
-          <ellipse cx="110" cy="190" rx="70" ry="12" fill="#E9EEEA"/>
-          <rect x="45" y="90" width="130" height="90" rx="14" fill="#1B8A9E"/>
-          <rect x="45" y="90" width="130" height="14" rx="7" fill="#0B3D5C"/>
-          <rect x="90" y="60" width="40" height="34" rx="6" fill="#0B3D5C"/>
-          <circle cx="110" cy="52" r="10" fill="#F2A65A"/>
-          <path d="M100,40 q10,-20 20,0" stroke="#E1543D" stroke-width="3" fill="none"/>
-          <rect x="60" y="130" width="16" height="30" rx="3" fill="#fff" opacity=".6"/>
-          <rect x="145" y="130" width="16" height="30" rx="3" fill="#fff" opacity=".6"/>
-        </svg>
-      </div>
-      <div class="cooker-text">
-        <h3>Why it saves time and fuel</h3>
-        <ul>
-          <li><strong>Importance:</strong> cooks food faster than a normal pot, saving energy.</li>
-          <li><strong>Idea of work:</strong> traps steam inside → pressure rises inside the pot → boiling point of water is pushed above 100 °C → food cooks faster, using less fuel.</li>
-        </ul>
-        <span class="badge-save">saves 70–90% of energy vs. an open pot</span>
-        <div class="ar" style="margin-top:16px;">قدرة الضغط بتحبس البخار جوه، فالضغط بيعلى، وده بيرفع درجة غليان الميه فوق 100°م — فالأكل بيستوي أسرع وبوقود أقل.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ SECTION 5: QUICK REFERENCE ============ -->
-<section id="ref">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="tag">05 — Quick Reference</div>
-      <h2>Normal atmospheric pressure, at a glance</h2>
-    </div>
-    <div class="ref-grid">
-      <div class="ref-card">
-        <div class="val">0°C</div>
-        <div class="lbl">melting point of ice</div>
-      </div>
-      <div class="ref-card">
-        <div class="val">100°C</div>
-        <div class="lbl">boiling point of water</div>
-      </div>
-      <div class="ref-card">
-        <div class="val">≈1°C / 300m</div>
-        <div class="lbl">boiling point drop with altitude</div>
-      </div>
-    </div>
-    <p class="lede" style="margin-top:26px;">Ice ⇌ Water ⇌ Vapour: the two energy-gaining directions (melting, then evaporation) are the ones where particle energy rises; the reverse directions (freezing, condensation) release it.</p>
-    <div class="ar">يعني بالعامية: كل ما اتجهنا من جليد لميه لبخار (باتجاه اكتساب حرارة)، طاقة الجزيئات بتزيد. لما نرجع تاني (تجمد، تكثيف) الطاقة دي بتتحرر.</div>
-  </div>
-</section>
-
-<footer>Summarised from Unit 1 · Lesson 2 — Changes in the States of Matter</footer>
+<footer>
+  <div class="verified">🛡️ <span class="en">Reviewed & signed: Dr. Wael Aboagiza</span><span class="ar">مراجعة وتوقيع: د. وائل أبو عجيزة</span> <span style="font-family:'Space Grotesk'">#Dr_Wael_Aboagiza</span></div>
+  <p style="margin-top:14px;font-size:.82rem"><span class="en">Unit 1 · Lesson 2 · pages 42–49</span><span class="ar">الوحدة الأولى · الدرس 2 · صفحات 42–49</span></p>
+</footer>
+<button id="topBtn" title="Top · لفوق">⬆</button>
 
 <script>
-const data = {
-  AB: {
-    title: "A → B · Ice warms up",
-    color: "#0B3D5C",
-    points: [
-      "Continuous temperature rise from A to B.",
-      "The substance is entirely solid.",
-      "Particles vibrate faster in their fixed positions as they gain thermal energy — kinetic energy increases."
-    ]
-  },
-  BC: {
-    title: "B → C · Melting plateau",
-    color: "#1B8A9E",
-    points: [
-      "No change in temperature — the absorbed heat weakens attraction forces instead of raising temperature.",
-      "Both solid and liquid states exist together in this interval.",
-      "Point B (or C) marks the melting point of the substance."
-    ]
-  },
-  CD: {
-    title: "C → D · Liquid warms up",
-    color: "#1B8A9E",
-    points: [
-      "Continuous temperature rise from C to D.",
-      "The substance is entirely liquid.",
-      "Particle speed — and kinetic energy — increases as more thermal energy is gained."
-    ]
-  },
-  DE: {
-    title: "D → E · Boiling plateau",
-    color: "#F2A65A",
-    points: [
-      "No change in temperature — heat is consumed weakening the remaining attraction forces until the liquid fully converts to gas.",
-      "Both liquid and gaseous states exist together here.",
-      "Point D marks the boiling point of the substance."
-    ]
-  },
-  EF: {
-    title: "E → F · Gas warms up",
-    color: "#E1543D",
-    points: [
-      "Continuous temperature rise from E to F.",
-      "The substance is entirely gaseous.",
-      "Gas particle speed keeps increasing with more thermal energy."
-    ]
-  }
-};
-
-const panel = document.getElementById('infoPanel');
-function render(key){
-  const d = data[key];
-  panel.innerHTML = `
-    <div class="info-title" style="color:${d.color}">${key} interval</div>
-    <div class="info-body">
-      <h4>${d.title}</h4>
-      <ul>${d.points.map(p=>`<li>${p}</li>`).join('')}</ul>
-    </div>`;
-  document.querySelectorAll('.node').forEach(n=>n.classList.remove('active'));
-  document.querySelectorAll(`.node[data-seg="${key}"]`).forEach(n=>n.classList.add('active'));
-}
-document.querySelectorAll('.seg-hit, .node').forEach(el=>{
-  el.addEventListener('click', ()=> render(el.dataset.seg));
-  el.addEventListener('mouseenter', ()=> render(el.dataset.seg));
-});
-render('AB');
-
-// fire / snowflake toggle
-document.querySelectorAll('.fm-btn').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.querySelectorAll('.fm-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    const show = btn.dataset.panel;
-    document.getElementById('fmBoil').style.display = show==='boil' ? 'block':'none';
-    document.getElementById('fmMelt').style.display = show==='melt' ? 'block':'none';
-  });
-});
-
-// altitude slider
-const altRange = document.getElementById('altRange');
-const altVal = document.getElementById('altVal');
-const boilResult = document.getElementById('boilResult');
-function updateAlt(){
-  const alt = +altRange.value;
-  altVal.textContent = alt;
-  const boil = 100 - (alt/300);
-  boilResult.textContent = boil.toFixed(1);
-}
-if(altRange){ altRange.addEventListener('input', updateAlt); updateAlt(); }
-
-// worked example toggle
-const weToggle = document.getElementById('weToggle');
-if(weToggle){
-  weToggle.addEventListener('click', ()=>{
-    const a = document.getElementById('weAnswer');
-    const showing = a.style.display === 'block';
-    a.style.display = showing ? 'none' : 'block';
-    weToggle.textContent = showing ? 'Show solution' : 'Hide solution';
-  });
-}
-
-// diagram quiz (X, Y, W, Z)
-const dqInfo = {
-  X: {dir:'energy-down', text:'X: water → ice (freezing). Particle energy DECREASES — heat is released.'},
-  Y: {dir:'energy-up', text:'Y: ice → water (melting). Particle energy INCREASES — heat is gained.'},
-  W: {dir:'energy-down', text:'W: vapour → water (condensation). Particle energy DECREASES — heat is released.'},
-  Z: {dir:'energy-up', text:'Z: water → vapour (evaporation/boiling). Particle energy INCREASES — heat is gained.'}
-};
-document.querySelectorAll('.dq-label').forEach(lab=>{
-  lab.addEventListener('click', ()=>{
-    document.querySelectorAll('.dq-label').forEach(l=>l.classList.remove('energy-up','energy-down'));
-    const key = lab.dataset.key;
-    const info = dqInfo[key];
-    lab.classList.add(info.dir);
-    document.getElementById('dqPanel').textContent = info.text;
-  });
-});
-const dqReveal = document.getElementById('dqReveal');
-if(dqReveal){
-  dqReveal.addEventListener('click', ()=>{
-    const a = document.getElementById('dqAnswer');
-    const showing = a.style.display === 'block';
-    a.style.display = showing ? 'none' : 'block';
-    dqReveal.textContent = showing ? 'Reveal full answer' : 'Hide answer';
-  });
-}
-
-// table quiz (X, Y, Z substances)
-const tqInfo = {
-  X: {state:'Gaseous', reason:'X: melting (5°C) and boiling (84°C) points are both below 100°C — at 100°C it has already boiled, so it is a gas.'},
-  Y: {state:'Liquid', reason:'Y: melting point (25°C) is below 100°C but boiling point (125°C) is above 100°C — so at 100°C it is still liquid.'},
-  Z: {state:'Solid', reason:'Z: melting point (102°C) and boiling point (315°C) are both above 100°C — at 100°C it has not melted yet, so it is a solid.'}
-};
-document.querySelectorAll('.sub-row').forEach(row=>{
-  row.addEventListener('click', ()=>{
-    const key = row.dataset.key;
-    const info = tqInfo[key];
-    row.querySelector('.sub-answer').textContent = info.state;
-    document.getElementById('tqPanel').textContent = info.reason;
-  });
-});
-
-// floating particles in hero
-const field = document.getElementById('particles');
-for(let i=0;i<26;i++){
-  const p = document.createElement('div');
-  p.className='p';
-  const size = 3+Math.random()*5;
-  p.style.width=size+'px'; p.style.height=size+'px';
-  p.style.left=Math.random()*100+'%';
-  p.style.top=Math.random()*100+'%';
-  p.style.animationDuration=(4+Math.random()*5)+'s';
-  p.style.animationDelay=(Math.random()*3)+'s';
-  field.appendChild(p);
-}
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const SPDS={journey:{speed:1}};
+$$('.speedRow').forEach(row=>{row.querySelectorAll('.spBtn').forEach(b=>b.onclick=()=>{SPDS[row.dataset.spd].speed=+b.dataset.sp;row.querySelectorAll('.spBtn').forEach(x=>x.classList.toggle('active',x===b));});});
+addEventListener('scroll',()=>{const h=document.documentElement,p=h.scrollTop/(h.scrollHeight-h.clientHeight);
+ $('#progress').style.width=(p*100)+'%';$('#railFill').style.height=(p*100)+'%';$('#railVal').textContent=Math.round(p*100)+'°';
+ $('#topBtn').classList.toggle('show',h.scrollTop>600);},{passive:true});
+$('#topBtn').onclick=()=>scrollTo({top:0,behavior:'smooth'});
+$('#themeBtn').onclick=()=>{const l=document.body.dataset.theme==='light';document.body.dataset.theme=l?'':'light';$('#themeBtn').textContent=l?'☀️':'';};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}}),{threshold:.1});
+$$('.reveal').forEach(el=>io.observe(el));
+const spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)$$('nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));}),{rootMargin:'-35% 0px -55% 0px'});
+$$('section[id]').forEach(s=>spy.observe(s));
+const hc=$('#heroCv'),hx=hc.getContext('2d');let HP=[];
+function hSize(){hc.width=hc.offsetWidth;hc.height=hc.offsetHeight;HP=Array.from({length:60},()=>({x:Math.random()*hc.width,y:Math.random()*hc.height,r:1+Math.random()*2.5,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6,c:Math.random()>.5?'34,211,238':'251,146,60'}));}
+hSize();addEventListener('resize',hSize);
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function heroLoop(){if(!reduced){hx.clearRect(0,0,hc.width,hc.height);HP.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>hc.width)p.vx*=-1;if(p.y<0||p.y>hc.height)p.vy*=-1;hx.beginPath();hx.fillStyle=`rgba(${p.c},.5)`;hx.arc(p.x,p.y,p.r,0,7);hx.fill();});}requestAnimationFrame(heroLoop);}
+heroLoop();
+/* journey */
+const JC=$('#jCv'),jx=JC.getContext('2d'),JG=$('#jGraph'),jg=JG.getContext('2d');
+const J={t:0,iv:null,parts:[]};
+function jTemp(t){if(t<15)return -20+20*(t/15);if(t<30)return 0;if(t<55)return 100*((t-30)/25);if(t<80)return 100;return 100+40*((t-80)/20);}
+function jStep(t){return t<15?1:t<30?2:t<55?3:t<80?4:5;}
+const JTXT={
+1:['① Ice warms to 0°C — kinetic energy rises.','① الثلج بيسخن لـ0°م — طاقة الحركة بتزيد.'],
+2:['② Melting at 0°C — temperature pauses (energy breaks bonds).','② انصهار عند 0°م — الحرارة واقفة (الطاقة بتكسر الروابط).'],
+3:['③ Water warms to 100°C — kinetic energy rises.','③ المية بتسخن لـ100°م — طاقة الحركة بتزيد.'],
+4:['④ Boiling at 100°C — temperature pauses (energy breaks bonds).','④ غليان عند 100°م — الحرارة واقفة (الطاقة بتكسر الروابط).'],
+5:['⑤ Vapour warms above 100°C.','⑤ البخار بيسخن فوق 100°م.']};
+function jInit(){JC.width=JC.offsetWidth*2;JC.height=JC.offsetHeight*2;JG.width=JG.offsetWidth*2;JG.height=JG.offsetHeight*2;
+ J.parts=Array.from({length:42},(_,i)=>({i,ph:Math.random()*6.28,x:Math.random(),y:Math.random(),vx:(Math.random()-.5)*2,vy:(Math.random()-.5)*2}));}
+jInit();addEventListener('resize',jInit);
+function jDraw(){const W=JC.width,H=JC.height,t=J.t,T=jTemp(t),st=jStep(t);
+ const solidF=st===2?1-(t-15)/15:(st===1?1:0);
+ const liqF=st===2?(t-15)/15:st===3?1:st===4?1-(t-55)/25:0;
+ jx.clearRect(0,0,W,H);
+ const hue=Math.max(5,205-Math.max(0,T)*1.6);jx.fillStyle=`hsl(${hue} 85% 60%)`;
+ J.parts.forEach(p=>{let x,y;
+  if(p.i<42*solidF){const gx=W*.2+(p.i%7)*(W*.6/6),gy=H*.62+Math.floor(p.i/7)*(H*.08);
+   x=gx+Math.sin(performance.now()*.004+p.ph)*3;y=gy+Math.cos(performance.now()*.003+p.ph)*3;}
+  else if(p.i<42*(solidF+liqF)){p.x+=p.vx*.004;p.y+=p.vy*.004+.0006;
+   if(p.x<.08||p.x>.92)p.vx*=-1;if(p.y<.45||p.y>.95)p.vy*=-1;p.x=Math.max(.08,Math.min(.92,p.x));p.y=Math.max(.45,Math.min(.95,p.y));x=p.x*W;y=p.y*H;}
+  else{p.x+=p.vx*.008;p.y+=p.vy*.008;if(p.x<.05||p.x>.95)p.vx*=-1;if(p.y<.05||p.y>.95)p.vy*=-1;x=p.x*W;y=p.y*H;}
+  jx.beginPath();jx.arc(x,y,7,0,7);jx.fill();});
+ const GW=JG.width,GH=JG.height,gx2=t2=>20+(t2/100)*(GW-40),gy2=T2=>GH-20-((T2+40)/180)*(GH-40);
+ jg.clearRect(0,0,GW,GH);
+ jg.strokeStyle='rgba(140,165,210,.3)';jg.setLineDash([6,6]);
+ jg.beginPath();jg.moveTo(20,gy2(0));jg.lineTo(GW-20,gy2(0));jg.stroke();
+ jg.beginPath();jg.moveTo(20,gy2(100));jg.lineTo(GW-20,gy2(100));jg.stroke();jg.setLineDash([]);
+ jg.strokeStyle='rgba(140,165,210,.35)';jg.beginPath();
+ for(let k=0;k<=100;k+=2){k?jg.lineTo(gx2(k),gy2(jTemp(k))):jg.moveTo(gx2(k),gy2(jTemp(k)));}jg.stroke();
+ jg.strokeStyle='#fb923c';jg.lineWidth=4;jg.beginPath();
+ for(let k=0;k<=t;k+=1){k?jg.lineTo(gx2(k),gy2(jTemp(k))):jg.moveTo(gx2(k),gy2(jTemp(k)));}
+ jg.lineTo(gx2(t),gy2(T));jg.stroke();
+ jg.fillStyle='#22d3ee';jg.beginPath();jg.arc(gx2(t),gy2(T),8,0,7);jg.fill();
+ $('#jTemp').textContent=Math.round(T)+'°C';$('#jTemp').style.color=T<=0?'#38bdf8':T>=100?'#fb923c':'#eaf2ff';
+ for(let s=1;s<=5;s++)$('#s'+s).classList.toggle('on',s===st);
+ $('#jTxt').innerHTML=`<span class="en">${JTXT[st][0]}</span><span class="ar">${JTXT[st][1]}</span>`;}
+$('#jRun').onclick=()=>{if(J.iv)return;J.iv=setInterval(()=>{J.t=Math.min(100,J.t+0.3*SPDS.journey.speed);jDraw();if(J.t>=100){clearInterval(J.iv);J.iv=null;}},50);};
+$('#jReset').onclick=()=>{clearInterval(J.iv);J.iv=null;J.t=0;jDraw();};
+jDraw();
+/* curve */
+const SEG=[['Solid warms −40→0°C — K.E. rises.','الصلب بيسخن −40→0°م — طاقة الحركة بتزيد.'],
+['Melting plateau 0°C — bonds break, T constant.','هضبة الانصهار 0°م — الروابط بتتكسر والحرارة ثابتة.'],
+['Liquid warms 0→100°C — K.E. rises.','السائل بيسخن 0→100°م — طاقة الحركة بتزيد.'],
+['Boiling plateau 100°C — bonds break, T constant.','هضبة الغليان 100°م — الروابط بتتكسر والحرارة ثابتة.'],
+['Gas warms above 100°C — K.E. rises.','الغاز بيسخن فوق 100°م — طاقة الحركة بتزيد.']];
+$$('.seg').forEach(s=>s.onclick=()=>{const i=+s.dataset.s;const b=$('#segInfo');b.style.display='block';
+ b.innerHTML=`<span class="en">${SEG[i][0]}</span><span class="ar">${SEG[i][1]}</span>`;});
+/* chart */
+$('#stT').oninput=e=>{const T=+e.target.value;$('#stVal').textContent=T+'°C';
+ let c=T<0?1:Math.abs(T-0)<=1?2:T<100?3:Math.abs(T-100)<=1?4:5;
+ for(let i=1;i<=5;i++)$('#c'+i).classList.toggle('lit',i===c);};
+$('#stT').oninput({target:{value:25}});
+/* arrows */
+const ARR={X:['(X) Water→Ice: freezing — releases energy.','(X) ماء→ثلج: تجمد — بيطلق طاقة.'],
+Y:['(Y) Ice→Water: melting — gains energy ✔','(Y) ثلج→ماء: انصهار — بيكتسب طاقة ✔'],
+W:['(W) Vapour→Water: condensation — releases.','(W) بخار→ماء: تكثيف — بيطلق طاقة.'],
+Z:['(Z) Water→Vapour: evaporation — gains ✔','(Z) ماء→بخار: تبخر — بيكتسب طاقة ✔']};
+$$('[data-arrow]').forEach(b=>b.onclick=()=>{const m=$('#arrowMsg');m.style.display='block';const a=ARR[b.dataset.arrow];
+ m.innerHTML=`<span class="en">${a[0]}</span><span class="ar">${a[1]}</span>`;});
+/* ===== MOUNTAIN LAB ===== */
+const BP=h=>h>=0?100-h/300:100+(-h)/300;
+function press(h){const P=[[-427,1.05],[0,1],[1800,.8],[3000,.69],[6500,.45]];
+ if(h<=-427)return 1.05;
+ for(let i=0;i<P.length-1;i++){if(h>=P[i][0]&&h<=P[i+1][0]){const k=(h-P[i][0])/(P[i+1][0]-P[i][0]);return P[i][1]+k*(P[i+1][1]-P[i][1]);}}
+ return .45;}
+/* air particles */
+const airG=$('#airG');
+for(let i=0;i<40;i++){const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+ c.setAttribute('cx',10+Math.random()*340);c.setAttribute('cy',10+Math.random()*300);
+ c.setAttribute('r',2.2);c.setAttribute('fill','#eaf2ff');airG.appendChild(c);}
+function mDraw(){const h=+$('#altR2').value,bp=BP(h),pr=press(h);
+ $('#mAlt').textContent=h+' m';$('#mBp').textContent=bp.toFixed(1)+'°C';$('#mPr').textContent=pr.toFixed(2)+' atm';
+ $('#mEgg').textContent=(10*Math.pow(100/bp,4)).toFixed(1)+' min';
+ const y=Math.max(60,Math.min(388,330-(h/6500)*260));
+ const x=h<0?110:180+(y-60)/270*120;
+ $('#potG').setAttribute('transform',`translate(${x},${y})`);
+ const n=Math.round(40*Math.min(1,pr));
+ $$('#airG circle').forEach((c,i)=>c.style.opacity=i<n?.75:0);}
+$('#altR2').oninput=mDraw;mDraw();
+$('#chalBtn').onclick=()=>{const bp=BP(+$('#altR2').value);const m=$('#chalMsg');m.style.display='block';
+ if(Math.abs(bp-80)<=1){m.className='note ok';m.innerHTML='🏆 YES! ≈6000 m — water boils at 80°C! · 🏆 صح! عند حوالي 6000م بتغلي المية عند 80°م!';}
+ else{m.className='note hot';m.innerHTML=`❌ Not yet — here it boils at ${bp.toFixed(1)}°C. Keep dragging! · ❌ لسه — هنا الغليان ${bp.toFixed(1)}°م. كمّل سحب!`;}};
 </script>
 </body>
 </html>
