@@ -233,10 +233,15 @@ nav.toc{
 
   .cat-section{ padding:38px 0 10px; }
   .cat-grid{
-    display:grid; grid-template-columns:repeat(3, 1fr); gap:18px;
+    display:flex; flex-wrap:wrap; gap:18px;
+    justify-content:center;
   }
-  @media (max-width:880px){ .cat-grid{ grid-template-columns:1fr 1fr; } }
-  @media (max-width:560px){ .cat-grid{ grid-template-columns:1fr; } }
+  .cat-card{
+    flex:0 1 calc(33.333% - 12px);
+    min-width:240px;
+  }
+  @media (max-width:880px){ .cat-card{ flex:0 1 calc(50% - 9px); min-width:200px; } }
+  @media (max-width:560px){ .cat-card{ flex:0 1 100%; min-width:0; } }
   .cat-card{
     display:block; text-decoration:none; color:var(--ink);
     background:#fff; border-radius:18px; padding:22px 20px;

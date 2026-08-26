@@ -37,7 +37,7 @@
       var p = Math.min(Math.max(scrollTop / max, 0), 1);
 
       progress.style.setProperty('--progress', p.toFixed(4));
-      toTop.classList.toggle('show', scrollTop > 600);
+      toTop.classList.toggle('show', scrollTop > 300);
       document.body.classList.toggle('scrolled', scrollTop > 8);
 
       ticking = false;

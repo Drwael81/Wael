@@ -100,12 +100,12 @@ body.scrolled .site-header{ box-shadow: 0 4px 18px rgba(16, 32, 40, 0.10); }
 
 /* ---------- 5) شريط تقدم القراءة (بيتم إنشاؤه من site-enhance.js) ---------- */
 .scroll-progress{
-  position: fixed; top: 0; right: 0;
+  position: fixed; top: 0; left: 0;
   height: 4px; width: 100%;
   z-index: 80; pointer-events: none;
-  background: linear-gradient(270deg, var(--solid), var(--liquid), var(--gas));
+  background: linear-gradient(90deg, var(--solid), var(--liquid), var(--gas));
   transform: scaleX(var(--progress, 0));
-  transform-origin: right center;
+  transform-origin: left center;
 }
 
 /* ---------- 6) زر العودة لأعلى ---------- */
