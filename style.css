@@ -96,7 +96,7 @@ body.scrolled .site-header{ box-shadow: 0 6px 24px rgba(16, 32, 40, 0.08); }
 .lesson-card:hover,
 .quiz-card:hover{ box-shadow: var(--shadow-lift); }
 
-.path-card{ border-radius: 26px; }
+.path-card{ border-radius: 26px; border: none; }
 
 /* صناديق النتائج داخل التجارب: خلفية أنعم */
 .result{

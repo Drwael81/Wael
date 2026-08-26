@@ -55,6 +55,49 @@
         تضغط، تسحب، تشوف النتيجة قدامك على طول. مفيش حفظ من غير فهم، وكل حاجة هنا مجانية بالكامل.
       </p>
 
+      <div class="hero-visual">
+        <svg viewBox="0 0 200 140" fill="none" xmlns="http://www.w3.org/2000/svg" class="hero-flask">
+          <!-- Flask body -->
+          <path d="M68 30 L68 70 L30 120 Q25 128 35 132 L165 132 Q175 128 170 120 L132 70 L132 30" stroke="#B84F14" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <!-- Flask neck -->
+          <line x1="68" y1="30" x2="132" y2="30" stroke="#B84F14" stroke-width="3" stroke-linecap="round"/>
+          <!-- Liquid -->
+          <path d="M52 100 Q100 92 148 100 L165 132 Q175 128 170 120 L148 100 Q100 92 52 100 L30 120 Q25 128 35 132 Z" fill="#1D6FE0" opacity="0.18"/>
+          <path d="M52 100 Q100 92 148 100 L148 128 Q100 122 52 128 Z" fill="#1D6FE0" opacity="0.30"/>
+          <!-- Bubbles -->
+          <circle cx="78" cy="112" r="5" fill="#0E9488" opacity="0.55"><animate attributeName="cy" values="112;100;112" dur="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.55;0.2;0.55" dur="2.4s" repeatCount="indefinite"/></circle>
+          <circle cx="110" cy="118" r="3.5" fill="#1D6FE0" opacity="0.45"><animate attributeName="cy" values="118;106;118" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.45;0.15;0.45" dur="3s" repeatCount="indefinite"/></circle>
+          <circle cx="95" cy="108" r="4" fill="#B84F14" opacity="0.4"><animate attributeName="cy" values="108;96;108" dur="2.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0.12;0.4" dur="2.8s" repeatCount="indefinite"/></circle>
+          <!-- Thermometer -->
+          <rect x="155" y="55" width="12" height="60" rx="6" stroke="#1D6FE0" stroke-width="2" fill="none"/>
+          <circle cx="161" cy="110" r="9" stroke="#1D6FE0" stroke-width="2" fill="none"/>
+          <circle cx="161" cy="110" r="5" fill="#1D6FE0" opacity="0.6"/>
+          <rect x="158" y="72" width="6" height="38" rx="3" fill="#1D6FE0" opacity="0.5"/>
+          <!-- Molecule -->
+          <circle cx="36" cy="65" r="8" fill="#0E9488" opacity="0.20"/>
+          <circle cx="26" cy="52" r="6" fill="#1D6FE0" opacity="0.20"/>
+          <line x1="36" y1="65" x2="26" y2="52" stroke="#0E9488" stroke-width="2" opacity="0.25"/>
+        </svg>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-icon">🧪</span>
+          <span class="hero-stat-num">22</span>
+          <span class="hero-stat-label">تجربة تفاعلية</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-icon">📚</span>
+          <span class="hero-stat-num">7</span>
+          <span class="hero-stat-label">دروس شرح</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-icon">📝</span>
+          <span class="hero-stat-num">400</span>
+          <span class="hero-stat-label">سؤال اختبار</span>
+        </div>
+      </div>
+
       <div class="hero-cta-row">
         <a href="#exp-1" class="btn-primary">🧪 ابدأ أول تجربة</a>
         <a href="#categories" class="btn-secondary">📚 استكشف التجارب</a>
@@ -1235,25 +1278,33 @@
   </div>
 
   <footer class="site-footer">
-    <div class="footer-brand">🧪 www.2nd Prep. Funny Science lab</div>
-    <div class="footer-tagline">Science is better when you experiment.</div>
-    <nav class="footer-links">
-      <a href="#top">الرئيسية</a>
-      <a href="#categories">التجارب</a>
-      <a href="lessons.html">الدروس</a>
-      <a href="https://whatsapp.com/channel/0029VbBAp9MFMqrg4r1h8x06" target="_blank" rel="noopener">واتساب</a>
-      <a href="https://t.me/secondprepfunnyscience" target="_blank" rel="noopener">تليجرام</a>
-    </nav>
-    <div class="footer-credit">By #Dr_Wael_Aboagiza</div>
-    <a href="mailto:drwael81@gmail.com" class="footer-email">drwael81@gmail.com</a>
-    <div style="margin-top:12px;">
-      <!-- hitwebcounter Code START -->
-      <a href="https://www.hitwebcounter.com/work-hours-calculator" target="_blank" rel="noopener" title="Counter Hours">
-      <img src="https://www.hitwebcounter.com/counter/counter.php?page=21513575&amp;style=0001&amp;nbdigits=5&amp;type=page" alt="Counter Hours" decoding="async" style="border:0;max-width:100%;height:auto;" />
-      </a>
-      <br />
-      <a href="https://www.hitwebcounter.com/" target="_blank" rel="noopener" style="font-family:Arial, Helvetica, sans-serif;font-size:9px;color:#736C65;text-decoration:none;font-weight:em;">WebVisitors</a>
-      <!-- hitwebcounter Code END -->
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand-wrap">
+          <div class="footer-brand">🧪 www.2nd Prep. Funny Science lab</div>
+          <div class="footer-tagline">Science is better when you experiment.</div>
+        </div>
+        <div class="footer-credit">By #Dr_Wael_Aboagiza</div>
+      </div>
+      <nav class="footer-links">
+        <a href="#top">الرئيسية</a>
+        <a href="#categories">التجارب</a>
+        <a href="lessons.html">الدروس</a>
+        <a href="quizzes.html">الاختبارات</a>
+        <a href="https://whatsapp.com/channel/0029VbBAp9MFMqrg4r1h8x06" target="_blank" rel="noopener">واتساب</a>
+        <a href="https://t.me/secondprepfunnyscience" target="_blank" rel="noopener">تليجرام</a>
+      </nav>
+      <div class="footer-bottom">
+        <a href="mailto:drwael81@gmail.com" class="footer-email">drwael81@gmail.com</a>
+        <span class="footer-copy">© 2026 2nd Prep Funny Science Lab</span>
+      </div>
+      <div class="footer-counter">
+        <!-- hitwebcounter Code START -->
+        <a href="https://www.hitwebcounter.com/work-hours-calculator" target="_blank" rel="noopener" title="Counter Hours">
+        <img src="https://www.hitwebcounter.com/counter/counter.php?page=21513575&amp;style=0001&amp;nbdigits=5&amp;type=page" alt="Counter Hours" decoding="async" style="border:0;max-width:100%;height:auto;" />
+        </a>
+        <!-- hitwebcounter Code END -->
+      </div>
     </div>
   </footer>
 
