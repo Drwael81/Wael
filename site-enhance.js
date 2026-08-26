@@ -61,6 +61,7 @@
     '.lesson-card',
     '.quiz-card',
     '.section-divider',
+    '.jump-nav',
     '.conclusion',
     '.coming-soon'
   ].join(',');
