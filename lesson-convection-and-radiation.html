@@ -25,21 +25,20 @@ nav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;padding:2px
 nav::-webkit-scrollbar{display:none}
 nav a{padding:5px 12px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:.72rem;font-weight:700;white-space:nowrap;text-decoration:none;transition:.25s}
 nav a.active{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#041018;border-color:transparent}
-#themeBtn{cursor:pointer;border:1px solid var(--line);background:var(--card);border-radius:12px;width:40px;height:40px;font-size:1.1rem}
+#themeBtn,#sndBtn{cursor:pointer;border:1px solid var(--line);background:var(--card);border-radius:12px;width:40px;height:40px;font-size:1.1rem}
 #rail{position:fixed;inset-inline-end:12px;top:50%;transform:translateY(-50%);z-index:80;display:flex;flex-direction:column;align-items:center;gap:6px}
 #rail .tube{width:12px;height:36vh;border:2px solid var(--line);border-radius:99px;position:relative;overflow:hidden;background:rgba(128,160,220,.08)}
 #rail .bulb{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ff8a6b,#ef4444);margin-top:-4px}
 #railFill{position:absolute;bottom:0;width:100%;height:0;background:linear-gradient(0deg,#ef4444,#fb923c 40%,#22d3ee)}
 #railVal{font-family:'Space Grotesk';font-size:.72rem;color:var(--muted)}
 @media(max-width:1000px){#rail{display:none}}
-#hero{min-height:94vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:110px 18px 60px}
+#hero{min-height:88vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:110px 18px 60px}
 #heroCv{position:absolute;inset:0;width:100%;height:100%}
 .heroIn{position:relative;z-index:2;max-width:920px}
 .kicker{display:inline-block;padding:6px 18px;border:1px solid var(--line);border-radius:999px;color:var(--acc);font-weight:800;font-size:.78rem;background:var(--card)}
 #hero h1{font-size:clamp(1.9rem,5.5vw,3.3rem);font-weight:900;margin:16px 0 4px;background:linear-gradient(90deg,var(--acc),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
 #hero h1 .ar{font-size:clamp(1.5rem,4.5vw,2.6rem);background:linear-gradient(90deg,var(--gold),var(--acc));-webkit-background-clip:text;background-clip:text;color:transparent;margin:0}
-#hero p.desc{margin:16px auto;max-width:70ch;color:var(--muted)}
-.badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:20px}
+.badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px}
 .badge{padding:8px 16px;border-radius:14px;border:1px solid var(--line);background:var(--card);font-size:.78rem;font-weight:700;text-align:center}
 .badge.vip{border-color:var(--gold);color:var(--gold)}
 .scrollHint{margin-top:40px;font-size:1.6rem;animation:bnc 1.6s infinite}
@@ -47,7 +46,7 @@ nav a.active{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#04
 main{max-width:1150px;margin:auto;padding:30px 16px 90px;display:flex;flex-direction:column;gap:34px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:clamp(18px,3.4vw,36px);box-shadow:0 14px 40px rgba(0,0,0,.25)}
 .chead{display:flex;align-items:center;gap:16px;margin-bottom:18px}
-.cnum{font-family:'Space Grotesk';font-size:1.5rem;font-weight:700;background:linear-gradient(180deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;border:1px solid var(--line);border-radius:16px;padding:6px 14px}
+.cnum{font-family:'Space Grotesk';font-size:1.6rem;font-weight:700;background:linear-gradient(180deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;border:1px solid var(--line);border-radius:16px;padding:6px 14px}
 .chead h2{font-size:clamp(1.05rem,2.6vw,1.45rem);font-weight:900}
 .ppage{font-family:'Space Grotesk';font-size:.62rem;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:1px 10px;margin-inline-start:auto}
 .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px}
@@ -89,7 +88,6 @@ details .body{padding-top:10px;font-size:.9rem}
 .pulse{animation:pl 1.6s infinite}@keyframes pl{50%{opacity:.25}}
 .fl{animation:fl .4s infinite alternate}@keyframes fl{to{transform:scale(1.18)}}
 .dash{stroke-dasharray:7 7;animation:dsh 1s linear infinite}@keyframes dsh{to{stroke-dashoffset:-28}}
-/* permanganate beaker */
 .permWrap{display:flex;justify-content:center;margin-top:14px}
 .permBox{position:relative;width:230px}
 .permGlass{position:relative;width:230px;height:250px;border:4px solid var(--line);border-top:none;border-radius:0 0 34px 34px;background:rgba(128,160,220,.06);overflow:hidden}
@@ -99,12 +97,6 @@ details .body{padding-top:10px;font-size:.9rem}
 .crystal.on{display:block}
 .permFlame{font-size:1.7rem;text-align:center;opacity:0;transition:.3s}
 .permFlame.on{opacity:1;animation:fl .4s infinite alternate}
-/* gases circles */
-.circRow{display:flex;gap:16px;justify-content:center;flex-wrap:nowrap;margin-top:14px}
-.circ{flex:1;max-width:270px;border-radius:50%;aspect-ratio:1;display:flex;align-items:center;justify-content:center;text-align:center;padding:22px;font-size:.8rem;font-weight:800;border:2px solid var(--line)}
-.circ.cool{background:radial-gradient(circle at 60% 40%,rgba(56,189,248,.3),transparent 70%)}
-.circ.heat{background:radial-gradient(circle at 40% 40%,rgba(251,146,60,.3),transparent 70%)}
-@media(max-width:560px){.circ{border-radius:24px;aspect-ratio:auto;min-height:150px}}
 .appSvg{width:100%;max-width:220px;display:block;margin:8px auto}
 .breezeSvg{width:100%;border-radius:16px;background:linear-gradient(180deg,#0b2a52,#123a6b 55%,#1b4d8a);border:1px solid var(--line)}
 body[data-theme="light"] .breezeSvg{background:linear-gradient(180deg,#bfe0ff,#dff0ff 55%,#bfe8ff)}
@@ -117,10 +109,10 @@ body[data-theme="light"] .breezeSvg{background:linear-gradient(180deg,#bfe0ff,#d
 .thScale{display:flex;gap:4px;justify-content:center;margin-top:10px;flex-wrap:wrap}
 .thScale i{width:26px;height:14px;border-radius:4px;display:block}
 .figBox{background:var(--card2);border:1px solid var(--line);border-radius:16px;padding:12px;margin-top:14px}
+.humRow{display:flex;gap:26px;justify-content:center;align-items:flex-end;margin-top:12px}
+.humC{text-align:center;font-size:.75rem;font-weight:800}
 footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
 .verified{display:inline-flex;align-items:center;gap:12px;border:1px solid var(--gold);border-radius:18px;padding:12px 22px;background:var(--card);color:var(--gold);font-weight:800}
-@media(max-width:440px){.verified{flex-wrap:wrap;justify-content:center}}
-@media(max-width:400px){.topbar{flex-wrap:wrap}}
 #topBtn{position:fixed;bottom:20px;inset-inline-start:20px;z-index:85;width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,var(--hot),var(--gold));font-size:1.2rem;opacity:0;pointer-events:none;transition:.3s}
 #topBtn.show{opacity:1;pointer-events:auto}
 </style>
@@ -130,12 +122,11 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
 <header class="topbar">
   <div class="brand">🌊 Convection & Radiation · الحمل والإشعاع</div>
   <nav id="nav">
-    <a href="#hero" class="active">Start · البداية</a><a href="#conv">Convection · الحمل</a><a href="#perm">Experiment · التجربة</a>
-    <a href="#liquids">Liquids · السوائل</a><a href="#gases">Gases · الغازات</a><a href="#lifeapps">Apps · تطبيقات</a>
-    <a href="#breeze">Sea Breeze · النسيم</a><a href="#qa">Q&A · أسئلة</a><a href="#rad">Radiation · الإشعاع</a>
-    <a href="#absorb">Absorption · الامتصاص</a><a href="#notes">Notes · ملاحظات</a><a href="#thermo">Thermography · الحراري</a>
-    <a href="#compare3">Compare · مقارنة</a><a href="#finalQ">Final · ختامي</a>
+    <a href="#hero" class="active">Start · البداية</a><a href="#conv">Convection · الحمل</a><a href="#fluids">Fluids · الموائع</a>
+    <a href="#apps">Apps · تطبيقات</a><a href="#qa1">Q&A · أسئلة</a><a href="#rad">Radiation · الإشعاع</a>
+    <a href="#solar">Solar · الشمس</a><a href="#compare3">Compare · مقارنة</a><a href="#thermo">Thermo · الحراري</a>
   </nav>
+  <button id="sndBtn" title="Sound · الصوت">🔊</button>
   <button id="themeBtn" title="Theme · المظهر">☀️</button>
 </header>
 <div id="rail"><div class="tube"><i id="railFill"></i></div><div class="bulb"></div><b id="railVal">0°</b></div>
@@ -143,16 +134,14 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
 <section id="hero">
   <canvas id="heroCv"></canvas>
   <div class="heroIn">
-    <span class="kicker">Lesson 4 · Part 2 · Pages 102–107 <span style="opacity:.6">|</span> الدرس 4 · الجزء الثاني</span>
+    <span class="kicker">Lesson 4 · Part 2 · Pages 116–121 <span style="opacity:.6">|</span> الدرس 4 · الجزء الثاني</span>
     <h1><span class="en">Heat Transfer: Convection & Radiation</span><span class="ar">انتقال الحرارة: الحمل والإشعاع</span></h1>
-    <p class="desc en">Pages 102–107 fully interactive: convection currents, the potassium permanganate experiment, sea breeze, radiation, absorption, thermography, and the final comparison of the three methods.</p>
-    <p class="desc ar">الصفحات 102–107 بشكل تفاعلي كامل: تيارات الحمل، تجربة برمنجنات البوتاسيوم، نسيم البحر، الإشعاع، الامتصاص، التصوير الحراري، والمقارنة الختامية بين الطرق الثلاثة.</p>
     <div class="badges">
+      <span class="badge"><span class="en">🔊 Soft Natural Lab Sounds</span><span class="ar">🔊 أصوات معمل طبيعية هادية</span></span>
       <span class="badge"><span class="en">💜 Permanganate Sim</span><span class="ar">💜 محاكي البرمنجنات</span></span>
-      <span class="badge"><span class="en">🌊 Convection Currents</span><span class="ar">🌊 تيارات الحمل</span></span>
+      <span class="badge"><span class="en">🌊 Sea Breeze Scene</span><span class="ar">🌊 مشهد نسيم البحر</span></span>
       <span class="badge"><span class="en">☀️ Absorption Race</span><span class="ar">☀️ سباق الامتصاص</span></span>
       <span class="badge"><span class="en">🎨 Thermography Slider</span><span class="ar">🎨 سلايدر التصوير الحراري</span></span>
-      <span class="badge"><span class="en">📊 3-Methods Comparison</span><span class="ar">📊 مقارنة الطرق الثلاثة</span></span>
       <span class="badge vip"><span class="en">✔️ Reviewed by Dr. Wael Aboagiza</span><span class="ar">✔️ مراجعة د. وائل أبو عجيزة</span></span>
     </div>
     <div class="scrollHint">⌄</div>
@@ -160,11 +149,11 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
 </section>
 
 <main>
-<!-- ============ CONVECTION INTRO + PERMANGANATE ============ -->
+<!-- ============ CONVECTION (p.116) ============ -->
 <section id="conv" class="card reveal">
-  <div class="chead"><span class="cnum">2nd</span><div><h2><span class="en">Heat Transfer by Convection Currents</span><span class="ar">انتقال الحرارة بتيارات الحمل</span></h2></div><span class="ppage">p.102</span></div>
-  <p class="en">When a purple crystal of potassium permanganate is put in a beaker of water over a flame, the purple-coloured water spreads throughout the beaker during heating.</p>
-  <p class="ar">لما بتحط بلورة بنفسجية من برمنجنات البوتاسيوم في كأس مية على لهب، المية المتلوّنة بالبنفسجي بتنتشر في الكأس كله أثناء التسخين.</p>
+  <div class="chead"><span class="cnum">2nd</span><div><h2><span class="en">Heat Transfer by Convection Currents</span><span class="ar">انتقال الحرارة بتيارات الحمل</span></h2></div><span class="ppage">p.116</span></div>
+  <p class="en">When a crystal of purple potassium permanganate is placed in a beaker of water over a flame, the purple colour spreads during heating → this method is called <strong>convection</strong>.</p>
+  <p class="ar">لما بتحط بلورة بنفسجية من برمنجنات البوتاسيوم في كأس مية على لهب، اللون البنفسجي بينتشر أثناء التسخين → الطريقة دي اسمها <strong>الحمل</strong>.</p>
   <div id="perm" class="permWrap">
     <div class="permBox" dir="ltr">
       <div class="permGlass">
@@ -183,49 +172,35 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
   <div class="speedRow" data-spd="perm"><span>⏩ Speed · السرعة:</span>
     <button class="spBtn active" data-sp="1">1×</button><button class="spBtn" data-sp="2">2×</button><button class="spBtn" data-sp="4">4×</button></div>
   <div class="note pur" id="permObs" style="display:none">
-    <span class="en">👁️ Observed: the purple colour spreads throughout the beaker → this method is known as <strong>Convection</strong>.</span>
-    <span class="ar">👁️ الملاحظ: اللون البنفسجي انتشر في الكأس كله → الطريقة دي اسمها <strong>الحمل</strong>.</span>
-  </div>
-</section>
-
-<!-- ============ LIQUIDS ============ -->
-<section id="liquids" class="card reveal">
-  <div class="chead"><span class="cnum">1</span><div><h2><span class="en">Convection in Liquids — Step by Step</span><span class="ar">الحمل في السوائل — خطوة بخطوة</span></h2></div><span class="ppage">p.102</span></div>
-  <div class="grid4">
-    <div class="tile"><span class="tag hot">① Heating · تسخين</span>
-      <p class="en">Water is heated → bottom particles gain thermal energy, move faster and further apart.</p>
-      <p class="ar">المية بتتسخن → جسيمات القاع بتكسب طاقة حرارية، بتتحرك أسرع وتتبعد عن بعض.</p></div>
-    <div class="tile"><span class="tag hot">② Hot rises · الساخن يصعد</span>
-      <p class="en">Hot water rises to the top — it has lower density than cold water.</p>
-      <p class="ar">المية السخنة بتطلع لفوق — لأن كثافتها أقل من المية الباردة.</p></div>
-    <div class="tile"><span class="tag">③ Cold sinks · البارد يهبط</span>
-      <p class="en">Cold water (higher density) at the surface sinks to replace the hot water.</p>
-      <p class="ar">المية الباردة (الأعلى كثافة) على السطح بتهبط لتحل محل المية السخنة.</p></div>
-    <div class="tile"><span class="tag ok">④ Cycle · الدورة تستمر</span>
-      <p class="en">The rise of hot water and the moving down of cold water continue → convection currents.</p>
-      <p class="ar">صعود الساخن وهبوط البارد بيستمر → تيارات حمل.</p>
-      <svg viewBox="0 0 100 60" style="width:80px;display:block;margin:6px auto"><path d="M50 50 V14" stroke="#fb923c" stroke-width="4" class="pulse"/><path d="M50 14 C75 14 80 30 80 50" fill="none" stroke="#38bdf8" stroke-width="3" class="dash"/><path d="M50 14 C25 14 20 30 20 50" fill="none" stroke="#38bdf8" stroke-width="3" class="dash"/></svg></div>
+    <span class="en">👁️ Observed: the purple colour spreads throughout the beaker → convection. Heat is transferred in <strong>fluids</strong> (liquids & gases) by the movement of convection currents.</span>
+    <span class="ar">👁️ الملاحظ: اللون البنفسجي انتشر في الكأس كله → حمل. الحرارة بتنتقل في <strong>الموائع</strong> (سوائل وغازات) بحركة تيارات الحمل.</span>
   </div>
   <div class="defBox">
-    <b class="dT">Thermal Convection · الحمل الحراري</b>
-    <p class="en">The transfer of thermal energy in fluids with the movement of their particles.</p>
-    <p class="ar">انتقال الطاقة الحرارية في الموائع مع حركة جسيماتها.</p>
+    <b class="dT">Convection · الحمل</b>
+    <p class="en">The transfer of thermal energy in fluids through the rise of the medium particles with higher temperature (less dense) and the fall of the particles with lower temperature (more dense).</p>
+    <p class="ar">انتقال الطاقة الحرارية في الموائع عن طريق صعود جسيمات الوسط الأعلى حرارة (الأقل كثافة) وهبوط الجسيمات الأقل حرارة (الأكثر كثافة).</p>
+  </div>
+  <div class="note"><span class="en">💡 Heat is transferred in solids <strong>by conduction</strong> without the movement of their particles, while it is transferred in liquids and gases <strong>by convection</strong> through the movement of their particles.</span><span class="ar">💡 الحرارة بتنتقل في المواد الصلبة <strong>بالتوصيل</strong> من غير حركة الجسيمات، بينما بتنتقل في السوائل والغازات <strong>بالحمل</strong> عن طريق حركة الجسيمات.</span></div>
+</section>
+
+<!-- ============ FLUIDS (p.116) ============ -->
+<section id="fluids" class="card reveal">
+  <div class="chead"><span class="cnum">🌊</span><div><h2><span class="en">Convection Currents in Liquids & Gases</span><span class="ar">تيارات الحمل في السوائل والغازات</span></h2></div><span class="ppage">p.116</span></div>
+  <div class="grid2">
+    <div class="tile" style="border-color:var(--cold)"><span class="tag">💧 Liquids · السوائل</span>
+      <p class="en">- When water is heated, bottom particles gain thermal energy → move faster & further apart.<br>- The density of hot water decreases and it <strong>rises</strong>; the cold water (higher density) at the surface <strong>sinks</strong> to replace it, and so on…</p>
+      <p class="ar">- لما المية بتتسخن، جسيمات القاع بتكسب طاقة حرارية → بتتحرك أسرع وتتبعد عن بعض.<br>- كثافة المية السخنة بتقل فبتصعد، والمية الباردة (الأعلى كثافة) على السطح بتهبط تحل محلها، وهكذا…</p>
+      <svg viewBox="0 0 120 90" style="width:100%"><path d="M60 78 V22" stroke="#fb923c" stroke-width="4" class="pulse"/><path d="M60 22 C92 24 96 48 94 76" fill="none" stroke="#38bdf8" stroke-width="3" class="dash"/><path d="M60 22 C28 24 24 48 26 76" fill="none" stroke="#38bdf8" stroke-width="3" class="dash"/><text x="60" y="88" text-anchor="middle" fill="#fb923c" font-size="9" font-weight="700">Rising hot · صعود الساخن</text><text x="14" y="40" fill="#38bdf8" font-size="9" font-weight="700">Sinking cold</text></svg></div>
+    <div class="tile" style="border-color:var(--hot)"><span class="tag hot">☁️ Gases · الغازات</span>
+      <p class="en">- When air is heated, its density decreases and it <strong>rises</strong> upwards.<br>- It is replaced by cold air (of higher density), and so on…</p>
+      <p class="ar">- لما الهوا بيسخن، كثافته بتقل و<strong>بيصعد</strong> لفوق.<br>- وبيحل محله هوا بارد (أعلى كثافة)، وهكذا…</p>
+      <svg viewBox="0 0 120 90" style="width:100%"><path d="M60 78 V22" stroke="#fb923c" stroke-width="4" class="pulse"/><path d="M60 22 C92 24 96 48 94 76" fill="none" stroke="#38bdf8" stroke-width="3" class="dash"/><path d="M60 22 C28 24 24 48 26 76" fill="none" stroke="#38bdf8" stroke-width="3" class="dash"/><text x="60" y="88" text-anchor="middle" fill="#fb923c" font-size="9" font-weight="700">Rising hot air · صعود الهوا الساخن</text></svg></div>
   </div>
 </section>
 
-<!-- ============ GASES ============ -->
-<section id="gases" class="card reveal">
-  <div class="chead"><span class="cnum">2</span><div><h2><span class="en">Convection in Gases</span><span class="ar">الحمل في الغازات</span></h2></div><span class="ppage">p.103</span></div>
-  <div class="circRow">
-    <div class="circ cool"><div><span class="en">❄️ When air COOLS: its density increases and it SINKS, replaced by the lighter hot air (lower density).</span><span class="ar">❄️ لما الهوا يبرد: كثافته بتزيد فيهبط، وبيحل محله الهوا الساخن الأخف (أقل كثافة).</span></div></div>
-    <div class="circ heat"><div><span class="en">🔥 When air is HEATED: its density decreases and it RISES, replaced by the denser cold air (higher density).</span><span class="ar">🔥 لما الهوا يسخن: كثافته بتقل فيصعد، وبيحل محله الهوا البارد الأكثف (أعلى كثافة).</span></div></div>
-  </div>
-  <div class="note"><span class="en">🔄 Heat transfer in gases happens through convection currents — exactly like liquids.</span><span class="ar">🔄 انتقال الحرارة في الغازات بيحصل بتيارات الحمل — زي السوائل بالظبط.</span></div>
-</section>
-
-<!-- ============ LIFE APPS ============ -->
-<section id="lifeapps" class="card reveal">
-  <div class="chead"><span class="cnum">🏠</span><div><h2><span class="en">Life Applications of Convection</span><span class="ar">تطبيقات حياتية على الحمل</span></h2></div><span class="ppage">p.103</span></div>
+<!-- ============ LIFE APPS (p.117) ============ -->
+<section id="apps" class="card reveal">
+  <div class="chead"><span class="cnum">🏠</span><div><h2><span class="en">Life Applications of Convection</span><span class="ar">تطبيقات حياتية على الحمل</span></h2></div><span class="ppage">p.117</span></div>
   <div class="grid2">
     <div class="tile" style="border-color:var(--hot)"><span class="tag hot">① Space heater on the floor · المدفأة على الأرض</span>
       <svg class="appSvg" viewBox="0 0 120 110" dir="ltr">
@@ -235,8 +210,8 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
         <path d="M60 18 C30 20 24 50 24 92" fill="none" stroke="#38bdf8" stroke-width="3" class="dash"/>
         <text x="60" y="106" text-anchor="middle" fill="#fb923c" font-size="9" font-weight="700">Warm air rises · الساخن يصعد</text>
       </svg>
-      <p class="en"><strong>G.R.:</strong> to ensure heat distribution throughout the room — warm lighter air (lower density) rises and colder denser air sinks.</p>
-      <p class="ar"><strong>علل:</strong> عشان نضمن توزيع الحرارة في الأوضة — الهوا الدافي الأخف (أقل كثافة) بيصعد والبارد الأكثف بيهبط.</p></div>
+      <p class="en"><strong>So that</strong> the warm air rises upwards and the cold air descends to replace it, until the heat is distributed throughout the room.</p>
+      <p class="ar"><strong>علل:</strong> عشان الهوا الدافي بيصعد لفوق والبارد بيهبط يحل محله، لحد ما الحرارة تتوزع في الأوضة كلها.</p></div>
     <div class="tile" style="border-color:var(--cold)"><span class="tag">② Freezer at the TOP · الفريزر فوق</span>
       <svg class="appSvg" viewBox="0 0 120 110" dir="ltr">
         <rect x="30" y="10" width="60" height="90" rx="6" fill="rgba(56,189,248,.12)" stroke="#38bdf8" stroke-width="2"/>
@@ -246,21 +221,17 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
         <path d="M60 92 C88 90 88 60 84 36" fill="none" stroke="#fb923c" stroke-width="3" class="dash"/>
         <path d="M60 92 C32 90 32 60 36 36" fill="none" stroke="#fb923c" stroke-width="3" class="dash"/>
       </svg>
-      <p class="en"><strong>G.R.:</strong> the denser cold air sinks to the bottom, allowing the lighter warm air to rise — cooling the whole refrigerator.</p>
-      <p class="ar"><strong>علل:</strong> الهوا البارد الأكثف بيهبط لتحت وبيسيب الهوا الدافي الأخف يصعد — فالثلاجة كلها بتبرد.</p></div>
+      <p class="en"><strong>So that</strong> the cold air descends and the warm air rises to replace it, until the coldness is distributed throughout the refrigerator.</p>
+      <p class="ar"><strong>علل:</strong> عشان الهوا البارد بيهبط والدافي بيصعد يحل محله، لحد ما البرودة تتوزع في الثلاجة كلها.</p></div>
   </div>
-</section>
-
-<!-- ============ SEA BREEZE ============ -->
-<section id="breeze" class="card reveal">
-  <div class="chead"><span class="cnum">③</span><div><h2><span class="en">The Sea Breeze Phenomenon</span><span class="ar">ظاهرة نسيم البحر</span></h2></div><span class="ppage">p.104</span></div>
+  <h3 style="margin-top:20px">③ <span class="en">The Sea Breeze Phenomenon</span> · <span class="ar">ظاهرة نسيم البحر</span></h3>
   <div class="defBox">
     <b class="dT">Sea breeze · نسيم البحر</b>
-    <p class="en">Cool air (breeze) blowing from the sea towards the land during the daytime.</p>
-    <p class="ar">هواء بارد (نسيم) بيهب من البحر ناحية البر أثناء النهار.</p>
+    <p class="en">A natural phenomenon in which cold air moves from the sea towards the land during the day as a result of the difference in temperature.</p>
+    <p class="ar">ظاهرة طبيعية بيتحرك فيها الهوا البارد من البحر ناحية البر أثناء النهار نتيجة الفرق في درجة الحرارة.</p>
   </div>
-  <p class="en" style="margin-top:12px"><strong>Cause:</strong> the specific heat of land is LOWER than the specific heat of sea water.</p>
-  <p class="ar"><strong>السبب:</strong> الحرارة النوعية لليابسة أقل من الحرارة النوعية لمية البحر.</p>
+  <p class="en" style="margin-top:12px"><strong>The reason:</strong> the temperature of the land rises faster than the water during the day… <strong>G.R.:</strong> because the specific heat of land is <strong>lower</strong> than the specific heat of seawater.</p>
+  <p class="ar"><strong>السبب:</strong> درجة حرارة اليابسة بتزيد أسرع من المية أثناء النهار… <strong>علل:</strong> لأن الحرارة النوعية لليابسة <strong>أقل</strong> من الحرارة النوعية لمية البحر.</p>
   <svg class="breezeSvg" viewBox="0 0 520 240" dir="ltr" style="margin-top:14px">
     <circle cx="70" cy="46" r="26" fill="#fbbf24" class="pulse"/>
     <rect x="0" y="180" width="240" height="60" fill="#c2a06b"/>
@@ -272,81 +243,80 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
     <path d="M160 120 C180 40 300 30 470 60" fill="none" stroke="#ef4444" stroke-width="4" class="dash"/>
     <text x="250" y="34" fill="#ef4444" font-size="12" font-weight="800">Hot air rises · الهوا الساخن يصعد</text>
     <path d="M420 150 C340 160 260 160 190 150" fill="none" stroke="#38bdf8" stroke-width="5" class="dash"/>
-    <text x="250" y="140" fill="#38bdf8" font-size="12" font-weight="800">Cool sea breeze · نسيم البحر البارد</text>
+    <text x="250" y="140" fill="#38bdf8" font-size="12" font-weight="800">Cold sea breeze · نسيم البحر البارد</text>
   </svg>
   <div class="grid2" style="margin-top:14px">
     <div class="tile"><span class="tag hot">How it happens · الكيفية</span>
-      <p class="en">(1) Sun rays heat the air in contact with the land MORE than the air above the sea. (2) The hot air above the land rises and is replaced by the cool breeze from the sea.</p>
-      <p class="ar">(1) أشعة الشمس بتسخّن الهوا الملامس لليابسة أكتر من الهوا فوق البحر. (2) الهوا الساخن فوق اليابسة بيصعد ويحل محله النسيم البارد من البحر.</p></div>
-    <div class="tile"><span class="tag gold">Its effect · أثرها</span>
-      <p class="en">The effect of this phenomenon is more perceptible (can be felt) in summer than in spring or autumn.</p>
-      <p class="ar">أثر الظاهرة دي بيكون أوضح (محسوس أكتر) في الصيف عنه في الربيع أو الخريف.</p></div>
+      <p class="en">• Sun rays heat the air in contact with the land MORE than the air above the sea.<br>• The hot air above the land rises and is replaced by cold air (breeze) from the sea.</p>
+      <p class="ar">• أشعة الشمس بتسخّن الهوا الملامس لليابسة أكتر من الهوا فوق البحر.<br>• الهوا الساخن فوق اليابسة بيصعد ويحل محله نسيم بارد من البحر.</p></div>
+    <div class="tile"><span class="tag gold">Extent of its impact · مدى أثرها</span>
+      <p class="en">The impact of this phenomenon is more perceptible (can be felt) in <strong>summer</strong> than in spring or autumn.</p>
+      <p class="ar">أثر الظاهرة دي بيكون أوضح (محسوس أكتر) في <strong>الصيف</strong> عنه في الربيع أو الخريف.</p></div>
   </div>
 </section>
 
-<!-- ============ Q&A ============ -->
-<section id="qa" class="card reveal">
-  <div class="chead"><span class="cnum">❓</span><div><h2><span class="en">Question & Answer</span><span class="ar">سؤال وجواب</span></h2></div><span class="ppage">p.104</span></div>
-  <details><summary>🦅 <span class="en">How can an eagle fly at high altitudes without flapping its wings?</span><span class="ar">إزاي النسر بيطير على ارتفاعات عالية من غير ما يرفرف بأجنحته؟</span></summary>
+<!-- ============ Q&A (p.118) ============ -->
+<section id="qa1" class="card reveal">
+  <div class="chead"><span class="cnum">❓</span><div><h2><span class="en">Question & Answer</span><span class="ar">سؤال وجواب</span></h2></div><span class="ppage">p.118</span></div>
+  <details><summary>🦅 <span class="en">How can an eagle fly at high altitudes without flapping its wings?</span> · <span class="ar">إزاي النسر بيطير على ارتفاعات عالية من غير ما يرفرف بأجنحته؟</span></summary>
     <div class="body">
-      <span class="en">The air near the Earth's surface is heated by the Sun → convection currents of warm air rise upwards; the eagle spreads its wings to rise with these currents. The force exerted by the currents equals the gravitational force, keeping the eagle floating.</span>
-      <span class="ar">الهوا القريب من سطح الأرض بيسخن بفعل الشمس → تيارات حمل صاعدة من الهوا الدافي؛ والنسر بيفرد أجنحته ويصعد مع التيارات دي. القوة اللي بتعملها التيارات بتساوي قوة الجاذبية فيفضل النسر عايم.</span>
+      <span class="en">By means of convection currents rising from the Earth's surface — the eagle spreads its wings to ride them, balancing gravity.</span>
+      <span class="ar">عن طريق تيارات الحمل الصاعدة من سطح الأرض — النسر بيفرد أجنحته ويركبها فيوازن قوة الجاذبية.</span>
     </div></details>
   <div class="quiz" style="margin-top:16px">
-    <p class="en"><strong>Q:</strong> Object (X) sits ON the heater, object (Y) on a far table. How does heat transfer from the heater to (X)?</p>
-    <p class="ar"><strong>س:</strong> الجسم (X) موضوع على السخان مباشرة، والجسم (Y) على ترابيزة بعيدة. إزاي بتنتقل الحرارة من السخان لـ(X)؟</p>
+    <p class="en"><strong>Q2 (1):</strong> Object (X) sits ON the heater, object (Y) on a far table. What is the method of heat transfer from the heater to each?</p>
+    <p class="ar"><strong>س2 (1):</strong> الجسم (X) على السخان مباشرة و(Y) على ترابيزة بعيدة. إيه طريقة انتقال الحرارة من السخان لكلٍ منهما؟</p>
     <div class="opts">
-      <button class="opt" data-ok><span class="en" style="display:inline">Conduction</span> · <span class="ar" style="display:inline">التوصيل</span></button>
-      <button class="opt"><span class="en" style="display:inline">Convection</span> · <span class="ar" style="display:inline">الحمل</span></button>
-      <button class="opt"><span class="en" style="display:inline">Radiation</span> · <span class="ar" style="display:inline">الإشعاع</span></button>
+      <button class="opt" data-ok><span class="en" style="display:inline">(X) conduction · (Y) convection</span> · <span class="ar" style="display:inline">(X) توصيل · (Y) حمل</span></button>
+      <button class="opt"><span class="en" style="display:inline">Both conduction</span> · <span class="ar" style="display:inline">الاتنين توصيل</span></button>
+      <button class="opt"><span class="en" style="display:inline">Both radiation</span> · <span class="ar" style="display:inline">الاتنين إشعاع</span></button>
     </div>
-    <div class="exp"><span class="en">✔️ (1) Heat is transferred to object (X) by conduction (direct contact with the heater).</span><span class="ar">✔️ (1) الحرارة بتنتقل للجسم (X) بالتوصيل (ملامسة مباشرة للسخان).</span></div>
+    <div class="exp"><span class="en">✔️ (X) by conduction (direct contact) · (Y) by convection (rising hot air currents).</span><span class="ar">✔️ (X) بالتوصيل (ملامسة مباشرة) · (Y) بالحمل (تيارات هوا ساخن صاعدة).</span></div>
   </div>
   <div class="quiz">
-    <p class="en"><strong>Q:</strong> Which object's particles have the GREATER average kinetic energy, (X) or (Y)?</p>
-    <p class="ar"><strong>س:</strong> جسيمات أي الجسمين ليها متوسط طاقة حركة أكبر، (X) ولا (Y)؟</p>
+    <p class="en"><strong>Q2 (2):</strong> Which object's particles have the GREATER average kinetic energy? With explanation.</p>
+    <p class="ar"><strong>س2 (2):</strong> جسيمات أي الجسمين ليها متوسط طاقة حركة أكبر؟ مع التفسير.</p>
     <div class="opts">
       <button class="opt" data-ok><span class="en" style="display:inline">Object (X)</span> · <span class="ar" style="display:inline">الجسم (X)</span></button>
       <button class="opt"><span class="en" style="display:inline">Object (Y)</span> · <span class="ar" style="display:inline">الجسم (Y)</span></button>
-      <button class="opt"><span class="en" style="display:inline">Equal</span> · <span class="ar" style="display:inline">متساويان</span></button>
     </div>
-    <div class="exp"><span class="en">✔️ (2) Temperature measures the average K.E. of particles; (X) is closer to the heater → higher temperature → greater average K.E.</span><span class="ar">✔️ (2) درجة الحرارة مقياس لمتوسط طاقة الحركة؛ و(X) أقرب للسخان → درجة حرارته أعلى → متوسط طاقة حركة جسيماته أكبر.</span></div>
+    <div class="exp"><span class="en">✔️ Object (X) — it is adjacent to the heater → higher temperature → greater average K.E. than (Y) which is further away.</span><span class="ar">✔️ الجسم (X) — لأنه ملاصق للسخان → درجة حرارته أعلى → متوسط طاقة حركة جسيماته أكبر من (Y) الأبعد.</span></div>
   </div>
 </section>
 
-<!-- ============ RADIATION ============ -->
+<!-- ============ RADIATION (p.118-119) ============ -->
 <section id="rad" class="card reveal">
-  <div class="chead"><span class="cnum">3rd</span><div><h2><span class="en">Heat Transfer by Radiation</span><span class="ar">انتقال الحرارة بالإشعاع</span></h2></div><span class="ppage">p.105</span></div>
-  <p class="en">When exposed to solar radiation we feel warm, despite the millions of kilometres of EMPTY SPACE between the Sun and the Earth… Why?</p>
-  <p class="ar">لما بنتعرض لأشعة الشمس بنحس بالدفء، رغم ملايين الكيلومترات من الفراغ بين الشمس والأرض… ليه؟</p>
+  <div class="chead"><span class="cnum">3rd</span><div><h2><span class="en">Heat Transfer by Radiation</span><span class="ar">انتقال الحرارة بالإشعاع</span></h2></div><span class="ppage">p.118–119</span></div>
+  <p class="en">When exposed to solar radiation we feel warm, despite millions of kilometres of EMPTY SPACE between the Sun and the Earth… <strong>G.R.:</strong> because the Sun's heat is transferred to us without the need for a material medium → this method is called <strong>radiation</strong>.</p>
+  <p class="ar">لما بنتعرض لأشعة الشمس بنحس بالدفء رغم ملايين الكيلومترات من الفراغ بين الشمس والأرض… <strong>علل:</strong> لأن حرارة الشمس بتنتقل لينا من غير حاجة لوسط مادي → الطريقة دي اسمها <strong>الإشعاع</strong>.</p>
   <svg viewBox="0 0 520 150" dir="ltr" style="width:100%;margin-top:12px">
     <circle cx="60" cy="75" r="34" fill="#fbbf24" class="pulse"/>
     <circle cx="460" cy="75" r="26" fill="#1d6fb8"/><path d="M446 66 q10 -8 22 -2 q10 6 8 16 q-14 8 -24 0 q-8 -8 -6 -14z" fill="#16a34a"/>
     <g class="dash"><path d="M100 60 L430 66" stroke="#fbbf24" stroke-width="2.5"/><path d="M100 75 L430 75" stroke="#fb923c" stroke-width="2.5"/><path d="M100 90 L430 84" stroke="#fbbf24" stroke-width="2.5"/></g>
     <text x="260" y="120" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="800">Electromagnetic waves through VACUUM · موجات كهرومغناطيسية عبر الفراغ</text>
   </svg>
-  <div class="note hot"><span class="en">Because the Sun's heat is transferred to us WITHOUT the need for material particles → this method is known as <strong>Radiation</strong>.</span><span class="ar">لأن حرارة الشمس بتنتقل لينا من غير حاجة لجسيمات مادية → الطريقة دي اسمها <strong>الإشعاع</strong>.</span></div>
-  <div class="grid2" style="margin-top:14px">
-    <div class="tile"><span class="tag gold">Electromagnetic waves · الموجات الكهرومغناطيسية</span>
-      <p class="en">Waves that propagate through space at very high speeds reaching <strong>300,000 km/s</strong> in all directions.</p>
-      <p class="ar">موجات بتنتقل عبر الفضاء بسرعات عالية جدًا بتوصل لـ<strong>300,000 كم/ث</strong> في كل الاتجاهات.</p></div>
-    <div class="tile"><span class="tag">Solar radiation · الإشعاع الشمسي</span>
-      <p class="en">Consists of many electromagnetic waves: some <strong>visible</strong> (light) and some <strong>invisible</strong> (infrared rays — thermal effect). Objects absorb infrared rays → their temperature rises.</p>
-      <p class="ar">بيتكون من موجات كهرومغناطيسية كثيرة: منها <strong>مرئي</strong> (الضوء) ومنها <strong>غير مرئي</strong> (الأشعة تحت الحمراء — ليها أثر حراري). الأجسام بتمتص الأشعة تحت الحمراء → درجة حرارتها بتزيد.</p></div>
-  </div>
   <div class="defBox">
     <b class="dT">Thermal Radiation · الإشعاع الحراري</b>
-    <p class="en">The transfer of infrared radiation from the surfaces of objects, especially the hot objects, without the need for material particles.</p>
-    <p class="ar">انتقال الأشعة تحت الحمراء من أسطح الأجسام، وخاصة الساخنة، من غير الحاجة لجسيمات مادية.</p>
+    <p class="en">The transfer of heat in vacuum, without the need for a material medium.</p>
+    <p class="ar">انتقال الحرارة في الفراغ، من غير الحاجة لوسط مادي.</p>
   </div>
-  <div class="note"><span class="en">💡 All hot objects emit heat (infrared rays) — the hotter the object, the more infrared rays it emits. Heat sources transfer heat through air by radiation AND convection, but heat from the Sun travels by radiation ONLY.</span><span class="ar">💡 كل الأجسام الساخنة بتطلق حرارة (أشعة تحت الحمراء) — وكل ما الجسم يسخن أكتر بيطلق أشعة أكتر. مصادر الحرارة بتنقل حرارتها في الهوا بالإشعاع والحمل، لكن حرارة الشمس بتوصل بالإشعاع فقط.</span></div>
+  <div class="note"><span class="en">💡 Heat is transferred by conduction and convection in <strong>physical media only</strong>, while it is transferred by radiation in <strong>physical media AND space</strong>.</span><span class="ar">💡 الحرارة بتنتقل بالتوصيل والحمل في <strong>الأوساط المادية فقط</strong>، بينما بتنتقل بالإشعاع في <strong>الأوساط المادية والفضاء</strong>.</span></div>
 </section>
 
-<!-- ============ ABSORPTION ============ -->
-<section id="absorb" class="card reveal">
-  <div class="chead"><span class="cnum">☀️</span><div><h2><span class="en">Absorption Race: Dark vs Shiny</span><span class="ar">سباق الامتصاص: الغامق ضد اللامع</span></h2></div><span class="ppage">p.105</span></div>
-  <p class="en">Dark opaque objects absorb infrared radiation BETTER than light-coloured or shiny objects. Press "Expose to sun" and compare.</p>
-  <p class="ar">الأجسام الغامقة المعتمة بتمتص الإشعاع الحراري أفضل من الأجسام الفاتحة أو اللامعة. اضغط «عرّض للشمس» وقارن.</p>
+<!-- ============ SOLAR (p.119) ============ -->
+<section id="solar" class="card reveal">
+  <div class="chead"><span class="cnum">☀️</span><div><h2><span class="en">Solar Radiation & Absorption</span><span class="ar">الإشعاع الشمسي والامتصاص</span></h2></div><span class="ppage">p.119</span></div>
+  <div class="grid2">
+    <div class="tile"><span class="tag gold">Electromagnetic waves · الموجات الكهرومغناطيسية</span>
+      <p class="en">Waves that travel through space at very high speed, reaching <strong>300,000 km/s</strong> in all directions.</p>
+      <p class="ar">موجات بتنتقل عبر الفضاء بسرعة عالية جدًا بتوصل لـ<strong>300,000 كم/ث</strong> في كل الاتجاهات.</p>
+      <p class="en mut">Classified into: <strong>visible</strong> (white light) & <strong>invisible</strong> (infrared rays — thermal effect).</p>
+      <p class="ar mut">بتتصنف لـ: <strong>مرئية</strong> (الضوء الأبيض) و<strong>غير مرئية</strong> (الأشعة تحت الحمراء — ليها أثر حراري).</p></div>
+    <div class="tile"><span class="tag hot">Absorption · الامتصاص</span>
+      <p class="en">• Objects absorb infrared radiation → their temperature rises.<br>• Opaque <strong>dark</strong> objects absorb infrared <strong>better than</strong> shiny (light-coloured) objects.</p>
+      <p class="ar">• الأجسام بتمتص الأشعة تحت الحمراء → درجة حرارتها بتزيد.<br>• الأجسام المعتمة <strong>الغامقة</strong> بتمتص الأشعة <strong>أفضل من</strong> اللامعة (الفاتحة).</p></div>
+  </div>
+  <h3 style="margin-top:20px">☀️ <span class="en">Absorption Race: Dark vs Shiny</span> · <span class="ar">سباق الامتصاص: الغامق ضد اللامع</span></h3>
   <div class="grid2" style="margin-top:12px">
     <div class="tile"><h3>⚫ <span class="en">Dark tea pot</span> · <span class="ar">إبريق غامق</span></h3>
       <div class="ketIcon">🫖</div>
@@ -369,111 +339,48 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
     <span class="en">🏆 The dark pot's temperature rises much faster — dark opaque objects absorb infrared radiation better.</span>
     <span class="ar">🏆 درجة حرارة الإبريق الغامق بتزيد أسرع بكتير — لأن الأجسام الغامقة المعتمة بتمتص الإشعاع أفضل.</span>
   </div>
-  <h3 style="margin-top:18px">✅ <span class="en">Therefore — in our life</span> · <span class="ar">لذلك — في حياتنا</span></h3>
-  <div class="grid3" style="margin-top:10px">
-    <div class="tile"><span class="tag hot">🚒 Firefighters · الإطفاء</span>
-      <p class="en">Firefighters wear shiny silver uniforms (poor absorbers, good reflectors).</p>
-      <p class="ar">رجال الإطفاء بيلبسوا يونيفورم فضي لامع (عاكس جيد وممتص ضعيف).</p></div>
-    <div class="tile"><span class="tag">👕 Clothes · الملابس</span>
-      <p class="en">In summer we wear white/light clothes; in winter, dark clothes.</p>
-      <p class="ar">في الصيف بنلبس فاتح/أبيض، وفي الشتاء غامق.</p></div>
-    <div class="tile"><span class="tag ok">☀️ Solar heaters · السخانات الشمسية</span>
-      <p class="en">Solar heater pipes are painted in black (best absorber).</p>
-      <p class="ar">مواسير السخان الشمسي بتتطلی بالأسود (أفضل ممتص).</p></div>
+  <h3 style="margin-top:18px">✅ <span class="en">Life Applications</span> · <span class="ar">تطبيقات حياتية</span></h3>
+  <div class="grid2" style="margin-top:10px">
+    <div class="tile"><span class="tag hot">🚒 Firefighters · رجال الإطفاء</span>
+      <p class="en">They wear shiny silver clothing… <strong>G.R.:</strong> because shiny objects reflect the infrared (thermal) radiation emitted by flames.</p>
+      <p class="ar">بيلبسوا ملابس فضية لامعة… <strong>علل:</strong> لأن الأجسام اللامعة بتعكس الأشعة تحت الحمراء (الحرارية) اللي بتطلقها ألسنة اللهب.</p></div>
+    <div class="tile"><span class="tag ok">☀️ Solar heater tubes · مواسير السخان الشمسي</span>
+      <p class="en">They are painted black… <strong>G.R.:</strong> to increase their absorption of infrared rays, so the water inside rises to a higher temperature.</p>
+      <p class="ar">بتتطلی بالأسود… <strong>علل:</strong> عشان تزيد امتصاصها للأشعة تحت الحمراء، فدرجة حرارة المية جواها بتزيد لدرجة أعلى.</p></div>
+  </div>
+  <div class="note gold">
+    <span class="en">💡 Notes: • All hot objects radiate heat (infrared) — the hotter, the more infrared it emits. • All heat sources transfer heat through air by radiation AND convection, while heat from the Sun travels by radiation ONLY.</span>
+    <span class="ar">💡 ملاحظات: • كل الأجسام الساخنة بتُشعّ حرارة (تحت حمراء) — وكل ما تسخن أكتر بتُشعّ أكتر. • كل مصادر الحرارة بتنقل حرارتها في الهوا بالإشعاع والحمل، بينما حرارة الشمس بالإشعاع فقط.</span>
   </div>
 </section>
 
-<!-- ============ NOTES ============ -->
-<section id="notes" class="card reveal">
-  <div class="chead"><span class="cnum">💡</span><div><h2><span class="en">Notes: Radiation Through Vacuum & Gases</span><span class="ar">ملاحظات: الإشعاع عبر الفراغ والغازات</span></h2></div><span class="ppage">p.106</span></div>
-  <div class="tile">
-    <svg viewBox="0 0 260 110" dir="ltr" style="width:100%;max-width:340px;display:block;margin:0 auto">
-      <path d="M210 40 l26 -12 v54 l-26 -12 z" fill="#fbbf24"/>
-      <rect x="232" y="52" width="18" height="34" rx="4" fill="#94a3b8"/>
-      <path d="M150 40 l-40 14 M150 62 l-40 4" stroke="#ef4444" stroke-width="4" class="pulse"/>
-      <path d="M96 30 q-16 26 0 52 M78 26 q-20 32 0 60" fill="none" stroke="#eab308" stroke-width="5" stroke-linecap="round"/>
-    </svg>
-    <p class="en">In the figure, heat is transferred from the lamp to the hand by radiation — which means heat is transferred by radiation through BOTH vacuum and gases.</p>
-    <p class="ar">في الشكل، الحرارة بتنتقل من اللمبة للإيد بالإشعاع — يعني الإشعاع بينقل حرارة عبر الفراغ وعبر الغازات كمان.</p>
-  </div>
-</section>
-
-<!-- ============ THERMOGRAPHY ============ -->
-<section id="thermo" class="card reveal">
-  <div class="chead"><span class="cnum">🎥</span><div><h2><span class="en">Technological Application: Thermography</span><span class="ar">تطبيق تكنولوجي: التصوير الحراري</span></h2></div><span class="ppage">p.106</span></div>
-  <div class="defBox">
-    <b class="dT">Thermography · التصوير الحراري</b>
-    <p class="en">A technique that uses a camera to detect the thermal radiation (infrared rays) emitted from objects and convert it into coloured images; the colours depend on the changes in the object's temperature.</p>
-    <p class="ar">تقنية بتستخدم كاميرا لرصد الإشعاع الحراري (الأشعة تحت الحمراء) الصادر من الأجسام وتحويله لصور ملونة؛ والألوان بتعتمد على تغيّر درجة حرارة الجسم.</p>
-  </div>
-  <div class="grid2" style="margin-top:14px">
-    <div class="tile"><span class="tag">Uses · الاستخدامات</span>
-      <p class="en">- Imaging in the dark.<br>- Detecting the temperature of objects.</p>
-      <p class="ar">- التصوير في الظلام.<br>- الكشف عن درجة حرارة الأجسام.</p></div>
-    <div class="tile"><span class="tag hot">🐍 Integration with biology · تكامل مع الأحياء</span>
-      <p class="en"><strong>Snakes hunt their preys at night… G.R.:</strong> because they have sensory receptors at the front of their heads that detect infrared rays emitted from their preys' bodies.</p>
-      <p class="ar"><strong>الثعابين بتقدر تصطاد فريستها ليلًا… علل:</strong> لأن عندها مستقبلات حسية في مقدمة رأسها بتقدر ترصد الأشعة تحت الحمراء الصادرة من أجسام الفريسة.</p></div>
-  </div>
-  <h3 style="margin-top:18px">🎨 <span class="en">Try it: move the slider from coldest to hottest</span> · <span class="ar">جرّب: حرّك السلايدر من الأبرد للأسخن</span></h3>
-  <div id="thBox" dir="ltr"><span id="thLab" style="mix-blend-mode:difference;color:#fff">Black · أسود — coldest الأبرد</span></div>
-  <input type="range" id="thRange" min="0" max="100" value="0" dir="ltr">
-  <div class="thScale" dir="ltr"><i style="background:#000"></i><i style="background:#0000ff"></i><i style="background:#8b00ff"></i><i style="background:#008000"></i><i style="background:#ffff00"></i><i style="background:#ff0000"></i><i style="background:#fff"></i></div>
-  <p class="en mut" style="text-align:center;font-size:.78rem">Colours from coldest to hottest: black → blue → violet → green → yellow → red → white.</p>
-  <p class="ar mut" style="text-align:center;font-size:.8rem">الألوان من الأبرد للأسخن: أسود ← أزرق ← بنفسجي ← أخضر ← أصفر ← أحمر ← أبيض.</p>
-</section>
-
-<!-- ============ NEW: COMPARE 3 METHODS (p.107) ============ -->
+<!-- ============ COMPARE (p.120-121) ============ -->
 <section id="compare3" class="card reveal">
-  <div class="chead"><span class="cnum">⇄</span><div><h2><span class="en">Comparing the Three Methods of Heat Transfer</span><span class="ar">مقارنة طرق انتقال الحرارة الثلاثة</span></h2></div><span class="ppage">p.107</span></div>
-  <p class="en">From the previous explanation, the methods of heat transfer can be compared in the following table.</p>
-  <p class="ar">من الشرح اللي فات، ممكن نقارن طرق انتقال الحرارة في الجدول الجاي.</p>
+  <div class="chead"><span class="cnum">⇄</span><div><h2><span class="en">Comparing the Three Methods</span><span class="ar">مقارنة الطرق الثلاثة</span></h2></div><span class="ppage">p.120</span></div>
   <div class="grid3" style="margin-top:14px">
     <div class="tile" style="border-color:var(--hot)"><span class="tag hot">① Conduction · التوصيل</span>
-      <p class="en">The transfer of thermal energy through solid objects from one point to another without the transfer of particles from their positions.</p>
-      <p class="ar">انتقال الطاقة الحرارية خلال الأجسام الصلبة من نقطة لأخرى من غير انتقال الجسيمات من أماكنها.</p>
-      <p class="en mut">⇢ Heat transfers from the point with the highest temperature to the point with the lowest, till thermal equilibrium occurs.</p>
-      <p class="ar mut">⇢ الحرارة بتنتقل من النقطة الأعلى حرارة للنقطة الأقل، لحد ما يحصل توازن حراري.</p>
-      <p class="en mut">⇢ Takes place as a result of contact between the particles of the solids.</p>
-      <p class="ar mut">⇢ بيحصل نتيجة تلامس جسيمات الجسم الصلب.</p>
-      <p class="en mut">⇢ Occurs in solid matters ONLY.</p>
-      <p class="ar mut">⇢ بيحصل في المواد الصلبة فقط.</p></div>
+      <p class="en">Transfer of thermal energy through solids without the movement of particles from their positions.</p>
+      <p class="ar">انتقال الطاقة الحرارية خلال المواد الصلبة من غير حركة الجسيمات من أماكنها.</p>
+      <p class="en mut">⇢ From the higher-temperature point to the lower, till thermal equilibrium.</p>
+      <p class="ar mut">⇢ من النقطة الأعلى حرارة للأقل لحد التوازن الحراري.</p>
+      <p class="en mut">⇢ Occurs as a result of contact of solid particles — ONLY in solids.</p>
+      <p class="ar mut">⇢ بيحصل نتيجة تلامس جسيمات الصلب — في المواد الصلبة فقط.</p></div>
     <div class="tile" style="border-color:var(--acc)"><span class="tag">② Convection · الحمل</span>
-      <p class="en">The transfer of thermal energy through fluids with the movement of their particles.</p>
-      <p class="ar">انتقال الطاقة الحرارية خلال الموائع مع حركة جسيماتها.</p>
-      <p class="en mut">⇢ Heat transfers UPWARDS (from the area of the least density in the fluid to the area of the greatest density).</p>
-      <p class="ar mut">⇢ الحرارة بتنتقل لأعلى (من منطقة الأقل كثافة في المائع لمنطقة الأكبر كثافة).</p>
-      <p class="en mut">⇢ Takes place as a result of the movement of fluid particles.</p>
-      <p class="ar mut">⇢ بيحصل نتيجة حركة جسيمات المائع.</p>
-      <p class="en mut">⇢ Occurs in liquid and gaseous matters (fluids).</p>
-      <p class="ar mut">⇢ بيحصل في المواد السائلة والغازية (الموائع).</p></div>
+      <p class="en">Transfer of thermal energy in fluids with the movement of their particles.</p>
+      <p class="ar">انتقال الطاقة الحرارية في الموائع مع حركة جسيماتها.</p>
+      <p class="en mut">⇢ Hotter particles rise & colder particles descend.</p>
+      <p class="ar mut">⇢ الجسيمات الأسخن بتصعد والأبرد بتهبط.</p>
+      <p class="en mut">⇢ Occurs in liquid & gaseous bodies (fluids).</p>
+      <p class="ar mut">⇢ بيحصل في الأجسام السائلة والغازية (الموائع).</p></div>
     <div class="tile" style="border-color:var(--gold)"><span class="tag gold">③ Radiation · الإشعاع</span>
-      <p class="en">The transfer of thermal energy from the surfaces of hot objects without the need for material particles.</p>
-      <p class="ar">انتقال الطاقة الحرارية من أسطح الأجسام الساخنة من غير الحاجة لجسيمات مادية.</p>
+      <p class="en">Transfer of thermal energy from the surfaces of hot objects without the need for medium particles.</p>
+      <p class="ar">انتقال الطاقة الحرارية من أسطح الأجسام الساخنة من غير حاجة لجسيمات وسط.</p>
       <p class="en mut">⇢ Heat is transferred in ALL directions.</p>
       <p class="ar mut">⇢ الحرارة بتنتقل في كل الاتجاهات.</p>
-      <p class="en mut">⇢ Takes place WITHOUT the need for a material medium.</p>
-      <p class="ar mut">⇢ بيحصل من غير الحاجة لوسط مادي.</p>
-      <p class="en mut">⇢ Occurs in BOTH vacuum (space) and gases.</p>
-      <p class="ar mut">⇢ بيحصل في الفراغ (الفضاء) والغازات.</p></div>
+      <p class="en mut">⇢ Occurs in a vacuum AND in gases.</p>
+      <p class="ar mut">⇢ بيحصل في الفراغ وفي الغازات.</p></div>
   </div>
-  <h3 style="margin-top:18px">🎯 <span class="en">Quick check — which method is described?</span> · <span class="ar">اختبار سريع — الوصف ده لأي طريقة؟</span></h3>
-  <div class="grid3" style="margin-top:10px">
-    <div class="quiz tile"><span class="en">"Occurs in solid matters only"</span><span class="ar">«بيحصل في المواد الصلبة فقط»</span>
-      <div class="opts"><button class="opt" data-ok>Conduction · توصيل</button><button class="opt">Convection · حمل</button><button class="opt">Radiation · إشعاع</button></div>
-      <div class="exp"><span class="en">✔️ Conduction — particles stay in place and pass energy by contact.</span><span class="ar">✔️ التوصيل — الجسيمات بتفضل في مكانها وبتنقل الطاقة بالتلامس.</span></div></div>
-    <div class="quiz tile"><span class="en">"Heat transfers upwards (least → greatest density)"</span><span class="ar">«الحرارة بتنتقل لأعلى (من الأقل للأكبر كثافة)»</span>
-      <div class="opts"><button class="opt">Conduction · توصيل</button><button class="opt" data-ok>Convection · حمل</button><button class="opt">Radiation · إشعاع</button></div>
-      <div class="exp"><span class="en">✔️ Convection — hot less-dense fluid rises, cold denser fluid sinks.</span><span class="ar">✔️ الحمل — الساخن الأقل كثافة بيصعد والبارد الأكثف بيهبط.</span></div></div>
-    <div class="quiz tile"><span class="en">"Occurs in both vacuum and gases"</span><span class="ar">«بيحصل في الفراغ والغازات»</span>
-      <div class="opts"><button class="opt">Conduction · توصيل</button><button class="opt">Convection · حمل</button><button class="opt" data-ok>Radiation · إشعاع</button></div>
-      <div class="exp"><span class="en">✔️ Radiation — needs no material medium at all.</span><span class="ar">✔️ الإشعاع — مش محتاج وسط مادي خالص.</span></div></div>
-  </div>
-</section>
-
-<!-- ============ NEW: FINAL Q&A (p.107) ============ -->
-<section id="finalQ" class="card reveal">
-  <div class="chead"><span class="cnum">🏁</span><div><h2><span class="en">Question & Answer — Final</span><span class="ar">سؤال وجواب — ختامي</span></h2></div><span class="ppage">p.107</span></div>
-  <h3>Q1 · <span class="en">Identify the three methods in the figure</span> · <span class="ar">حدّد الطرق الثلاثة في الشكل</span></h3>
+  <h3 style="margin-top:20px">🎯 <span class="en">Identify the three methods in the figure</span> · <span class="ar">حدّد الطرق الثلاثة في الشكل</span></h3>
   <div class="figBox">
     <svg viewBox="0 0 320 210" dir="ltr" style="width:100%;max-width:460px;display:block;margin:0 auto">
       <defs><linearGradient id="rodg"><stop offset="0" stop-color="#334155"/><stop offset="1" stop-color="#ef4444"/></linearGradient></defs>
@@ -493,68 +400,113 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
     </svg>
   </div>
   <div class="grid3" style="margin-top:12px">
-    <div class="quiz tile"><span class="en">(1) Waves emitted from the flame</span><span class="ar">(1) موجات خارجة من اللهب</span>
+    <div class="quiz tile"><span class="en">(1) Emitted from the flame, all directions</span><span class="ar">(1) صادرة من اللهب في كل الاتجاهات</span>
       <div class="opts"><button class="opt" data-ok>Radiation · إشعاع</button><button class="opt">Conduction · توصيل</button><button class="opt">Convection · حمل</button></div>
-      <div class="exp"><span class="en">✔️ Radiation — because it is emitted from a hot object (flame).</span><span class="ar">✔️ إشعاع — لأنها صادرة من جسم ساخن (اللهب).</span></div></div>
-    <div class="quiz tile"><span class="en">(2) Through the rod, hot part → cold part</span><span class="ar">(2) خلال القضيب من الجزء الساخن للبارد</span>
+      <div class="exp"><span class="en">✔️ Radiation — emitted from a hot object (flame) and transfers through air in all directions.</span><span class="ar">✔️ إشعاع — لأنها صادرة من جسم ساخن (اللهب) وبتنتقل في الهوا في كل الاتجاهات.</span></div></div>
+    <div class="quiz tile"><span class="en">(2) Through the rod, hot → cold part</span><span class="ar">(2) خلال القضيب من الساخن للبارد</span>
       <div class="opts"><button class="opt">Radiation · إشعاع</button><button class="opt" data-ok>Conduction · توصيل</button><button class="opt">Convection · حمل</button></div>
       <div class="exp"><span class="en">✔️ Conduction — transferred through the object from the hot part to the cold part.</span><span class="ar">✔️ توصيل — لأن الحرارة بتنتقل خلال الجسم من الجزء الساخن للبارد.</span></div></div>
     <div class="quiz tile"><span class="en">(3) Inside the water — moving particles</span><span class="ar">(3) جوه المية — حركة الجسيمات</span>
       <div class="opts"><button class="opt">Radiation · إشعاع</button><button class="opt">Conduction · توصيل</button><button class="opt" data-ok>Convection · حمل</button></div>
-      <div class="exp"><span class="en">✔️ Convection — transferred by the movement of liquid particles.</span><span class="ar">✔️ حمل — لأن الحرارة بتنتقل بحركة جسيمات السائل.</span></div></div>
+      <div class="exp"><span class="en">✔️ Convection — hot liquid particles rise to be replaced by cold particles which sink.</span><span class="ar">✔️ حمل — لأن الجسيمات الساخنة بتصعد وتحل محلها الباردة اللي بتهبط.</span></div></div>
   </div>
-  <h3 style="margin-top:22px">Q2 · <span class="en">The thermos flask — heat through the VACUUM?</span> · <span class="ar">الترموس — الحرارة بتنتقل إزاي عبر الفراغ؟</span></h3>
-  <div class="grid2" style="margin-top:10px">
-    <div class="figBox" style="margin-top:0">
-      <svg viewBox="0 0 200 160" dir="ltr" style="width:100%;max-width:260px;display:block;margin:0 auto">
-        <rect x="88" y="8" width="24" height="12" rx="4" fill="#94a3b8"/>
-        <rect x="70" y="18" width="60" height="124" rx="14" fill="rgba(251,191,36,.22)" stroke="#fbbf24" stroke-width="2.5"/>
-        <rect x="82" y="30" width="36" height="100" rx="8" fill="rgba(148,163,184,.3)" stroke="#94a3b8" stroke-width="2"/>
-        <rect x="86" y="60" width="28" height="66" rx="5" fill="rgba(210,180,140,.5)"/>
-        <circle cx="160" cy="56" r="26" fill="none" stroke="#22d3ee" stroke-width="2"/>
-        <line x1="128" y1="48" x2="138" y2="50" stroke="#22d3ee" stroke-width="1.5"/>
-        <line x1="128" y1="70" x2="138" y2="64" stroke="#22d3ee" stroke-width="1.5"/>
-        <rect x="152" y="40" width="4" height="32" fill="#94a3b8"/><rect x="164" y="40" width="4" height="32" fill="#94a3b8"/>
-        <text x="160" y="98" text-anchor="middle" fill="#22d3ee" font-size="10" font-weight="700">Vacuum · فراغ</text>
-      </svg>
-    </div>
-    <div class="quiz" style="margin-top:0">
-      <p class="en">What is the method through which heat is transferred through the vacuum (space) between the two walls?</p>
-      <p class="ar">إيه الطريقة اللي بتنتقل بيها الحرارة خلال الفراغ بين الجدارين؟</p>
-      <div class="opts">
-        <button class="opt"> Convection and radiation · حمل وإشعاع</button>
-        <button class="opt">ⓑ Convection and conduction · حمل وتوصيل</button>
-        <button class="opt">ⓒ Convection only · حمل فقط</button>
-        <button class="opt" data-ok>ⓓ Radiation only · إشعاع فقط</button>
-      </div>
-      <div class="exp"><span class="en">✔️ Heat can be transferred only through vacuum by radiation → the correct choice is (d).</span><span class="ar">✔️ الحرارة مبتنتقلش عبر الفراغ إلا بالإشعاع → الإجابة الصحيحة (d).</span></div>
-    </div>
+  <details><summary>🔥 <span class="en">Explain the methods of heat transfer in an electric oven.</span> · <span class="ar">فسّر طرق انتقال الحرارة في الفرن الكهربائي.</span></summary>
+    <div class="body">
+      <span class="en">• <strong>Conduction:</strong> cooking utensils contact the hot metal shelf. • <strong>Convection:</strong> hot air transfers from bottom to top inside the oven. • <strong>Radiation:</strong> heat is emitted from the oven heater in all directions.</span>
+      <span class="ar">• <strong>توصيل:</strong> نتيجة ملامسة أواني الطهي للرف المعدني الساخن. • <strong>حمل:</strong> نتيجة انتقال الهوا الساخن من تحت لفوق جوه الفرن. • <strong>إشعاع:</strong> نتيجة انبعاث الحرارة من سخان الفرن في كل الاتجاهات.</span>
+    </div></details>
+</section>
+
+<!-- ============ THERMOGRAPHY (p.121) ============ -->
+<section id="thermo" class="card reveal">
+  <div class="chead"><span class="cnum">🎥</span><div><h2><span class="en">Technological Application: Thermography</span><span class="ar">تطبيق تكنولوجي: التصوير الحراري</span></h2></div><span class="ppage">p.121</span></div>
+  <div class="defBox">
+    <b class="dT">Thermography · التصوير الحراري</b>
+    <p class="en">An imaging technique using a camera that detects thermal radiation (infrared) emitted by objects and converts it into coloured visual images. The colours vary according to changes in body temperature.</p>
+    <p class="ar">تقنية تصوير بتستخدم كاميرا بترصد الإشعاع الحراري (تحت الأحمر) الصادر من الأجسام وبتحوله لصور مرئية ملونة. الألوان بتتغير حسب التغيّر في درجة حرارة الجسم.</p>
   </div>
+  <div class="humRow" dir="ltr">
+    <div class="humC"><svg viewBox="0 0 70 130" style="width:64px"><defs><linearGradient id="gc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ef4444"/><stop offset=".45" stop-color="#22c55e"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs><circle cx="35" cy="14" r="11" fill="url(#gc)"/><path d="M35 27c-13 0-18 9-18 22v28h9v48h18V77h9V49c0-13-5-22-18-22z" fill="url(#gc)"/></svg><span class="en">Cold</span><span class="ar">بارد</span></div>
+    <div class="humC"><svg viewBox="0 0 70 130" style="width:64px"><defs><linearGradient id="gw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ef4444"/><stop offset="1" stop-color="#fb923c"/></linearGradient></defs><circle cx="35" cy="14" r="11" fill="url(#gw)"/><path d="M35 27c-13 0-18 9-18 22v28h9v48h18V77h9V49c0-13-5-22-18-22z" fill="url(#gw)"/></svg><span class="en">Warm</span><span class="ar">دافئ</span></div>
+  </div>
+  <div class="grid2" style="margin-top:14px">
+    <div class="tile"><span class="tag">Uses · الاستخدامات</span>
+      <p class="en">- Imaging in the dark.<br>- Detecting the temperature of objects.</p>
+      <p class="ar">- التصوير في الظلام.<br>- الكشف عن درجة حرارة الأجسام.</p></div>
+    <div class="tile"><span class="tag hot">🐍 Integration with biology · تكامل مع الأحياء</span>
+      <p class="en"><strong>Snakes hunt their prey at night… G.R.:</strong> sensory receptors at the front of their heads receive infrared radiation emitted by prey and convert it into electrical signals transmitted to the brain.</p>
+      <p class="ar"><strong>الثعابين بتصيد فريستها ليلًا… علل:</strong> لأن عندها مستقبلات حسية في مقدمة رأسها بتستقبل الأشعة تحت الحمراء الصادرة من الفريسة وبتحولها لإشارات كهربائية بتنتقل للمخ.</p></div>
+  </div>
+  <h3 style="margin-top:18px">🎨 <span class="en">Try it: move the slider from coldest to hottest</span> · <span class="ar">جرّب: حرّك السلايدر من الأبرد للأسخن</span></h3>
+  <div id="thBox" dir="ltr"><span id="thLab" style="mix-blend-mode:difference;color:#fff">Black · أسود — coldest الأبرد</span></div>
+  <input type="range" id="thRange" min="0" max="100" value="0" dir="ltr">
+  <div class="thScale" dir="ltr"><i style="background:#000"></i><i style="background:#0000ff"></i><i style="background:#8b00ff"></i><i style="background:#008000"></i><i style="background:#ffff00"></i><i style="background:#ff0000"></i><i style="background:#fff"></i></div>
+  <p class="en mut" style="text-align:center;font-size:.78rem">black → blue → purple → green → yellow → red → white.</p>
+  <p class="ar mut" style="text-align:center;font-size:.8rem">أسود ← أزرق ← بنفسجي ← أخضر ← أصفر ← أحمر ← أبيض.</p>
 </section>
 </main>
 
 <footer>
   <div class="verified">🛡️ <span class="en">Reviewed & signed: Dr. Wael Aboagiza</span><span class="ar">مراجعة وتوقيع: د. وائل أبو عجيزة</span> <span style="font-family:'Space Grotesk'">#Dr_Wael_Aboagiza</span></div>
-  <p style="margin-top:14px;font-size:.82rem"><span class="en">Unit 1 · Lesson 4 (Part 2): Convection & Radiation · pages 102–107</span><span class="ar">الوحدة الأولى · الدرس 4 (الجزء الثاني): الحمل والإشعاع · صفحات 102–107</span></p>
+  <p style="margin-top:14px;font-size:.82rem"><span class="en">Unit 1 · Lesson 4 (Part 2): Convection & Radiation · pages 116–121 (new edition)</span><span class="ar">الوحدة الأولى · الدرس 4 (الجزء الثاني): الحمل والإشعاع · صفحات 116–121 (النسخة الحديثة)</span></p>
 </footer>
 <button id="topBtn" title="Top · لفوق">⬆</button>
 
 <script>
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+/* ================= SOUND ENGINE (soft natural lab sounds) ================= */
+const SND={on:true,ctx:null,master:null,loops:{},ivs:{}};
+function ac(){if(!SND.ctx){const C=window.AudioContext||window.webkitAudioContext;SND.ctx=new C();SND.master=SND.ctx.createGain();SND.master.gain.value=.6;SND.master.connect(SND.ctx.destination);}if(SND.ctx.state==='suspended')SND.ctx.resume();return SND.ctx;}
+function nbuf(){if(SND.nb)return SND.nb;const c=ac(),b=c.createBuffer(1,c.sampleRate*2,c.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;return SND.nb=b;}
+function env(g,t,a,p,d){g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(p,t+a);g.gain.exponentialRampToValueAtTime(.0001,t+d);}
+function sClick(){if(!SND.on)return;const c=ac(),t=c.currentTime,o=c.createOscillator(),g=c.createGain();o.type='triangle';o.frequency.setValueAtTime(750,t);o.frequency.exponentialRampToValueAtTime(500,t+.07);env(g,t,.005,.12,.09);o.connect(g);g.connect(SND.master);o.start(t);o.stop(t+.1);}
+function sChime(){if(!SND.on)return;const c=ac(),t=c.currentTime;[880,1174.7,1568].forEach((f,i)=>{const o=c.createOscillator(),g=c.createGain();o.type='sine';o.frequency.value=f;const st=t+i*.09;env(g,st,.01,.14,.5);o.connect(g);g.connect(SND.master);o.start(st);o.stop(st+.55);});}
+function sBuzz(){if(!SND.on)return;const c=ac(),t=c.currentTime,o=c.createOscillator(),g=c.createGain();o.type='square';o.frequency.value=150;env(g,t,.01,.1,.25);o.connect(g);g.connect(SND.master);o.start(t);o.stop(t+.3);}
+function sWhoosh(){if(!SND.on)return;const c=ac(),t=c.currentTime,s=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();s.buffer=nbuf();f.type='bandpass';f.Q.value=1.2;f.frequency.setValueAtTime(250,t);f.frequency.exponentialRampToValueAtTime(1400,t+.5);env(g,t,.05,.2,.7);s.connect(f);f.connect(g);g.connect(SND.master);s.start(t);s.stop(t+.8);}
+function sPour(){if(!SND.on)return;const c=ac(),t=c.currentTime,s=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();s.buffer=nbuf();f.type='bandpass';f.frequency.value=900;f.Q.value=.8;env(g,t,.03,.18,.9);s.connect(f);f.connect(g);g.connect(SND.master);s.start(t);s.stop(t+1);
+ for(let i=0;i<6;i++){const o=c.createOscillator(),gg=c.createGain(),st=t+.1+Math.random()*.7;o.type='sine';o.frequency.setValueAtTime(180+Math.random()*220,st);o.frequency.exponentialRampToValueAtTime(90,st+.08);env(gg,st,.005,.08,.1);o.connect(gg);gg.connect(SND.master);o.start(st);o.stop(st+.12);}}
+function loopStart(key,type,dur){if(!SND.on||SND.loops[key])return;
+ const c=ac(),s=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();
+ s.buffer=nbuf();s.loop=true;let target=.06;
+ if(type==='flame'){
+   f.type='lowpass';f.frequency.value=330;f.Q.value=.5;target=.085;
+   const l1=c.createOscillator(),g1=c.createGain();l1.frequency.value=1.05;g1.gain.value=.018;l1.connect(g1);g1.connect(g.gain);l1.start();SND.loops[key+'_lfo1']=l1;
+   const l2=c.createOscillator(),g2=c.createGain();l2.frequency.value=.27;g2.gain.value=.012;l2.connect(g2);g2.connect(g.gain);l2.start();SND.loops[key+'_lfo2']=l2;
+   for(let i=0;i<5;i++){const st=c.currentTime+.05+i*.12+Math.random()*.03;
+     const s2=c.createBufferSource(),f2=c.createBiquadFilter(),gg=c.createGain();
+     s2.buffer=nbuf();f2.type='highpass';f2.frequency.value=1500;
+     env(gg,st,.003,.055-i*.009,.06);
+     s2.connect(f2);f2.connect(gg);gg.connect(SND.master);s2.start(st);s2.stop(st+.09);}
+ }else{
+   f.type='lowpass';f.frequency.value=270;target=.055;
+   SND.ivs[key+'_bub']=setInterval(()=>{if(!SND.on)return;const c2=ac(),t=c2.currentTime,o=c2.createOscillator(),gg=c2.createGain();o.type='sine';o.frequency.setValueAtTime(120+Math.random()*220,t);o.frequency.exponentialRampToValueAtTime(70,t+.09);env(gg,t,.004,.05,.11);o.connect(gg);gg.connect(SND.master);o.start(t);o.stop(t+.13);},180);
+ }
+ g.gain.setValueAtTime(.0001,c.currentTime);
+ g.gain.linearRampToValueAtTime(target,c.currentTime+.6);
+ s.connect(f);f.connect(g);g.connect(SND.master);s.start();
+ SND.loops[key]={s,g};
+ if(dur)setTimeout(()=>loopStop(key),dur*1000);}
+function loopStop(key){const L=SND.loops[key];
+ if(L){const c=ac(),t=c.currentTime;try{L.g.gain.cancelScheduledValues(t);L.g.gain.setValueAtTime(Math.max(L.g.gain.value,.0001),t);L.g.gain.linearRampToValueAtTime(.0001,t+.5);L.s.stop(t+.6);}catch(e){}delete SND.loops[key];}
+ ['_lfo1','_lfo2'].forEach(sfx=>{if(SND.loops[key+sfx]){try{SND.loops[key+sfx].stop();}catch(e){}delete SND.loops[key+sfx];}});
+ Object.keys(SND.ivs).forEach(k=>{if(k===key||k.indexOf(key+'_')===0){clearInterval(SND.ivs[k]);delete SND.ivs[k];}});}
+function stopAll(){Object.keys(SND.loops).forEach(k=>{if(k.indexOf('_lfo')<0)loopStop(k);});}
+$('#sndBtn').onclick=()=>{SND.on=!SND.on;if(!SND.on)stopAll();$('#sndBtn').textContent=SND.on?'🔊':'';if(SND.on){ac();sClick();}};
+/* ================= chrome ================= */
 const SPDS={perm:{speed:1},ket:{speed:1}};
-$$('.speedRow').forEach(row=>{row.querySelectorAll('.spBtn').forEach(b=>b.onclick=()=>{SPDS[row.dataset.spd].speed=+b.dataset.sp;row.querySelectorAll('.spBtn').forEach(x=>x.classList.toggle('active',x===b));});});
+$$('.speedRow').forEach(row=>{row.querySelectorAll('.spBtn').forEach(b=>b.onclick=()=>{SPDS[row.dataset.spd].speed=+b.dataset.sp;row.querySelectorAll('.spBtn').forEach(x=>x.classList.toggle('active',x===b));sClick();});});
 addEventListener('scroll',()=>{const h=document.documentElement,p=h.scrollTop/(h.scrollHeight-h.clientHeight);
  $('#progress').style.width=(p*100)+'%';$('#railFill').style.height=(p*100)+'%';$('#railVal').textContent=Math.round(p*100)+'°';
  $('#topBtn').classList.toggle('show',h.scrollTop>600);},{passive:true});
 $('#topBtn').onclick=()=>scrollTo({top:0,behavior:'smooth'});
-$('#themeBtn').onclick=()=>{const l=document.body.dataset.theme==='light';document.body.dataset.theme=l?'':'light';$('#themeBtn').textContent=l?'☀️':'';};
+$('#themeBtn').onclick=()=>{const l=document.body.dataset.theme==='light';document.body.dataset.theme=l?'':'light';$('#themeBtn').textContent=l?'☀️':'🌙';sClick();};
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}}),{threshold:.1});
 $$('.reveal').forEach(el=>io.observe(el));
 const spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)$$('nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));}),{rootMargin:'-35% 0px -55% 0px'});
 $$('section[id]').forEach(s=>spy.observe(s));
 document.addEventListener('click',e=>{const b=e.target.closest('.opt');if(!b)return;const q=b.closest('.quiz');if(q.dataset.done)return;
- if(b.dataset.ok!==undefined){b.classList.add('ok');q.dataset.done=1;const x=q.querySelector('.exp');x&&x.classList.add('show');}
- else{b.classList.add('bad');setTimeout(()=>b.classList.remove('bad'),450);}});
+ if(b.dataset.ok!==undefined){b.classList.add('ok');q.dataset.done=1;const x=q.querySelector('.exp');x&&x.classList.add('show');sChime();}
+ else{b.classList.add('bad');setTimeout(()=>b.classList.remove('bad'),450);sBuzz();}});
 const hc=$('#heroCv'),hx=hc.getContext('2d');let HP=[];
 function hSize(){hc.width=hc.offsetWidth;hc.height=hc.offsetHeight;HP=Array.from({length:70},()=>({x:Math.random()*hc.width,y:Math.random()*hc.height,r:1+Math.random()*2.5,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6,c:Math.random()>.5?'168,85,247':'251,146,60'}));}
 hSize();addEventListener('resize',hSize);
@@ -566,11 +518,12 @@ const PC=$('#permCv'),px=PC.getContext('2d');
 const PM={flame:false,crystal:false,parts:[],t:0,shown:false};
 function pSize(){PC.width=PC.offsetWidth*2;PC.height=PC.offsetHeight*2;}
 pSize();addEventListener('resize',pSize);
-$('#flameBtn').onclick=()=>{PM.flame=!PM.flame;$('#permFlame').classList.toggle('on',PM.flame);};
-$('#crystBtn').onclick=()=>{if(PM.crystal)return;PM.crystal=true;$('#crystal').classList.add('on');
+$('#flameBtn').onclick=()=>{PM.flame=!PM.flame;$('#permFlame').classList.toggle('on',PM.flame);
+ if(PM.flame){sClick();loopStart('permF','flame',12);loopStart('permB','boil',12);}else{loopStop('permF');loopStop('permB');}};
+$('#crystBtn').onclick=()=>{if(PM.crystal)return;PM.crystal=true;$('#crystal').classList.add('on');sPour();
  const W=PC.width,H=PC.height;for(let i=0;i<110;i++)PM.parts.push({x:W/2+(Math.random()-.5)*30,y:H*.86+(Math.random()-.5)*20,vx:0,vy:0});};
-$('#permReset').onclick=()=>{PM.flame=false;PM.crystal=false;PM.parts=[];PM.shown=false;
- $('#permFlame').classList.remove('on');$('#crystal').classList.remove('on');$('#permObs').style.display='none';};
+$('#permReset').onclick=()=>{PM.flame=false;PM.crystal=false;PM.parts=[];PM.shown=false;loopStop('permF');loopStop('permB');
+ $('#permFlame').classList.remove('on');$('#crystal').classList.remove('on');$('#permObs').style.display='none';sClick();};
 function permLoop(){const W=PC.width,H=PC.height;px.clearRect(0,0,W,H);PM.t++;
  if(PM.crystal){const sp=SPDS.perm.speed;
   PM.parts.forEach(p=>{
@@ -581,19 +534,19 @@ function permLoop(){const W=PC.width,H=PC.height;px.clearRect(0,0,W,H);PM.t++;
    p.x=Math.max(8,Math.min(W-8,p.x));p.y=Math.max(H*.2,Math.min(H-8,p.y));
    px.beginPath();px.fillStyle='rgba(168,85,247,.55)';px.arc(p.x,p.y,5,0,7);px.fill();});
   if(PM.flame&&!PM.shown&&PM.t%60===0){let top=PM.parts.filter(p=>p.y<H*.45).length;
-   if(top>PM.parts.length*.35){PM.shown=true;$('#permObs').style.display='block';}}}
+   if(top>PM.parts.length*.35){PM.shown=true;$('#permObs').style.display='block';sChime();}}}
  requestAnimationFrame(permLoop);}
 permLoop();
-/* kettles */
+/* absorption race */
 const KT={iv:null,d:20,s:20};
-$('#sunBtn').onclick=()=>{if(KT.iv)return;
+$('#sunBtn').onclick=()=>{if(KT.iv)return;sWhoosh();
  KT.iv=setInterval(()=>{const sp=SPDS.ket.speed;
   KT.d=Math.min(68,KT.d+0.55*sp);KT.s=Math.min(36,KT.s+0.16*sp);
   $('#dkT').textContent=Math.round(KT.d)+'°C';$('#svT').textContent=Math.round(KT.s)+'°C';
   $('#dkB').style.width=((KT.d-20)/50*100)+'%';$('#svB').style.width=((KT.s-20)/50*100)+'%';
-  if(KT.d>=68){clearInterval(KT.iv);KT.iv=null;$('#ketObs').style.display='block';}},60);};
+  if(KT.d>=68){clearInterval(KT.iv);KT.iv=null;$('#ketObs').style.display='block';sChime();}},60);};
 $('#ketReset').onclick=()=>{clearInterval(KT.iv);KT.iv=null;KT.d=20;KT.s=20;
- $('#dkT').textContent='20°C';$('#svT').textContent='20°C';$('#dkB').style.width='0%';$('#svB').style.width='0%';$('#ketObs').style.display='none';};
+ $('#dkT').textContent='20°C';$('#svT').textContent='20°C';$('#dkB').style.width='0%';$('#svB').style.width='0%';$('#ketObs').style.display='none';sClick();};
 /* thermography */
 const TH=[[0,[0,0,0],'Black · أسود — coldest الأبرد'],[16,[0,0,255],'Blue · أزرق'],[33,[139,0,255],'Violet · بنفسجي'],[50,[0,128,0],'Green · أخضر'],[66,[255,255,0],'Yellow · أصفر'],[83,[255,0,0],'Red · أحمر'],[100,[255,255,255],'White · أبيض — hottest الأسخن']];
 $('#thRange').oninput=e=>{const v=+e.target.value;let a=TH[0],b=TH[TH.length-1];
