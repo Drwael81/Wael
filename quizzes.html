@@ -97,6 +97,24 @@
     color:var(--solid);
   }
 
+  .unit-header{
+    display:flex; align-items:center; gap:14px;
+    margin:10px 0 22px; user-select:none;
+  }
+  .unit-header::before,.unit-header::after{
+    content:''; flex:1; height:1px; background:rgba(30,42,51,0.12);
+  }
+  .unit-label{
+    font-family:'Cairo',sans-serif; font-weight:800; font-size:17px;
+    color:var(--ink); white-space:nowrap;
+    background:#fff; border:1px solid rgba(30,42,51,0.12);
+    padding:7px 20px; border-radius:999px;
+  }
+  .section-title{
+    font-family:'Cairo',sans-serif; font-weight:700; font-size:14px;
+    color:var(--ink-soft); margin:32px 0 16px;
+  }
+
   .empty-state{
     text-align:center; color:var(--ink-soft); padding:60px 20px;
     background:var(--card-bg); border-radius:18px; box-shadow:var(--shadow);
@@ -130,6 +148,10 @@
     </header>
 
     <!-- اختبار 100 سؤال — ملف مستقل -->
+    <div class="unit-header" id="unit1">
+      <span class="unit-label">الوحدة الأولى: المادة والطاقة</span>
+    </div>
+
     <div class="quiz-grid" style="margin-bottom:22px;">
       <a href="science-test-100.html" class="quiz-card" style="border-top-color:var(--gas);">
         <div class="quiz-icon">🔬📝</div>
@@ -160,6 +182,8 @@
         <div class="quiz-cta">ابدأ الاختبار ←</div>
       </a>
     </div>
+
+    <h3 class="section-title">اختبارات إضافية — فهمك</h3>
 
     <div class="quiz-grid" id="quizGrid">
       <!-- الكروت بتتولّد ديناميكيًا تحت من quizzesData -->
