@@ -25,6 +25,8 @@ nav::-webkit-scrollbar{display:none}
 nav a{padding:5px 12px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:.72rem;font-weight:700;white-space:nowrap;text-decoration:none;transition:.25s}
 nav a.active{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#041018;border-color:transparent}
 #themeBtn{cursor:pointer;border:1px solid var(--line);background:var(--card);border-radius:12px;width:40px;height:40px;font-size:1.1rem}
+#soundBtn{cursor:pointer;border:1px solid var(--line);background:var(--card);border-radius:12px;width:40px;height:40px;font-size:1.1rem}
+@media(max-width:320px){.topbar{gap:6px}#soundBtn{width:28px;height:28px;font-size:.9rem}}
 #rail{position:fixed;inset-inline-end:12px;top:50%;transform:translateY(-50%);z-index:80;display:flex;flex-direction:column;align-items:center;gap:6px}
 #rail .tube{width:12px;height:36vh;border:2px solid var(--line);border-radius:99px;position:relative;overflow:hidden;background:rgba(128,160,220,.08)}
 #rail .bulb{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ff8a6b,#ef4444);margin-top:-4px}
@@ -448,6 +450,40 @@ eDraw();
 document.addEventListener('click',e=>{const b=e.target.closest('.opt');if(!b)return;const q=b.closest('.quiz');if(!q)return;
  if(b.dataset.ok!==undefined){b.classList.add('ok');q.querySelector('.exp').classList.add('show');}
  else{b.classList.add('bad');setTimeout(()=>b.classList.remove('bad'),450);}});
+/* ===== Sound FX experiment — additive only, no existing logic changed ===== */
+(function(){
+try{
+const KEY='l4sound';
+let on=true;try{on=localStorage.getItem(KEY)!=='0'}catch(e){}
+window.__l4log=window.__l4log||[];window.__l4flame=false;
+const AU={};
+function au(n){return AU[n]||(AU[n]=new Audio('assets/sounds/'+n+'.mp3'))}
+function play(n,v){if(!on)return;try{const a=au(n);a.volume=v;a.currentTime=0;a.play().catch(()=>{});window.__l4log.push(n)}catch(e){}}
+const iTube=$('#iTube');
+if(iTube)new MutationObserver(()=>{
+ if(iTube.classList.contains('heated')){
+  if(!window.__l4flame&&on){const a=au('flame');a.loop=true;a.volume=.18;a.currentTime=0;const p=a.play();if(p&&p.catch)p.catch(()=>{})}
+  window.__l4flame=true;
+ }else if(window.__l4flame){
+  window.__l4flame=false;const a=AU.flame;if(a){a.pause();a.currentTime=0}
+ }
+}).observe(iTube,{attributes:true,attributeFilter:['class']});
+document.addEventListener('click',e=>{
+ const t=e.target;if(!t||!t.closest)return;
+ if(t.closest('#soundBtn'))return;
+ if(t.closest('#iHeat')){const was=iTube&&!iTube.classList.contains('heated');
+  setTimeout(()=>{if(was&&iTube&&iTube.classList.contains('heated'))play('lab-click',.3)},0);return;}
+ if(t.closest('#eRun')){const was=!!ER.iv;setTimeout(()=>{if(ER.iv&&!was)play('lab-click',.3)},0);return;}
+ if(t.closest('#eReset')){play('reset',.35);return;}
+ const opt=t.closest('.opt');
+ if(opt){setTimeout(()=>{if(opt.classList.contains('ok'))play('success',.4);else if(opt.classList.contains('bad'))play('error',.35)},0);return;}
+},{capture:true});
+const tb=$('#themeBtn');if(tb){const b=document.createElement('button');b.id='soundBtn';b.type='button';b.title='Sound · الصوت';
+ const paint=()=>{b.textContent=on?'🔊':'🔇'};paint();tb.parentNode.insertBefore(b,tb.nextSibling);
+ b.addEventListener('click',()=>{on=!on;try{localStorage.setItem(KEY,on?'1':'0')}catch(e){}paint();
+  if(on)play('lab-click',.25);else{const a=AU.flame;if(a){a.pause();a.currentTime=0}if(iTube)window.__l4flame=iTube.classList.contains('heated');}});}
+}catch(e){}
+})();
 </script>
 </body>
 </html>

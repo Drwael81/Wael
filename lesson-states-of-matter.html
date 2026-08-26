@@ -26,6 +26,7 @@ nav::-webkit-scrollbar{display:none}
 nav a{padding:5px 12px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:.72rem;font-weight:700;white-space:nowrap;text-decoration:none;transition:.25s}
 nav a.active{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#041018;border-color:transparent}
 #themeBtn{cursor:pointer;border:1px solid var(--line);background:var(--card);border-radius:12px;width:40px;height:40px;font-size:1.1rem}
+#soundBtn{cursor:pointer;border:1px solid var(--line);background:var(--card);border-radius:12px;width:40px;height:40px;font-size:1.1rem}
 #rail{position:fixed;inset-inline-end:12px;top:50%;transform:translateY(-50%);z-index:80;display:flex;flex-direction:column;align-items:center;gap:6px}
 #rail .tube{width:12px;height:36vh;border:2px solid var(--line);border-radius:99px;position:relative;overflow:hidden;background:rgba(128,160,220,.08)}
 #rail .bulb{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ff8a6b,#ef4444);margin-top:-4px}
@@ -529,6 +530,36 @@ function pgDraw(){const W=PG.width,H=PG.height;px.clearRect(0,0,W,H);const sp=pg
 $('#pgT').oninput=e=>PGM.t=+e.target.value;
 $('#pgM').oninput=e=>PGM.m=+e.target.value;
 setInterval(pgDraw,40);
+/* ===== Sound FX experiment — additive only, no existing logic changed ===== */
+(function(){
+try{
+const KEY='l1sound';
+let on=true;try{on=localStorage.getItem(KEY)!=='0'}catch(e){}
+window.__l1log=window.__l1log||[];window.__l1flame=false;
+const AU={};
+function au(n){return AU[n]||(AU[n]=new Audio('assets/sounds/'+n+'.mp3'))}
+function play(n,v){if(!on)return;try{const a=au(n);a.volume=v;a.currentTime=0;a.play().catch(()=>{});window.__l1log.push(n)}catch(e){}}
+document.addEventListener('click',e=>{
+ const t=e.target;if(!t||!t.closest)return;
+ if(t.closest('#soundBtn'))return;
+ const anyIv=()=>!!(TB.iv||RC.iv||TE.iv||MR.iv);
+ const opt=t.closest('.opt');
+ if(opt&&opt.dataset.p!==undefined){play('lab-click',.25);return;}
+ if(opt){const q=opt.closest('.quiz');
+  if(q&&!q.dataset.done){setTimeout(()=>{if(opt.classList.contains('ok'))play('success',.4);else if(opt.classList.contains('bad'))play('error',.35)},0);}
+  return;
+ }
+ if(t.closest('#syrReset,#tubeReset,#raceReset,#teaReset,#mReset')){play('reset',.35);return;}
+ if(t.closest('#bottle,.pBtn')){play('lab-click',.25);return;}
+ if(t.closest('#tubeRun,#raceRun,#teaBtn,#mBtn')){
+  const wasAny=anyIv();setTimeout(()=>{if(anyIv()&&!wasAny)play('lab-click',.3)},0);
+ }
+},{capture:true});
+const tb=$('#themeBtn');if(tb){const b=document.createElement('button');b.id='soundBtn';b.type='button';b.title='Sound · الصوت';
+ const paint=()=>{b.textContent=on?'🔊':'🔇'};paint();tb.parentNode.insertBefore(b,tb.nextSibling);
+ b.addEventListener('click',()=>{on=!on;try{localStorage.setItem(KEY,on?'1':'0')}catch(e){}paint();if(on)play('lab-click',.25);});}
+}catch(e){}
+})();
 </script>
 </body>
 </html>
