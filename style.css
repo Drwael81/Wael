@@ -57,12 +57,7 @@ button:focus-visible,
   backdrop-filter: saturate(1.5) blur(12px);
   border-bottom: 1px solid rgba(20, 35, 43, 0.07);
 }
-body.scrolled .site-header{ box-shadow: 0 6px 24px rgba(16, 32, 40, 0.08); }
-
-.main-nav a.active{
-  background: color-mix(in srgb, var(--liquid) 12%, #fff);
-  color: var(--liquid);
-}
+body.scrolled .site-header{ box-shadow: 0 4px 18px rgba(16, 32, 40, 0.10); }
 
 /* ---------- 3) إصلاح زر البداية (.btn-primary كان بدون تنسيق) ---------- */
 .btn-primary{
