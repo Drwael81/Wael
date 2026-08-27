@@ -248,7 +248,7 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
 <!-- ============ CHART ============ -->
 <section id="chart" class="card reveal">
   <div class="chead"><span class="cnum">🌡️</span><div><h2><span class="en">State at Any Temperature</span><span class="ar">الحالة عند أي حرارة</span></h2></div><span class="ppage">p.45</span></div>
-  <div class="labctrl"><div style="flex:1;min-width:240px"><span class="en">🌡️ Temperature · الحرارة</span><input type="range" id="stT" min="-15" max="120" value="25"></div><b class="en" id="stVal" style="font-family:'Space Grotesk';font-size:1.3rem;color:var(--hot)">25°C</b></div>
+  <div class="labctrl"><div style="flex:1;min-width:240px"><span class="en">🌡️ Temperature · الحرارة</span><input type="range" id="stT" aria-label="Temperature · الحرارة" min="-15" max="120" value="25"></div><b class="en" id="stVal" style="font-family:'Space Grotesk';font-size:1.3rem;color:var(--hot)">25°C</b></div>
   <div class="grid5" style="margin-top:14px">
     <div class="tile" id="c1" style="text-align:center;padding:14px"><div style="font-size:1.5rem">🧊</div><p class="en">&lt; melting</p><p class="ar">&lt; الانصهار</p><p class="en mut">solid · صلب</p></div>
     <div class="tile" id="c2" style="text-align:center;padding:14px"><div style="font-size:1.5rem">🧊💧</div><p class="en">= melting</p><p class="ar">= الانصهار</p><p class="en mut">solid+liquid</p></div>
@@ -316,7 +316,7 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
       <div class="mCard"><span class="en">🌬️ Pressure · الضغط</span><b class="pr" id="mPr">1.00 atm</b></div>
       <div class="mCard"><span class="en">🔥 Boiling point · الغليان</span><b class="bp" id="mBp">100.0°C</b></div>
       <div class="mCard"><span class="en">🥚 Egg boiling time · سلق بيضة</span><b class="eg" id="mEgg">10.0 min</b></div>
-      <input type="range" id="altR2" min="-427" max="6500" step="25" value="0">
+      <input type="range" id="altR2" aria-label="Altitude · الارتفاع" min="-427" max="6500" step="25" value="0">
       <button class="btn" id="chalBtn">🎯 <span class="en" style="display:inline">Challenge: boil at 80°C</span> · <span class="ar" style="display:inline">تحدٍ: غليان عند 80°م</span></button>
       <div id="chalMsg" class="note" style="display:none"></div>
     </div>

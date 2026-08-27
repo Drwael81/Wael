@@ -392,8 +392,8 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
   <p class="en">Move the two sliders and watch the particles: diffusion speed rises with temperature ⬆ and falls with mass ⬇.</p>
   <p class="ar">حرّك السلايدرز الاتنين وراقب الجسيمات: سرعة الانتشار بتزيد مع الحرارة ⬆ وتقل مع الكتلة ⬇.</p>
   <div class="labctrl" style="margin-top:10px">
-    <div style="flex:1;min-width:200px"><span class="en">🌡️ Medium temperature · حرارة الوسط</span><input type="range" id="pgT" min="0" max="100" value="30"></div>
-    <div style="flex:1;min-width:200px"><span class="en">⚖️ Molecule mass · كتلة الجزيء</span><input type="range" id="pgM" min="5" max="100" value="30"></div>
+    <div style="flex:1;min-width:200px"><span class="en">🌡️ Medium temperature · حرارة الوسط</span><input type="range" id="pgT" aria-label="Medium temperature · حرارة الوسط" min="0" max="100" value="30"></div>
+    <div style="flex:1;min-width:200px"><span class="en">⚖️ Molecule mass · كتلة الجزيء</span><input type="range" id="pgM" aria-label="Molecule mass · كتلة الجزيء" min="5" max="100" value="30"></div>
   </div>
   <canvas id="pgCv"></canvas>
   <div class="labctrl"><span style="font-weight:800;font-size:.8rem">⚡ <span class="en">Relative diffusion speed</span> · <span class="ar">السرعة النسبية للانتشار</span></span><div class="meter"><i id="pgMeter"></i></div><b class="en" id="pgVal" style="font-family:'Space Grotesk'">—</b></div>

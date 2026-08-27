@@ -307,7 +307,7 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
     <button class="btn pmBtn" data-mode="solid">🧊 Solid · صلب</button>
     <button class="btn pmBtn ghost" data-mode="liquid">💧 Liquid · سائل</button>
     <button class="btn pmBtn ghost" data-mode="gas">☁️ Gas · غاز</button>
-    <label style="font-weight:800;font-size:.8rem">🌡️ Temp · الحرارة</label>
+    <label for="ptemp" style="font-weight:800;font-size:.8rem">🌡️ Temp · الحرارة</label>
     <input type="range" id="ptemp" min="0" max="100" value="25">
     <div class="meter"><i id="keMeter"></i></div>
   </div>
@@ -558,9 +558,9 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
   <p class="ar mut">نفس الحرارة والكتلة، لكن الحرارة النوعية للنحاس أقل → بيسخن أكتر — عشان كده مفضّل في أواني الطهي.</p>
   <h3 style="margin-top:20px">🧮 <span class="en">Heat calculator: Q = m × c × ΔT</span><span class="ar">حاسبة الحرارة</span></h3>
   <div class="calc">
-    <div><label>Substance · المادة</label><select id="cSub"></select></div>
-    <div><label>Mass m (kg) · الكتلة</label><input type="number" id="cM" value="2" min="0" step="0.1"></div>
-    <div><label>ΔT (°C) · التغيّر</label><input type="number" id="cT" value="10" step="1"></div>
+    <div><label for="cSub">Substance · المادة</label><select id="cSub"></select></div>
+    <div><label for="cM">Mass m (kg) · الكتلة</label><input type="number" id="cM" value="2" min="0" step="0.1"></div>
+    <div><label for="cT">ΔT (°C) · التغيّر</label><input type="number" id="cT" value="10" step="1"></div>
   </div>
   <div class="qOut">Q = <b id="qRes">—</b> J · چول</div>
   <h3 style="margin-top:20px">❓ <span class="en">Question bank</span><span class="ar">بنك الأسئلة</span></h3>
