@@ -92,5 +92,16 @@ const lessonsData = [
     cta: "ابدأ الدرس ←",
     href: "lesson-convection-and-radiation.html",
     lang: "ar"
+  },
+  {
+    id: "lesson-thermal-expansion",
+    order: 8,
+    status: "published",
+    icon: "🌡️📏",
+    title: "Thermal Expansion of Materials",
+    desc: "التمدد الحراري في المواد: السبب على مستوى الجزيئات، تمدد المواد الصلبة والسوائل والغازات، مقارنة الحالات الثلاث، والتطبيقات الحياتية والهندسية مع محاكيات تفاعلية.",
+    cta: "ابدأ الدرس ←",
+    href: "lesson-thermal-expansion.html",
+    lang: "ar"
   }
 ];

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thermal Expansion of Materials | التمدد الحراري في المواد</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060b16;--card:#0f1a2e;--card2:#12203a;--line:#24345a;--text:#eaf2ff;--muted:#93a6cc;--acc:#22d3ee;--acc2:#4f8cff;--hot:#fb923c;--cold:#38bdf8;--ok:#34d399;--bad:#f87171;--gold:#fbbf24;--r:20px;--shock:#c084fc}
+body[data-theme="light"]{--bg:#eef3fb;--card:#fff;--card2:#f4f8ff;--line:#c9d6ee;--text:#10203c;--muted:#5a6b8c}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);line-height:1.9;transition:background .4s,color .4s;overflow-x:hidden}
+::selection{background:var(--acc);color:#032}
+.en{display:block;direction:ltr;text-align:left;font-family:'Space Grotesk','Cairo',sans-serif;font-size:.93rem;line-height:1.7;color:var(--text)}
+.ar{display:block;direction:rtl;text-align:right;font-size:.96rem;line-height:2;color:var(--text);margin-top:4px}
+.mut{color:var(--muted)!important}
+h1,h2,h3{line-height:1.5}
+section{scroll-margin-top:95px}
+#progress{position:fixed;top:0;right:0;height:4px;width:0;background:linear-gradient(90deg,var(--acc),var(--hot));z-index:99;border-radius:99px}
+.topbar{position:fixed;top:0;right:0;left:0;z-index:90;display:flex;align-items:center;gap:10px;padding:10px 14px;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand{font-weight:900;font-size:.85rem;white-space:nowrap;color:var(--acc)}
+nav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;padding:2px}
+nav::-webkit-scrollbar{display:none}
+nav a{padding:5px 12px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:.72rem;font-weight:700;white-space:nowrap;text-decoration:none;transition:.25s}
+nav a.active{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#041018;border-color:transparent}
+.iconBtn{cursor:pointer;border:1px solid var(--line);background:var(--card);border-radius:12px;width:40px;height:40px;font-size:1.1rem;flex:none}
+.homeBtn{cursor:pointer;border:1px solid var(--line);background:var(--card);border-radius:12px;height:40px;padding:0 14px;font-family:'Cairo';font-weight:800;font-size:.78rem;color:var(--text);display:inline-flex;align-items:center;gap:6px;text-decoration:none;flex:none}
+.homeBtn:hover{border-color:var(--acc)}
+#hero{min-height:92vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:110px 18px 60px}
+#heroCv{position:absolute;inset:0;width:100%;height:100%}
+.heroIn{position:relative;z-index:2;max-width:920px}
+.kicker{display:inline-block;padding:6px 18px;border:1px solid var(--line);border-radius:999px;color:var(--acc);font-weight:800;font-size:.78rem;background:var(--card)}
+#hero h1{font-size:clamp(1.9rem,5.5vw,3.3rem);font-weight:900;margin:16px 0 4px;background:linear-gradient(90deg,var(--acc),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+#hero h1 .ar{font-size:clamp(1.5rem,4.5vw,2.6rem);background:linear-gradient(90deg,var(--gold),var(--acc));-webkit-background-clip:text;background-clip:text;color:transparent;margin:0}
+#hero p.desc{margin:16px auto;max-width:74ch;color:var(--muted)}
+.badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:20px}
+.badge{padding:8px 16px;border-radius:14px;border:1px solid var(--line);background:var(--card);font-size:.78rem;font-weight:700;text-align:center}
+.scrollHint{margin-top:34px;font-size:1.6rem;animation:bnc 1.6s infinite}
+@keyframes bnc{50%{transform:translateY(10px)}}
+main{max-width:1080px;margin:auto;padding:26px 16px 90px;display:flex;flex-direction:column;gap:30px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:clamp(18px,3.4vw,32px);box-shadow:0 14px 40px rgba(0,0,0,.25)}
+.chead{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+.cnum{font-family:'Space Grotesk';font-size:1.5rem;font-weight:700;background:linear-gradient(180deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;border:1px solid var(--line);border-radius:14px;padding:4px 13px;flex:none}
+.chead h2{font-size:clamp(1.05rem,2.6vw,1.4rem);font-weight:900}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}
+.tile{background:var(--card2);border:1px solid var(--line);border-radius:16px;padding:18px}
+.note{border-inline-start:4px solid var(--acc);background:var(--card2);border-radius:12px;padding:12px 16px;margin-top:14px;font-size:.9rem}
+.note.hot{border-color:var(--hot)}.note.gold{border-color:var(--gold)}.note.ok{border-color:var(--ok)}
+.tag{display:inline-block;font-size:.7rem;font-weight:800;color:#041018;background:var(--acc);border-radius:99px;padding:2px 12px;margin-bottom:8px}
+.tag.hot{background:var(--hot)}.tag.gold{background:var(--gold)}.tag.shock{background:var(--shock)}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}
+.reveal.vis{opacity:1;transform:none}
+.btn{cursor:pointer;border:none;border-radius:14px;padding:10px 22px;font-family:inherit;font-weight:800;font-size:.9rem;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#041018;transition:.2s;box-shadow:0 6px 18px rgba(34,211,238,.25)}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line);box-shadow:none}
+input[type=range]{accent-color:var(--hot);flex:1;min-width:130px;cursor:pointer}
+.simCtrls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:16px}
+.meter{flex:1;min-width:120px;height:12px;border-radius:99px;border:1px solid var(--line);overflow:hidden;background:var(--card2)}
+.meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cold),var(--hot));transition:width .28s}
+/* particle simulator */
+.labFrame{height:190px;border:1px solid var(--line);border-radius:16px;background:var(--card2);position:relative;overflow:hidden;margin-top:12px}
+.pp{position:absolute;width:15px;height:15px;border-radius:50%;background:var(--acc)}
+.pp.o{background:var(--gold)}
+/* bimetallic strip */
+.stripWrap{height:110px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;margin-top:12px;position:relative}
+.bar{position:relative;height:26px;border-radius:4px;transition:width .3s,transform .3s}
+.bar.a{background:var(--hot)}
+.bar.b{background:var(--acc2)}
+/* liquid column */
+.liquidLab{display:flex;align-items:flex-end;justify-content:center;gap:16px;padding:8px 0 0;margin-top:8px}
+.flask{position:relative;width:120px;height:120px;border:3px solid var(--line);border-radius:50% 50% 22px 22px;border-top:none;background:rgba(56,189,248,.05);overflow:hidden}
+.flaskLiquid{position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(0deg,#38bdf8,#22d3ee);transition:height .25s;border-radius:0 0 18px 18px}
+.capTube{width:16px;height:150px;border:3px solid var(--line);border-radius:99px;background:rgba(56,189,248,.04);position:relative;overflow:hidden}
+.tubeCol{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(0deg,#38bdf8,#22d3ee);transition:height .25s}
+.thermoRead{font-family:'Space Grotesk';font-weight:700;font-size:1rem;color:var(--hot)}
+/* gas balloon */
+.gasLab{height:170px;border:1px solid var(--line);border-radius:16px;background:var(--card2);position:relative;overflow:hidden;margin-top:12px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:6px}
+.bottle{width:70px;height:52px;border:3px solid var(--line);border-radius:0 0 20px 20px;border-top:none;background:rgba(251,191,36,.06);margin-bottom:-2px}
+.balloon{width:64px;height:70px;border-radius:50% 50% 48% 48%;background:linear-gradient(135deg,#fb923c,#f43f5e);transition:width .25s,height .25s;transform-origin:bottom center}
+/* comparison bars */
+.cmp{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+.cmpRow{display:flex;align-items:center;gap:10px}
+.cmpLabel{width:120px;font-size:.82rem;font-weight:800;color:var(--muted);flex:none}
+.cmpTrack{flex:1;height:22px;border-radius:99px;background:var(--card2);border:1px solid var(--line);overflow:hidden}
+.cmpFill{height:100%;width:0;transition:width .8s ease;border-radius:99px}
+.cmpRow.s .cmpFill{background:var(--acc)}
+.cmpRow.l .cmpFill{background:var(--hot)}
+.cmpRow.g .cmpFill{background:var(--shock)}
+.opt{cursor:pointer;border:1px solid var(--line);background:var(--card2);color:var(--text);border-radius:14px;padding:7px 16px;font-family:inherit;font-weight:700;font-size:.83rem;transition:.2s}
+.opt:hover{border-color:var(--acc)}
+.opt.ok{background:var(--ok);border-color:var(--ok);color:#03210f;animation:pop .35s}
+.opt.bad{background:var(--bad);border-color:var(--bad);color:#3b0708;animation:shk .35s}
+.opt.dim{opacity:.4;filter:saturate(.4)}
+@keyframes pop{50%{transform:scale(1.06)}}
+@keyframes shk{25%{transform:translateX(5px)}75%{transform:translateX(-5px)}}
+.qwrap{margin-top:12px;background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.qwrap .qp{margin-bottom:10px;font-weight:800}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.exp{display:none;margin-top:10px;border-inline-start:4px solid var(--ok);background:color-mix(in srgb,var(--ok) 12%,transparent);padding:10px 14px;border-radius:10px;font-size:.88rem}
+.exp.show{display:block}
+details{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin-top:12px}
+summary{cursor:pointer;font-weight:800;list-style:none}
+summary::after{content:'＋';color:var(--acc);font-weight:900;float:left}
+details[open] summary::after{content:'－'}
+details .body{padding-top:10px;font-size:.9rem}
+table{width:100%;border-collapse:collapse;margin-top:10px;font-size:.85rem}
+th,td{border:1px solid var(--line);padding:7px 8px;text-align:center}
+th{background:var(--card);color:var(--acc)}
+@media(max-width:560px){.cmpLabel{width:88px;font-size:.72rem}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div class="topbar">
+  <div class="brand">🌡️📏 التمدد الحراري</div>
+  <nav id="topNav">
+    <a href="#concept">المفهوم</a>
+    <a href="#solids">المواد الصلبة</a>
+    <a href="#liquids">السوائل</a>
+    <a href="#gases">الغازات</a>
+    <a href="#compare">مقارنة</a>
+    <a href="#apps">تطبيقات</a>
+    <a href="#check">أسئلة</a>
+  </nav>
+  <button class="iconBtn" id="themeBtn" title="تبديل الوضع" aria-label="تبديل الوضع">🌙</button>
+  <a class="homeBtn" href="index.html">↩ الرئيسية</a>
+</div>
+
+<section id="hero">
+  <canvas id="heroCv"></canvas>
+  <div class="heroIn">
+    <span class="kicker">بالتعاون مع د. وائل أبو عجيبة</span>
+    <h1><span class="en">Thermal Expansion of Materials</span><span class="ar">التمدد الحراري في المواد</span></h1>
+    <p class="desc">عندما تسخّن مادةً، تكبر! لماذا؟ نكتشف السبب على مستوى الجزيئات، ونجرّب تفاعليًا كيف يتمدد الصلب والسائل والغاز، ونطبّق ذلك على أشياء من حولنا.</p>
+    <div class="badges">
+      <span class="badge">🔬 دفتر المختبر</span>
+      <span class="badge vip">⚡ تفاعلي</span>
+      <span class="badge">🕐 10 دقائق</span>
+      <span class="badge">الصف الثاني الإعدادي</span>
+    </div>
+    <div class="scrollHint">↓</div>
+  </div>
+</section>
+
+<main>
+
+  <!-- ===== المفهوم ===== -->
+  <section class="card reveal" id="concept">
+    <div class="chead"><span class="cnum">1</span><h2>مفهوم التمدد الحراري</h2></div>
+    <p class="mut" style="margin-bottom:10px">ماذا يقصد العلماء بالتمدد الحراري؟ وما سببه؟</p>
+    <p><span class="tag">التعريف</span><span class="en" style="display:inline;margin-inline-end:8px">Thermal expansion is the increase in the size (length, area, or volume) of a material when its temperature rises.</span></p>
+    <p class="ar">التمدد الحراري هو زيادة حجم المادة (أو طولها أو مساحتها) عند ارتفاع درجة حرارتها. السبب لا يعود إلى كِبَر الجزيء نفسه، بل إلى <b>ازدياد اهتزاز الجزيئات</b> فتتباعد عن بعضها وتشغل حيّزًا أكبر.</p>
+    <div class="simCtrls">
+      <label style="font-size:.8rem;font-weight:800;white-space:nowrap">درجة الحرارة</label>
+      <input type="range" id="pHeat" min="0" max="100" value="30">
+      <span class="thermoRead" id="pTemp">30°</span>
+    </div>
+    <div class="labFrame" id="pLab"></div>
+    <p class="mut" style="font-size:.78rem;margin-top:6px">اسحب المؤشر وارفع الحرارة: زد اهتزاز الجزيئات وتباعدها.</p>
+    <div class="note hot"><b>نتيجة:</b> ارتفاع الحرارة ← ازدياد الطاقة الحركية للجزيئات ← تباعدها ← تمدد المادة.</div>
+  </section>
+
+  <!-- ===== المواد الصلبة ===== -->
+  <section class="card reveal" id="solids">
+    <div class="chead"><span class="cnum">2</span><h2>التمدد في المواد الصلبة</h2></div>
+    <p class="ar">المواد الصلبة تتمدد بأبعاد صغيرة لكنها كافية لأن تسبب مشاكل إذا لم ننتبه! جرّب: عند تسخين شريط معدني مكوّن من معدنين مختلفين (أحدهما يتمدد أكثر من الآخر)، يَنْحَنِي الشريط.</p>
+    <div class="simCtrls">
+      <button class="btn" id="stripHeat">🔥 سخّن</button>
+      <button class="btn ghost" id="stripCool">أبرد</button>
+      <span class="thermoRead" id="stripTemp">20°</span>
+    </div>
+    <div class="stripWrap">
+      <div class="bar a" id="barA"></div>
+      <div class="bar b" id="barB"></div>
+    </div>
+    <p class="mut" style="font-size:.78rem;margin-top:6px">الشريط المزدوج: البرتقالي يتمدد أسرع، فعند التسخين ينحني لأعلى نحو الأزرق.</p>
+    <div class="note gold"><b>تطبيق ذكي:</b> هذا المبدأ يستخدم في <b>الثرموستات</b> (منظّم الحرارة) لفتح/إغلاق الدائرة الكهربية.</div>
+  </section>
+
+  <!-- ===== السوائل ===== -->
+  <section class="card reveal" id="liquids">
+    <div class="chead"><span class="cnum">3</span><h2>التمدد في السوائل</h2></div>
+    <p class="ar">السوائل تتمدد أكثر من المواد الصلبة لنفس رفع الحرارة. هذا أبسط ما نراه في <b>مقياس الحرارة (الثيرمومتر)</b>: عند التسخين يتمدد السائل فيرتقع عموده لأعلى.</p>
+    <div class="simCtrls">
+      <label style="font-size:.8rem;font-weight:800;white-space:nowrap">الحرارة</label>
+      <input type="range" id="liqHeat" min="0" max="100" value="25">
+      <span class="thermoRead" id="liqTemp">25°</span>
+    </div>
+    <div class="liquidLab">
+      <div class="flask"><div class="flaskLiquid" id="flaskLiq"></div></div>
+      <div class="capTube"><div class="tubeCol" id="tubeCol"></div></div>
+    </div>
+    <p class="mut" style="font-size:.78rem;margin-top:6px">ارفع الحرارة وشاهد عمود السائل يرتفع في الأنبوب الرفيع.</p>
+    <div class="note ok"><b>لماذا الأنبوب رفيع؟</b> لأن التمدد الصغير للسائل يظهر كحركة كبيرة عندما يُحصر في أنبوب ضيّق، فيسهل قراءته.</div>
+  </section>
+
+  <!-- ===== الغازات ===== -->
+  <section class="card reveal" id="gases">
+    <div class="chead"><span class="cnum">4</span><h2>التمدد في الغازات</h2></div>
+    <p class="ar">الغازات تتمدد <b>أكثر بكثير</b> من السوائل والصلبة. جرّب: عندما نسخّن زجاجة عليها بالون، ينتفخ البالون لأن جزيئات الغاز داخل الزجاجة تتباعد وتدفع البالون للخارج.</p>
+    <div class="simCtrls">
+      <button class="btn" id="gasHeat">🔥 سخّن</button>
+      <button class="btn ghost" id="gasCool">أبرد</button>
+      <span class="thermoRead" id="gasTemp">20°</span>
+    </div>
+    <div class="gasLab">
+      <div class="balloon" id="balloon"></div>
+      <div class="bottle"></div>
+    </div>
+    <p class="mut" style="font-size:.78rem;margin-top:6px">بالون فوق زجاجة: التسخين ينفخ البالون، والتبريد يفرّغه.</p>
+  </section>
+
+  <!-- ===== مقارنة ===== -->
+  <section class="card reveal" id="compare">
+    <div class="chead"><span class="cnum">5</span><h2>مقارنة الحالات الثلاث</h2></div>
+    <p class="ar">بالنسبة لارتفاع الحرارة نفسه، يُلاحظ ترتيب التمدد هكذا:</p>
+    <div class="cmp">
+      <div class="cmpRow s"><span class="cmpLabel">المواد الصلبة</span><div class="cmpTrack"><div class="cmpFill" id="cS"></div></div></div>
+      <div class="cmpRow l"><span class="cmpLabel">السوائل</span><div class="cmpTrack"><div class="cmpFill" id="cL"></div></div></div>
+      <div class="cmpRow g"><span class="cmpLabel">الغازات</span><div class="cmpTrack"><div class="cmpFill" id="cG"></div></div></div>
+    </div>
+    <p class="mut" style="font-size:.8rem;margin-top:8px">الصلب &lt; السائل &lt; الغاز (لنفس رفع درجة الحرارة)</p>
+    <table>
+      <tr><th>الحالة</th><th>مقدار التمدد</th><th>السبب البسيط</th></tr>
+      <tr><td>الصلب</td><td>صغير</td><td>الجزيئات متماسكة وقريبة، تهتز في مكانها فقط</td></tr>
+      <tr><td>السائل</td><td>متوسط</td><td>الجزيئات حرّة الحركة نسبيًا</td></tr>
+      <tr><td>الغاز</td><td>كبير جدًا</td><td>المسافات بين الجزيئات كبيرة فتحتمل تمددًا واسعًا</td></tr>
+    </table>
+  </section>
+
+  <!-- ===== التطبيقات ===== -->
+  <section class="card reveal" id="apps">
+    <div class="chead"><span class="cnum">6</span><h2>تطبيقات من حياتنا وهندستنا</h2></div>
+    <div class="grid3">
+      <div class="tile">🛤️ <b>قضبان السكك الحديدية:</b> تُترك بينها فجوات صغيرة لتسمح بالتمدد دون اعوجاج القضبان يومًا حارًا.</div>
+      <div class="tile">⚡ <b>أعمدة وأسلاك الكهرباء:</b> تُعلّق الأسلاك مرتخية قليلًا لتعوّض تمددها وانكماشها مع الفصول.</div>
+      <div class="tile">🌡️ <b>الثيرمومتر:</b> يعتمد على تمدد السائل في أنبوب رفيع لقراءة درجات الحرارة.</div>
+      <div class="tile">🥫 <b>غطاء البرطمان:</b> تُرخى بغمره في ماء ساخن لأن الغطاء المعدني يتمدد فيسهل فتحه.</div>
+      <div class="tile">🛣️ <b>مفاصل الطرق الخرسانية:</b> فواصل توسّع تمنع التشقق مع تغير الحرارة.</div>
+      <div class="tile">🔌 <b>الثرموستات:</b> يستخدم الشريط المزدوج لفتح/إغلاق الدائرة تلقائيًا.</div>
+    </div>
+    <details>
+      <summary>معنى «الفجوة» بهذه البساطة</summary>
+      <div class="body">المعادن تتمدد بالحرارة وتنكمش بالبرودة. لو أسّسنا قضبانً متلاصقة، لاعوجّت أو تحطّمت يوم الحر الشديد بسبب التمدد؛ لذا يُترك هذا الفراغ كـ«إذن للتمدد» بأمان.</div>
+    </details>
+  </section>
+
+  <!-- ===== أسئلة ===== -->
+  <section class="card reveal" id="check">
+    <div class="chead"><span class="cnum">7</span><h2>تأكد من فهمك</h2></div>
+    <p class="mut" style="margin-bottom:12px">أجب عن الأسئلة الأربعة — اضغط على اختيارك واقرأ الشرح.</p>
+
+    <div class="qwrap" data-q="0">
+      <p class="qp">1) عند تسخين جسم صلب، ماذا يحدث لجزيئاته؟</p>
+      <div class="opts">
+        <button class="opt" data-ok="0">تصغر حجمًا وتتقارب</button>
+        <button class="opt" data-ok="1">تهتز أسرع وتتباعد</button>
+        <button class="opt" data-ok="0">تتجمد وتتوقف عن الحركة</button>
+        <button class="opt" data-ok="0">تتحول لجزيئات مادة أخرى</button>
+      </div>
+      <div class="exp">الصحيح: <b>تهتز أسرع وتتباعد</b>. ارتفاع الحرارة يزيد الطاقة الحركية للجزيئات فتتباعد وتشغل حيزًا أكبر — هذا هو التمدد الحراري.</div>
+    </div>
+
+    <div class="qwrap" data-q="1">
+      <p class="qp">2) لنفس رفع درجة الحرارة، أيها يتمدد أكثر؟</p>
+      <div class="opts">
+        <button class="opt" data-ok="0">المواد الصلبة</button>
+        <button class="opt" data-ok="0">السوائل</button>
+        <button class="opt" data-ok="1">الغازات</button>
+        <button class="opt" data-ok="0">كلها بالتساوي</button>
+      </div>
+      <div class="exp">الصحيح: <b>الغازات</b>. ترتيب التمدد لنفس الحرارة: الصلب &lt; السائل &lt; الغاز، لأن جزيئات الغاز تفصل بينها مسافات كبيرة تسمح بتمدد واسع.</div>
+    </div>
+
+    <div class="qwrap" data-q="2">
+      <p class="qp">3) لماذا تُترك فجوات بين قضبان السكك الحديدية؟</p>
+      <div class="opts">
+        <button class="opt" data-ok="1">لسماح التمدد الحراري دون اعوجاج القضبان</button>
+        <button class="opt" data-ok="0">لتقليل وزن القضبان</button>
+        <button class="opt" data-ok="0">لمنع وصول الكهرباء بينها</button>
+        <button class="opt" data-ok="0">لزيادة سرعة القطار</button>
+      </div>
+      <div class="exp">الصحيح: <b>لسماح التمدد الحراري دون اعوجاج</b>. عند الحر تتمدد القضبان، والفجوة تعطي إزاحة للتمدد دون تكسر أو التواء.</div>
+    </div>
+
+    <div class="qwrap" data-q="3">
+      <p class="qp">4) ما وظيفة الشريط المعدني المزدوج في الثرموستات؟</p>
+      <div class="opts">
+        <button class="opt" data-ok="0">زيادة درجة الحرارة</button>
+        <button class="opt" data-ok="0">قياس الضغط الجوي</button>
+        <button class="opt" data-ok="1">الانحناء عند التمدد لفتح أو إغلاق الدائرة الكهربية</button>
+        <button class="opt" data-ok="0">منع التمدد نهائيًا</button>
+      </div>
+      <div class="exp">الصحيح: <b>الانحناء عند التمدد لفتح/إغلاق الدائرة</b>. المعدنان يتمددان بمقدارين مختلفين فينحني الشريط، فيُشغّل أو يطفئ التيار تلقائيًا.</div>
+    </div>
+  </section>
+
+  <!-- ===== الخاتمة ===== -->
+  <section class="card reveal">
+    <div class="chead"><span class="cnum">ت</span><h2>الخلاصة</h2></div>
+    <p class="ar">التمدد الحراري ظاهرة يراها الجميع حولهم: من قضبان السكك الحديدية إلى الثيرمومتر إلى مفاصل الطرق. السرّ دائمًا في <b>الجزيئات التي تهتز أسرع وتتباعد عند ارتفاع الحرارة</b>، وترتيب التمدد: <b>الصلب &lt; السائل &lt; الغاز</b>.</p>
+    <div class="note"><b>تذكير:</b> جرّب المحاكيات مرة أخرى، وخمّن النتيجة قبل كل تسخين — هكذا يفكّر العالم الحقيقي.</div>
+  </section>
+
+</main>
+
+<script>
+(function(){
+  var $=function(s){return document.querySelector(s)};
+
+  /* progress bar */
+  var prog=$('#progress');
+  window.addEventListener('scroll',function(){var h=document.documentElement;var p=h.scrollTop/(h.scrollHeight-h.clientHeight);prog.style.width=(p*100)+'%';},{passive:true});
+
+  /* reveal on scroll */
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}});},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+
+  /* theme */
+  var themeBtn=$('#themeBtn');var cur='dark';
+  themeBtn.addEventListener('click',function(){cur=cur==='dark'?'light':'dark';document.body.setAttribute('data-theme',cur);themeBtn.textContent=cur==='dark'?'🌙':'☀️';});
+
+  /* 1) particle simulator */
+  var lab=$('#pLab'),heat=$('#pHeat'),pTemp=$('#pTemp'),parts=[],PW=600,PH=190;
+  function makeParts(){lab.innerHTML='';parts=[];for(var i=0;i<26;i++){var d=document.createElement('div');d.className='pp'+(i%5?'':' o');d.style.width='15px';d.style.height='15px';lab.appendChild(d);parts.push({el:d,x:20+(i%13)*42+Math.random()*20,y:20+Math.floor(i/13)*88+Math.random()*24,vx:(Math.random()-.5)*4,vy:(Math.random()-.5)*4});}tick();}
+  function tick(){var t=(heat.value-30)/70;var speed=0.5+t*6,spread=10+t*70;
+    for(var i=0;i<parts.length;i++){var p=parts[i];
+      p.vx+=(Math.random()-.5)*speed;p.vy+=(Math.random()-.5)*speed;
+      var max=Math.max(0.4,1-t*0.6);
+      p.vx*=max;p.vy*=max;
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<4){p.x=4;p.vx*=-1;}if(p.x>PW-15-4){p.x=PW-15-4;p.vx*=-1;}
+      if(p.y<4){p.y=4;p.vy*=-1;}if(p.y>PH-15-4){p.y=PH-15-4;p.vy*=-1;}
+      p.el.style.transform='translate('+p.x+'px,'+p.y+'px)';
+    }
+    requestAnimationFrame(tick);}
+  heat.addEventListener('input',function(){pTemp.textContent=heat.value+'°';});
+  makeParts();
+
+  /* 2) bimetallic strip */
+  var barA=$('#barA'),barB=$('#barB'),stripTemp=$('#stripTemp'),stripT=20;
+  function drawStrip(){var w=30+Math.max(0,(stripT-20))*0.6;if(w>100)w=100;barA.style.width=w+'%';barB.style.width=w+'%';var bendAmt=Math.max(0,(stripT-20))*1.3;barA.style.transform='rotate(-'+Math.min(60,bendAmt)+'deg)';barB.style.transform='rotate('+Math.min(60,bendAmt*1.5)+'deg)';barA.style.transformOrigin='bottom center';barB.style.transformOrigin='bottom center';}
+  var stripInt=null;
+  function stripCycle(d){clearInterval(stripInt);stripInt=setInterval(function(){stripT+=d?3:-3;stripT=Math.max(20,Math.min(120,stripT));stripTemp.textContent=stripT+'°';drawStrip();if(stripT>=120||stripT<=20){clearInterval(stripInt);}},120);}
+  $('#stripHeat').addEventListener('click',function(){stripCycle(true);});
+  $('#stripCool').addEventListener('click',function(){stripCycle(false);});
+  drawStrip();
+
+  /* 3) liquid column */
+  var liqHeat=$('#liqHeat'),liqTemp=$('#liqTemp'),flaskLiq=$('#flaskLiq'),tubeCol=$('#tubeCol');
+  function drawLiq(){var v=(liqHeat.value-0)/100;flaskLiq.style.height=(30+v*55)+'%';tubeCol.style.height=(10+v*85)+'%';liqTemp.textContent=liqHeat.value+'°';}
+  liqHeat.addEventListener('input',drawLiq);drawLiq();
+
+  /* 4) gas balloon */
+  var balloon=$('#balloon'),gasTemp=$('#gasTemp'),gasT=20,gasInt=null;
+  function drawGas(){var k=Math.max(0,(gasT-20)/80);var s=0.8+k*1.2;balloon.style.width=(s*64)+'px';balloon.style.height=(s*70)+'px';gasTemp.textContent=gasT+'°';}
+  function gasCycle(d){clearInterval(gasInt);gasInt=setInterval(function(){gasT+=d?3:-3;gasT=Math.max(20,Math.min(100,gasT));drawGas();if(gasT>=100||gasT<=20){clearInterval(gasInt);}},120);}
+  $('#gasHeat').addEventListener('click',function(){gasCycle(true);});
+  $('#gasCool').addEventListener('click',function(){gasCycle(false);});
+  drawGas();
+
+  /* 5) comparison bars */
+  var io2=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){$('#cS').style.width='18%';$('#cL').style.width='48%';$('#cG').style.width='92%';io2.unobserve(e.target);}});},{threshold:.4});
+  io2.observe($('#compare'));
+
+  /* nav active on scroll */
+  var secs=document.querySelectorAll('main section[id]');
+  var navIO=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){document.querySelectorAll('#topNav a').forEach(function(a){a.classList.remove('active');});var id=e.target.id;var link=document.querySelector('#topNav a[href="#'+id+'"]');if(link)link.classList.add('active');}});},{rootMargin:'-40% 0px -55% 0px'});
+  secs.forEach(function(s){navIO.observe(s);});
+
+  /* 6) check questions */
+  document.querySelectorAll('.qwrap').forEach(function(w){
+    var opts=w.querySelectorAll('.opt');
+    w.addEventListener('click',function(e){
+      var b=e.target.closest('.opt');if(!b)return;
+      if(w.dataset.done)return;w.dataset.done=1;
+      var ok=b.getAttribute('data-ok')==='1';
+      opts.forEach(function(o){
+        var isCorrect=o.getAttribute('data-ok')==='1';
+        if(o!==b && !isCorrect) o.classList.add('dim');
+      });
+      if(ok){b.classList.add('ok');}
+      else{b.classList.add('bad');opts.forEach(function(o){if(o.getAttribute('data-ok')==='1')o.classList.add('ok');});}
+      var ex=w.querySelector('.exp');if(ex)ex.classList.add('show');
+    });
+  });
+
+  /* hero canvas */
+  var cv=$('#heroCv'),ctx=cv.getContext('2d'),W,H;
+  function rs(){W=cv.width=cv.offsetWidth;H=cv.height=cv.offsetHeight;}
+  rs();window.addEventListener('resize',rs);
+  var hd=[];for(var k=0;k<70;k++){hd.push({x:Math.random(),y:Math.random(),s:0.5+Math.random()*1.5,p:(Math.random()*2)});}
+  (function anim(){ctx.clearRect(0,0,W,H);for(var i=0;i<hd.length;i++){var s=hd[i];var px=s.x*W,py=s.y*H+vibrate(s.p);if(py>H+8){s.y=0;s.x=Math.random();}ctx.beginPath();ctx.arc(px,py,s.s,0,7);ctx.fillStyle='rgba(34,211,238,0.5)';ctx.fill();}requestAnimationFrame(anim);})();
+  function vibrate(p){return Math.sin(Date.now()/400+p)*3;}
+})();
+</script>
+</body>
+</html>
