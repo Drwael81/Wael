@@ -1,32 +1,36 @@
 # هيكلة مشروع «مختبر العلوم الممتع» — توثيق عملي
 
-> آخر Commit مستقر وقت كتابة هذا الملف: `ffd439c`
-> (`Modularize experiment JavaScript into separate modules (Phase B2-lite)`)
+> آخر Commit مستقر وقت تحديث هذا الملف: `e0b17cb`
+> (`feat: add educational video library` — بعد Phase 6 لتصميم الرئيسية ومراحل الفيديو V1–V5)
 
-## 1) خريطة الملفات والمجلدات
+## 1) خريطة الملفات والمجلدات (الحالة الحالية)
 
 ```
 Wael/
-├── index.html                     الصفحة الرئيسية: قشرة الموقع + أقسام التجارب الـ22 (markup فقط، صفر كود مضمن)
-├── style.css                      نظام التصميم: متغيرات الألوان والخطوط والـtokens العامة
+├── index.html                     الصفحة الرئيسية: قشرة الموقع + أقسام التجارب الـ22 + قسم «أحدث الفيديوهات» (markup فقط، صفر كود مضمن)
+├── style.css                      نظام التصميم: متغيرات الألوان والخطوط والـtokens العامة (يُحمَّل بعد experiments.css)
 ├── assets/
-│   ├── css/experiments.css        كل تنسيقات التجارب + القشرة (892 سطرًا — ملف واحد مقصود)
-│   └── js/experiments/            21 وحدة JavaScript مستقلة (وحدة = كتلة سلوكية واحدة)
-│       ├── 00-category-counters.js
-│       ├── 01-exp01-compressibility.js
-│       ├── ... (الترتيب الرقمي = ترتيب التحميل الإلزامي)
-│       └── 20-exp21-radiation.js
+│   ├── css/experiments.css        كل تنسيقات التجارب + القشرة + أنماط قسم الفيديوهات الأخيرة (ملف واحد مقصود)
+│   ├── js/experiments/            21 وحدة JavaScript مستقلة (وحدة = كتلة سلوكية واحدة) — نفس التوزيع الموثق في القسم 2
+│   └── sounds/                    مؤثرات صوتية للتجارب (success / error / click / flame / reset)
 ├── experiments-data.js            طبقة بيانات وصفية للتجارب (id / order / category / title)
-├── site-enhance.js                تحسينات عامة (reveal عند التمرير، شريط التقدم…) — يُحمَّل بـdefer
 ├── lessons.html                   فهرس الدروس — مولّد تلقائيًا من lessons-data.js
 ├── lessons-data.js                بيانات الدروس
-├── lesson-states-of-matter.html   درس (ملف مكتفٍ ذاتيًا)
-├── lesson-particle-model-of-matter.html
+├── lesson-*.html                  ملفات الدروس (كل درس ملف مكتفٍ ذاتيًا — نمط مقصود)
 ├── quizzes.html                   فهرس الاختبارات — مولّد تلقائيًا من quizzes-data.js
 ├── quiz.html                      مشغّل الاختبار (يقرأ ?id= من quizzes-data.js)
 ├── quizzes-data.js                بيانات كل الاختبارات + قالب جاهز للنسخ داخله
+├── videos.html                    مكتبة الفيديوهات — مولّدة تلقائيًا من videos-data.js (تشغيل YouTube lazy عند النقر)
+├── videos-data.js                 بيانات الفيديوهات (id/order/status/kind/videoUrl/…) — كلها قريبًا حتى تتوفر روابط حقيقية
+├── site-config.js                 طبقة إعدادات مركزية (بنية فقط لمرونة مستقبلية — غير محمّلة في أي صفحة ولا تُغيّر أي نص)
+├── site-enhance.js                تحسينات عامة (reveal عند التمرير، شريط التقدم…) — يُحمَّل بـdefer
 ├── manifest.json / icon-*.png     ملفات PWA
+├── STRUCTURE.md                   هذا التوثيق
 ```
+
+### ملاحظة حول قسم «أحدث الفيديوهات» في الرئيسية
+- مولّد من `videos-data.js` عبر سكربت مضمن في `index.html` (link-only: كل كرت رابط إلى `videos.html`).
+- **لا iframe ولا تحميل فيديو في الرئيسية** — التشغيل الفعلي داخل `videos.html` فقط عبر lazy-embed عند النقر.
 
 ## 2) خريطة الوحدات الـ21 ↔ التجارب الـ22
 
@@ -59,6 +63,15 @@ Wael/
 - نوعا السؤال: `"mcq"` (choices + answer نص الاختيار الصحيح) أو `"text"` (answer نصي).
 - `quizzes.html` يعرض بطاقة لكل إدخال، و`quiz.html?id=<معرّف-الاختبار>` يشغّله تلقائيًا.
 
+## 5-ب) نظام الفيديوهات (V1–V5)
+- `videos-data.js` هو المصدر الوحيد؛ `videos.html` يبني البطاقات منه تلقائيًا.
+- الحقول: `id / order / status / title / desc / duration / lessonId / lessonHref / videoUrl / kind`.
+- `status` يدعم `published` / `draft` / `soon`؛ و`kind` يدعم `youtube` / `local` / `soon`.
+- **جميع الإدخالات حاليًا `soon`** (لا روابط حقيقية بعد) — لا تُضاف أي روابط وهمية.
+- **الرئيسية**: قسم «أحدث الفيديوهات» مولّد من `videosData` (أول 3 بالترتيب) وهو **link-only** (كل كرت رابط إلى `videos.html`). لا iframe ولا تحميل فيديو في الرئيسية إطلاقًا.
+- **`videos.html`**: التشغيل عبر **lazy-embed (YouTube)** عند النقر فقط — `toYouTubeEmbed()` يحوّل أي صيغة YouTube إلى `https://www.youtube-nocookie.com/embed/<ID>?rel=0`، ويُضاف `<iframe loading="lazy" title="..." allowfullscreen referrerpolicy="strict-origin-when-cross-origin">` عند النقر. لا iframe قبل التفاعل.
+- «وصفة» تفعيل فيديو حقيقي لاحقًا (بعد توفّر الروابط): غيّر في `videos-data.js` فقط → `status:"published"` + `videoUrl:"<رابط حقيقي>"` + `kind:"youtube"` + `duration` — ويشتغل كل شيء تلقائيًا في `videos.html` دون تعديل كود آخر.
+
 ## 6) وصفة إضافة تجربة جديدة (مثال: رقم 23)
 1. في `index.html`: أضف `<section class="experiment" id="exp-23">…</section>` قبل قسم «قريبًا».
 2. في `experiments-data.js`: أضف إدخالاً `{ id:'exp-23', order:23, category:…, title:… }`.
@@ -89,5 +102,17 @@ Wael/
 - **نقل markup التجارب خارج `index.html`**: غير موصى به — يكسر أنكورات `#exp-N` ووضع عدم وجود JavaScript والـSEO.
 - صفحات الدروس تبقى مكتفية ذاتيًا؛ لا تُعاد هيكلتها.
 
+## 11) جاهزية التوسع المستقبلي (بنية فقط — غير مطبّقة)
+> تنبيه: هذا القسم **توثيقي حصرًا**. لا يوجد أي دعم فعلي لصفوف دراسية متعددة في الموقع الحالي، ولا ينبغي بدء تنفيذه ضمن نطاق العمل الحالي.
+
+- **`site-config.js`**: طبقة إعدادات مركزية (بنية فقط) تجمع ثوابت الهوية/السياق في كائن واحد (`SITE_CONFIG`).
+  - ⚠️ الملف **غير محمّل** في أي صفحة، ولا يستبدل أي نص معروض (براند/فوتر/manifest كلها بلا تغيير).
+  - الغرض: عند بدء دعم صفوف متعددة مستقبلًا، يكون مصدر الإعدادات موحّدًا دون إعادة كتابة نصوص مكرّرة.
+- **أسلوب التوسع المستقبلي المتوقع (غير مطبّق):**
+  - البنية الحالية قابلة للتوسعة الرأسية فعلًا: إضافة تجربة/درس/اختبار/فيديو = مجرد إدخال في ملف البيانات المقابل (انظر الوصفات 6–8 + 5-ب).
+  - أي دعم صفوف مستقبلًا يجب أن يحافظ على: مسارات نسبية، فصل البيانات، وملفات الدروس المكتفية ذاتيًا.
+- **لا تغيير حالي:** لا إعادة هيكلة، لا تغيير هوية، لا إضافة صفوف، لا تعديل على أسماء/مسارات/سلوك أي صفحة.
+
 ---
-*أُنشئ هذا الملف ضمن Commit: `Document project structure and remove orphan archive`.*
+
+*أُنشئ هذا الملف ضمن Commit: `Document project structure and remove orphan archive`. — حُدِّث لاحقًا ليعكس مراحل تصميم الرئيسية (Phase 6) ونظام الفيديوهات (V1–V5) وملف الإعدادات البنيوي `site-config.js`.*
