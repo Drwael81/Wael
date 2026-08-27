@@ -338,6 +338,70 @@ const quizzesData = [
         explanation: "Attractive forces decrease from solid to liquid to gas, while interparticle spaces and diffusion speed increase."
       }
     ]
+  },
+
+  /* Thermal Expansion of Materials — Quiz (linked to lesson-thermal-expansion) */
+  {
+    id: "quiz-thermal-expansion",
+    title: "Thermal Expansion of Materials",
+    lessonId: "lesson-thermal-expansion",
+    category: "temperature",
+    questions: [
+      {
+        type: "mcq",
+        prompt: "Why does a solid expand when it is heated?",
+        choices: [
+          "Its particles disappear into the surrounding air.",
+          "Its particles vibrate faster and move a little farther apart.",
+          "Its particles become smaller in size.",
+          "Its particles stop moving completely."
+        ],
+        answer: "Its particles vibrate faster and move a little farther apart.",
+        explanation: "Heating gives the particles more energy, so they vibrate faster and push slightly farther apart, causing the solid to expand."
+      },
+      {
+        type: "mcq",
+        prompt: "When solids, liquids and gases are heated by the same amount, which expands the most?",
+        choices: [
+          "Solids",
+          "Liquids",
+          "Gases",
+          "All expand by exactly the same amount"
+        ],
+        answer: "Gases",
+        explanation: "Gas particles are far apart and weakly attracted, so gases expand the most when heated (solids the least)."
+      },
+      {
+        type: "mcq",
+        prompt: "Why do railway engineers leave small gaps between the iron rails of a railway track?",
+        choices: [
+          "To make the track lighter in weight.",
+          "To allow the rails to expand freely in hot weather without buckling.",
+          "To stop water from flowing under the track.",
+          "To keep the rails from being touched by electricity."
+        ],
+        answer: "To allow the rails to expand freely in hot weather without buckling.",
+        explanation: "The gaps let the rails expand when they heat up so they do not bend or buckle."
+      },
+      {
+        type: "mcq",
+        prompt: "In a bimetallic strip, which metal bends the strip more strongly?",
+        choices: [
+          "The metal that expands more when heated.",
+          "The metal that expands less when heated.",
+          "The heavier metal, regardless of expansion.",
+          "The metal that is always on the outside."
+        ],
+        answer: "The metal that expands more when heated.",
+        explanation: "The metal that expands more bends faster, causing the bimetallic strip to curve and bend (used in thermostats)."
+      },
+      {
+        type: "text",
+        prompt: "Complete carefully: when a solid is heated, its particles vibrate faster and take up …………… (more space / less space).",
+        answer: "more space",
+        explanation: "Vibration in place expands slightly, so the particles take up a little more space and the material expands."
+      }
+    ]
   }
 
   /* الاختبارات الحقيقية الجديدة تتضاف هنا تحت، كل واحد بفاصلة قبله: */
