@@ -300,6 +300,26 @@ nav.toc{
   .experiment{ padding: 30px 0 60px; }
   .experiment + .experiment{ border-top:1px solid rgba(30,42,51,0.12); }
 
+  /* ===== Phase 6 Batch B — virtual chapter identity (CSS-only, no reorder) ===== */
+  .chapter-matter            { --chapter-accent: var(--solid); }
+  .chapter-diffusion         { --chapter-accent: var(--gas); }
+  .chapter-state-changes     { --chapter-accent: var(--liquid); }
+  .chapter-temperature       { --chapter-accent:#C9542E; }
+  .chapter-heat-transfer     { --chapter-accent:#B23A3A; }
+
+  .experiment{
+    background:
+      radial-gradient(60% 40% at 50% 0%, color-mix(in srgb, var(--chapter-accent, transparent) 5%, transparent), transparent 72%);
+  }
+  header.exp-head{ position:relative; }
+  header.exp-head::before{
+    content:"";
+    position:absolute; top:-30px; left:50%; transform:translateX(-50%);
+    width:56px; height:4px; border-radius:999px;
+    background: var(--chapter-accent, rgba(30,42,51,0.30));
+    opacity:.8; pointer-events:none;
+  }
+
   header.exp-head{ text-align:center; margin-bottom:44px; }
   .eyebrow{
     display:inline-block;
