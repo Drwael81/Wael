@@ -170,11 +170,11 @@ nav.toc{
     display:inline-flex; align-items:center; gap:8px;
     margin-top:24px; padding:8px 18px;
     background:#fff; border:1.5px solid rgba(20,35,43,0.12);
-    border-radius:999px; text-decoration:none; color:#1EBE5A;
+    border-radius:999px; text-decoration:none; color:#0F7B3E;
     font-family:'Cairo', sans-serif; font-weight:700; font-size:13px;
     transition: background .15s ease, border-color .15s ease, color .15s ease;
   }
-  .hero-wa-btn:hover{ background:#F0FAF3; border-color:#1EBE5A; color:#17944A; }
+  .hero-wa-btn:hover{ background:#F0FAF3; border-color:#0F7B3E; color:#0B5C2F; }
   .hero-wa-icon{ font-size:18px; line-height:1; }
   .hero-wa-title{
     display:block; font-family:'Cairo', sans-serif; font-weight:700; font-size:13px;
@@ -185,12 +185,12 @@ nav.toc{
     display:inline-flex; align-items:center; gap:6px;
     margin-top:24px; margin-inline-start:10px;
     font-family:'Cairo', sans-serif; font-weight:700; font-size:13px;
-    color:#229ED9; text-decoration:none;
-    background:#fff; border:1.5px solid #229ED9;
+    color:#1565A0; text-decoration:none;
+    background:#fff; border:1.5px solid #1565A0;
     padding:8px 18px; border-radius:999px;
     transition: background .15s ease, color .15s ease;
   }
-  .hero-tg-btn:hover{ background:#229ED9; color:#fff; }
+  .hero-tg-btn:hover{ background:#1565A0; color:#fff; }
 
   /* ---------- category grid ---------- */
   /* ---------- two main path cards ---------- */
@@ -1234,10 +1234,10 @@ nav.toc{
     }
   }
   .jump-matter{ border-color: color-mix(in srgb, var(--solid) 45%, transparent); color: var(--solid); }
-  .jump-diffusion{ border-color: color-mix(in srgb, var(--gas) 45%, transparent); color: var(--gas); }
+  .jump-diffusion{ border-color: color-mix(in srgb, #0C7F77 45%, transparent); color: #0C7F77; }
   .jump-states{ border-color: color-mix(in srgb, var(--liquid) 45%, transparent); color: var(--liquid); }
-  .jump-temp{ border-color: color-mix(in srgb, #C9542E 45%, transparent); color:#C9542E; }
-  .jump-transfer{ border-color: color-mix(in srgb, #B23A3A 45%, transparent); color:#B23A3A; }
+  .jump-temp{ border-color: color-mix(in srgb, #B23F1D 45%, transparent); color: #B23F1D; }
+  .jump-transfer{ border-color: color-mix(in srgb, #B23A3A 45%, transparent); color: #B23A3A; }
 
   /* --- Task 5: footer closure polish (natural end, accent rule) --- */
   footer.site-footer{ position:relative; margin-top:56px; }
