@@ -20,6 +20,8 @@
 <link rel="stylesheet" href="style.css">
 <!-- Experiments Metadata (Phase 2 data layer) — id/category/order فقط، مش محتوى -->
 <script src="experiments-data.js"></script>
+<!-- Video Learning data layer — قسم أحدث الفيديوهات في الرئيسية -->
+<script src="videos-data.js"></script>
 <!-- تحسينات واجهة عامة: شريط تقدم + زر عودة لأعلى + أنيميشن ظهور -->
 <script src="site-enhance.js" defer></script>
 </head>
@@ -38,6 +40,7 @@
         <a href="#categories">🧪 التجارب</a>
         <a href="lessons.html">📚 الدروس</a>
         <a href="quizzes.html">📝 الاختبارات</a>
+        <a href="videos.html">🎥 الفيديوهات</a>
       </nav>
       <span class="credit">By #Dr_Wael_Aboagiza</span>
     </div>
@@ -1286,6 +1289,51 @@
         <div class="soon-card"><div class="num">٢٣</div>قريبًا</div>
       </div>
     </section>
+
+    <!-- ============ latest videos ============ -->
+    <section class="latest-videos-section" aria-label="أحدث فيديوهات الشرح">
+      <div class="latest-videos-head">
+        <h2>🎥 أحدث فيديوهات الشرح</h2>
+        <p>شرح مرئي مبسّط لكل درس بطريقة قريبة منك — فيديوهات جديدة هتتضاف هنا باستمرار.</p>
+      </div>
+      <div class="latest-videos-grid" id="latestVideosGrid">
+        <!-- كروت الفيديوهات بتتولّد من videos-data.js -->
+      </div>
+      <div class="latest-videos-cta">
+        <a href="videos.html" class="latest-videos-btn">عرض كل الفيديوهات ←</a>
+      </div>
+    </section>
+
+    <script>
+      (function(){
+        var grid = document.getElementById('latestVideosGrid');
+        if (!grid || typeof videosData === 'undefined' || !Array.isArray(videosData)) return;
+        var SHOW = 3;
+        var pending = videosData
+          .filter(function(v){ return v && (v.status === 'published' || v.status === 'soon'); })
+          .sort(function(a, b){ return (a.order || 0) - (b.order || 0); })
+          .slice(0, SHOW);
+
+        function esc(s){ return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+        var cards = pending.map(function(v){
+          var dur = v.duration ? '<span class="latest-vid-duration">⏱ ' + esc(v.duration) + '</span>' : '';
+          var status = '<span class="latest-vid-status">' + (v.status === 'published' ? 'جاهز' : 'قريبًا') + '</span>';
+          // link-only: whole card navigates to the library page (no inline iframe on the homepage)
+          return '' +
+            '<a href="videos.html" class="latest-vid-card">' +
+              '<div class="latest-vid-thumb">' +
+                '<div class="latest-vid-thumb-bg"><span class="latest-vid-emoji">🎬</span></div>' +
+                '<span class="latest-vid-play">▶</span>' +
+                dur + status +
+              '</div>' +
+              '<div class="latest-vid-title">' + esc(v.title) + '</div>' +
+            '</a>';
+        }).join('');
+
+        grid.innerHTML = cards;
+      })();
+    </script>
 
   </main>
 

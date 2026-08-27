@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>فيديوهات الشرح · مختبر العلوم الممتع</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Tajawal:wght@400;500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet"></noscript>
+<style>
+  :root{
+    --paper:#EEF1EA;
+    --paper-line: rgba(31,41,55,0.06);
+    --ink:#1E2A33;
+    --ink-soft:#5B6B72;
+    --card-bg:#FBFCF9;
+    --solid:#A85C32;
+    --liquid:#24567A;
+    --gas:#1E8A72;
+    --shadow: 0 10px 30px rgba(30,42,51,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      repeating-linear-gradient(0deg, var(--paper-line) 0px, var(--paper-line) 1px, transparent 1px, transparent 34px),
+      repeating-linear-gradient(90deg, var(--paper-line) 0px, var(--paper-line) 1px, transparent 1px, transparent 34px),
+      var(--paper);
+    color:var(--ink);
+    font-family:'Tajawal', 'Segoe UI', Tahoma, Arial, sans-serif;
+    min-height:100vh;
+  }
+
+  .site-header{
+    position:sticky; top:0; z-index:40;
+    background: rgba(238,241,234,0.9);
+    backdrop-filter: blur(6px);
+    border-bottom:1px solid rgba(30,42,51,0.1);
+    padding:14px 20px;
+  }
+  .site-header-inner{
+    max-width:1180px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    flex-wrap:wrap;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+    font-family:'Cairo', sans-serif; font-weight:900; font-size:16px;
+    direction:ltr; text-align:left;
+  }
+  .brand-url{ font-weight:700; color:var(--ink-soft); }
+  .back-link{
+    font-family:'Cairo', sans-serif; font-weight:700; font-size:13.5px;
+    color:var(--ink); text-decoration:none;
+    background:#fff; border:1px solid rgba(30,42,51,0.14);
+    padding:11px 18px; border-radius:999px;
+    transition: background .15s ease, color .15s ease;
+  }
+  .back-link:hover{ background:var(--ink); color:#fff; }
+
+  .wrap{max-width:1000px; margin:0 auto; padding:44px 20px 70px;}
+  header.page-head{ text-align:center; margin-bottom:40px; }
+  .eyebrow{
+    display:inline-block; font-family:'Cairo', sans-serif; font-weight:700; font-size:13px;
+    color:var(--ink-soft); background:#fff; border:1px solid rgba(30,42,51,0.12);
+    padding:6px 16px; border-radius:999px; margin-bottom:18px;
+  }
+  h1{
+    font-family:'Cairo', sans-serif; font-weight:900;
+    font-size:clamp(28px,4.5vw,42px); margin:0 0 14px;
+  }
+  .page-head p{ color:var(--ink-soft); font-size:15.5px; max-width:620px; margin:0 auto; }
+
+  .video-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+    gap:22px;
+  }
+
+  /* ---------- video card ---------- */
+  .video-card{
+    background:var(--card-bg); border-radius:18px; box-shadow:var(--shadow);
+    padding:0 0 22px; text-decoration:none; color:var(--ink);
+    display:flex; flex-direction:column;
+    border-top:6px solid var(--liquid);
+    overflow:hidden;
+    transition: transform .15s ease;
+  }
+  .video-card:hover{ transform:translateY(-3px); }
+
+  .video-thumb{
+    position:relative; width:100%; aspect-ratio:16/9;
+    overflow:hidden; display:flex; align-items:center; justify-content:center;
+  }
+  .video-thumb-bg{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    background: linear-gradient(135deg, var(--liquid), var(--gas));
+  }
+  .thumb-emoji{ font-size:60px; filter:drop-shadow(0 4px 10px rgba(0,0,0,0.2)); }
+  .video-play{
+    position:absolute;
+    width:56px; height:56px; border-radius:50%;
+    background:rgba(255,255,255,0.92);
+    display:flex; align-items:center; justify-content:center;
+    font-size:22px; color:var(--liquid);
+    box-shadow:0 6px 18px rgba(0,0,0,0.25);
+  }
+  .video-duration{
+    position:absolute; bottom:8px; inset-inline-start:8px;
+    background:rgba(0,0,0,0.7); color:#fff;
+    font-family:'Cairo', sans-serif; font-weight:700; font-size:11.5px;
+    padding:2px 8px; border-radius:6px;
+  }
+  .video-status{
+    position:absolute; top:8px; inset-inline-end:8px;
+    background:rgba(20,35,43,0.72); color:#fff;
+    font-family:'Cairo', sans-serif; font-weight:800; font-size:11.5px;
+    padding:4px 12px; border-radius:999px;
+    letter-spacing:.3px;
+  }
+
+  .video-body{ padding:16px 18px 0; display:flex; flex-direction:column; flex:1; }
+  .video-title{ font-family:'Cairo', sans-serif; font-weight:800; font-size:17px; margin-bottom:8px; }
+  .video-desc{ font-size:13.5px; color:var(--ink-soft); line-height:1.7; margin-bottom:16px; }
+
+  .video-footer{
+    margin-top:auto; padding:0 18px;
+    display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
+  }
+  .video-lesson-link{
+    font-family:'Cairo', sans-serif; font-weight:700; font-size:11.5px;
+    color:var(--ink); background:rgba(29,111,224,0.08);
+    border:1px solid rgba(29,111,224,0.2);
+    padding:3px 12px; border-radius:999px;
+    text-decoration:none;
+    transition: background .15s ease, color .15s ease;
+  }
+  .video-lesson-link:hover{ background:var(--liquid); color:#fff; }
+  .video-cta{
+    font-family:'Cairo', sans-serif; font-weight:800; font-size:13px;
+    color:var(--liquid);
+  }
+
+  /* ready-to-embed future state (published + videoUrl) — unused now */
+  .video-card.is-live .video-play{ background:var(--gas); color:#fff; }
+  .video-card.is-live .video-status{ background:var(--gas); }
+  .video-card.is-live .video-cta{ color:var(--gas); }
+  .video-frame{
+    position:absolute; inset:0; width:100%; height:100%;
+    border:0;
+  }
+
+  footer.site-footer{
+    text-align:center; padding:26px 20px 40px; color:var(--ink-soft); font-size:13px;
+  }
+</style>
+<!-- Design System (Phase 1) -->
+<link rel="stylesheet" href="style.css">
+<script src="site-enhance.js" defer></script>
+</head>
+<body>
+
+  <div class="site-header">
+    <div class="site-header-inner">
+      <div class="brand">
+        <span style="font-size:20px;">🎥</span>
+        <span><span class="brand-url">www.</span>2nd Prep. Funny Science lab — الفيديوهات</span>
+      </div>
+      <a href="index.html" class="back-link">↩ رجوع للرئيسية</a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <header class="page-head">
+      <span class="eyebrow">فيديوهات الشرح التعليمي</span>
+      <h1>شوف الشرح، افهم أوضح</h1>
+      <p>فيديوهات شرح مبسّطة لكل درس، بطريقة قريبة منك ومن التجارب — فيديوهات جديدة هتتضاف هنا قريبًا.</p>
+    </header>
+
+    <div class="video-grid" id="videoGrid">
+      <!-- كروت الفيديوهات بتتولّد ديناميكيًا من videos-data.js -->
+    </div>
+  </div>
+
+  <footer class="site-footer">www.2ndPrepFunnyScienceLab · By #Dr_Wael_Aboagiza</footer>
+
+<script src="videos-data.js"></script>
+<script>
+  (function(){
+    const grid = document.getElementById('videoGrid');
+    if (!grid || typeof videosData === 'undefined' || !Array.isArray(videosData)) return;
+
+    const STATUS_LABEL = { published: 'جاهز', draft: 'مسودة', soon: 'قريبًا' };
+
+    function escapeHtml(s){
+      return String(s == null ? '' : s)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    const cards = videosData
+      .filter(v => v && (v.status === 'published' || v.status === 'soon'))
+      .sort((a, b) => (a.order || 0) - (b.order || 0))
+      .map(v => {
+        const live = v.status === 'published' && !!v.videoUrl;
+        const dur = v.duration
+          ? '<span class="video-duration">⏱ ' + escapeHtml(v.duration) + '</span>'
+          : '';
+        const status = '<span class="video-status">' + (STATUS_LABEL[v.status] || 'قريبًا') + '</span>';
+        const lesson = v.lessonHref && v.lessonId
+          ? '<a href="' + escapeHtml(v.lessonHref) + '" class="video-lesson-link">درس: ' + escapeHtml(v.lessonId.replace(/^lesson-/, '')) + '</a>'
+          : '';
+        // when live, whole card opens the built-in lazy embed instead of navigating
+        const cta = live ? 'شاهد الآن ▶' : 'الفيديو قريبًا';
+        const dataAttrs =
+          ' data-status="' + escapeHtml(v.status || 'soon') + '"' +
+          ' data-kind="' + escapeHtml(v.kind || '') + '"' +
+          ' data-video-url="' + escapeHtml(v.videoUrl || '') + '"' +
+          ' data-lesson-href="' + escapeHtml(v.lessonHref || '') + '"';
+
+        return (
+          '<div class="video-card' + (live ? ' is-live' : '') + '"' + dataAttrs + '>' +
+            '<div class="video-thumb">' +
+              '<div class="video-thumb-bg"><span class="thumb-emoji">🎬</span></div>' +
+              (live
+                ? ''
+                : '<span class="video-play">▶</span>') +
+              dur +
+              status +
+            '</div>' +
+            '<div class="video-body">' +
+              '<div class="video-title">' + escapeHtml(v.title) + '</div>' +
+              '<div class="video-desc">' + escapeHtml(v.desc || '') + '</div>' +
+            '</div>' +
+            '<div class="video-footer">' +
+              lesson +
+              '<span class="video-cta">' + cta + '</span>' +
+            '</div>' +
+          '</div>'
+        );
+      }).join('');
+
+    grid.innerHTML = cards;
+
+    // --- Lazy-embed: YouTube (click-to-load) ---
+    // Converts any common YouTube URL form into a privacy-enhanced nocookie embed.
+    // No iframe / network load happens before the student clicks Play.
+    function toYouTubeEmbed(url){
+      if (!url) return '';
+      const m = String(url).match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/|v\/|live\/)|youtu\.be\/)([A-Za-z0-9_-]{6,})/);
+      if (m && m[1]) {
+        return 'https://www.youtube-nocookie.com/embed/' + m[1] + '?rel=0';
+      }
+      // If the URL is already a (http/https) embed URL, keep it as-is (safe absolute).
+      return /^https?:\/\//.test(url) ? url : '';
+    }
+
+    grid.addEventListener('click', function(e){
+      const card = e.target.closest('[data-video-url]');
+      if (!card) return;
+      const url = card.getAttribute('data-video-url');
+      const kind = card.getAttribute('data-kind');
+      if (!url || kind === 'soon') return; // soon cards stay lightweight; no embed
+      e.preventDefault();
+      const embedSrc = toYouTubeEmbed(url);
+      if (!embedSrc) return; // defensive: ignore unparseable / invented values
+      const thumb = card.querySelector('.video-thumb');
+      if (!thumb || thumb.querySelector('iframe')) return;
+      const frame = document.createElement('iframe');
+      frame.className = 'video-frame';
+      frame.setAttribute('title', (card.querySelector('.video-title') || {}).textContent || 'فيديو شرح');
+      frame.setAttribute('loading', 'lazy');
+      frame.setAttribute('allowfullscreen', '');
+      frame.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+      frame.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+      frame.setAttribute('src', embedSrc);
+      thumb.innerHTML = '';
+      thumb.appendChild(frame);
+      card.classList.add('is-live');
+    });
+  })();
+</script>
+
+</body>
+</html>
