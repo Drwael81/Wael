@@ -13,6 +13,7 @@
      cta     نص زر الدعوة (لو فاضي بيستخدم الافتراضي)
      href    رابط صفحة الدرس
      lang    لغة محتوى الدرس ("en" / "ar") — للفلترة مستقبلًا
+     unit    الوحدة (1 أو 2). لو مش مكتوبة بيتعامل معها كوحدة 1.
    ============================================================ */
 
 const lessonsData = [
@@ -92,5 +93,17 @@ const lessonsData = [
     cta: "ابدأ الدرس ←",
     href: "lesson-convection-and-radiation.html",
     lang: "ar"
+  },
+  {
+    id: "lesson-chemistry-foundations",
+    order: 1,
+    unit: 2,
+    status: "published",
+    icon: "🧪⚛️",
+    title: "Chemistry Foundations",
+    desc: "الدرس التمهيدي لوحدة التفاعلات الكيميائية: أشكال الذرات، الأيونات والمجموعات الذرية، أنواع المركبات، قواعد كتابة الصيغة الجزيئية، وتقييم الفهم.",
+    cta: "ابدأ الدرس ←",
+    href: "lesson-chemistry-foundations.html",
+    lang: "en"
   }
 ];

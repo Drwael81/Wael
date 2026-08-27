@@ -152,8 +152,10 @@
     </div>
 
     <div class="unit-header" id="unit2" style="margin-top:40px;">
-      <span class="unit-label" style="border-style:dashed;color:var(--ink-soft);">الوحدة الثانية: التفاعلات الكيميائية — قريبًا</span>
+      <span class="unit-label">الوحدة الثانية: التفاعلات الكيميائية</span>
     </div>
+
+    <div class="lesson-grid" id="lessonGrid2"></div>
   </div>
 
   <footer class="site-footer">www.2ndPrepFunnyScienceLab · By #Dr_Wael_Aboagiza</footer>
@@ -165,21 +167,31 @@
     const anchor = document.getElementById('lessonSoonCard');
     if (!grid || typeof lessonsData === 'undefined' || !Array.isArray(lessonsData)) return;
 
-    const cards = lessonsData
-      .filter(l => l && l.status === 'published' && l.href && l.title)
-      .sort((a, b) => (a.order || 0) - (b.order || 0))
-      .map(l => (
-        '<a href="' + l.href + '" class="lesson-card">' +
-          '<div class="lesson-icon">' + (l.icon || '📘') + '</div>' +
-          '<div class="lesson-title">' + l.title + '</div>' +
-          '<div class="lesson-desc">' + (l.desc || '') + '</div>' +
-          '<div class="lesson-cta">' + (l.cta || 'ابدأ الدرس ←') + '</div>' +
-        '</a>'
-      )).join('');
+    function cardHTML(l){
+      return '<a href="' + l.href + '" class="lesson-card">' +
+        '<div class="lesson-icon">' + (l.icon || '📘') + '</div>' +
+        '<div class="lesson-title">' + l.title + '</div>' +
+        '<div class="lesson-desc">' + (l.desc || '') + '</div>' +
+        '<div class="lesson-cta">' + (l.cta || 'ابدأ الدرس ←') + '</div>' +
+      '</a>';
+    }
 
-    if (!cards) return;
-    if (anchor) anchor.insertAdjacentHTML('beforebegin', cards);
-    else grid.innerHTML = cards;
+    const unit1 = lessonsData
+      .filter(l => l && l.status === 'published' && l.href && l.title && l.unit !== 2)
+      .sort((a, b) => (a.order || 0) - (b.order || 0));
+    const unit2 = lessonsData
+      .filter(l => l && l.status === 'published' && l.href && l.title && l.unit === 2)
+      .sort((a, b) => (a.order || 0) - (b.order || 0));
+
+    const cards1 = unit1.map(cardHTML).join('');
+    if (cards1){
+      if (anchor) anchor.insertAdjacentHTML('beforebegin', cards1);
+      else grid.innerHTML = cards1;
+    }
+
+    const grid2 = document.getElementById('lessonGrid2');
+    const cards2 = unit2.map(cardHTML).join('');
+    if (grid2 && cards2) grid2.innerHTML = cards2;
   })();
 </script>
 

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chemistry Foundations | أساسيات الكيمياء</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060b16;--card:#0f1a2e;--card2:#12203a;--line:#24345a;--text:#eaf2ff;--muted:#93a6cc;--acc:#22d3ee;--acc2:#4f8cff;--hot:#fb923c;--cold:#38bdf8;--ok:#34d399;--bad:#f87171;--gold:#fbbf24;--pur:#a855f7;--r:20px}
+body[data-theme="light"]{--bg:#eef3fb;--card:#fff;--card2:#f4f8ff;--line:#c9d6ee;--text:#10203c;--muted:#5a6b8c}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;transition:background .4s,color .4s;overflow-x:hidden}
+::selection{background:var(--acc);color:#032}
+.en{display:block;direction:ltr;text-align:left;font-family:'Space Grotesk','Cairo',sans-serif;font-size:.93rem;line-height:1.7;color:var(--text)}
+.ar{display:block;direction:rtl;text-align:right;font-size:.96rem;line-height:2;color:var(--text);margin-top:2px}
+.mut{color:var(--muted)!important}
+h1,h2,h3{line-height:1.5}
+section{scroll-margin-top:95px}
+#progress{position:fixed;top:0;right:0;height:4px;width:0;background:linear-gradient(90deg,var(--acc),var(--hot));z-index:99;border-radius:99px}
+.topbar{position:fixed;top:0;right:0;left:0;z-index:90;display:flex;align-items:center;gap:10px;padding:10px 14px;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand{font-weight:900;font-size:.85rem;white-space:nowrap}
+nav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;padding:2px}
+nav::-webkit-scrollbar{display:none}
+nav a{padding:5px 12px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:.72rem;font-weight:700;white-space:nowrap;text-decoration:none;transition:.25s}
+nav a.active{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#041018;border-color:transparent}
+#themeBtn{cursor:pointer;border:1px solid var(--line);background:var(--card);border-radius:12px;width:40px;height:40px;font-size:1.1rem}
+@media(max-width:1000px){#rail{display:none}}
+#hero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:110px 18px 60px}
+.heroIn{position:relative;z-index:2;max-width:920px}
+.kicker{display:inline-block;padding:6px 18px;border:1px solid var(--line);border-radius:999px;color:var(--acc);font-weight:800;font-size:.78rem;background:var(--card)}
+#hero h1{font-size:clamp(1.9rem,5.5vw,3.3rem);font-weight:900;margin:16px 0 4px;background:linear-gradient(90deg,var(--acc),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+#hero h1 .ar{font-size:clamp(1.5rem,4.5vw,2.6rem);background:linear-gradient(90deg,var(--gold),var(--acc));-webkit-background-clip:text;background-clip:text;color:transparent;margin:0}
+#hero p.desc{margin:16px auto;max-width:70ch;color:var(--muted)}
+.badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:20px}
+.badge{padding:8px 16px;border-radius:14px;border:1px solid var(--line);background:var(--card);font-size:.78rem;font-weight:700;text-align:center}
+.badge.vip{border-color:var(--gold);color:var(--gold)}
+.scrollHint{margin-top:40px;font-size:1.6rem;animation:bnc 1.6s infinite}
+@keyframes bnc{50%{transform:translateY(10px)}}
+main{max-width:1150px;margin:auto;padding:30px 16px 90px;display:flex;flex-direction:column;gap:34px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:clamp(18px,3.4vw,36px);box-shadow:0 14px 40px rgba(0,0,0,.25)}
+.chead{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.cnum{font-family:'Space Grotesk';font-size:1.5rem;font-weight:700;background:linear-gradient(180deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;border:1px solid var(--line);border-radius:16px;padding:6px 14px}
+.chead h2{font-size:clamp(1.05rem,2.6vw,1.45rem);font-weight:900}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px}
+.tile{background:var(--card2);border:1px solid var(--line);border-radius:16px;padding:18px;transition:.25s}
+.tile:hover{transform:translateY(-4px);border-color:var(--acc)}
+.note{border-inline-start:4px solid var(--acc);background:var(--card2);border-radius:12px;padding:12px 16px;margin-top:14px;font-size:.9rem}
+.note.hot{border-color:var(--hot)} .note.gold{border-color:var(--gold)} .note.ok{border-color:var(--ok)} .note.pur{border-color:var(--pur)}
+.tag{display:inline-block;font-size:.7rem;font-weight:800;color:#041018;background:var(--acc);border-radius:99px;padding:2px 12px;margin-bottom:8px}
+.tag.hot{background:var(--hot)} .tag.gold{background:var(--gold)} .tag.ok{background:var(--ok)} .tag.pur{background:var(--pur)}
+.defBox{border:2px dashed var(--line);border-radius:12px;padding:12px 16px;margin-top:14px;background:var(--card2)}
+.defBox b.dT{color:var(--bad);font-size:1rem}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal.vis{opacity:1;transform:none}
+.formula{font-family:'Space Grotesk','Cairo',sans-serif;font-weight:700;direction:ltr}
+.ionList{display:flex;flex-wrap:wrap;gap:8px 6px;margin-top:8px}
+.ionList .item{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:4px 10px;font-size:.82rem}
+.ionList .item sub,.ionList .item sup{font-size:.68em}
+.compRow{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:14px}
+.compRow .tile p{margin-top:6px}
+.ruleList{list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:12px;counter-reset:r}
+.ruleList li{display:flex;gap:12px;align-items:flex-start;background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.ruleList li::before{counter-increment:r;content:counter(r);flex:none;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#041018;font-weight:900;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk'}
+.evalList{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:14px}
+.evalList .tile{display:flex;flex-direction:column;gap:6px}
+.evalList .tile .en,.evalList .tile .ar{margin:0}
+footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
+.verified{display:inline-flex;align-items:center;gap:12px;border:1px solid var(--gold);border-radius:18px;padding:12px 22px;background:var(--card);color:var(--gold);font-weight:800}
+@media(max-width:440px){.verified{flex-wrap:wrap;justify-content:center}}
+#topBtn{position:fixed;bottom:20px;inset-inline-start:20px;z-index:85;width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,var(--hot),var(--gold));font-size:1.2rem;opacity:0;pointer-events:none;transition:.3s}
+#topBtn.show{opacity:1;pointer-events:auto}
+@media(max-width:520px){.ionList .item{font-size:.78rem}}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<header class="topbar">
+  <div class="brand">🧪 Chemistry Foundations · أساسيات الكيمياء</div>
+  <nav id="nav">
+    <a href="#hero" class="active">Start · البداية</a><a href="#points">Points · النقط</a>
+    <a href="#ions">Ions · الأيونات</a><a href="#compounds">Compounds · المركبات</a><a href="#rules">Rules · القواعد</a>
+    <a href="#evaluate">Evaluate · قيّم فهمك</a>
+  </nav>
+  <button id="themeBtn" title="Theme · المظهر">☀️</button>
+</header>
+
+<section id="hero">
+  <div class="heroIn">
+    <span class="kicker">Unit 2 · Matter &amp; Chemical Reactions · Preliminary Lesson · الدرس التمهيدي</span>
+    <h1><span class="en">Chemistry Foundations</span><span class="ar">أساسيات الكيمياء</span></h1>
+    <p class="desc en">Important previously studied points: atoms, ions, atomic groups, how to write molecular formulas, and the rules that keep every compound electrically neutral.</p>
+    <p class="desc ar">أهم النقط اللي اتدرست قبل كده: الذرات، الأيونات، المجموعات الذرية، طريقة كتابة الصيغة الجزيئية، والقواعد اللي بتحافظ على تعادل الشحنة لأي مركّب.</p>
+    <div class="badges">
+      <span class="badge"><span class="en">⚛️ Monoatomic &amp; Diatomic</span><span class="ar">⚛️ أحادية وثنائية الذرة</span></span>
+      <span class="badge"><span class="en">🔋 Cations &amp; Anions</span><span class="ar">🔋 أيونات موجبة وسالبة</span></span>
+      <span class="badge"><span class="en">🧪 Compound Formulas</span><span class="ar">🧪 صيغ المركبات</span></span>
+      <span class="badge vip"><span class="en">✔️ Reviewed by Dr. Wael Aboagiza</span><span class="ar">✔️ مراجعة د. وائل أبو عجيزة</span></span>
+    </div>
+    <div class="scrollHint">⌄</div>
+  </div>
+</section>
+
+<main>
+<!-- ============ POINTS ============ -->
+<section id="points" class="card reveal">
+  <div class="chead"><span class="cnum">01</span><div><h2><span class="en">Important Previously Studied Points</span><span class="ar">أهم النقط اللي اتدرست قبل كده</span></h2></div></div>
+  <div class="tile">
+    <span class="tag ok">Monoatomic molecules · جزيئات أحادية الذرة</span>
+    <p class="en">Most elements of the periodic table are found at normal conditions in the form of monoatomic molecules, such as: Sodium Na and Carbon C.</p>
+    <p class="ar">معظم عناصر الجدول الدوري بتكون في الظروف العادية في صورة جزيئات أحادية الذرة، زي الصوديوم Na والكربون C.</p>
+  </div>
+  <div class="tile" style="margin-top:14px">
+    <span class="tag hot">Diatomic molecules · جزيئات ثنائية الذرة</span>
+    <p class="en">Only 7 elements are excluded; they are found in the form of diatomic molecules: <span class="formula">H<sub>2</sub>, N<sub>2</sub>, O<sub>2</sub>, F<sub>2</sub>, Cl<sub>2</sub>, Br<sub>2</sub>, I<sub>2</sub></span>.</p>
+    <p class="ar">فيه ٧ عناصر مستثناة؛ ودي بتكون في صورة جزيئات ثنائية الذرة: <span class="formula">H<sub>2</sub> وN<sub>2</sub> وO<sub>2</sub> وF<sub>2</sub> وCl<sub>2</sub> وBr<sub>2</sub> وI<sub>2</sub></span>.</p>
+  </div>
+  <div class="note gold">
+    <span class="en"><strong>Memorize the 7:</strong> H₂, N₂, O₂, F₂, Cl₂, Br₂, I₂.</span>
+    <span class="ar"><strong>احفظ السبع عناصر:</strong> H₂ وN₂ وO₂ وF₂ وCl₂ وBr₂ وI₂.</span>
+  </div>
+</section>
+
+<!-- ============ IONS ============ -->
+<section id="ions" class="card reveal">
+  <div class="chead"><span class="cnum">02</span><div><h2><span class="en">Element ions and atomic groups</span><span class="ar">أيونات العناصر والمجموعات الذرية</span></h2></div></div>
+  <p class="en">The following are examples of some ions and atomic groups.</p>
+  <p class="ar">دي أمثلة لبعض الأيونات والمجموعات الذرية.</p>
+
+  <div class="tile" style="margin-top:14px">
+    <span class="tag hot">Positive ions (cations) · الأيونات الموجبة</span>
+    <div class="ionList" dir="ltr">
+      <span class="item">Li<sup>+</sup></span><span class="item">Na<sup>+</sup></span><span class="item">K<sup>+</sup></span><span class="item">Ag<sup>+</sup></span><span class="item">Mg<sup>2+</sup></span><span class="item">Ca<sup>2+</sup></span><span class="item">Zn<sup>2+</sup></span><span class="item">Ba<sup>2+</sup></span><span class="item">Cu<sup>2+</sup></span><span class="item">Al<sup>3+</sup></span><span class="item">NH<sub>4</sub><sup>+</sup></span>
+    </div>
+    <p class="ar mut">ليثيوم، صوديوم، بوتاسيوم، فضة، ماغنسيوم، كالسيوم، زنك، باريوم، نحاس، ألومنيوم، وأمونيوم.</p>
+  </div>
+
+  <div class="tile" style="margin-top:14px">
+    <span class="tag ok">Negative ions (anions) · الأيونات السالبة</span>
+    <div class="ionList" dir="ltr">
+      <span class="item">F<sup>−</sup></span><span class="item">Cl<sup>−</sup></span><span class="item">Br<sup>−</sup></span><span class="item">I<sup>−</sup></span><span class="item">O<sup>2−</sup></span><span class="item">S<sup>2−</sup></span><span class="item">OH<sup>−</sup></span><span class="item">NO<sub>3</sub><sup>−</sup></span><span class="item">NO<sub>2</sub><sup>−</sup></span><span class="item">HCO<sub>3</sub><sup>−</sup></span><span class="item">CO<sub>3</sub><sup>2−</sup></span><span class="item">SO<sub>4</sub><sup>2−</sup></span><span class="item">SO<sub>3</sub><sup>2−</sup></span><span class="item">PO<sub>4</sub><sup>3−</sup></span>
+    </div>
+    <p class="ar mut">فلوريد، كلوريد، بروميد، يوديد، أكسيد، كبريتيد، هيدروكسيد، نترات، نتريت، بيكربونات، كربونات، كبريتات، كبريتيت، وفوسفات.</p>
+  </div>
+</section>
+
+<!-- ============ COMPOUNDS ============ -->
+<section id="compounds" class="card reveal">
+  <div class="chead"><span class="cnum">03</span><div><h2><span class="en">Types of chemical compounds, the way to write their molecular formula, and examples</span><span class="ar">أنواع المركبات الكيميائية وطريقة كتابة صيغها الجزيئية وأمثلتها</span></h2></div></div>
+  <div class="compRow">
+    <div class="tile"><span class="tag">Acid · الحمض</span>
+      <p class="en">It starts with the hydrogen cation H⁺ followed by the element anion, or the anion formula of an atomic group.</p>
+      <p class="ar">بيبدأ بكاتيون الهيدروجين H⁺ وبعده أنيون العنصر أو صيغة أنيون المجموعة الذرية.</p></div>
+    <div class="tile"><span class="tag hot">Alkali · القلوي</span>
+      <p class="en">It starts with the cation and ends with hydroxide (OH)⁻.</p>
+      <p class="ar">بيبدأ بالكاتيون وبينتهي بأنيون الهيدروكسيد (OH)⁻.</p></div>
+    <div class="tile"><span class="tag gold">Oxide · الأكسيد</span>
+      <p class="en">It starts with a metal or non-metal and ends with oxygen O.</p>
+      <p class="ar">بيبدأ بفلز أو لافلز وبينتهي بالأكسجين O.</p></div>
+    <div class="tile"><span class="tag ok">Salt · الملح</span>
+      <p class="en">It starts with a positive cation or positive atomic group, followed by the acid anion or negative atomic group.</p>
+      <p class="ar">بيبدأ بكاتيون موجب أو مجموعة ذرية موجبة، وبعده أنيون الحمض أو مجموعة ذرية سالبة.</p></div>
+  </div>
+</section>
+
+<!-- ============ RULES ============ -->
+<section id="rules" class="card reveal">
+  <div class="chead"><span class="cnum">04</span><div><h2><span class="en">Rules</span><span class="ar">القواعد</span></h2></div></div>
+  <ul class="ruleList">
+    <li><div><p class="en">The total charge of any compound is equal to zero.</p><p class="ar">مجموع شحنات أي مركّب لازم يساوي صفر.</p></div></li>
+    <li><div><p class="en">The number of hydrogen atoms in an acid molecule equals the charge of its anion or atomic group.</p><p class="ar">عدد ذرات الهيدروجين في الحمض بيساوي شحنة الأنيون أو المجموعة الذرية اللي كوّنته.</p></div></li>
+    <li><div><p class="en">The number of hydroxide groups in an alkali equals the charge of its cation or atomic group.</p><p class="ar">عدد مجموعات الهيدروكسيد في القلوي بيساوي شحنة الكاتيون أو المجموعة الذرية بتاعته.</p></div></li>
+    <li><div><p class="en">When an atomic group is repeated, write it in brackets with the repetition number below it.</p><p class="ar">لما المجموعة الذرية تتكرر، بنحطها بين قوسين والعدد ييجي بعدها.</p></div></li>
+  </ul>
+  <div class="defBox">
+    <b class="dT">📌 Rule example · مثال من قاعدة كتابة الصيغة</b>
+    <p class="en">Repeated atomic group uses brackets + a subscript number below — e.g. Calcium hydroxide Ca(OH)₂.</p>
+    <p class="ar">المجموعة الذرية المتكررة بتتحط بين قوسين والعدد ييجي بعدها — زي هيدروكسيد الكالسيوم Ca(OH)₂.</p>
+  </div>
+</section>
+
+<!-- ============ EVALUATE ============ -->
+<section id="evaluate" class="card reveal">
+  <div class="chead"><span class="cnum">05</span><div><h2><span class="en">Evaluate Your Understanding</span><span class="ar">قيّم فهمك</span></h2></div></div>
+  <p class="en">Write the molecular formula for each compound:</p>
+  <p class="ar">اكتب الصيغة الجزيئية لكل مركّب:</p>
+  <div class="evalList">
+    <div class="tile"><span class="tag">1 · Magnesium oxide · أكسيد المغنيسيوم</span><span class="formula">MgO</span></div>
+    <div class="tile"><span class="tag">2 · Sodium bicarbonate · بيكربونات الصوديوم</span><span class="formula">NaHCO<sub>3</sub></span></div>
+    <div class="tile"><span class="tag">3 · Silver nitrate · نترات الفضة</span><span class="formula">AgNO<sub>3</sub></span></div>
+    <div class="tile"><span class="tag">4 · Copper sulphate · كبريتات النحاس</span><span class="formula">CuSO<sub>4</sub></span></div>
+    <div class="tile"><span class="tag">5 · Hydrochloric acid · حمض الهيدروكلوريك</span><span class="formula">HCl</span></div>
+    <div class="tile"><span class="tag">6 · Calcium hydroxide · هيدروكسيد الكالسيوم</span><span class="formula">Ca(OH)<sub>2</sub></span></div>
+  </div>
+  <div class="note">
+    <span class="en"><strong>🖊️ Try it hidden first</strong> — write each formula, then reveal the answer above.</span>
+    <span class="ar"><strong>🖊️ جرّب تكتبها الأول</strong> — اكتب كل صيغة وبعدين شوف الإجابة في الأعلى.</span>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="verified"><span>✓</span><span class="en">Reviewed by Dr. Wael Aboagiza</span><span class="ar">مراجعة د. وائل أبو عجيزة</span></div>
+  <p style="margin-top:18px;font-size:.8rem">www.2ndPrepFunnyScienceLab · Unit 2 · Preliminary Lesson</p>
+</footer>
+<button id="topBtn" title="Back to top · للأعلى">↑</button>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+addEventListener('scroll',()=>{const h=document.documentElement,p=h.scrollTop/(h.scrollHeight-h.clientHeight);
+ $('#progress').style.width=(p*100)+'%';
+ $('#topBtn').classList.toggle('show',h.scrollTop>600);},{passive:true});
+$('#topBtn').onclick=()=>scrollTo({top:0,behavior:'smooth'});
+$('#themeBtn').onclick=()=>{const l=document.body.dataset.theme==='light';document.body.dataset.theme=l?'':'light';$('#themeBtn').textContent=l?'☀️':'🌙';};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}}),{threshold:.1});
+$$('.reveal').forEach(el=>io.observe(el));
+const spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)$$('nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));}),{rootMargin:'-35% 0px -55% 0px'});
+$$('section[id]').forEach(s=>spy.observe(s));
+</script>
+</body>
+</html>
