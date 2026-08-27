@@ -1200,3 +1200,84 @@ nav.toc{
       box-sizing:border-box; white-space:normal;
     }
   }
+
+  /* ============ Phase 6 Batch C — final homepage polish (CSS-only) ============
+     All changes are visual/UX refinements only: no content, no JS, no reorder.
+     Protected: cards, IDs, anchors, P1/P2 a11y fixes (#0C7F77), --gas, tokens. */
+
+  /* --- Task 1+2: experiment card micro-interactions (quiet, reduced-motion safe) --- */
+  .card{
+    transition: transform .22s ease, box-shadow .22s ease;
+  }
+  .card:hover{
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lift);
+  }
+  .card:focus-visible{
+    outline:3px solid rgba(29,111,224,0.45); outline-offset:2px;
+  }
+
+  /* --- Task 3+4: jump navigation (desktop mini-TOC card; hierarchy only, no sticky) --- */
+  @media (min-width:881px){
+    .jump-nav{
+      background: color-mix(in srgb, var(--paper) 72%, transparent);
+      border:1px solid rgba(20,35,43,0.07);
+      border-radius: var(--radius-lg, 22px);
+      padding:12px 14px;
+      box-shadow: 0 4px 16px rgba(16,32,40,0.05);
+    }
+    .jump-pill{
+      box-shadow: 0 2px 6px rgba(16,32,40,0.04);
+    }
+    .jump-pill:hover{
+      box-shadow:0 10px 20px rgba(16,32,40,0.16);
+    }
+  }
+  .jump-matter{ border-color: color-mix(in srgb, var(--solid) 45%, transparent); color: var(--solid); }
+  .jump-diffusion{ border-color: color-mix(in srgb, var(--gas) 45%, transparent); color: var(--gas); }
+  .jump-states{ border-color: color-mix(in srgb, var(--liquid) 45%, transparent); color: var(--liquid); }
+  .jump-temp{ border-color: color-mix(in srgb, #C9542E 45%, transparent); color:#C9542E; }
+  .jump-transfer{ border-color: color-mix(in srgb, #B23A3A 45%, transparent); color:#B23A3A; }
+
+  /* --- Task 5: footer closure polish (natural end, accent rule) --- */
+  footer.site-footer{ position:relative; margin-top:56px; }
+  footer.site-footer::before{
+    content:""; position:absolute; top:-1px; left:0; right:0; height:3px;
+    background: linear-gradient(90deg, var(--solid), var(--liquid), var(--gas));
+    opacity:.7; pointer-events:none;
+  }
+  .footer-inner{ padding-top:48px; }
+  .footer-links a:focus-visible{ outline:3px solid rgba(29,111,224,0.45); outline-offset:2px; }
+
+  /* --- Task 6: coming-soon polish (locked/notebook, but consistent & light) --- */
+  .coming-soon{ padding-top:20px; }
+  .coming-soon h2{ color:var(--ink); }
+  .soon-card{
+    background: color-mix(in srgb, var(--paper) 60%, white);
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .soon-card:hover{
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lift);
+    border-color: color-mix(in srgb, var(--liquid) 40%, transparent);
+  }
+  .soon-card .num{
+    color: color-mix(in srgb, var(--liquid) 50%, transparent);
+  }
+
+  /* --- Task 7: long-page rhythm (breathing room between chapters/sections) --- */
+  .latest-videos-section{ margin-top:60px; padding-top:24px; }
+  .experiment + .experiment{ margin-top:14px; }
+
+  /* --- Task 2: reduced-motion guard for all Batch C interactions --- */
+  @media (prefers-reduced-motion: reduce){
+    .card,
+    .soon-card,
+    .jump-pill,
+    .latest-vid-card,
+    .latest-videos-btn{ transition:none !important; animation:none !important; }
+    .card:hover,
+    .soon-card:hover,
+    .latest-vid-card:hover,
+    .latest-videos-btn:hover{ transform:none !important; box-shadow:var(--shadow) !important; }
+  }
