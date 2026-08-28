@@ -124,6 +124,9 @@ body.scrolled .site-header{ box-shadow: 0 4px 18px rgba(16, 32, 40, 0.10); }
 .to-top.show{ opacity: 1; visibility: visible; transform: none; }
 .to-top:hover{ filter: brightness(1.08); transform: translateY(-2px); }
 
+/* زر النزول لآخر الصفحة — فوق زر الصعود بنفس الموقع الأفقي */
+.to-top.to-bottom{ bottom: 84px; }
+
 /* ---------- 7) أنيميشن الظهور التدريجي عند التمرير ----------
    بتتفعل فقط لما الـ JS يضيف كلاس reveal-on لعنصر html،
    ولو المتصفح مش شايل IntersectionObserver أو المستخدم
