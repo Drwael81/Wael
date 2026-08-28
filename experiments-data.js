@@ -4,7 +4,7 @@
    بتستخدم لـ:
      1) عدّادات الأقسام في الصفحة الرئيسية بشكل تلقائي
      2) أي ميزات مستقبلية (فلترة / بحث / فهرس جانبي)
-   ملاحظة: المجموع لازم يكون ٢٣ تجربة (٢٢ قسم داخل index.html + تجربة ٢٣ كصفحة مستقلة exp23-balloon.html)
+   ملاحظة: المجموع لازم يكون ٢٧ تجربة (٢٢ قسم داخل index.html + تجارب ٢٣-٢٧ كصفحات مستقلة: exp23-balloon.html / exp24-precipitate.html / exp25-colour-change.html / exp26-gas-evolution.html / exp27-light-heat.html)
    ============================================================ */
 
 const experimentsData = [
@@ -30,5 +30,9 @@ const experimentsData = [
   { id: 'exp-20', order: 20, category: 'heat-transfer', title: 'الحمل الحراري في السوائل والغازات',      topic: 'طرق انتقال الحرارة' },
   { id: 'exp-21', order: 21, category: 'heat-transfer', title: 'الإشعاع الحراري',                        topic: 'طرق انتقال الحرارة' },
   { id: 'exp-22', order: 22, category: 'heat-transfer', title: 'مقارنة طرق انتقال الحرارة الثلاث',       topic: 'مراجعة شاملة' },
-  { id: 'exp-23', order: 23, category: 'chemical-reactions', title: 'نفخ البالون',                      topic: 'التفاعلات الكيميائية' }
+  { id: 'exp-23', order: 23, category: 'chemical-reactions', title: 'نفخ البالون',                      topic: 'التفاعلات الكيميائية' },
+  { id: 'exp-24', order: 24, category: 'chemical-reactions', title: 'تكوين الراسب',                     topic: 'التفاعلات الكيميائية' },
+  { id: 'exp-25', order: 25, category: 'chemical-reactions', title: 'تغيير لون المحلول',                topic: 'التفاعلات الكيميائية' },
+  { id: 'exp-26', order: 26, category: 'chemical-reactions', title: 'تصاعد غاز الهيدروجين',             topic: 'التفاعلات الكيميائية' },
+  { id: 'exp-27', order: 27, category: 'chemical-reactions', title: 'انبعاث ضوء وحرارة',                topic: 'التفاعلات الكيميائية' }
 ];
