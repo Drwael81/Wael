@@ -252,6 +252,12 @@ nav.toc{
   .cat-transfer{ --accent:#B23A3A; }
   .cat-chem{ --accent:#2E7D5B; }
   .cat-lessons{ --accent:#3F5E9E; }
+  .exp-number-badge{
+    display:inline-block; margin-bottom:8px;
+    font-family:'Cairo', sans-serif; font-weight:800; font-size:11.5px;
+    color:#fff; background:var(--accent); border-radius:999px; padding:3px 10px;
+    letter-spacing:.4px;
+  }
 
   .section-divider{
     text-align:center; margin:46px 0 12px; position:relative;

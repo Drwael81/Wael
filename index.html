@@ -1459,5 +1459,23 @@
 <script src="assets/js/experiments/18-exp20-convection-loop.js"></script>
 <script src="assets/js/experiments/19-exp20-candle-tubes.js"></script>
 <script src="assets/js/experiments/20-exp21-radiation.js"></script>
+
+<!-- Auto-number standalone experiment cards by order (display only) -->
+<script>
+  (function(){
+    var listSection = document.getElementById('experiments-23to27');
+    if (!listSection) return;
+    var embeddedCount = document.querySelectorAll('section.experiment[id^="exp-"]').length;
+    var cards = listSection.querySelectorAll('a.cat-spotlight');
+    cards.forEach(function(card, i){
+      var num = embeddedCount + i + 1;
+      var label = 'تجربة ' + (num < 10 ? '0' + num : num);
+      var badge = document.createElement('span');
+      badge.className = 'exp-number-badge';
+      badge.textContent = label;
+      card.insertBefore(badge, card.firstChild);
+    });
+  })();
+</script>
 </body>
 </html>
