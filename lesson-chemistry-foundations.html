@@ -7,71 +7,129 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#060b16;--card:#0f1a2e;--card2:#12203a;--line:#24345a;--text:#eaf2ff;--muted:#93a6cc;--acc:#22d3ee;--acc2:#4f8cff;--hot:#fb923c;--cold:#38bdf8;--ok:#34d399;--bad:#f87171;--gold:#fbbf24;--pur:#a855f7;--r:20px}
-body[data-theme="light"]{--bg:#eef3fb;--card:#fff;--card2:#f4f8ff;--line:#c9d6ee;--text:#10203c;--muted:#5a6b8c}
+:root{--bg:#0b0d16;--card:#121627;--card2:#171c31;--line:#2a3150;--text:#eef2ff;--muted:#9aa6c8;--acc:#22d3ee;--acc2:#4f8cff;--hot:#fb923c;--cool:#38bdf8;--ok:#34d399;--bad:#f87171;--gold:#fbbf24;--pur:#a78bfa;--r:20px}
+body[data-theme="light"]{--bg:#f4f5fc;--card:#fff;--card2:#f7f8ff;--line:#d8ddf0;--text:#1a2036;--muted:#5a6684}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;transition:background .4s,color .4s;overflow-x:hidden}
-::selection{background:var(--acc);color:#032}
-.en{display:block;direction:ltr;text-align:left;font-family:'Space Grotesk','Cairo',sans-serif;font-size:.93rem;line-height:1.7;color:var(--text)}
-.ar{display:block;direction:rtl;text-align:right;font-size:.96rem;line-height:2;color:var(--text);margin-top:2px}
+::selection{background:var(--acc);color:#041018}
+.en{display:block;direction:ltr;text-align:left;font-family:'Space Grotesk','Cairo',sans-serif;font-size:.92rem;line-height:1.7;color:var(--text)}
+.ar{display:block;direction:rtl;text-align:right;font-size:.95rem;line-height:2;color:var(--text);margin-top:2px}
 .mut{color:var(--muted)!important}
 h1,h2,h3{line-height:1.5}
 section{scroll-margin-top:95px}
 #progress{position:fixed;top:0;right:0;height:4px;width:0;background:linear-gradient(90deg,var(--acc),var(--hot));z-index:99;border-radius:99px}
-.topbar{position:fixed;top:0;right:0;left:0;z-index:90;display:flex;align-items:center;gap:10px;padding:10px 14px;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.topbar{position:fixed;top:0;right:0;left:0;z-index:90;display:flex;align-items:center;gap:10px;padding:10px 14px;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .brand{font-weight:900;font-size:.85rem;white-space:nowrap}
 nav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;padding:2px}
 nav::-webkit-scrollbar{display:none}
 nav a{padding:5px 12px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:.72rem;font-weight:700;white-space:nowrap;text-decoration:none;transition:.25s}
+nav a:focus-visible,button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
 nav a.active{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#041018;border-color:transparent}
-#themeBtn{cursor:pointer;border:1px solid var(--line);background:var(--card);border-radius:12px;width:40px;height:40px;font-size:1.1rem}
-@media(max-width:1000px){#rail{display:none}}
-#hero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:110px 18px 60px}
+#themeBtn,#sndBtn{cursor:pointer;border:1px solid var(--line);background:var(--card);border-radius:12px;width:40px;height:40px;font-size:1.1rem}
+#hero{min-height:84vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:110px 18px 60px}
+#orbit{position:absolute;inset:auto auto -60px 50%;transform:translateX(-50%);width:340px;height:340px;opacity:.85;pointer-events:none}
+#orbit .ring{position:absolute;border:1px dashed color-mix(in srgb,var(--acc) 45%,transparent);border-radius:50%}
+#orbit .ring.r1{inset:10px;animation:spin 26s linear infinite}
+#orbit .ring.r2{inset:70px;animation:spin 34s linear infinite reverse}
+#orbit .ring.r3{inset:130px;animation:spin 44s linear infinite}
+#orbit .nuc{position:absolute;inset:150px;border-radius:50%;background:radial-gradient(circle at 35% 35%,var(--pur),var(--acc2))}
+#orbit .dot{position:absolute;width:12px;height:12px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,var(--gold))}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){#orbit .ring{animation:none}#orbit .dot{display:none}}
 .heroIn{position:relative;z-index:2;max-width:920px}
 .kicker{display:inline-block;padding:6px 18px;border:1px solid var(--line);border-radius:999px;color:var(--acc);font-weight:800;font-size:.78rem;background:var(--card)}
 #hero h1{font-size:clamp(1.9rem,5.5vw,3.3rem);font-weight:900;margin:16px 0 4px;background:linear-gradient(90deg,var(--acc),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
 #hero h1 .ar{font-size:clamp(1.5rem,4.5vw,2.6rem);background:linear-gradient(90deg,var(--gold),var(--acc));-webkit-background-clip:text;background-clip:text;color:transparent;margin:0}
-#hero p.desc{margin:16px auto;max-width:70ch;color:var(--muted)}
-.badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:20px}
+#hero p.desc{margin:16px auto 0;max-width:70ch;color:var(--muted)}
+.badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px}
 .badge{padding:8px 16px;border-radius:14px;border:1px solid var(--line);background:var(--card);font-size:.78rem;font-weight:700;text-align:center}
 .badge.vip{border-color:var(--gold);color:var(--gold)}
-.scrollHint{margin-top:40px;font-size:1.6rem;animation:bnc 1.6s infinite}
+.scrollHint{margin-top:38px;font-size:1.5rem;animation:bnc 1.6s infinite}
 @keyframes bnc{50%{transform:translateY(10px)}}
-main{max-width:1150px;margin:auto;padding:30px 16px 90px;display:flex;flex-direction:column;gap:34px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:clamp(18px,3.4vw,36px);box-shadow:0 14px 40px rgba(0,0,0,.25)}
-.chead{display:flex;align-items:center;gap:16px;margin-bottom:18px}
-.cnum{font-family:'Space Grotesk';font-size:1.5rem;font-weight:700;background:linear-gradient(180deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;border:1px solid var(--line);border-radius:16px;padding:6px 14px}
-.chead h2{font-size:clamp(1.05rem,2.6vw,1.45rem);font-weight:900}
+main{max-width:1150px;margin:auto;padding:30px 16px 90px;display:flex;flex-direction:column;gap:30px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:clamp(18px,3.4vw,34px);box-shadow:0 14px 40px rgba(0,0,0,.25)}
+.chead{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+.cnum{font-family:'Space Grotesk';font-size:1.45rem;font-weight:700;background:linear-gradient(180deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;border:1px solid var(--line);border-radius:16px;padding:6px 14px}
+.chead h2{font-size:clamp(1.05rem,2.6vw,1.4rem);font-weight:900}
+.intro{margin-bottom:14px}
 .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px}
 .tile{background:var(--card2);border:1px solid var(--line);border-radius:16px;padding:18px;transition:.25s}
-.tile:hover{transform:translateY(-4px);border-color:var(--acc)}
-.note{border-inline-start:4px solid var(--acc);background:var(--card2);border-radius:12px;padding:12px 16px;margin-top:14px;font-size:.9rem}
-.note.hot{border-color:var(--hot)} .note.gold{border-color:var(--gold)} .note.ok{border-color:var(--ok)} .note.pur{border-color:var(--pur)}
 .tag{display:inline-block;font-size:.7rem;font-weight:800;color:#041018;background:var(--acc);border-radius:99px;padding:2px 12px;margin-bottom:8px}
 .tag.hot{background:var(--hot)} .tag.gold{background:var(--gold)} .tag.ok{background:var(--ok)} .tag.pur{background:var(--pur)}
+.note{border-inline-start:4px solid var(--acc);background:var(--card2);border-radius:12px;padding:12px 16px;margin-top:14px;font-size:.9rem}
+.note.gold{border-color:var(--gold)}
 .defBox{border:2px dashed var(--line);border-radius:12px;padding:12px 16px;margin-top:14px;background:var(--card2)}
 .defBox b.dT{color:var(--bad);font-size:1rem}
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}
 .reveal.vis{opacity:1;transform:none}
-.formula{font-family:'Space Grotesk','Cairo',sans-serif;font-weight:700;direction:ltr}
-.ionList{display:flex;flex-wrap:wrap;gap:8px 6px;margin-top:8px}
-.ionList .item{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:4px 10px;font-size:.82rem}
-.ionList .item sub,.ionList .item sup{font-size:.68em}
-.compRow{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:14px}
-.compRow .tile p{margin-top:6px}
+.formula{font-family:'Space Grotesk','Cairo',sans-serif;font-weight:700;direction:ltr;overflow-wrap:anywhere}
+.sub{font-size:.72em;vertical-align:sub}
+.sup{font-size:.72em;vertical-align:super}
+.btn{cursor:pointer;border:none;border-radius:14px;padding:9px 18px;font-family:inherit;font-weight:800;font-size:.88rem;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#041018;transition:.2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line);box-shadow:none}
+.ctrls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin:16px 0 6px}
+.fbk{margin-top:12px;font-weight:800;min-height:1.6em}
+.fbk.ok{color:var(--ok)} .fbk.bad{color:var(--bad)}
+/* diatomic explorer */
+.mono{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.mono .pill{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-family:'Space Grotesk';font-weight:700}
+.diaWrap{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.dia{flex:1 1 120px;max-width:150px;background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:12px 10px;text-align:center;cursor:pointer;transition:.2s}
+.dia:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.dia .pair{font-family:'Space Grotesk';font-weight:700;font-size:1.05rem;letter-spacing:1px}
+.dia .nm{font-size:.72rem;color:var(--muted)}
+.dia .st{display:inline-block;margin-top:6px;font-size:.72rem;font-weight:800;color:var(--muted)}
+.dia.found{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card2))}
+.dia.found .st{color:var(--ok)}
+/* sorter */
+.sorter{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:14px}
+.bucket{background:var(--card2);border:2px dashed var(--line);border-radius:16px;padding:14px;min-height:150px}
+.bucket.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 8%,var(--card2))}
+.bucket h3{font-size:.95rem;font-weight:900;margin-bottom:10px}
+.bucket .chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:'Space Grotesk';font-weight:700;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:5px 10px;font-size:.85rem;cursor:pointer;transition:.18s}
+.chip:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.chip.good{border-color:var(--ok)}
+.chip.bad{border-color:var(--bad);animation:shk .3s}
+.chip.sel{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 22%,var(--card));box-shadow:0 0 0 2px color-mix(in srgb,var(--acc) 50%,transparent)}
+.chip.sel-ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,var(--card))}
+@keyframes shk{25%{transform:translateX(4px)}75%{transform:translateX(-4px)}}
+/* compound selector */
+.compSel{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.compSel button{flex:1 1 130px;max-width:180px;cursor:pointer;background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:11px 12px;font-family:inherit;font-weight:800;font-size:.86rem;transition:.2s}
+.compSel button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.compSel button.on{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 14%,var(--card2))}
+.compDetail{margin-top:14px;background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:14px}
+.compDetail .bigF{font-family:'Space Grotesk';font-weight:700;font-size:1.5rem;direction:ltr;text-align:center;padding:6px 0}
+/* rules */
 .ruleList{list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:12px;counter-reset:r}
 .ruleList li{display:flex;gap:12px;align-items:flex-start;background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
 .ruleList li::before{counter-increment:r;content:counter(r);flex:none;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#041018;font-weight:900;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk'}
+.builder{margin-top:16px;background:var(--card2);border:1px solid var(--line);border-radius:16px;padding:16px}
+.builder .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin:8px 0}
+.builder .sel{font-family:inherit;font-weight:700;padding:8px 12px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--text);cursor:pointer}
+.builder .sel:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.out{font-family:'Space Grotesk';font-weight:700;font-size:1.3rem;direction:ltr;text-align:center;padding:8px 0;min-height:2em;overflow-wrap:anywhere}
+/* evaluate */
 .evalList{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:14px}
-.evalList .tile{display:flex;flex-direction:column;gap:6px}
+.evalList .tile{display:flex;flex-direction:column;gap:8px}
+.evalList .tile .ansT{font-family:'Space Grotesk';font-weight:700;font-size:1.05rem;direction:ltr;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:10px;padding:8px;min-height:2.4em}
+.evalList .tile .ansT.rev{color:var(--text);border-style:solid;border-color:var(--acc);background:var(--card)}
 .evalList .tile .en,.evalList .tile .ar{margin:0}
+.evalList .tile .chk{align-self:center;margin-top:2px}
+/* roadmap */
+.road{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.step{flex:1 1 150px;background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:12px;text-align:center;font-weight:800;font-size:.85rem}
+.step.on{border-color:var(--gold);color:var(--gold)}
+.step.next{opacity:.7}
+.road .arrow{font-size:1.3rem;color:var(--muted);flex:none}
 footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
-.verified{display:inline-flex;align-items:center;gap:12px;border:1px solid var(--gold);border-radius:18px;padding:12px 22px;background:var(--card);color:var(--gold);font-weight:800}
-@media(max-width:440px){.verified{flex-wrap:wrap;justify-content:center}}
+.verified{display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px;border:1px solid var(--gold);border-radius:18px;padding:12px 22px;background:var(--card);color:var(--gold);font-weight:800;max-width:100%}
 #topBtn{position:fixed;bottom:20px;inset-inline-start:20px;z-index:85;width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,var(--hot),var(--gold));font-size:1.2rem;opacity:0;pointer-events:none;transition:.3s}
 #topBtn.show{opacity:1;pointer-events:auto}
-@media(max-width:520px){.ionList .item{font-size:.78rem}}
 </style>
 </head>
 <body>
@@ -79,23 +137,31 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
 <header class="topbar">
   <div class="brand">🧪 Chemistry Foundations · أساسيات الكيمياء</div>
   <nav id="nav">
-    <a href="#hero" class="active">Start · البداية</a><a href="#points">Points · النقط</a>
+    <a href="#hero" class="active">Start · البداية</a><a href="#atoms">Atoms · الذرات</a>
     <a href="#ions">Ions · الأيونات</a><a href="#compounds">Compounds · المركبات</a><a href="#rules">Rules · القواعد</a>
-    <a href="#evaluate">Evaluate · قيّم فهمك</a>
+    <a href="#build">Build · التركيب</a><a href="#evaluate">Evaluate · قيّم</a><a href="#roadmap">Roadmap · المسار</a>
   </nav>
-  <button id="themeBtn" title="Theme · المظهر">☀️</button>
+  <button id="sndBtn" title="Sound · الصوت" aria-label="Sound toggle">🔊</button>
+  <button id="themeBtn" title="Theme · المظهر" aria-label="Theme toggle">☀️</button>
 </header>
 
 <section id="hero">
+  <div id="orbit" aria-hidden="true">
+    <div class="ring r1"><span class="dot" style="top:2px;left:50%"></span></div>
+    <div class="ring r2"><span class="dot" style="top:50%;left:0"></span></div>
+    <div class="ring r3"><span class="dot" style="top:0;left:20%"></span></div>
+    <div class="nuc"></div>
+  </div>
   <div class="heroIn">
     <span class="kicker">Unit 2 · Matter &amp; Chemical Reactions · Preliminary Lesson · الدرس التمهيدي</span>
     <h1><span class="en">Chemistry Foundations</span><span class="ar">أساسيات الكيمياء</span></h1>
-    <p class="desc en">Important previously studied points: atoms, ions, atomic groups, how to write molecular formulas, and the rules that keep every compound electrically neutral.</p>
-    <p class="desc ar">أهم النقط اللي اتدرست قبل كده: الذرات، الأيونات، المجموعات الذرية، طريقة كتابة الصيغة الجزيئية، والقواعد اللي بتحافظ على تعادل الشحنة لأي مركّب.</p>
+    <p class="desc en">The building blocks you need before Chemical Reactions: atoms, ions and atomic groups, how compounds form, and the rules that keep every formula neutral.</p>
+    <p class="desc ar">اللبنات اللي محتاجها قبل التفاعلات الكيميائية: الذرات، الأيونات والمجموعات الذرية، إزاي المركبات بتتكوّن، والقواعد اللي بتحافظ على تعادل الشحنة.</p>
     <div class="badges">
-      <span class="badge"><span class="en">⚛️ Monoatomic &amp; Diatomic</span><span class="ar">⚛️ أحادية وثنائية الذرة</span></span>
-      <span class="badge"><span class="en">🔋 Cations &amp; Anions</span><span class="ar">🔋 أيونات موجبة وسالبة</span></span>
-      <span class="badge"><span class="en">🧪 Compound Formulas</span><span class="ar">🧪 صيغ المركبات</span></span>
+      <span class="badge"><span class="en">⚛️ Atoms &amp; the 7 diatomic</span><span class="ar">⚛️ الذرات والسبع ثنائية</span></span>
+      <span class="badge"><span class="en">🔋 Cations &amp; Anions sorter</span><span class="ar">🔋 ترتيب الأيونات</span></span>
+      <span class="badge"><span class="en">🧪 Compound builder</span><span class="ar">🧪 صانع الصيغ</span></span>
+      <span class="badge"><span class="en">🧮 6-item self-check</span><span class="ar">🧮 تقييم ذاتي من ٦</span></span>
       <span class="badge vip"><span class="en">✔️ Reviewed by Dr. Wael Aboagiza</span><span class="ar">✔️ مراجعة د. وائل أبو عجيزة</span></span>
     </div>
     <div class="scrollHint">⌄</div>
@@ -103,70 +169,71 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
 </section>
 
 <main>
-<!-- ============ POINTS ============ -->
-<section id="points" class="card reveal">
-  <div class="chead"><span class="cnum">01</span><div><h2><span class="en">Important Previously Studied Points</span><span class="ar">أهم النقط اللي اتدرست قبل كده</span></h2></div></div>
-  <div class="tile">
-    <span class="tag ok">Monoatomic molecules · جزيئات أحادية الذرة</span>
-    <p class="en">Most elements of the periodic table are found at normal conditions in the form of monoatomic molecules, such as: Sodium Na and Carbon C.</p>
-    <p class="ar">معظم عناصر الجدول الدوري بتكون في الظروف العادية في صورة جزيئات أحادية الذرة، زي الصوديوم Na والكربون C.</p>
+<!-- ============ ATOMS ============ -->
+<section id="atoms" class="card reveal">
+  <div class="chead"><span class="cnum">01</span><div><h2><span class="en">Atoms &amp; Molecules — the building blocks</span><span class="ar">الذرات والجزيئات — اللبنات الأساسية</span></h2></div></div>
+  <p class="intro en">Most elements of the periodic table are found at normal conditions as <strong>monoatomic molecules</strong>, such as Sodium Na and Carbon C. Only <strong>7 elements</strong> are excluded — they form <strong>diatomic molecules</strong>.</p>
+  <p class="intro ar">معظم عناصر الجدول الدوري بتكون في الظروف العادية في صورة جزيئات أحادية الذرة، زي الصوديوم Na والكربون C. وفيه <strong>٧ عناصر بس</strong> مستثناة — ودي بتكون في صورة جزيئات ثنائية الذرة.</p>
+
+  <div class="mono">
+    <div class="pill">Na</div><span class="en">· monoatomic · أحادي الذرة</span>
+    <div class="pill">C</div><span class="en">· monoatomic · أحادي الذرة</span>
   </div>
-  <div class="tile" style="margin-top:14px">
-    <span class="tag hot">Diatomic molecules · جزيئات ثنائية الذرة</span>
-    <p class="en">Only 7 elements are excluded; they are found in the form of diatomic molecules: <span class="formula">H<sub>2</sub>, N<sub>2</sub>, O<sub>2</sub>, F<sub>2</sub>, Cl<sub>2</sub>, Br<sub>2</sub>, I<sub>2</sub></span>.</p>
-    <p class="ar">فيه ٧ عناصر مستثناة؛ ودي بتكون في صورة جزيئات ثنائية الذرة: <span class="formula">H<sub>2</sub> وN<sub>2</sub> وO<sub>2</sub> وF<sub>2</sub> وCl<sub>2</sub> وBr<sub>2</sub> وI<sub>2</sub></span>.</p>
-  </div>
-  <div class="note gold">
-    <span class="en"><strong>Memorize the 7:</strong> H₂, N₂, O₂, F₂, Cl₂, Br₂, I₂.</span>
-    <span class="ar"><strong>احفظ السبع عناصر:</strong> H₂ وN₂ وO₂ وF₂ وCl₂ وBr₂ وI₂.</span>
+
+  <h3 style="margin-top:18px">🎯 <span class="en">The 7 Diatomics — find them all</span> · <span class="ar">السبع عناصر ثنائية الذرة — لقّيهم كلهم</span></h3>
+  <p class="en mut" style="font-size:.84rem">Tap each pair to mark it as a diatomic molecule. Found: <b id="diaCount">0</b> / 7</p>
+  <p class="ar mut" style="font-size:.84rem">دوس على كل ثنائي عشان تعلّمه. لقيت: <b id="diaCountAr">0</b> / 7</p>
+  <div class="diaWrap" id="diaWrap"></div>
+  <div class="fbk" id="diaFbk"></div>
+  <div class="defBox">
+    <b class="dT">Remember the 7 · احفظ السبع</b>
+    <p class="en"><span class="formula">H<span class="sub">2</span> · N<span class="sub">2</span> · O<span class="sub">2</span> · F<span class="sub">2</span> · Cl<span class="sub">2</span> · Br<span class="sub">2</span> · I<span class="sub">2</span></span></p>
+    <p class="ar"><span class="formula">H<span class="sub">2</span> · N<span class="sub">2</span> · O<span class="sub">2</span> · F<span class="sub">2</span> · Cl<span class="sub">2</span> · Br<span class="sub">2</span> · I<span class="sub">2</span></span></p>
   </div>
 </section>
 
 <!-- ============ IONS ============ -->
 <section id="ions" class="card reveal">
-  <div class="chead"><span class="cnum">02</span><div><h2><span class="en">Element ions and atomic groups</span><span class="ar">أيونات العناصر والمجموعات الذرية</span></h2></div></div>
-  <p class="en">The following are examples of some ions and atomic groups.</p>
-  <p class="ar">دي أمثلة لبعض الأيونات والمجموعات الذرية.</p>
+  <div class="chead"><span class="cnum">02</span><div><h2><span class="en">Ions &amp; Atomic Groups</span><span class="ar">الأيونات والمجموعات الذرية</span></h2></div></div>
+  <p class="intro en">Elements can lose or gain electrons. Atoms that become <strong>positive (cations)</strong> lost electrons; those that become <strong>negative (anions)</strong> gained electrons. Atomic groups keep a net charge.</p>
+  <p class="intro ar">العناصر ممكن تفقد أو تكتسب إلكترونات. الذرة اللي بتبقى <strong>موجبة (كاتيون)</strong> فقدت إلكترونات؛ واللي بتبقى <strong>سالبة (أنيون)</strong> اكتسبت إلكترونات. والمجموعات الذرية ليها شحنة صافية.</p>
 
-  <div class="tile" style="margin-top:14px">
-    <span class="tag hot">Positive ions (cations) · الأيونات الموجبة</span>
-    <div class="ionList" dir="ltr">
-      <span class="item">Li<sup>+</sup></span><span class="item">Na<sup>+</sup></span><span class="item">K<sup>+</sup></span><span class="item">Ag<sup>+</sup></span><span class="item">Mg<sup>2+</sup></span><span class="item">Ca<sup>2+</sup></span><span class="item">Zn<sup>2+</sup></span><span class="item">Ba<sup>2+</sup></span><span class="item">Cu<sup>2+</sup></span><span class="item">Al<sup>3+</sup></span><span class="item">NH<sub>4</sub><sup>+</sup></span>
-    </div>
-    <p class="ar mut">ليثيوم، صوديوم، بوتاسيوم، فضة، ماغنسيوم، كالسيوم، زنك، باريوم، نحاس، ألومنيوم، وأمونيوم.</p>
+  <h3 style="margin-top:16px">🧰 <span class="en">Charge Sorter — tap the correct bucket</span> · <span class="ar">فرّز الشحنة — دوس على التصنيف الصحيح</span></h3>
+  <p class="en mut" style="font-size:.84rem">For each ion, tap whether it is a cation (positive) or anion (negative).</p>
+  <p class="ar mut" style="font-size:.84rem">لكل أيون دوس هل هو كاتيون (موجب) ولا أنيون (سالب).</p>
+  <div class="pool" id="ionPool" style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px"></div>
+  <div class="sorter">
+    <div class="bucket" id="catBucket"><h3>➕ <span class="en">Cations · كاتيونات</span></h3><div class="chips" id="catChips"></div></div>
+    <div class="bucket" id="anBucket"><h3>➖ <span class="en">Anions · أنيونات</span></h3><div class="chips" id="anChips"></div></div>
   </div>
-
-  <div class="tile" style="margin-top:14px">
-    <span class="tag ok">Negative ions (anions) · الأيونات السالبة</span>
-    <div class="ionList" dir="ltr">
-      <span class="item">F<sup>−</sup></span><span class="item">Cl<sup>−</sup></span><span class="item">Br<sup>−</sup></span><span class="item">I<sup>−</sup></span><span class="item">O<sup>2−</sup></span><span class="item">S<sup>2−</sup></span><span class="item">OH<sup>−</sup></span><span class="item">NO<sub>3</sub><sup>−</sup></span><span class="item">NO<sub>2</sub><sup>−</sup></span><span class="item">HCO<sub>3</sub><sup>−</sup></span><span class="item">CO<sub>3</sub><sup>2−</sup></span><span class="item">SO<sub>4</sub><sup>2−</sup></span><span class="item">SO<sub>3</sub><sup>2−</sup></span><span class="item">PO<sub>4</sub><sup>3−</sup></span>
-    </div>
-    <p class="ar mut">فلوريد، كلوريد، بروميد، يوديد، أكسيد، كبريتيد، هيدروكسيد، نترات، نتريت، بيكربونات، كربونات، كبريتات، كبريتيت، وفوسفات.</p>
+  <div class="fbk" id="ionFbk"></div>
+  <div class="note gold">
+    <span class="en"><strong>Examples to know:</strong> Cations → Li⁺ Na⁺ K⁺ Ag⁺ Mg²⁺ Ca²⁺ Zn²⁺ Ba²⁺ Cu²⁺ Al³⁺ NH₄⁺ · Anions → F⁻ Cl⁻ Br⁻ I⁻ O²⁻ S²⁻ OH⁻ NO₃⁻ NO₂⁻ HCO₃⁻ CO₃²⁻ SO₄²⁻ SO₃²⁻ PO₄³⁻</span>
+    <span class="ar"><strong>أمثلة لازم تعرفها:</strong> كاتيونات ← ليثيوم صوديوم بوتاسيوم فضة ماغنسيوم كالسيوم زنك باريوم نحاس ألومنيوم أمونيوم · أنيونات ← فلوريد كلوريد بروميد يوديد أكسيد كبريتيد هيدروكسيد نترات نتريت بيكربونات كربونات كبريتات كبريتيت فوسفات</span>
   </div>
 </section>
 
 <!-- ============ COMPOUNDS ============ -->
 <section id="compounds" class="card reveal">
-  <div class="chead"><span class="cnum">03</span><div><h2><span class="en">Types of chemical compounds, the way to write their molecular formula, and examples</span><span class="ar">أنواع المركبات الكيميائية وطريقة كتابة صيغها الجزيئية وأمثلتها</span></h2></div></div>
-  <div class="compRow">
-    <div class="tile"><span class="tag">Acid · الحمض</span>
-      <p class="en">It starts with the hydrogen cation H⁺ followed by the element anion, or the anion formula of an atomic group.</p>
-      <p class="ar">بيبدأ بكاتيون الهيدروجين H⁺ وبعده أنيون العنصر أو صيغة أنيون المجموعة الذرية.</p></div>
-    <div class="tile"><span class="tag hot">Alkali · القلوي</span>
-      <p class="en">It starts with the cation and ends with hydroxide (OH)⁻.</p>
-      <p class="ar">بيبدأ بالكاتيون وبينتهي بأنيون الهيدروكسيد (OH)⁻.</p></div>
-    <div class="tile"><span class="tag gold">Oxide · الأكسيد</span>
-      <p class="en">It starts with a metal or non-metal and ends with oxygen O.</p>
-      <p class="ar">بيبدأ بفلز أو لافلز وبينتهي بالأكسجين O.</p></div>
-    <div class="tile"><span class="tag ok">Salt · الملح</span>
-      <p class="en">It starts with a positive cation or positive atomic group, followed by the acid anion or negative atomic group.</p>
-      <p class="ar">بيبدأ بكاتيون موجب أو مجموعة ذرية موجبة، وبعده أنيون الحمض أو مجموعة ذرية سالبة.</p></div>
+  <div class="chead"><span class="cnum">03</span><div><h2><span class="en">Types of Compounds — how formulas are built</span><span class="ar">أنواع المركبات — إزاي الصيغ بتتكوّن</span></h2></div></div>
+  <p class="intro en">Select a compound type to see how its molecular formula is arranged.</p>
+  <p class="intro ar">اختار نوع المركب عشان تشوف إزاي بيترتب تكوين الصيغة الجزيئية.</p>
+  <div class="compSel" id="compSel">
+    <button data-c="acid" aria-pressed="false">Acid · حمض</button>
+    <button data-c="alkali" aria-pressed="false">Alkali · قلوي</button>
+    <button data-c="oxide" aria-pressed="false">Oxide · أكسيد</button>
+    <button data-c="salt" aria-pressed="false">Salt · ملح</button>
+  </div>
+  <div class="compDetail" id="compDetail">
+    <div class="bigF" id="compBig">—</div>
+    <p class="en" id="compEn"></p>
+    <p class="ar" id="compAr"></p>
   </div>
 </section>
 
 <!-- ============ RULES ============ -->
 <section id="rules" class="card reveal">
-  <div class="chead"><span class="cnum">04</span><div><h2><span class="en">Rules</span><span class="ar">القواعد</span></h2></div></div>
+  <div class="chead"><span class="cnum">04</span><div><h2><span class="en">The Rules — keeping every formula neutral</span><span class="ar">القواعد — إبقاء كل صيغة متعادلة</span></h2></div></div>
   <ul class="ruleList">
     <li><div><p class="en">The total charge of any compound is equal to zero.</p><p class="ar">مجموع شحنات أي مركّب لازم يساوي صفر.</p></div></li>
     <li><div><p class="en">The number of hydrogen atoms in an acid molecule equals the charge of its anion or atomic group.</p><p class="ar">عدد ذرات الهيدروجين في الحمض بيساوي شحنة الأنيون أو المجموعة الذرية اللي كوّنته.</p></div></li>
@@ -175,28 +242,66 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
   </ul>
   <div class="defBox">
     <b class="dT">📌 Rule example · مثال من قاعدة كتابة الصيغة</b>
-    <p class="en">Repeated atomic group uses brackets + a subscript number below — e.g. Calcium hydroxide Ca(OH)₂.</p>
-    <p class="ar">المجموعة الذرية المتكررة بتتحط بين قوسين والعدد ييجي بعدها — زي هيدروكسيد الكالسيوم Ca(OH)₂.</p>
+    <p class="en">A repeated atomic group uses brackets + a subscript number below — e.g. Calcium hydroxide <span class="formula">Ca(OH)<span class="sub">2</span></span>.</p>
+    <p class="ar">المجموعة الذرية المتكررة بتتحط بين قوسين والعدد ييجي بعدها — زي هيدروكسيد الكالسيوم <span class="formula">Ca(OH)<span class="sub">2</span></span>.</p>
+  </div>
+</section>
+
+<!-- ============ BUILD ============ -->
+<section id="build" class="card reveal">
+  <div class="chead"><span class="cnum">05</span><div><h2><span class="en">Formula Builder — apply the rules</span><span class="ar">صانع الصيغ — طبّق القواعد</span></h2></div></div>
+  <p class="intro en">Pick a cation and an anion, then use the rule to balance the charge. The neutral formula appears live.</p>
+  <p class="intro ar">اختار كاتيون وأنيون وبعدين استخدم قاعدة التعادل عشان توازن الشحنة. الصيغة المتعادلة بتظهر مباشرة.</p>
+  <div class="builder">
+    <div class="row">
+      <label for="bCat" class="en" style="font-weight:700">Cation</label>
+      <select id="bCat" class="sel">
+        <option value="">—</option>
+        <option value="Na|1|Sodium|صوديوم">Na⁺ · Sodium</option>
+        <option value="Mg|2|Magnesium|ماغنسيوم">Mg²⁺ · Magnesium</option>
+        <option value="Al|3|Aluminium|ألومنيوم">Al³⁺ · Aluminium</option>
+        <option value="Ca|2|Calcium|كالسيوم">Ca²⁺ · Calcium</option>
+      </select>
+    </div>
+    <div class="row">
+      <label for="bAn" class="en" style="font-weight:700">Anion</label>
+      <select id="bAn" class="sel">
+        <option value="">—</option>
+        <option value="Cl|1|Chloride|كلوريد">Cl⁻ · Chloride</option>
+        <option value="O|2|Oxide|أكسيد">O²⁻ · Oxide</option>
+        <option value="OH|1|Hydroxide|هيدروكسيد|group">OH⁻ · Hydroxide</option>
+        <option value="SO4|2|Sulphate|كبريتات|group">SO₄²⁻ · Sulphate</option>
+      </select>
+    </div>
+    <div class="row"><button class="btn" id="buildBtn">🧮 <span class="en">Build formula</span> · <span class="ar">كوّن الصيغة</span></button></div>
+    <div class="out" id="buildOut" aria-live="polite"></div>
+    <div class="fbk" id="buildFbk" style="text-align:center"></div>
   </div>
 </section>
 
 <!-- ============ EVALUATE ============ -->
 <section id="evaluate" class="card reveal">
-  <div class="chead"><span class="cnum">05</span><div><h2><span class="en">Evaluate Your Understanding</span><span class="ar">قيّم فهمك</span></h2></div></div>
-  <p class="en">Write the molecular formula for each compound:</p>
-  <p class="ar">اكتب الصيغة الجزيئية لكل مركّب:</p>
-  <div class="evalList">
-    <div class="tile"><span class="tag">1 · Magnesium oxide · أكسيد المغنيسيوم</span><span class="formula">MgO</span></div>
-    <div class="tile"><span class="tag">2 · Sodium bicarbonate · بيكربونات الصوديوم</span><span class="formula">NaHCO<sub>3</sub></span></div>
-    <div class="tile"><span class="tag">3 · Silver nitrate · نترات الفضة</span><span class="formula">AgNO<sub>3</sub></span></div>
-    <div class="tile"><span class="tag">4 · Copper sulphate · كبريتات النحاس</span><span class="formula">CuSO<sub>4</sub></span></div>
-    <div class="tile"><span class="tag">5 · Hydrochloric acid · حمض الهيدروكلوريك</span><span class="formula">HCl</span></div>
-    <div class="tile"><span class="tag">6 · Calcium hydroxide · هيدروكسيد الكالسيوم</span><span class="formula">Ca(OH)<sub>2</sub></span></div>
+  <div class="chead"><span class="cnum">06</span><div><h2><span class="en">Evaluate Your Understanding</span><span class="ar">قيّم فهمك</span></h2></div></div>
+  <p class="intro en">Write the molecular formula in your head for each compound, then press <b>Reveal</b> to check. Mark it ✓ when you got it right.</p>
+  <p class="intro ar">اكتب الصيغة الجزيئية في دماغك لكل مركّب، وبعدين دوس <b>اعرض</b> عشان تتأكد. علّمها ✓ لما تطلع صح.</p>
+  <div class="evalList" id="evalList"></div>
+</section>
+
+<!-- ============ ROADMAP ============ -->
+<section id="roadmap" class="card reveal">
+  <div class="chead"><span class="cnum">07</span><div><h2><span class="en">Unit 2 Roadmap — what comes next</span><span class="ar">مسار الوحدة الثانية — اللي جاي بعد كده</span></h2></div></div>
+  <p class="intro en">Chemical reactions happen when bonds between atoms break and new ones form. You need to know the atoms, ions and neutral formulas here before you can follow those reactions.</p>
+  <p class="intro ar">التفاعلات الكيميائية بتحصل لما الروابط بين الذرات بتتنكس وبتتكوّن روابط جديدة. محتاج تعرف الذرات والأيونات والصيغ المتعادلة هنا الأول عشان تقدر تتابع التفاعلات.</p>
+  <div class="road">
+    <div class="step on">1 · Preliminary · تحضيري<br><span class="en" style="font-size:.72rem;font-weight:600">You are here · إنت هنا</span></div>
+    <div class="arrow">→</div>
+    <div class="step next">2 · Chemical Reactions · التفاعلات<br><span class="en" style="font-size:.72rem;font-weight:600">Next · الجاي</span></div>
+    <div class="arrow">→</div>
+    <div class="step next">3 · Chemical Equations · المعادلات<br><span class="en" style="font-size:.72rem;font-weight:600">Later · بعدين</span></div>
+    <div class="arrow">→</div>
+    <div class="step next">4 · Nutritional Chemistry · كيمياء التغذية<br><span class="en" style="font-size:.72rem;font-weight:600">Later · بعدين</span></div>
   </div>
-  <div class="note">
-    <span class="en"><strong>🖊️ Try it hidden first</strong> — write each formula, then reveal the answer above.</span>
-    <span class="ar"><strong>🖊️ جرّب تكتبها الأول</strong> — اكتب كل صيغة وبعدين شوف الإجابة في الأعلى.</span>
-  </div>
+  <div class="note gold"><span class="en">The building blocks you practised here (atoms, ions, neutral formulas) are the same atoms that combine and rearrange in the Chemical Reactions lesson.</span><span class="ar">اللبنات اللي اتدربت عليها هنا (الذرات، الأيونات، الصيغ المتعادلة) هي نفسها الذرات اللي بتتحد وتترتب تاني في درس التفاعلات الكيميائية.</span></div>
 </section>
 </main>
 
@@ -204,19 +309,153 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
   <div class="verified"><span>✓</span><span class="en">Reviewed by Dr. Wael Aboagiza</span><span class="ar">مراجعة د. وائل أبو عجيزة</span></div>
   <p style="margin-top:18px;font-size:.8rem">www.2ndPrepFunnyScienceLab · Unit 2 · Preliminary Lesson</p>
 </footer>
-<button id="topBtn" title="Back to top · للأعلى">↑</button>
+<button id="topBtn" title="Back to top · للأعلى" aria-label="Back to top">⬆</button>
 
 <script>
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
-addEventListener('scroll',()=>{const h=document.documentElement,p=h.scrollTop/(h.scrollHeight-h.clientHeight);
- $('#progress').style.width=(p*100)+'%';
- $('#topBtn').classList.toggle('show',h.scrollTop>600);},{passive:true});
+/* optional compact sound (minimal, no loop engine) */
+const SND={on:true,ctx:null};
+function ac(){if(!SND.ctx){const C=window.AudioContext||window.webkitAudioContext;if(!C)return null;SND.ctx=new C();}if(SND.ctx&&SND.ctx.state==='suspended')SND.ctx.resume();return SND.ctx;}
+function beep(freq,dur,vol){if(!SND.on)return;const c=ac();if(!c)return;const t=c.currentTime,o=c.createOscillator(),g=c.createGain();o.type='sine';o.frequency.value=freq;g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(vol||.08,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+dur);o.connect(g);g.connect(c.destination);o.start(t);o.stop(t+dur+.02);}
+function sOk(){beep(660,.18,.07);setTimeout(()=>beep(880,.22,.07),90);}
+function sBad(){beep(180,.25,.08);}
+$('#sndBtn').onclick=()=>{SND.on=!SND.on;$('#sndBtn').textContent=SND.on?'🔊':'🔇';if(SND.on)beep(660,.1,.06);};
+
+/* chrome */
+addEventListener('scroll',()=>{const h=document.documentElement,p=h.scrollTop/(h.scrollHeight-h.clientHeight);$('#progress').style.width=(p*100)+'%';$('#topBtn').classList.toggle('show',h.scrollTop>600);},{passive:true});
 $('#topBtn').onclick=()=>scrollTo({top:0,behavior:'smooth'});
 $('#themeBtn').onclick=()=>{const l=document.body.dataset.theme==='light';document.body.dataset.theme=l?'':'light';$('#themeBtn').textContent=l?'☀️':'🌙';};
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}}),{threshold:.1});
 $$('.reveal').forEach(el=>io.observe(el));
 const spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)$$('nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));}),{rootMargin:'-35% 0px -55% 0px'});
 $$('section[id]').forEach(s=>spy.observe(s));
+
+/* 1) diatomic explorer */
+const DIAS=[['H','Hydrogen','هيدروجين'],['N','Nitrogen','نيتروجين'],['O','Oxygen','أكسجين'],['F','Fluorine','فلور'],['Cl','Chlorine','كلور'],['Br','Bromine','بروم'],['I','Iodine','يود']];
+let diaFound=0;
+function renderDia(){
+  $('#diaWrap').innerHTML=DIAS.map((d,i)=>
+    `<button class="dia" data-i="${i}" aria-pressed="false"><div class="pair">${d[0]}<span class="sub">2</span></div><div class="nm">${d[1]} · ${d[2]}</div><span class="st">✍️ <span class="en" style="display:inline">tap</span>·<span class="ar" style="display:inline">دوس</span></span></button>`
+  ).join('');
+  $('#diaCount').textContent=diaFound;$('#diaCountAr').textContent=diaFound;
+}
+$('#diaWrap').addEventListener('click',e=>{const b=e.target.closest('.dia');if(!b)return;const i=+b.dataset.i;if(b.classList.contains('found'))return;b.classList.add('found');b.setAttribute('aria-pressed','true');b.querySelector('.st').innerHTML='✔';diaFound++;$('#diaCount').textContent=diaFound;$('#diaCountAr').textContent=diaFound;sOk();if(diaFound===7){$('#diaFbk').textContent='';$('#diaFbk').classList.add('ok');}});
+renderDia();
+
+/* 2) ion sorter */
+const CATS2=[['Li','+','Lithium','ليثيوم'],['Na','+','Sodium','صوديوم'],['K','+','Potassium','بوتاسيوم'],['Ag','+','Silver','فضة'],['Mg','2+','Magnesium','ماغنسيوم'],['Ca','2+','Calcium','كالسيوم'],['Zn','2+','Zinc','زنك'],['Ba','2+','Barium','باريوم'],['Cu','2+','Copper','نحاس'],['Al','3+','Aluminium','ألومنيوم']];
+const ANIONS2=[['F','−','Fluoride','فلوريد'],['Cl','−','Chloride','كلوريد'],['Br','−','Bromide','بروميد'],['I','−','Iodide','يوديد'],['O','2−','Oxide','أكسيد'],['S','2−','Sulphide','كبريتيد'],['OH','−','Hydroxide','هيدروكسيد'],['NO3','−','Nitrate','نترات'],['SO4','2−','Sulphate','كبريتات'],['CO3','2−','Carbonate','كربونات']];
+function shuffle2(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+let catLeft=[...CATS2],anLeft=[...ANIONS2];
+let selected=null; // DOM node of currently selected pool ion
+function poolFromRemaining(){
+  const remaining=[];
+  [...shuffle2([...catLeft])].forEach(x=>remaining.push({who:'cat',x}));
+  [...shuffle2([...anLeft])].forEach(x=>remaining.push({who:'an',x}));
+  return shuffle2(remaining);
+}
+function renderPool(){
+  $('#ionPool').innerHTML='';
+  selected=null;
+  const remaining=poolFromRemaining().slice(0,8);
+  remaining.forEach(it=>{
+    const sym=it.x[0],chg=it.x[1].replace('2','²').replace('3','³');
+    const el=document.createElement('button');el.type='button';el.className='chip';el.dataset.who=it.who;el.dataset.sym=sym;el.dataset.chg=chg;el.dataset.x=JSON.stringify(it.x);
+    el.innerHTML=sym+'<sup>'+chg+'</sup> <span style="font-size:.68rem;color:var(--muted)">· '+it.x[2]+'</span>';
+    el.addEventListener('click',()=>{if(el.dataset.done)return;$$('#ionPool .chip').forEach(c=>c.classList.remove('sel'));el.classList.add('sel');selected=el;});
+    el.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();el.click();}});
+    $('#ionPool').appendChild(el);
+  });
+}
+function bucketClick(targetAttr,who){
+  // targetAttr: 'catChips' or 'anChips'
+  return ()=>{
+    if(!selected){$('#ionFbk').textContent='<span class="en">Select an ion first</span>';$('#ionFbk').className='fbk bad';return;}
+    const el=selected;
+    const elWho=el.dataset.who;
+    if(elWho===who){
+      // correct
+      el.classList.add('sel-ok');el.dataset.done='1';el.classList.remove('sel');
+      const dest=document.getElementById(targetAttr);
+      const move=document.createElement('button');move.type='button';move.className='chip good';move.innerHTML=el.innerHTML;move.dataset.done='1';
+      dest.appendChild(move);
+      if(who==='cat'){catLeft=catLeft.filter(x=>!(x[0]===el.dataset.sym&&x[1].replace('2','²').replace('3','³')===el.dataset.chg));}
+      else{anLeft=anLeft.filter(x=>!(x[0]===el.dataset.sym&&x[1].replace('2','²').replace('3','³')===el.dataset.chg));}
+      el.remove();selected=null;
+      $('#ionFbk').className='fbk ok';$('#ionFbk').textContent='✓';
+      sOk();
+      if(catLeft.length+anLeft.length===0){
+        const pcount=$('#ionPool').children.length;
+        if(pcount===0||true){
+          $('#ionFbk').textContent='<span class="en">All sorted — great job!</span>';
+        }
+      }
+      if($('#ionPool').children.length===0){
+        $('#ionFbk').className='fbk ok';
+        setTimeout(renderPool,700);
+      }
+    } else {
+      // wrong
+      $('#ionFbk').className='fbk bad';$('#ionFbk').textContent='<span class="en">Wrong bucket — the ion stays in the pool</span>';
+      el.classList.add('bad');setTimeout(()=>el.classList.remove('bad'),350);sBad();selected=null;
+    }
+  };
+}
+document.getElementById('catBucket').addEventListener('click',e=>{if(e.target.closest('.chips')||e.target.closest('#catChips'))bucketClick('catChips','cat')();});
+document.getElementById('anBucket').addEventListener('click',e=>{if(e.target.closest('.chips')||e.target.closest('#anChips'))bucketClick('anChips','an')();});
+document.getElementById('catBucket').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&!e.target.closest('button')){e.preventDefault();bucketClick('catChips','cat')();}});
+document.getElementById('anBucket').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&!e.target.closest('button')){e.preventDefault();bucketClick('anChips','an')();}});
+renderPool();
+
+/* 3) compound selector */
+const COMP={
+  acid:{f:'H⁺ X⁻',en:'It starts with the hydrogen cation H⁺ followed by the element anion, or the anion formula of an atomic group.',ar:'بيبدأ بكاتيون الهيدروجين H⁺ وبعده أنيون العنصر أو صيغة أنيون المجموعة الذرية.'},
+  alkali:{f:'M⁺ OH⁻',en:'It starts with the cation and ends with hydroxide (OH)⁻.',ar:'بيبدأ بالكاتيون وبينتهي بأنيون الهيدروكسيد (OH)⁻.'},
+  oxide:{f:'M O',en:'It starts with a metal or non-metal and ends with oxygen O.',ar:'بيبدأ بفلز أو لافلز وبينتهي بالأكسجين O.'},
+  salt:{f:'M⁺ X⁻',en:'It starts with a positive cation or positive atomic group, followed by the acid anion or negative atomic group.',ar:'بيبدأ بكاتيون موجب أو مجموعة ذرية موجبة، وبعده أنيون الحمض أو مجموعة ذرية سالبة.'}
+};
+function showComp(c){
+  $$('#compSel button').forEach(b=>{const on=b.dataset.c===c;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on);});
+  $('#compBig').textContent=COMP[c].f;
+  $('#compEn').textContent=COMP[c].en;$('#compAr').textContent=COMP[c].ar;
+}
+$('#compSel').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;showComp(b.dataset.c);b.focus({preventScroll:true});});
+showComp('acid');
+
+/* 4) formula builder */
+$('#buildBtn').addEventListener('click',()=>{
+  const cv=$('#bCat').value,av=$('#bAn').value;
+  if(!cv||!av){$('#buildOut').textContent='';$('#buildFbk').textContent='Choose a cation and an anion first';$('#buildFbk').className='fbk bad';return;}
+  const [csym,cchg,cen,car]=cv.split('|');
+  const parts=av.split('|');const asym=parts[0],achg=+parts[1],aen=parts[2],aar=parts[3],grp=parts[4];
+  // calculate subscripts (cross-over)
+  const gc=Math.abs(achg), ga=Math.abs(+cchg);
+  function fmtAtom(sym,n,isGrp){
+    if(isGrp){ return n>1?'('+sym+')<sub>'+n+'</sub>':sym; }
+    return n>1?sym+'<sub>'+n+'</sub>':sym;
+  }
+  const aSub=gc===ga?1:gc, cSub=ga===gc?1:ga;
+  const formula=fmtAtom(csym,cSub,false)+fmtAtom(asym,aSub,grp==='group');
+  $('#buildOut').innerHTML=formula;
+  $('#buildFbk').textContent=(gc===ga)?'Balanced 1 : 1 · متعادلة ١ : ١':'Cross-over charges · طبّق تقاطع الشحنات';
+  $('#buildFbk').className='fbk ok';sOk();
+});
+
+/* 5) evaluate */
+const EVAL=[['Magnesium oxide','أكسيد المغنيسيوم','MgO'],['Sodium bicarbonate','بيكربونات الصوديوم','NaHCO<sub>3</sub>'],['Silver nitrate','نترات الفضة','AgNO<sub>3</sub>'],['Copper sulphate','كبريتات النحاس','CuSO<sub>4</sub>'],['Hydrochloric acid','حمض الهيدروكلوريك','HCl'],['Calcium hydroxide','هيدروكسيد الكالسيوم','Ca(OH)<sub>2</sub>']];
+$('#evalList').innerHTML=EVAL.map((e,i)=>`
+  <div class="tile">
+    <span class="tag">${i+1} · ${e[0]}</span>
+    <span class="ar" style="margin:0;font-size:.82rem;color:var(--muted)">${e[1]}</span>
+    <div class="ansT" id="evAns${i}" aria-hidden="true">?</div>
+    <div class="ctrls" style="margin:2px 0 0"><button class="btn ghost" data-i="${i}" data-act="reveal"><span class="en" style="display:inline">Reveal</span>·<span class="ar" style="display:inline">اعرض</span></button>
+    <button class="btn" data-i="${i}" data-act="got"><span class="en" style="display:inline">Got it ✓</span>·<span class="ar" style="display:inline">شطبتها ✓</span></button></div>
+  </div>`).join('');
+$('#evalList').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const i=+b.dataset.i;const t=document.getElementById('evAns'+i);
+  if(b.dataset.act==='reveal'){t.innerHTML=EVAL[i][2];t.classList.add('rev');sOk();}
+  else if(b.dataset.act==='got'){if(!t.classList.contains('rev')){t.innerHTML=EVAL[i][2];t.classList.add('rev');}sOk();b.textContent='✓';}});
+
+/* 6) roadmap is static, hero orbit uses CSS only */
 </script>
 </body>
 </html>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chemical Reactions | التفاعلات الكيميائية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0d16;--card:#121627;--card2:#171c31;--line:#2a3150;--text:#eef2ff;--muted:#9aa6c8;--acc:#a78bfa;--acc2:#8b5cf6;--hot:#fb923c;--cold:#38bdf8;--ok:#34d399;--bad:#f87171;--gold:#fbbf24;--r:20px}
+body[data-theme="light"]{--bg:#f4f5fc;--card:#fff;--card2:#f7f8ff;--line:#d8ddf0;--text:#1a2036;--muted:#5a6684}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;transition:background .4s,color .4s;overflow-x:hidden}
+::selection{background:var(--acc);color:#fff}
+.en{display:block;direction:ltr;text-align:left;font-family:'Space Grotesk','Cairo',sans-serif;font-size:.93rem;line-height:1.7;color:var(--text)}
+.ar{display:block;direction:rtl;text-align:right;font-size:.96rem;line-height:2;color:var(--text);margin-top:2px}
+.mut{color:var(--muted)!important}
+h1,h2,h3{line-height:1.5}
+section{scroll-margin-top:95px}
+#progress{position:fixed;top:0;right:0;height:4px;width:0;background:linear-gradient(90deg,var(--acc),var(--hot));z-index:99;border-radius:99px}
+.topbar{position:fixed;top:0;right:0;left:0;z-index:90;display:flex;align-items:center;gap:10px;padding:10px 14px;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand{font-weight:900;font-size:.85rem;white-space:nowrap}
+nav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;padding:2px}
+nav::-webkit-scrollbar{display:none}
+nav a{padding:5px 12px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:.72rem;font-weight:700;white-space:nowrap;text-decoration:none;transition:.25s}
+nav a.active{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;border-color:transparent}
+#themeBtn,#sndBtn{cursor:pointer;border:1px solid var(--line);background:var(--card);border-radius:12px;width:40px;height:40px;font-size:1.1rem}
+#rail{position:fixed;inset-inline-end:12px;top:50%;transform:translateY(-50%);z-index:80;display:flex;flex-direction:column;align-items:center;gap:6px}
+#rail .tube{width:12px;height:36vh;border:2px solid var(--line);border-radius:99px;position:relative;overflow:hidden;background:rgba(128,160,220,.08)}
+#rail .bulb{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#c4b5fd,#8b5cf6);margin-top:-4px}
+#railFill{position:absolute;bottom:0;width:100%;height:0;background:linear-gradient(0deg,#8b5cf6,#fb923c 40%,#a78bfa)}
+#railVal{font-family:'Space Grotesk';font-size:.72rem;color:var(--muted)}
+@media(max-width:1000px){#rail{display:none}}
+#hero{min-height:88vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:110px 18px 60px}
+#heroCv{position:absolute;inset:0;width:100%;height:100%}
+.heroIn{position:relative;z-index:2;max-width:920px}
+.kicker{display:inline-block;padding:6px 18px;border:1px solid var(--line);border-radius:999px;color:var(--acc);font-weight:800;font-size:.78rem;background:var(--card)}
+#hero h1{font-size:clamp(1.9rem,5.5vw,3.3rem);font-weight:900;margin:16px 0 4px;background:linear-gradient(90deg,var(--acc),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+#hero h1 .ar{font-size:clamp(1.5rem,4.5vw,2.6rem);background:linear-gradient(90deg,var(--gold),var(--acc));-webkit-background-clip:text;background-clip:text;color:transparent;margin:0}
+.badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px}
+.badge{padding:8px 16px;border-radius:14px;border:1px solid var(--line);background:var(--card);font-size:.78rem;font-weight:700;text-align:center}
+.badge.vip{border-color:var(--gold);color:var(--gold)}
+.scrollHint{margin-top:40px;font-size:1.6rem;animation:bnc 1.6s infinite}
+@keyframes bnc{50%{transform:translateY(10px)}}
+main{max-width:1150px;margin:auto;padding:30px 16px 90px;display:flex;flex-direction:column;gap:34px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:clamp(18px,3.4vw,36px);box-shadow:0 14px 40px rgba(0,0,0,.25)}
+.chead{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.cnum{font-family:'Space Grotesk';font-size:1.6rem;font-weight:700;background:linear-gradient(180deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;border:1px solid var(--line);border-radius:16px;padding:6px 14px}
+.chead h2{font-size:clamp(1.05rem,2.6vw,1.45rem);font-weight:900}
+.ppage{font-family:'Space Grotesk';font-size:.62rem;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:1px 10px;margin-inline-start:auto}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.tile{background:var(--card2);border:1px solid var(--line);border-radius:16px;padding:18px;transition:.25s}
+.tile:hover{transform:translateY(-4px);border-color:var(--acc)}
+.note{border-inline-start:4px solid var(--acc);background:var(--card2);border-radius:12px;padding:12px 16px;margin-top:14px;font-size:.9rem}
+.note.hot{border-color:var(--hot)} .note.gold{border-color:var(--gold)} .note.ok{border-color:var(--ok)} .note.pur{border-color:var(--pur)}
+.tag{display:inline-block;font-size:.7rem;font-weight:800;color:#fff;background:var(--acc);border-radius:99px;padding:2px 12px;margin-bottom:8px}
+.tag.hot{background:var(--hot)} .tag.gold{background:var(--gold)} .tag.ok{background:var(--ok)} .tag.pur{background:var(--pur)}
+.defBox{border:2px dashed var(--line);border-radius:12px;padding:12px 16px;margin-top:14px;background:var(--card2)}
+.defBox b.dT{color:var(--bad);font-size:1rem}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal.vis{opacity:1;transform:none}
+.btn{cursor:pointer;border:none;border-radius:14px;padding:10px 22px;font-family:inherit;font-weight:800;font-size:.9rem;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;transition:.2s;box-shadow:0 6px 18px rgba(139,92,246,.25)}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line);box-shadow:none}
+.btn.hotb{background:linear-gradient(135deg,var(--hot),#ef4444);color:#fff}
+.labctrl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin:14px 0 6px}
+.quiz{margin-top:10px}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.opt{cursor:pointer;border:1px solid var(--line);background:var(--card2);color:var(--text);border-radius:14px;padding:7px 16px;font-family:inherit;font-weight:700;font-size:.83rem;transition:.2s}
+.opt:hover{border-color:var(--acc)}
+.opt.ok{background:var(--ok);border-color:var(--ok);color:#03210f;animation:pop .35s}
+.opt.bad{background:var(--bad);border-color:var(--bad);color:#3b0708;animation:shk .35s}
+@keyframes pop{50%{transform:scale(1.08)}}
+@keyframes shk{25%{transform:translateX(5px)}75%{transform:translateX(-5px)}}
+.exp{display:none;margin-top:10px;border-inline-start:4px solid var(--ok);background:color-mix(in srgb,var(--ok) 12%,transparent);padding:10px 14px;border-radius:10px;font-size:.88rem}
+.exp.show{display:block}
+details{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin-top:10px}
+summary{cursor:pointer;font-weight:800;list-style:none}
+summary::after{content:'＋';color:var(--acc);font-weight:900;float:left}
+details[open] summary::after{content:'－'}
+details .body{padding-top:10px;font-size:.9rem}
+.pulse{animation:pl 1.6s infinite}@keyframes pl{50%{opacity:.25}}
+.fl{animation:fl .4s infinite alternate}@keyframes fl{to{transform:scale(1.18)}}
+.eqSvg{width:100%;max-width:170px;display:block;margin:6px auto}
+.bench{background:linear-gradient(180deg,transparent 70%,rgba(120,80,40,.25));border-radius:16px;padding:14px 8px 26px}
+.station{background:var(--card2);border:1px solid var(--line);border-radius:16px;padding:16px;text-align:center}
+.rig{position:relative;height:240px;margin:auto;max-width:240px}
+.balloon{position:absolute;top:4px;left:50%;transform:translateX(-50%) scale(.25);width:92px;height:102px;background:radial-gradient(circle at 35% 30%,#fda4af,#e11d48 70%);border-radius:50% 50% 46% 46%;transition:transform 1.2s cubic-bezier(.3,1.4,.4,1);transform-origin:bottom center;opacity:.92}
+.balloon.on{transform:translateX(-50%) scale(1)}
+.balloon .powder{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:42px;height:15px;background:#f8fafc;border-radius:50%;opacity:0;transition:.4s}
+.balloon .powder.on{opacity:1}
+.bottle{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:84px;height:124px;border:3px solid var(--line);border-top:none;border-radius:0 0 18px 18px;background:rgba(128,160,220,.05);overflow:hidden}
+.bottle .neck{position:absolute;top:-16px;left:50%;transform:translateX(-50%);width:36px;height:18px;border:3px solid var(--line);border-bottom:none}
+.vinegar{position:absolute;bottom:0;left:0;right:0;height:0;background:linear-gradient(180deg,rgba(253,224,71,.5),rgba(202,138,4,.6));transition:height .8s}
+.fbub{position:absolute;bottom:6px;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.6);opacity:0}
+.reacting .fbub{opacity:1;animation:bbl 1.2s infinite}
+@keyframes bbl{to{transform:translateY(-95px);opacity:0}}
+canvas.mini{width:100%;height:150px;border:1px solid var(--line);border-radius:12px;background:var(--card);margin-top:10px}
+.bk{position:relative;width:110px;height:120px;border:3px solid var(--line);border-top:none;border-radius:0 0 20px 20px;margin:8px auto;background:rgba(128,160,220,.05);overflow:hidden}
+.sol{position:absolute;bottom:0;left:0;right:0;height:70%;transition:background 2s,opacity 1s}
+.plate{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:14px;height:70px;background:linear-gradient(180deg,#cbd5e1,#94a3b8);border-radius:4px;transition:background 2s}
+.cloud{position:absolute;inset:0;background:rgba(255,255,255,0);transition:background 1.5s}
+.flashOv{position:fixed;inset:0;background:radial-gradient(circle,#fff,transparent 70%);opacity:0;pointer-events:none;z-index:200;transition:opacity .3s}
+.flashOv.on{opacity:.9}
+footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
+.verified{display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px;border:1px solid var(--gold);border-radius:18px;padding:12px 22px;background:var(--card);color:var(--gold);font-weight:800;max-width:100%}
+#topBtn{position:fixed;bottom:20px;inset-inline-start:20px;z-index:85;width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,var(--hot),var(--gold));font-size:1.2rem;opacity:0;pointer-events:none;transition:.3s}
+#topBtn.show{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div class="flashOv" id="flashOv"></div>
+<header class="topbar">
+  <div class="brand">⚗️ Chemical Reactions · التفاعلات الكيميائية</div>
+  <nav id="nav">
+    <a href="#hero" class="active">Start · البداية</a><a href="#changes">Changes · التغيرات</a><a href="#reaction">Reaction · التفاعل</a>
+    <a href="#how">Bonds · الروابط</a><a href="#indications">Indications · الدلائل</a><a href="#safety">Safety · الأمان</a><a href="#qa">Q&A · أسئلة</a><a href="#recap">Recap · الخلاصة</a>
+  </nav>
+  <button id="sndBtn" title="Sound · الصوت">🔊</button>
+  <button id="themeBtn" title="Theme · المظهر">☀️</button>
+</header>
+<div id="rail"><div class="tube"><i id="railFill"></i></div><div class="bulb"></div><b id="railVal">0°</b></div>
+
+<section id="hero">
+  <canvas id="heroCv"></canvas>
+  <div class="heroIn">
+    <span class="kicker">Unit 2 · Lesson 1 · Pages 142–147 <span style="opacity:.6">|</span> الوحدة 2 · الدرس 1</span>
+    <h1><span class="en">Chemical Reactions</span><span class="ar">التفاعلات الكيميائية</span></h1>
+    <div class="badges">
+      <span class="badge"><span class="en">🔊 Real Lab Sounds</span><span class="ar">🔊 أصوات معمل حقيقية</span></span>
+      <span class="badge"><span class="en">🎈 Balloon Lab + Live Graph</span><span class="ar">🎈 معمل البالونة + منحنى حي</span></span>
+      <span class="badge"><span class="en">⚛️ Molecular Bonds Anim</span><span class="ar">⚛️ أنيميشن الروابط</span></span>
+      <span class="badge"><span class="en">🎨 SVG Lab Illustrations</span><span class="ar">🎨 رسومات معمل SVG</span></span>
+      <span class="badge vip"><span class="en">✔️ Reviewed by Dr. Wael Aboagiza</span><span class="ar">✔️ مراجعة د. وائل أبو عجيزة</span></span>
+    </div>
+    <div class="scrollHint">⌄</div>
+  </div>
+</section>
+
+<main>
+<!-- ============ CHANGES ============ -->
+<section id="changes" class="card reveal">
+  <div class="chead"><span class="cnum">01</span><div><h2><span class="en">Two Types of Changes</span><span class="ar">نوعا التغيرات</span></h2></div><span class="ppage">p.142</span></div>
+  <p class="en">You have previously studied that there are two types of changes that occur in matter:</p>
+  <p class="ar">درست سابقًا أن هناك نوعين من التغيرات بتحدث للمادة:</p>
+  <div class="grid2">
+    <div class="tile" style="border-color:var(--cold)"><span class="tag">Physical Change · تغير فيزيائي</span>
+      <svg class="eqSvg" viewBox="0 0 170 70" dir="ltr"><rect x="8" y="14" width="26" height="26" rx="4" fill="#bae6fd" stroke="#38bdf8"/><rect x="13" y="19" width="9" height="9" fill="#e0f2fe"/><path d="M44 27 h14 m-5 -5 l5 5 l-5 5" stroke="#94a3b8" stroke-width="2.5" fill="none"/><ellipse cx="92" cy="42" rx="26" ry="7" fill="#38bdf8" opacity=".65"/><path d="M126 30 h14 m-5 -5 l5 5 l-5 5" stroke="#94a3b8" stroke-width="2.5" fill="none"/><ellipse cx="158" cy="44" rx="12" ry="4" fill="#7dd3fc" opacity=".5"/></svg>
+      <p class="en">A change in the state or shape of a substance WITHOUT changing its chemical composition.</p>
+      <p class="ar">تغير في حالة المادة أو شكلها بدون تغيير تركيبها الكيميائي.</p>
+      <p class="en mut">Examples: dissolving salt in water · melting of ice.</p><p class="ar mut">أمثلة: ذوبان الملح في الماء · انصهار الثلج.</p></div>
+    <div class="tile" style="border-color:var(--hot)"><span class="tag hot">Chemical Change · تغير كيميائي</span>
+      <svg class="eqSvg" viewBox="0 0 170 70" dir="ltr"><g fill="#a16207"><rect x="8" y="40" width="30" height="9" rx="4" transform="rotate(-12 8 40)"/><rect x="12" y="30" width="30" height="9" rx="4" transform="rotate(10 12 30)"/><rect x="10" y="20" width="26" height="8" rx="4"/></g><path d="M23 16 q4 -8 8 0 q4 8 8 0" fill="none" stroke="#fb923c" stroke-width="2.5" class="fl"/><path d="M44 30 h14 m-5 -5 l5 5 l-5 5" stroke="#94a3b8" stroke-width="2.5" fill="none"/><g fill="#6b7280"><circle cx="96" cy="44" r="5"/><circle cx="106" cy="40" r="4"/><circle cx="100" cy="48" r="4"/><circle cx="110" cy="47" r="3"/></g><path d="M100 26 q3 -7 6 0" fill="none" stroke="#9ca3af" stroke-width="2" class="pulse"/></svg>
+      <p class="en">A change that results in <strong>new substances</strong> whose chemical properties differ from the original ones.</p>
+      <p class="ar">تغير بينتج <strong>مواد جديدة</strong> خواصها الكيميائية مختلفة عن المواد الأصلية.</p>
+      <p class="en mut">Examples: iron rusting · wood combustion.</p><p class="ar mut">أمثلة: صدأ الحديد · احتراق الخشب.</p></div>
+  </div>
+  <div class="note"><span class="en">G.R. Melting of ice is a physical change — because its state & shape change with heat without changing its chemical composition.</span><span class="ar">علل: انصهار الثلج تغير فيزيائي — لأن حالته وشكله بيتغيرا بالحرارة بدون تغيير تركيبه الكيميائي.</span></div>
+  <div class="note hot"><span class="en">G.R. Combustion of wood is a chemical change — because it forms new substances whose properties differ from wood.</span><span class="ar">علل: احتراق الخشب تغير كيميائي — لأنه بيكوّن مواد جديدة خواصها مختلفة عن الخشب.</span></div>
+  <div class="defBox">
+    <b class="dT">Chemical Reactions · التفاعلات الكيميائية</b>
+    <p class="en">Chemical changes occur as a result of chemical reactions between the original substances (reactants), leading to the formation of new substances (products) whose properties differ from the original ones.</p>
+    <p class="ar">التغيرات الكيميائية بتحدث نتيجة تفاعلات كيميائية بين المواد الأصلية (المتفاعلات)، بتؤدي لتكوين مواد جديدة (نواتج) خواصها مختلفة عن الأصلية.</p>
+  </div>
+  <h3 style="margin-top:20px">🎮 <span class="en">Classify the 8 changes — tap P or C</span> · <span class="ar">صنّف التغيرات الـ8 — دوس ف أو ك</span></h3>
+  <div class="grid4" style="margin-top:10px" id="classGame"></div>
+</section>
+
+<!-- ============ REACTION (balloon) ============ -->
+<section id="reaction" class="card reveal">
+  <div class="chead"><span class="cnum">🧪</span><div><h2><span class="en">Activity 1: The Concept of Chemical Reaction</span><span class="ar">نشاط 1: مفهوم التفاعل الكيميائي</span></h2></div><span class="ppage">p.142–143</span></div>
+  <p class="en">Materials: baking soda (NaHCO₃) · vinegar (dilute acetic acid) · balloon · empty bottle · spoon.</p>
+  <p class="ar">الأدوات: بيكنج صودا (NaHCO₃) · خل (حمض خل مخفف) · بالونة · زجاجة فارغة · ملعقة.</p>
+  <div class="bench">
+    <div class="station">
+      <div class="rig" dir="ltr" id="rig">
+        <div class="balloon" id="balloon"><span class="powder" id="powder"></span></div>
+        <div class="bottle" id="bottle"><div class="neck"></div><div class="vinegar" id="vinegar"></div>
+          <span class="fbub" style="left:20%"></span><span class="fbub" style="left:45%"></span><span class="fbub" style="left:70%"></span></div>
+      </div>
+      <div class="labctrl">
+        <button class="btn" id="bs1">1️⃣ <span class="en" style="display:inline">2 spoons soda in balloon</span> · <span class="ar" style="display:inline">معلقتين صودا بالبالونة</span></button>
+        <button class="btn" id="bs2">2️⃣ <span class="en" style="display:inline">Vinegar in bottle</span> · <span class="ar" style="display:inline">الخل في الزجاجة</span></button>
+        <button class="btn" id="bs3">3️⃣ <span class="en" style="display:inline">Fix balloon (no spill)</span> · <span class="ar" style="display:inline">اربط البالونة (بدون انسكاب)</span></button>
+        <button class="btn hotb" id="bs4">4️⃣ <span class="en" style="display:inline">Lift & react!</span> · <span class="ar" style="display:inline">ارفع وابدأ!</span></button>
+        <button class="btn ghost" id="bReset">↺</button>
+      </div>
+      <canvas class="mini" id="gasCv"></canvas>
+      <p class="en mut" style="font-size:.75rem">CO₂ volume vs time</p>
+      <p class="ar mut" style="font-size:.75rem">حجم CO₂ عبر الزمن</p>
+    </div>
+  </div>
+  <div class="note ok" id="balloonObs" style="display:none">
+    <span class="en">👁️ Observation: effervescence occurs & a gas evolves, inflating the balloon gradually.</span>
+    <span class="ar">👁️ الملاحظة: بيحدث فوران ويتصاعد غاز بينتفخ البالونة تدريجيًا.</span>
+    <span class="en" style="margin-top:6px"><strong>Conclusion:</strong> a chemical reaction between baking soda & vinegar → CO₂ (a new substance) → chemical change.</span>
+    <span class="ar"><strong>الاستنتاج:</strong> تفاعل كيميائي بين البيكنج صودا والخل ← CO₂ (مادة جديدة) ← تغير كيميائي.</span>
+  </div>
+</section>
+
+<!-- ============ HOW (bonds + methane) ============ -->
+<section id="how" class="card reveal">
+  <div class="chead"><span class="cnum">⚛️</span><div><h2><span class="en">How a Chemical Reaction Occurs</span><span class="ar">إزاي بيحصل التفاعل الكيميائي</span></h2></div><span class="ppage">p.143–144</span></div>
+  <p class="en">The reactants combine, decompose or replace each other to form new products — in two steps:</p>
+  <p class="ar">المتفاعلات بتتحد أو تتحلل أو تحل محل بعضها لتكوين نواتج جديدة — في خطوتين:</p>
+  <div class="grid2">
+    <div class="tile"><span class="tag">1 · First step · الخطوة الأولى</span>
+      <p class="en">Breaking of bonds between the atoms of the <strong>reactant</strong> molecules.</p>
+      <p class="ar">كسر الروابط بين ذرات جزيئات <strong>المواد المتفاعلة</strong>.</p></div>
+    <div class="tile"><span class="tag ok">2 · Second step · الخطوة الثانية</span>
+      <p class="en">Formation of new bonds between the atoms of the <strong>product</strong> molecules (rearrangement of atoms).</p>
+      <p class="ar">تكوين روابط جديدة بين ذرات جزيئات <strong>المواد الناتجة</strong> (إعادة ترتيب الذرات).</p></div>
+  </div>
+  <div class="defBox">
+    <b class="dT">Chemical Reaction · التفاعل الكيميائي</b>
+    <p class="en">The process of breaking bonds between atoms of reactant molecules and forming new bonds between atoms of the produced molecules (products).</p>
+    <p class="ar">عملية كسر الروابط بين ذرات جزيئات المواد المتفاعلة وتكوين روابط جديدة بين ذرات جزيئات المواد الناتجة.</p>
+  </div>
+  <h3 style="margin-top:18px">🔥 <span class="en">Application: Combustion of Methane — watch bonds break & reform</span> · <span class="ar">تطبيق: احتراق الميثان — شوف الروابط بتتنكس وتتكوّن</span></h3>
+  <svg class="eqSvg" viewBox="0 0 340 80" dir="ltr" style="max-width:340px">
+    <g><circle cx="20" cy="40" r="10" fill="#444"/><circle cx="8" cy="28" r="5" fill="#fff"/><circle cx="32" cy="28" r="5" fill="#fff"/><circle cx="8" cy="52" r="5" fill="#fff"/><circle cx="32" cy="52" r="5" fill="#fff"/><text x="20" y="72" text-anchor="middle" fill="#9aa6c8" font-size="9">Methane CH₄</text></g>
+    <text x="52" y="44" fill="#9aa6c8" font-size="14">+</text>
+    <g><circle cx="72" cy="30" r="8" fill="#e33"/><circle cx="88" cy="30" r="8" fill="#e33"/><circle cx="72" cy="52" r="8" fill="#e33"/><circle cx="88" cy="52" r="8" fill="#e33"/><text x="80" y="72" text-anchor="middle" fill="#9aa6c8" font-size="9">Oxygen 2O₂</span></g>
+    <path d="M104 40 h20 m-6 -6 l6 6 l-6 6" stroke="#a78bfa" stroke-width="3" fill="none"/>
+    <g><circle cx="150" cy="40" r="9" fill="#444"/><circle cx="134" cy="40" r="8" fill="#e33"/><circle cx="166" cy="40" r="8" fill="#e33"/><text x="150" y="72" text-anchor="middle" fill="#9aa6c8" font-size="9">CO₂</span></g>
+    <text x="182" y="44" fill="#9aa6c8" font-size="14">+</span>
+    <g><circle cx="206" cy="30" r="8" fill="#e33"/><circle cx="196" cy="20" r="5" fill="#fff"/><circle cx="216" cy="20" r="5" fill="#fff"/><circle cx="206" cy="54" r="8" fill="#e33"/><circle cx="196" cy="64" r="5" fill="#fff"/><circle cx="216" cy="64" r="5" fill="#fff"/><text x="206" y="76" text-anchor="middle" fill="#9aa6c8" font-size="9">2H₂O</span></g>
+    <text x="270" y="26" fill="#a78bfa" font-size="9">Reactants → Breaking → Products</text>
+    <text x="270" y="44" fill="#9aa6c8" font-size="9">متفاعلات ← كسر ← نواتج</text>
+  </svg>
+  <canvas id="methCv" style="width:100%;height:230px;border:1px solid var(--line);border-radius:14px;background:var(--card)"></canvas>
+  <div class="labctrl"><button class="btn hotb" id="methBtn">▶ <span class="en" style="display:inline">Start reaction</span> · <span class="ar" style="display:inline">ابدأ التفاعل</span></button>
+  <button class="btn ghost" id="methReset">↺</button></div>
+  <p class="en mut" style="font-size:.8rem">CH₄ + 2O₂ → CO₂ + 2H₂O · reactants → breaking → products</p>
+  <p class="ar mut" style="font-size:.8rem">المتفاعلات ← كسر الروابط ← النواتج</p>
+  <div class="note"><span class="en">The bonds between atoms of reactant molecules (CH₄, O₂) are broken and new bonds are formed in product molecules (CO₂, H₂O).</span><span class="ar">الروابط بين ذرات جزيئات المتفاعلات (CH₄, O₂) بتتنكس وبتتكوّن روابط جديدة في جزيئات النواتج (CO₂, H₂O).</span></div>
+</section>
+
+<!-- ============ INDICATIONS ============ -->
+<section id="indications" class="card reveal">
+  <div class="chead"><span class="cnum">🔍</span><div><h2><span class="en">Indications of Chemical Reactions — 4 Lab Stations</span><span class="ar">دلائل حدوث التفاعل — 4 محطات معملية</span></h2></div><span class="ppage">p.145–146</span></div>
+  <div class="grid4" style="margin-bottom:14px">
+    <div class="tile" style="text-align:center"><span class="tag">1</span><p class="en">Precipitate</p><p class="ar">تكوّن راسب</p></div>
+    <div class="tile" style="text-align:center"><span class="tag hot">2</span><p class="en">Colour change</p><p class="ar">تغير اللون</p></div>
+    <div class="tile" style="text-align:center"><span class="tag ok">3</span><p class="en">Evolution of gas</p><p class="ar">تصاعد غاز</p></div>
+    <div class="tile" style="text-align:center"><span class="tag gold">4</span><p class="en">Light & heat</p><p class="ar">ضوء وحرارة</p></div>
+  </div>
+  <div class="grid2">
+    <div class="station"><span class="tag">1 · Precipitate · راسب</span>
+      <svg class="eqSvg" viewBox="0 0 170 80" dir="ltr"><path d="M20 12 l16 12 l-16 12 z" fill="#bae6fd" opacity=".6"/><path d="M36 24 l14 8" stroke="#94a3b8" stroke-width="3"/><rect x="60" y="26" width="34" height="44" rx="6" fill="none" stroke="#94a3b8" stroke-width="2.5"/><rect x="63" y="44" width="28" height="23" fill="rgba(147,197,253,.4)"/><ellipse cx="77" cy="64" rx="10" ry="4" fill="#fff"/><rect x="112" y="26" width="34" height="44" rx="6" fill="none" stroke="#94a3b8" stroke-width="2.5"/><rect x="115" y="44" width="28" height="23" fill="rgba(255,255,255,.7)"/></svg>
+      <p class="en mut" style="font-size:.75rem">AgNO₃ + NaCl → white AgCl ↓ → violet in sunlight</p>
+      <p class="ar mut" style="font-size:.75rem">راسب أبيض ← بنفسجي في الشمس</p>
+      <div class="bk" dir="ltr"><div class="sol" id="p1sol" style="background:rgba(147,197,253,.35)"></div><div class="cloud" id="p1cloud"></div></div>
+      <div class="labctrl"><button class="btn" id="p1a">Mix · اخلط</button><button class="btn ghost" id="p1b">☀️ Sun · شمس</button></div></div>
+    <div class="station"><span class="tag hot">2 · Colour change · تغير لون</span>
+      <svg class="eqSvg" viewBox="0 0 170 80" dir="ltr"><rect x="60" y="20" width="40" height="52" rx="6" fill="none" stroke="#94a3b8" stroke-width="2.5"/><rect x="63" y="40" width="34" height="29" fill="rgba(59,130,246,.6)"/><rect x="76" y="26" width="7" height="40" rx="3" fill="#cbd5e1"/><path d="M76 60 h7" stroke="#b45309" stroke-width="4"/></svg>
+      <p class="en mut" style="font-size:.75rem">Zn + CuSO₄: blue fades, reddish Cu on Zn</p>
+      <p class="ar mut" style="font-size:.75rem">الأزرق يختفي ويترسب نحاس أحمر</p>
+      <div class="bk" dir="ltr"><div class="sol" id="p2sol" style="background:rgba(59,130,246,.6)"></div><div class="plate" id="p2plate"></div></div>
+      <div class="labctrl"><button class="btn" id="p2a">Add Zn · ضع زنك</button></div></div>
+    <div class="station"><span class="tag ok">3 · Gas evolution · تصاعد غاز</span>
+      <svg class="eqSvg" viewBox="0 0 170 80" dir="ltr"><rect x="70" y="14" width="22" height="58" rx="8" fill="none" stroke="#94a3b8" stroke-width="2.5"/><rect x="73" y="34" width="16" height="35" fill="rgba(147,197,253,.3)"/><path d="M78 60 q3 -6 0 -12 q-3 -6 0 -12" stroke="#cbd5e1" stroke-width="3" fill="none"/><circle cx="81" cy="40" r="2.5" fill="#fff"/><circle cx="79" cy="30" r="2" fill="#fff"/><circle cx="82" cy="22" r="2" fill="#fff"/></svg>
+      <p class="en mut" style="font-size:.75rem">Mg + HCl → H₂ bubbles</p>
+      <p class="ar mut" style="font-size:.75rem">فقاعات H₂ على الماغنسيوم</p>
+      <div class="bk" dir="ltr" id="p3bk"><div class="sol" id="p3sol" style="background:rgba(147,197,253,.3)"></div><div class="plate" id="p3plate" style="height:50px;width:20px;border-radius:8px"></div>
+        <span class="fbub" style="left:40%"></span><span class="fbub" style="left:55%"></span></div>
+      <div class="labctrl"><button class="btn" id="p3a">Add HCl · أضف حمض</button></div></div>
+    <div class="station"><span class="tag gold">4 · Light & heat · ضوء وحرارة</span>
+      <svg class="eqSvg" viewBox="0 0 170 90" dir="ltr"><path d="M20 8 L58 44 M30 6 L60 40" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/><rect x="58" y="40" width="6" height="30" rx="3" fill="#cbd5e1"/><circle cx="61" cy="44" r="15" fill="#fff" opacity=".9" class="pulse"/><g class="pulse" stroke="#fff" stroke-width="2"><path d="M61 24 l0 -9 M61 64 l0 9 M41 44 l-9 0 M81 44 l9 0 M47 30 l-6 -6 M75 30 l6 -6 M47 58 l-6 6 M75 58 l6 6"/></g><ellipse cx="61" cy="82" rx="15" ry="4" fill="#f8fafc"/></svg>
+      <p class="en mut" style="font-size:.75rem">Mg + O₂ → bright light + heat → white powder of water-soluble MgO</p>
+      <p class="ar mut" style="font-size:.75rem">ضوء مبهر + حرارة ← مسحوق أبيض من MgO يذوب في الماء</p>
+      <div class="bk" dir="ltr" style="border:none;background:none"><div style="font-size:3rem" id="mgStrip">🌀</div><div id="mgGlow" style="font-size:2.4rem;opacity:0">💡</div></div>
+      <div class="labctrl"><button class="btn hotb" id="p4a">🔥 Ignite · أشعل</button></div></div>
+  </div>
+  <div class="note"><span class="en">4) Emission of light & heat: when a magnesium strip (Mg) is ignited in air, the strip <strong>glows with a bright light</strong> accompanied by the emission of heat, turning into a <strong>white powder of water-soluble magnesium oxide (MgO)</strong>.</span><span class="ar">4) انبعاث ضوء وحرارة: عند إشعال شريط ماغنسيوم (Mg) في الهواء، <strong>يتوهج الشريط بضوء مبهر</strong> مصحوبًا بانبعاث حرارة، ويتحول إلى <strong>مسحوق أبيض من أكسيد الماغنسيوم (MgO) القابل للذوبان في الماء</strong>.</span></div>
+  <div class="note gold"><span class="en">💡 Gases from reactions: some extinguish a lit match (CO₂); others increase the glow of a burning splint (O₂).</span><span class="ar">💡 الغازات الناتجة: بعضها يطفئ عود ثقاب مشتعل (CO₂)، والآخر يزيد توهج عود مشتعل (O₂).</span></div>
+</section>
+
+<!-- ============ SAFETY ============ -->
+<section id="safety" class="card reveal">
+  <div class="chead"><span class="cnum">🦺</span><div><h2><span class="en">Safety Procedures (Precautions)</span><span class="ar">إجراءات الأمان (الاحتياطات)</span></h2></div><span class="ppage">p.146</span></div>
+  <div class="grid2">
+    <div class="tile"><span class="tag hot">🔥 Burning a magnesium strip</span>
+      <p class="en">1. Hold with heat-resistant tongs (avoid burns). 2. Use a protective mask (avoid eye damage from bright light). 3. Don't touch the white powder immediately (it's hot).</p>
+      <p class="ar">1. أمسك الشريط بماسك مقاوم للحرارة (لتجنب الحروق). 2. استخدم قناع واقي (لتجنب ضرر الضوء المبهر على العين). 3. لا تلمس المسحوق الأبيض فورًا (لأنه ساخن).</p></div>
+    <div class="tile"><span class="tag">🧪 Using acids / alkalis</span>
+      <p class="en">Handle with extreme caution, especially the concentrated ones.</p>
+      <p class="ar">تعامل بحذر شديد، خاصة الأحماض والقواعد المركزة.</p></div>
+  </div>
+</section>
+
+<!-- ============ QA ============ -->
+<section id="qa" class="card reveal">
+  <div class="chead"><span class="cnum">❓</span><div><h2><span class="en">Question & Answer</span><span class="ar">سؤال وجواب</span></h2></div><span class="ppage">p.146–147</span></div>
+  <details><summary>🧪 <span class="en">How to indicate each reaction (6 cases)?</span> · <span class="ar">كيف تستدل على كل تفاعل (6 حالات)؟</span></summary>
+    <div class="body">
+      <span class="en">(1) AgNO₃+NaCl: white precipitate → violet in sunlight. (2) Zn+CuSO₄: blue fades, reddish Cu on Zn. (3) Mg+HCl: gas bubbles on Mg. (4) Mg in air: bright light + heat → white powder. (5) CO₂+limewater: turns milky. (6) H₂SO₄+baking soda: effervescence + CO₂ bubbles.</span>
+      <span class="ar">(1) راسب أبيض يتحول لبنفسجي في الشمس. (2) يختفي الأزرق ويترسب نحاس أحمر. (3) فقاعات غاز على الماغنسيوم. (4) ضوء مبهر وحرارة ومسحوق أبيض. (5) تعكر ماء الجير. (6) فوران وفقاعات CO₂.</span>
+    </div></details>
+  <div class="quiz">
+    <p class="en"><strong>Q:</strong> A water-filled closed bottle breaks in the freezer — chemical change?</p>
+    <p class="ar"><strong>س:</strong> زجاجة مية مقفولة اتكسرت في الفريزر — هل ده تغير كيميائي؟</p>
+    <div class="opts"><button class="opt" data-ok>No · لا</button><button class="opt">Yes · نعم</button></div>
+    <div class="exp"><span class="en">✔️ No — expansion of water on freezing doesn't change the chemical composition of water or glass.</span><span class="ar">✔️ لا — تمدد المية عند التجمد لا يغير التركيب الكيميائي للمية أو الزجاج.</span></div>
+  </div>
+  <div class="quiz">
+    <p class="en"><strong>Q:</strong> An orange fruit goes rotten — chemical or physical?</p>
+    <p class="ar"><strong>س:</strong> برتقالة عفنت — كيميائي ولا فيزيائي؟</p>
+    <div class="opts"><button class="opt" data-ok>Chemical · كيميائي</button><button class="opt">Physical · فيزيائي</button></div>
+    <div class="exp"><span class="en">✔️ Chemical — indicated by change in colour & emission of an unpleasant odour.</span><span class="ar">✔️ كيميائي — والدليل تغير اللون وانبعاث رائحة كريهة.</span></div>
+  </div>
+</section>
+
+<!-- ============ RECAP ============ -->
+<section id="recap" class="card reveal">
+  <div class="chead"><span class="cnum">🔑</span><div><h2><span class="en">Quick Recap</span><span class="ar">خلاصة سريعة</span></h2></div></div>
+  <div class="badges" style="margin:0;justify-content:flex-start">
+    <span class="badge"><span class="en">Physical = no new substance</span><span class="ar">فيزيائي = لا مادة جديدة</span></span>
+    <span class="badge"><span class="en">Chemical = new substance</span><span class="ar">كيميائي = مادة جديدة</span></span>
+    <span class="badge"><span class="en">Reaction = break + form bonds</span><span class="ar">تفاعل = كسر + تكوين روابط</span></span>
+    <span class="badge"><span class="en">Indications: precipitate/colour/gas/light</span><span class="ar">دلائل: راسب/لون/غاز/ضوء</span></span>
+    <span class="badge"><span class="en">MgO = white, water-soluble</span><span class="ar">MgO = أبيض يذوب في الماء</span></span>
+    <span class="badge"><span class="en">CO₂ extinguishes · O₂ glows</span><span class="ar">CO₂ يطفئ · O₂ يوهّج</span></span>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="verified">🛡️ <span class="en">Reviewed & signed: Dr. Wael Aboagiza</span><span class="ar">مراجعة وتوقيع: د. وائل أبو عجيزة</span> <span style="font-family:'Space Grotesk'">#Dr_Wael_Aboagiza</span></div>
+  <p style="margin-top:14px;font-size:.82rem"><span class="en">Unit 2 · Lesson 1: Chemical Reactions · pages 142–147</span><span class="ar">الوحدة الثانية · الدرس 1: التفاعلات الكيميائية · صفحات 142–147</span></p>
+</footer>
+<button id="topBtn" title="Top · لفوق">⬆</button>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+/* ===== SOUND ENGINE (real lab sounds) ===== */
+const SND={on:true,ctx:null,master:null,loops:{},ivs:{}};
+function ac(){if(!SND.ctx){const C=window.AudioContext||window.webkitAudioContext;SND.ctx=new C();SND.master=SND.ctx.createGain();SND.master.gain.value=.6;SND.master.connect(SND.ctx.destination);}if(SND.ctx.state==='suspended')SND.ctx.resume();return SND.ctx;}
+function nbuf(){if(SND.nb)return SND.nb;const c=ac(),b=c.createBuffer(1,c.sampleRate*2,c.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;return SND.nb=b;}
+function env(g,t,a,p,d){g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(p,t+a);g.gain.exponentialRampToValueAtTime(.0001,t+d);}
+function sClick(){if(!SND.on)return;const c=ac(),t=c.currentTime,o=c.createOscillator(),g=c.createGain();o.type='triangle';o.frequency.setValueAtTime(750,t);o.frequency.exponentialRampToValueAtTime(500,t+.07);env(g,t,.005,.12,.09);o.connect(g);g.connect(SND.master);o.start(t);o.stop(t+.1);}
+function sChime(){if(!SND.on)return;const c=ac(),t=c.currentTime;[880,1174.7,1568].forEach((f,i)=>{const o=c.createOscillator(),g=c.createGain();o.type='sine';o.frequency.value=f;const st=t+i*.09;env(g,st,.01,.14,.5);o.connect(g);g.connect(SND.master);o.start(st);o.stop(st+.55);});}
+function sBuzz(){if(!SND.on)return;const c=ac(),t=c.currentTime,o=c.createOscillator(),g=c.createGain();o.type='square';o.frequency.value=150;env(g,t,.01,.1,.25);o.connect(g);g.connect(SND.master);o.start(t);o.stop(t+.3);}
+function sPour(){if(!SND.on)return;const c=ac(),t=c.currentTime,s=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();s.buffer=nbuf();f.type='bandpass';f.frequency.value=900;f.Q.value=.8;env(g,t,.03,.18,.9);s.connect(f);f.connect(g);g.connect(SND.master);s.start(t);s.stop(t+1);
+ for(let i=0;i<6;i++){const o=c.createOscillator(),gg=c.createGain(),st=t+.1+Math.random()*.7;o.type='sine';o.frequency.setValueAtTime(180+Math.random()*220,st);o.frequency.exponentialRampToValueAtTime(90,st+.08);env(gg,st,.005,.08,.1);o.connect(gg);gg.connect(SND.master);o.start(st);o.stop(st+.12);}}
+function sPop(){if(!SND.on)return;const c=ac(),t=c.currentTime,o=c.createOscillator(),g=c.createGain();o.type='sine';o.frequency.setValueAtTime(300,t);o.frequency.exponentialRampToValueAtTime(90,t+.18);env(g,t,.01,.2,.22);o.connect(g);g.connect(SND.master);o.start(t);o.stop(t+.25);}
+function sFlash(){if(!SND.on)return;const c=ac(),t=c.currentTime,s=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();s.buffer=nbuf();f.type='highpass';f.frequency.value=3000;env(g,t,.01,.18,.6);s.connect(f);f.connect(g);g.connect(SND.master);s.start(t);s.stop(t+.7);
+ const o=c.createOscillator(),gg=c.createGain();o.type='sine';o.frequency.setValueAtTime(2400,t);o.frequency.exponentialRampToValueAtTime(3600,t+.4);env(gg,t,.01,.08,.5);o.connect(gg);gg.connect(SND.master);o.start(t);o.stop(t+.55);}
+function loopStart(key,type,dur){if(!SND.on||SND.loops[key])return;
+ const c=ac(),s=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();s.buffer=nbuf();s.loop=true;let target=.06;
+ if(type==='fizz'){f.type='highpass';f.frequency.value=1200;
+   SND.ivs[key+'_b']=setInterval(()=>{if(!SND.on)return;const c2=ac(),t=c2.currentTime,o=c2.createOscillator(),gg=c2.createGain();o.type='sine';o.frequency.setValueAtTime(300+Math.random()*500,t);o.frequency.exponentialRampToValueAtTime(120,t+.07);env(gg,t,.003,.06,.09);o.connect(gg);gg.connect(SND.master);o.start(t);o.stop(t+.1);},90);}
+ else if(type==='crackle'){f.type='lowpass';f.frequency.value=500;target=.09;
+   SND.ivs[key+'_b']=setInterval(()=>{if(!SND.on)return;const c2=ac(),t=c2.currentTime,s2=c2.createBufferSource(),f2=c.createBiquadFilter(),gg=c2.createGain();s2.buffer=nbuf();f2.type='highpass';f2.frequency.value=1000;env(gg,t,.002,.05+Math.random()*.05,.05);s2.connect(f2);f2.connect(gg);gg.connect(SND.master);s2.start(t);s2.stop(t+.07);},120);}
+ g.gain.setValueAtTime(.0001,c.currentTime);g.gain.linearRampToValueAtTime(target,c.currentTime+.4);
+ s.connect(f);f.connect(g);g.connect(SND.master);s.start();SND.loops[key]={s,g};
+ if(dur)setTimeout(()=>loopStop(key),dur*1000);}
+function loopStop(key){const L=SND.loops[key];if(L){const c=ac(),t=c.currentTime;try{L.g.gain.cancelScheduledValues(t);L.g.gain.setValueAtTime(Math.max(L.g.gain.value,.0001),t);L.g.gain.linearRampToValueAtTime(.0001,t+.4);L.s.stop(t+.5);}catch(e){}delete SND.loops[key];}
+ if(SND.ivs[key+'_b']){clearInterval(SND.ivs[key+'_b']);delete SND.ivs[key+'_b'];}}
+function stopAll(){Object.keys(SND.loops).forEach(k=>loopStop(k));}
+$('#sndBtn').onclick=()=>{SND.on=!SND.on;if(!SND.on)stopAll();$('#sndBtn').textContent=SND.on?'🔊':'🔇';if(SND.on){ac();sClick();}};
+/* ===== chrome ===== */
+addEventListener('scroll',()=>{const h=document.documentElement,p=h.scrollTop/(h.scrollHeight-h.clientHeight);
+ $('#progress').style.width=(p*100)+'%';$('#railFill').style.height=(p*100)+'%';$('#railVal').textContent=Math.round(p*100)+'°';
+ $('#topBtn').classList.toggle('show',h.scrollTop>600);},{passive:true});
+$('#topBtn').onclick=()=>scrollTo({top:0,behavior:'smooth'});
+$('#themeBtn').onclick=()=>{const l=document.body.dataset.theme==='light';document.body.dataset.theme=l?'':'light';$('#themeBtn').textContent=l?'☀️':'🌙';sClick();};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}}),{threshold:.1});
+$$('.reveal').forEach(el=>io.observe(el));
+const spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)$$('nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));}),{rootMargin:'-35% 0px -55% 0px'});
+$$('section[id]').forEach(s=>spy.observe(s));
+document.addEventListener('click',e=>{const b=e.target.closest('.opt');if(!b)return;const q=b.closest('.quiz');if(!q||q.dataset.done)return;
+ if(b.dataset.ok!==undefined){b.classList.add('ok');q.dataset.done=1;const x=q.querySelector('.exp');x&&x.classList.add('show');sChime();}
+ else{b.classList.add('bad');setTimeout(()=>b.classList.remove('bad'),450);sBuzz();}});
+/* hero */
+const hc=$('#heroCv'),hx=hc.getContext('2d');let HP=[];
+function hSize(){hc.width=hc.offsetWidth;hc.height=hc.offsetHeight;HP=Array.from({length:70},()=>({x:Math.random()*hc.width,y:Math.random()*hc.height,r:1+Math.random()*2.5,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6,c:Math.random()>.5?'167,139,250':'251,146,60'}));}
+hSize();addEventListener('resize',hSize);
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function heroLoop(){if(!reduced){hx.clearRect(0,0,hc.width,hc.height);HP.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>hc.width)p.vx*=-1;if(p.y<0||p.y>hc.height)p.vy*=-1;hx.beginPath();hx.fillStyle=`rgba(${p.c},.5)`;hx.arc(p.x,p.y,p.r,0,7);hx.fill();});}requestAnimationFrame(heroLoop);}
+heroLoop();
+/* classification game */
+const ITEMS=[['🥛 Milk→yoghurt','c'],['🍞 Burning bread','c'],['🔩 Iron rusting','c'],['🧪 Indicator+NH₃','c'],['🥛 Limewater+CO₂','c'],['🕯️ Combustion of wax','c'],['🍬 Sugar in water','p'],['🕯️ Melting of wax','p']];
+$('#classGame').innerHTML=ITEMS.map((it,i)=>`<div class="tile" style="padding:12px"><p class="en" style="font-size:.75rem">${it[0]}</p>
+ <div class="opts" style="justify-content:center"><button class="opt" data-i="${i}" data-v="p">فيزيائي</button><button class="opt" data-i="${i}" data-v="c">كيميائي</button></div></div>`).join('');
+$('#classGame').addEventListener('click',e=>{const b=e.target.closest('.opt');if(!b||b.dataset.done)return;const it=ITEMS[+b.dataset.i];
+ if(b.dataset.v===it[1]){b.classList.add('ok');b.dataset.done=1;b.parentElement.querySelectorAll('.opt').forEach(o=>o.dataset.done=1);sChime();}
+ else{b.classList.add('bad');setTimeout(()=>b.classList.remove('bad'),450);sBuzz();}});
+/* balloon experiment */
+const BAL={step:0,iv:null,gas:0,pts:[]};
+$('#bs1').onclick=()=>{if(BAL.step!==0)return;BAL.step=1;sClick();$('#powder').classList.add('on');};
+$('#bs2').onclick=()=>{if(BAL.step!==1)return;BAL.step=2;sPour();$('#vinegar').style.height='55%';};
+$('#bs3').onclick=()=>{if(BAL.step!==2)return;BAL.step=3;sPop();$('#balloon').classList.add('on');};
+$('#bs4').onclick=()=>{if(BAL.step!==3||BAL.iv)return;BAL.step=4;$('#powder').classList.remove('on');$('#bottle').classList.add('reacting');
+ loopStart('fizz','fizz',7);
+ BAL.iv=setInterval(()=>{BAL.gas=Math.min(100,BAL.gas+1.6);
+   $('#balloon').style.transform=`translateX(-50%) scale(${1+BAL.gas/100*1.1})`;
+   BAL.pts.push(BAL.gas);drawGas();
+   if(BAL.gas>=100){clearInterval(BAL.iv);BAL.iv=null;loopStop('fizz');$('#bottle').classList.remove('reacting');$('#balloonObs').style.display='block';sChime();}},60);};
+$('#bReset').onclick=()=>{clearInterval(BAL.iv);BAL.iv=null;loopStop('fizz');BAL.step=0;BAL.gas=0;BAL.pts=[];
+ $('#powder').classList.remove('on');$('#vinegar').style.height='0';$('#balloon').classList.remove('on');$('#balloon').style.transform='';$('#bottle').classList.remove('reacting');$('#balloonObs').style.display='none';drawGas();sClick();};
+const GC=$('#gasCv'),gx=GC.getContext('2d');
+function drawGas(){GC.width=GC.offsetWidth*2;GC.height=GC.offsetHeight*2;const W=GC.width,H=GC.height;gx.clearRect(0,0,W,H);
+ gx.strokeStyle='rgba(140,165,210,.3)';gx.beginPath();gx.moveTo(30,10);gx.lineTo(30,H-20);gx.lineTo(W-10,H-20);gx.stroke();
+ gx.strokeStyle='#a78bfa';gx.lineWidth=4;gx.beginPath();
+ BAL.pts.forEach((v,i)=>{const x=30+(i/120)*(W-50),y=H-20-(v/100)*(H-40);i?gx.lineTo(x,y):gx.moveTo(x,y);});gx.stroke();}
+drawGas();
+/* methane with bonds */
+const MC=$('#methCv'),mx=MC.getContext('2d');let MT=-1;
+const AT=[
+ {c:'#444',r:14,R:[.16,.5],P:[.5,.5]},
+ {c:'#fff',r:8,R:[.10,.42],P:[.66,.24]},{c:'#fff',r:8,R:[.22,.42],P:[.78,.26]},
+ {c:'#fff',r:8,R:[.10,.58],P:[.66,.76]},{c:'#fff',r:8,R:[.22,.58],P:[.78,.74]},
+ {c:'#e33',r:11,R:[.40,.28],P:[.42,.5]},{c:'#e33',r:11,R:[.50,.28],P:[.58,.5]},
+ {c:'#e33',r:11,R:[.40,.72],P:[.72,.3]},{c:'#e33',r:11,R:[.50,.72],P:[.72,.7]}];
+const RB=[[0,1],[0,2],[0,3],[0,4],[5,6],[7,8]];
+const PB=[[0,5],[0,6],[7,1],[7,2],[8,3],[8,4]];
+$('#methBtn').onclick=()=>{if(MT<0){MT=0;sFlash();loopStart('meth','crackle',3);}};
+$('#methReset').onclick=()=>{MT=-1;loopStop('meth');sClick();};
+function bond(a,b,alpha){if(alpha<=0)return;mx.strokeStyle=`rgba(167,139,250,${alpha})`;mx.lineWidth=4;mx.beginPath();mx.moveTo(a.x,a.y);mx.lineTo(b.x,b.y);mx.stroke();}
+function methLoop(){MC.width=MC.offsetWidth*2;MC.height=MC.offsetHeight*2;const W=MC.width,H=MC.height;mx.clearRect(0,0,W,H);
+ if(MT>=0)MT+=.012;const t=Math.min(1,Math.max(0,MT));
+ const pos=AT.map(a=>{const sx=a.R[0]*W,sy=a.R[1]*H,ex=a.P[0]*W,ey=a.P[1]*H;let x,y;
+  if(t<.35){x=sx;y=sy;}else if(t<.55){const k=(t-.35)/.2;x=sx+(Math.random()-.5)*26+(ex-sx)*k*.25;y=sy+(Math.random()-.5)*26+(ey-sy)*k*.25;}
+  else{const k=(t-.55)/.45;x=sx+(ex-sx)*k;y=sy+(ey-sy)*k;}
+  return{x,y};});
+ const rA=t<.35?1:t<.55?1-(t-.35)/.2:0;
+ const rP=t<.55?0:(t-.55)/.45;
+ RB.forEach(b=>bond(pos[b[0]],pos[b[1]],rA));
+ PB.forEach(b=>bond(pos[b[0]],pos[b[1]],rP));
+ AT.forEach((a,i)=>{mx.beginPath();mx.fillStyle=a.c;mx.arc(pos[i].x,pos[i].y,a.r,0,7);mx.fill();});
+ requestAnimationFrame(methLoop);}
+methLoop();
+/* stations */
+$('#p1a').onclick=()=>{sPour();setTimeout(()=>{$('#p1cloud').style.background='rgba(255,255,255,.75)';sClick();},600);};
+$('#p1b').onclick=()=>{$('#p1cloud').style.background='rgba(139,92,246,.6)';sClick();};
+$('#p2a').onclick=()=>{sClick();$('#p2sol').style.background='rgba(147,197,253,.15)';$('#p2plate').style.background='linear-gradient(180deg,#b45309,#7c2d12)';};
+$('#p3a').onclick=()=>{sClick();$('#p3bk').classList.add('reacting');loopStart('p3','fizz',5);};
+$('#p4a').onclick=()=>{sFlash();$('#flashOv').classList.add('on');setTimeout(()=>$('#flashOv').classList.remove('on'),500);
+ $('#mgStrip').textContent='🌫️';$('#mgGlow').style.opacity=1;loopStart('p4','crackle',3);};
+</script>
+</body>
+</html>

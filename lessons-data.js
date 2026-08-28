@@ -105,5 +105,17 @@ const lessonsData = [
     cta: "ابدأ الدرس ←",
     href: "lesson-chemistry-foundations.html",
     lang: "en"
+  },
+  {
+    id: "lesson-chemical-reactions",
+    order: 2,
+    unit: 2,
+    status: "published",
+    icon: "🧪🔥",
+    title: "Chemical Reactions",
+    desc: "الدرس الأول لوحدة التفاعلات الكيميائية (صفحات 142–147): نوعا التغيرات، مفهوم التفاعل الكيميائي مع معمل البالونة، كسر وتكوين الروابط، دلائل حدوث التفاعل، إجراءات الأمان، وسؤال وجواب.",
+    cta: "ابدأ الدرس ←",
+    href: "lesson-chemical-reactions.html",
+    lang: "ar"
   }
 ];
