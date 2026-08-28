@@ -4,7 +4,7 @@
    بتستخدم لـ:
      1) عدّادات الأقسام في الصفحة الرئيسية بشكل تلقائي
      2) أي ميزات مستقبلية (فلترة / بحث / فهرس جانبي)
-   ملاحظة: المجموع لازم يكون ٢٧ تجربة (٢٢ قسم داخل index.html + تجارب ٢٣-٢٧ كصفحات مستقلة: exp23-balloon.html / exp24-precipitate.html / exp25-colour-change.html / exp26-gas-evolution.html / exp27-light-heat.html)
+   ملاحظة: المجموع لازم يكون ٣٩ تجربة (٢٢ قسم داخل index.html + تجارب ٢٣-٣٩ كصفحات مستقلة: exp23-balloon.html / exp24-precipitate.html / exp25-colour-change.html / exp26-gas-evolution.html / exp27-light-heat.html / exp28-ammonia-indicator.html / exp29-limewater-milky.html / exp30-sugar-burning.html / exp31-soap-making.html / exp32-daily-life.html / exp33-physical-vs.html / exp34-equations.html / exp35-conservation-mass.html / exp36-glucose-benedict.html / exp37-starch-iodine.html / exp38-fats-sudan.html / exp39-proteins-biuret.html)
    ============================================================ */
 
 const experimentsData = [
@@ -34,5 +34,17 @@ const experimentsData = [
   { id: 'exp-24', order: 24, category: 'chemical-reactions', title: 'تكوين الراسب',                     topic: 'التفاعلات الكيميائية' },
   { id: 'exp-25', order: 25, category: 'chemical-reactions', title: 'تغيير لون المحلول',                topic: 'التفاعلات الكيميائية' },
   { id: 'exp-26', order: 26, category: 'chemical-reactions', title: 'تصاعد غاز الهيدروجين',             topic: 'التفاعلات الكيميائية' },
-  { id: 'exp-27', order: 27, category: 'chemical-reactions', title: 'انبعاث ضوء وحرارة',                topic: 'التفاعلات الكيميائية' }
+  { id: 'exp-27', order: 27, category: 'chemical-reactions', title: 'انبعاث ضوء وحرارة',                topic: 'التفاعلات الكيميائية' },
+  { id: 'exp-28', order: 28, category: 'chemical-reactions', title: 'تغير لون الكاشف العام',             topic: 'التفاعلات الكيميائية' },
+  { id: 'exp-29', order: 29, category: 'chemical-reactions', title: 'تعكر ماء الجير',                    topic: 'التفاعلات الكيميائية' },
+  { id: 'exp-30', order: 30, category: 'chemical-reactions', title: 'حرق السكر',                         topic: 'التفاعلات الكيميائية' },
+  { id: 'exp-31', order: 31, category: 'chemical-reactions', title: 'صناعة الصابون',                     topic: 'التفاعلات الكيميائية' },
+  { id: 'exp-32', order: 32, category: 'chemical-reactions', title: 'تفاعلات كيميائية في حياتنا اليومية', topic: 'التفاعلات الكيميائية' },
+  { id: 'exp-33', order: 33, category: 'chemical-reactions', title: 'التغير الفيزيائي والكيميائي',       topic: 'مقارنة التغيرات' },
+  { id: 'exp-34', order: 34, category: 'chemical-reactions', title: 'معادلات رمزية',                       topic: 'التعبير عن التفاعلات بمعادلات رمزية' },
+  { id: 'exp-35', order: 35, category: 'chemical-reactions', title: 'بقاء الكتلة',                         topic: 'قانون بقاء الكتلة' },
+  { id: 'exp-36', order: 36, category: 'chemical-reactions', title: 'كشف الجلوكوز',                        topic: 'الكشف عن سكر الجلوكوز بمحلول بندكت' },
+  { id: 'exp-37', order: 37, category: 'chemical-reactions', title: 'كشف النشا',                           topic: 'الكشف عن النشا بمحلول اليود' },
+  { id: 'exp-38', order: 38, category: 'chemical-reactions', title: 'كشف الدهون',                          topic: 'الكشف عن الدهون بسودان IV' },
+  { id: 'exp-39', order: 39, category: 'chemical-reactions', title: 'كشف البروتين',                        topic: 'الكشف عن البروتين بمحلول البيوريت' }
 ];
