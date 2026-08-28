@@ -250,6 +250,7 @@ nav.toc{
   .cat-states{ --accent: var(--liquid); }
   .cat-temp{ --accent:#C9542E; }
   .cat-transfer{ --accent:#B23A3A; }
+  .cat-chem{ --accent:#2E7D5B; }
   .cat-lessons{ --accent:#3F5E9E; }
 
   .section-divider{
@@ -903,6 +904,7 @@ nav.toc{
   }
   @media (max-width: 880px){ .soon-grid{ grid-template-columns:1fr; max-width:380px; } }
   .soon-card{
+    display:block; text-decoration:none;
     border:1.5px dashed rgba(30,42,51,0.25);
     border-radius:16px;
     padding:28px 16px;

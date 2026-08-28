@@ -4,7 +4,7 @@
    بتستخدم لـ:
      1) عدّادات الأقسام في الصفحة الرئيسية بشكل تلقائي
      2) أي ميزات مستقبلية (فلترة / بحث / فهرس جانبي)
-   ملاحظة: المجموع لازم يكون ٢٢ تجربة زي index.html
+   ملاحظة: المجموع لازم يكون ٢٣ تجربة (٢٢ قسم داخل index.html + تجربة ٢٣ كصفحة مستقلة exp23-balloon.html)
    ============================================================ */
 
 const experimentsData = [
@@ -29,5 +29,6 @@ const experimentsData = [
   { id: 'exp-19', order: 19, category: 'heat-transfer', title: 'الموصلات والعوازل الحرارية في حياتنا',   topic: 'تطبيقات حياتية' },
   { id: 'exp-20', order: 20, category: 'heat-transfer', title: 'الحمل الحراري في السوائل والغازات',      topic: 'طرق انتقال الحرارة' },
   { id: 'exp-21', order: 21, category: 'heat-transfer', title: 'الإشعاع الحراري',                        topic: 'طرق انتقال الحرارة' },
-  { id: 'exp-22', order: 22, category: 'heat-transfer', title: 'مقارنة طرق انتقال الحرارة الثلاث',       topic: 'مراجعة شاملة' }
+  { id: 'exp-22', order: 22, category: 'heat-transfer', title: 'مقارنة طرق انتقال الحرارة الثلاث',       topic: 'مراجعة شاملة' },
+  { id: 'exp-23', order: 23, category: 'chemical-reactions', title: 'نفخ البالون',                      topic: 'التفاعلات الكيميائية' }
 ];
