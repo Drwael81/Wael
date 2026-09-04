@@ -4,7 +4,7 @@
    بتستخدم لـ:
      1) عدّادات الأقسام في الصفحة الرئيسية بشكل تلقائي
      2) أي ميزات مستقبلية (فلترة / بحث / فهرس جانبي)
-   ملاحظة: المجموع لازم يكون ٣٩ تجربة (٢٢ قسم داخل index.html + تجارب ٢٣-٣٩ كصفحات مستقلة: exp23-balloon.html / exp24-precipitate.html / exp25-colour-change.html / exp26-gas-evolution.html / exp27-light-heat.html / exp28-ammonia-indicator.html / exp29-limewater-milky.html / exp30-sugar-burning.html / exp31-soap-making.html / exp32-daily-life.html / exp33-physical-vs.html / exp34-equations.html / exp35-conservation-mass.html / exp36-glucose-benedict.html / exp37-starch-iodine.html / exp38-fats-sudan.html / exp39-proteins-biuret.html)
+   ملاحظة: المجموع لازم يكون ٥٠ تجربة (٢٢ قسم داخل index.html + تجارب ٢٣-٥٠ كصفحات مستقلة: exp23-balloon.html / exp24-precipitate.html / exp25-colour-change.html / exp26-gas-evolution.html / exp27-light-heat.html / exp28-ammonia-indicator.html / exp29-limewater-milky.html / exp30-sugar-burning.html / exp31-soap-making.html / exp32-daily-life.html / exp33-physical-vs.html / exp34-equations.html / exp35-conservation-mass.html / exp36-glucose-benedict.html / exp37-starch-iodine.html / exp38-fats-sudan.html / exp39-proteins-biuret.html / exp40-van-helmont.html / exp41-photorealistic.html / exp42-ball-stick.html / exp43-chlorophyll-light.html / exp44-gas-tests.html / exp45-gas-exchange.html / exp46-mouse-plant.html / exp47-leaves-flasks.html / exp48-photosynthesis-respiration.html / exp49-methylene-blue.html / exp50-sodium-acetate.html)
    ============================================================ */
 
 const experimentsData = [
@@ -46,5 +46,16 @@ const experimentsData = [
   { id: 'exp-36', order: 36, category: 'chemical-reactions', title: 'كشف الجلوكوز',                        topic: 'الكشف عن سكر الجلوكوز بمحلول بندكت' },
   { id: 'exp-37', order: 37, category: 'chemical-reactions', title: 'كشف النشا',                           topic: 'الكشف عن النشا بمحلول اليود' },
   { id: 'exp-38', order: 38, category: 'chemical-reactions', title: 'كشف الدهون',                          topic: 'الكشف عن الدهون بسودان IV' },
-  { id: 'exp-39', order: 39, category: 'chemical-reactions', title: 'كشف البروتين',                        topic: 'الكشف عن البروتين بمحلول البيوريت' }
+  { id: 'exp-39', order: 39, category: 'chemical-reactions', title: 'كشف البروتين',                          topic: 'الكشف عن البروتين بمحلول البيوريت' },
+  { id: 'exp-40', order: 40, category: 'biology',            title: 'تجربة فان هيلمونت',                     topic: 'البناء الضوئي · تغذية النبات' },
+  { id: 'exp-41', order: 41, category: 'biology',            title: 'واقعية فوتوغرافية',                      topic: 'التفاعلات الحياتية' },
+  { id: 'exp-42', order: 42, category: 'biology',            title: 'نموذج الكرة والعصا',                     topic: 'البنية الجزيئية' },
+  { id: 'exp-43', order: 43, category: 'biology',            title: 'الكلوروفيل والضوء والنشا',               topic: 'البناء الضوئي · الكلوروفيل' },
+  { id: 'exp-44', order: 44, category: 'biology',            title: 'اختبارات الغازات',                        topic: 'اختبار الغازات الناتجة عن الاحتراق' },
+  { id: 'exp-45', order: 45, category: 'biology',            title: 'تبادل الغازات',                           topic: 'تبادل الغازات في التنفس والبناء الضوئي' },
+  { id: 'exp-46', order: 46, category: 'biology',            title: 'الفأر والنبات',                           topic: 'مقارنة التنفس والبناء الضوئي' },
+  { id: 'exp-47', order: 47, category: 'biology',            title: 'أوراق وقوارير',                          topic: 'الأوراق والقوارير · تبادل الغازات' },
+  { id: 'exp-48', order: 48, category: 'biology',            title: 'البناء والتنفس معاً',                     topic: 'البناء الضوئي والتنفس' },
+  { id: 'exp-49', order: 49, category: 'biology',            title: 'ميثيلين بلو',                             topic: 'التنفس في الكائنات الحية' },
+  { id: 'exp-50', order: 50, category: 'chemical-reactions', title: 'أسيتات الصوديوم',                          topic: 'تجمد فوري · تغير كيميائي فيزيائي' }
 ];
