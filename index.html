@@ -22,6 +22,9 @@
 <script src="experiments-data.js"></script>
 <!-- Video Learning data layer — قسم أحدث الفيديوهات في الرئيسية -->
 <script src="videos-data.js"></script>
+<!-- Science Craft manifest + نظام النقاط الموحّد -->
+<script src="science-craft-data.js"></script>
+<script src="assets/js/science-craft-scores.js"></script>
 <!-- تحسينات واجهة عامة: شريط تقدم + زر عودة لأعلى + أنيميشن ظهور -->
 <script src="site-enhance.js?v=2" defer></script>
 </head>
@@ -37,9 +40,10 @@
       </a>
       <nav class="main-nav" aria-label="التنقل الرئيسي">
         <a href="#top" class="active">🏠 الرئيسية</a>
-        <a href="#categories">🧪 التجارب</a>
+        <a href="experiments.html">🧪 التجارب</a>
         <a href="lessons.html">📚 الدروس</a>
         <a href="quizzes.html">📝 الاختبارات</a>
+        <a href="science-craft.html">🎮 Science Craft</a>
         <a href="videos.html">🎥 الفيديوهات</a>
       </nav>
       <span class="credit">By #Dr_Wael_Aboagiza</span>
@@ -62,7 +66,7 @@
 
         <div class="hero-cta-row">
           <a href="#exp-1" class="btn-primary">🧪 ابدأ أول تجربة</a>
-          <a href="#categories" class="btn-secondary">📚 استكشف التجارب</a>
+          <a href="experiments.html" class="btn-secondary">📚 استكشف كل التجارب</a>
         </div>
 
         <a href="https://whatsapp.com/channel/0029VbBAp9MFMqrg4r1h8x06" target="_blank" rel="noopener" class="hero-wa-btn">
@@ -119,12 +123,17 @@
           <span class="hero-stat-num">400</span>
           <span class="hero-stat-label">سؤال اختبار</span>
         </div>
+        <div class="hero-stat">
+          <span class="hero-stat-icon">🎮</span>
+          <span class="hero-stat-num" data-sc-count>٦</span>
+          <span class="hero-stat-label">لعبة Science Craft</span>
+        </div>
       </div>
     </section>
 
     <!-- ============ two main sections ============ -->
     <section class="paths-section">
-      <a href="#exp-1" class="path-card path-experiments">
+      <a href="experiments.html" class="path-card path-experiments">
         <div class="path-icon">🧪</div>
         <div class="path-title">قسم التجارب</div>
         <div class="path-count" data-total-placeholder>٢٧ تجربة تفاعلية</div>
@@ -145,226 +154,111 @@
         <div class="path-desc">اختبر فهمك بأسئلة تفاعلية، وشوف نتيجتك ودرجتك في الآخر على طول.</div>
         <div class="path-cta">ابدأ اختبار ←</div>
       </a>
+      <a href="science-craft.html" class="path-card path-games">
+        <div class="path-icon">🎮</div>
+        <div class="path-title">Science Craft</div>
+        <div class="path-count"><span data-sc-count>٦</span> ألعاب علمية</div>
+        <div class="path-desc">ألعاب تفاعلية تبني الفكرة العلمية باللعب، وأفضل نتيجة بتتسجل تلقائيًا.</div>
+        <div class="path-cta">العب وتعلّم ←</div>
+      </a>
+      <a href="videos.html" class="path-card path-videos">
+        <div class="path-icon">🎥</div>
+        <div class="path-title">قسم الفيديوهات</div>
+        <div class="path-count">أحدث الشروحات</div>
+        <div class="path-desc">شرح فيديو قصير ومنظّم لكل درس، ترجع له أي وقت من غير ما تضيع حتة.</div>
+        <div class="path-cta">شاهد الفيديو ←</div>
+      </a>
     </section>
 
     <div class="section-divider">
       <span>تصفّح التجارب حسب الموضوع 👇</span>
     </div>
 
-    <!-- ============ category grid ============ -->
+<!-- ============ categories (compact) ============ -->
     <section class="cat-section" id="categories">
       <div class="cat-grid">
-        <a href="#exp-1" class="cat-card cat-pressure" data-category="matter">
+        <a href="experiments.html?cat=matter" class="cat-card cat-pressure" data-category="matter">
           <div class="cat-icon">💨</div>
-          <div class="cat-count" data-count-placeholder>٣ تجارب</div>
+          <div class="cat-count" data-count-placeholder>٠ تجارب</div>
           <div class="cat-title">خواص المادة والضغط</div>
           <div class="cat-desc">الانضغاط، ضغط الغاز، الضغط الجوي ودرجة الغليان</div>
         </a>
-        <a href="#exp-2" class="cat-card cat-diffusion" data-category="diffusion">
+        <a href="experiments.html?cat=diffusion" class="cat-card cat-diffusion" data-category="diffusion">
           <div class="cat-icon">🌫️</div>
-          <div class="cat-count" data-count-placeholder>٥ تجارب</div>
+          <div class="cat-count" data-count-placeholder>٠ تجارب</div>
           <div class="cat-title">الانتشار والحركة الجزيئية</div>
           <div class="cat-desc">سرعة الانتشار، تأثير الحرارة والكتلة، سباق الغازات، قوى التجاذب</div>
         </a>
-        <a href="#exp-9" class="cat-card cat-states" data-category="state-changes">
+        <a href="experiments.html?cat=state-changes" class="cat-card cat-states" data-category="state-changes">
           <div class="cat-icon">🔄</div>
-          <div class="cat-count" data-count-placeholder>٣ تجارب</div>
-          <div class="cat-title">تغيرات الحالة والنقاء</div>
-          <div class="cat-desc">التبخر، التصعيد والترسيب، النقاء ودرجتا الغليان والانصهار</div>
+          <div class="cat-count" data-count-placeholder>٠ تجارب</div>
+          <div class="cat-title">تغيّرات الحالة والنقاء</div>
+          <div class="cat-desc">التبخّر، التسامي، النقاء والغليان عند ثبات درجة الحرارة</div>
         </a>
-        <a href="#exp-12" class="cat-card cat-temp" data-category="temperature">
+        <a href="experiments.html?cat=temperature" class="cat-card cat-temp" data-category="temperature">
           <div class="cat-icon">🌡️</div>
-          <div class="cat-count" data-count-placeholder>٦ تجارب</div>
+          <div class="cat-count" data-count-placeholder>٠ تجارب</div>
           <div class="cat-title">الحرارة والاتزان الحراري</div>
-          <div class="cat-desc">الإحساس بالحرارة، الأنظمة، العوامل المؤثرة، السعة الحرارية، حلة الضغط، الاتزان</div>
+          <div class="cat-desc">الاتزان الحراري، ومقارنة الحرارة بدرجة الحرارة</div>
         </a>
-        <a href="#exp-18" class="cat-card cat-transfer" data-category="heat-transfer">
+        <a href="experiments.html?cat=heat-transfer" class="cat-card cat-transfer" data-category="heat-transfer">
           <div class="cat-icon">🔥</div>
-          <div class="cat-count" data-count-placeholder>٥ تجارب</div>
+          <div class="cat-count" data-count-placeholder>٠ تجارب</div>
           <div class="cat-title">طرق انتقال الحرارة</div>
-          <div class="cat-desc">التوصيل، الموصلات والعوازل، الحمل الحراري، الإشعاع، مقارنة شاملة</div>
+          <div class="cat-desc">التوصيل، الحمل، الإشعاع، تطبيقات في الحياة اليومية</div>
         </a>
-        <a href="exp23-balloon.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">🎈</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">التفاعلات الكيميائية · نفخ البالون</div>
-          <div class="cat-desc">تفاعل حمض-قاعدة ينتج غاز ثاني أكسيد الكربون ويملأ البالون — جرّبها في صفحة منفصلة كاملة.</div>
+        <a href="experiments.html?cat=chemical-reactions" class="cat-card cat-chem" data-category="chemical-reactions">
+          <div class="cat-icon">⚗️</div>
+          <div class="cat-count" data-count-placeholder>٠ تجارب</div>
+          <div class="cat-title">التفاعلات الكيميائية</div>
+          <div class="cat-desc">مؤشرات التفاعل، بقاء الكتلة، الأكسدة والأكاسيد</div>
         </a>
-        <a href="exp24-precipitate.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">🧪</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">التفاعلات الكيميائية · تكوين الراسب</div>
-          <div class="cat-desc">تفاعل نترات الفضة مع كلوريد الصوديوم ينتج راسب أبيض من كلوريد الفضة — يتلون بنفسجيًا تحت ضوء الشمس. جرّبها في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp25-colour-change.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">🎨</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">التفاعلات الكيميائية · تغيير لون المحلول</div>
-          <div class="cat-desc">وضع الزنك في محلول كبريتات النحاس الأزرق يختفي اللون ويتكوّن نحاس بني محمر. جرّبها في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp26-gas-evolution.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">🫧</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">التفاعلات الكيميائية · تصاعد غاز الهيدروجين</div>
-          <div class="cat-desc">شريط الماغنسيوم مع حمض الهيدروكلوريك المخفف يطلق فقاعات غاز الهيدروجين. جرّبها في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp27-light-heat.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">✨</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">التفاعلات الكيميائية · انبعاث ضوء وحرارة</div>
-          <div class="cat-desc">احتراق شريط الماغنسيوم في الهواء ينبعث منه ضوء أبيض مبهر وحرارة ويتحوّل لبودرة بيضاء. جرّبها في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp28-ammonia-indicator.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">🔵</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">التفاعلات الكيميائية · تغير لون الكاشف العام</div>
-          <div class="cat-desc">ورقة كاشف عام مبللة بالماء يتغيّر لونها من الأصفر إلى الأزرق عند تقريبها من غاز الأمونيا — دليل على تكوّن هيدروكسيد الأمونيوم. جرّبها في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp29-limewater-milky.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">☁️</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">التفاعلات الكيميائية · تعكر ماء الجير</div>
-          <div class="cat-desc">إمرار غاز ثاني أكسيد الكربون في ماء الجير الرائق يجعله يتعطّر (حليبيًا) براسب أبيض من كربونات الكالسيوم. جرّبها في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp30-sugar-burning.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">🍬</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">التفاعلات الكيميائية · حرق السكر</div>
-          <div class="cat-desc">تسخين السكر الأبيض يتغيّر لونه وخواصه: من بلورات بيضاء عديمة الرائحة إلى كراميل بني ثم كربون أسود مع دخان — تغيّر كيميائي. جرّبها في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp31-soap-making.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">🧼</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">التفاعلات الكيميائية · صناعة الصابون</div>
-          <div class="cat-desc">تفاعل الزيت مع الصودا الكاوية (تصبّن): زيت سائل مع قطرة قطرة من الصودا مع تسخين وتقليب يتحوّل إلى صابون كريمي — تغيّر كيميائي. جرّبها في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp32-daily-life.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">🍞</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">التفاعلات الكيميائية · تفاعلات حياتية</div>
-          <div class="cat-desc">تفاعلات كيميائية تحدث يوميًا في حياتنا: الاحتراق، التخمّر، الصدأ والطهي — وأمثلة عملية تُشرح بطريقة تفاعلية. جرّبها في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp33-physical-vs.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">⚖️</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">مقارنة التغيرات · فيزيائي vs كيميائي</div>
-          <div class="cat-desc">نفس المادة تتغيّر شكلها أو تتحوّل لمادة جديدة تمامًا — تصنيف تفاعلي لأمثلة الكتاب بين التغيّر الفيزيائي والكيميائي. جرّبها في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp34-equations.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">🧪</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">التفاعلات الكيميائية · معادلات رمزية</div>
-          <div class="cat-desc">التعبير عن التفاعلات الكيميائية بمعادلات رمزية مع الحالة الفيزيائية للمواد — تجربة تفاعلية في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp35-conservation-mass.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">⚖️</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">التفاعلات الكيميائية · بقاء الكتلة</div>
-          <div class="cat-desc">لا تفنى الكتلة ولا تُستحدث من العدم — تجربة تفاعلية لقانون حفظ الكتلة (لافوازييه) في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp36-glucose-benedict.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">🥤</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">التفاعلات الكيميائية · كشف الجلوكوز</div>
-          <div class="cat-desc">الكشف عن سكر الجلوكوز باستخدام محلول بندكت — تجربة تفاعلية في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp37-starch-iodine.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">🥔</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">التفاعلات الكيميائية · كشف النشا</div>
-          <div class="cat-desc">الكشف عن النشا بمحلول اليود — يتحول المحلول إلى لون أزرق غامق مسود — تجربة تفاعلية في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp38-fats-sudan.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">🧈</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">التفاعلات الكيميائية · كشف الدهون</div>
-          <div class="cat-desc">الكشف عن الدهون بسودان IV — يظهر لون أحمر-برتقالي على السطح — تجربة تفاعلية في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp39-proteins-biuret.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">🥚</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">التفاعلات الكيميائية · كشف البروتين</div>
-          <div class="cat-desc">الكشف عن البروتين بمحلول البيوريت — يتحول إلى لون بنفسجي — تجربة تفاعلية في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp40-van-helmont.html" class="cat-card cat-biology" data-category="biology">
+        <a href="experiments.html?cat=biology" class="cat-card cat-biology" data-category="biology">
           <div class="cat-icon">🌱</div>
-          <div class="cat-count" data-count-placeholder>١٠ تجارب</div>
+          <div class="cat-count" data-count-placeholder>٠ تجارب</div>
           <div class="cat-title">العلوم الحياتية والنبات</div>
-          <div class="cat-desc">البناء الضوئي، تغذية النبات، تبادل الغازات، والتفاعلات الحياتية في النبات</div>
+          <div class="cat-desc">النقل في النبات، التنفس والبناء الضوئي، الفطريات</div>
         </a>
-        <a href="exp40-van-helmont.html" class="cat-card cat-biology cat-spotlight" data-category="biology">
-          <div class="cat-icon">🌱</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">العلوم الحياتية · تجربة فان هيلمونت</div>
-          <div class="cat-desc">هل يحصل النبات على غذائه من التربة؟ — ٢.٢كغ شجرة ← ٧٥كغ، والتربة نقصت ٥٥غ فقط — أين ذهبت الكتلة؟ جرّبها في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp41-photorealistic.html" class="cat-card cat-biology cat-spotlight" data-category="biology">
-          <div class="cat-icon">🔬</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">العلوم الحياتية · واقعية فوتوغرافية</div>
-          <div class="cat-desc">محاكاة واقعية فوتوغرافية لتفاعل حياتي في المختبر — جرّبها في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp42-ball-stick.html" class="cat-card cat-biology cat-spotlight" data-category="biology">
-          <div class="cat-icon">⚛️</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">العلوم الحياتية · نموذج الكرة والعصا</div>
-          <div class="cat-desc">البنية الجزيئية بتمثيل الكرة والعصا — روابط ذرية تفاعلية في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp43-chlorophyll-light.html" class="cat-card cat-biology cat-spotlight" data-category="biology">
-          <div class="cat-icon">☀️</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">العلوم الحياتية · الكلوروفيل والضوء والنشا</div>
-          <div class="cat-desc">دور الكلوروفيل والضوء في تكوّن النشا — اختبار اليود للكشف عن النشا، في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp44-gas-tests.html" class="cat-card cat-biology cat-spotlight" data-category="biology">
-          <div class="cat-icon">🧪</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">العلوم الحياتية · كواشف الغازات</div>
-          <div class="cat-desc">التعرف على الغازات بكواشفها — ثاني أكسيد الكربون يكدر ماء الجير، في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp45-gas-exchange.html" class="cat-card cat-biology cat-spotlight" data-category="biology">
-          <div class="cat-icon">🌬️</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">العلوم الحياتية · تبادل الغازات</div>
-          <div class="cat-desc">تبادل الأكسجين وثاني أكسيد الكربون بين النبات والبيئة — التنفس والبناء الضوئي، في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp46-mouse-plant.html" class="cat-card cat-biology cat-spotlight" data-category="biology">
-          <div class="cat-icon">🐭</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">العلوم الحياتية · الفأر والنبات</div>
-          <div class="cat-desc">مقارنة التنفس والبناء الضوئي — الفأر يستهلك الأكسجين والنبات ينتجه، في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp47-leaves-flasks.html" class="cat-card cat-biology cat-spotlight" data-category="biology">
-          <div class="cat-icon">🍃</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">العلوم الحياتية · الورقة والدورق المخروطي</div>
-          <div class="cat-desc">تبادل الغازات في الورقة والدورق المخروطي — التنفس والبناء الضوئي معاً، في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp48-photosynthesis-respiration.html" class="cat-card cat-biology cat-spotlight" data-category="biology">
-          <div class="cat-icon">🔄</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">العلوم الحياتية · البناء والتنفس معاً</div>
-          <div class="cat-desc">مقارنة معاصرة للبناء الضوئي والتنفس — الأكسجين وثاني أكسيد الكربون معاً، في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp49-methylene-blue.html" class="cat-card cat-biology cat-spotlight" data-category="biology">
-          <div class="cat-icon">🔵</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">العلوم الحياتية · ميثيلين بلو</div>
-          <div class="cat-desc">كشف التنفس بالميثيلين بلو — المحلول الأزرق يتحول لونه مع نشاط التنفس، في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp50-sodium-acetate.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">❄️</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">التفاعلات الكيميائية · أسيتات الصوديوم</div>
-          <div class="cat-desc">تجمد فوري — محلول أسيتات الصوديوم المُشبَع يتحوّل إلى بلورات صلبة عند لمسها، في صفحة منفصلة كاملة.</div>
-        </a>
+      </div>
+      <div class="categories-cta">
+        <a href="experiments.html" class="btn-primary">🧪 فهرس كل التجارب</a>
+      </div>
+    </section>
+
+    <!-- ============ featured experiments ============ -->
+    <section class="featured-section" id="featuredSection" aria-label="تجارب مميزة">
+      <div class="featured-head">
+        <h2>⭐ تجارب مميزة</h2>
+        <p>مختارات سهلة وممتعة — ابدأ بيها لو أول مرة تدخل الموقع.</p>
+      </div>
+      <div class="cat-grid" id="featuredGrid">
+        <!-- كروت التجارب المميزة بتتولّد من experiments-data.js -->
+      </div>
+      <div class="latest-videos-cta">
+        <a href="experiments.html" class="latest-videos-btn">عرض كل التجارب ←</a>
+      </div>
+    </section>
+
+    <!-- ============ Science Craft highlight ============ -->
+    <section class="home-sc-highlight">
+      <div class="home-sc-logo-wrap">
+        <img class="home-sc-logo" src="Science-Craft logo.jpeg" alt="شعار Science Craft">
+      </div>
+      <div class="home-sc-text">
+        <div class="home-sc-badge">🎮 Science Craft</div>
+        <h2>العب وتعلّم بالعلوم</h2>
+        <p>ألعاب تفاعلية تبني فكرة منهجك باللعب — حرّك، حلّق، تسبّب، وجاوب. أفضل نتيجة لكل لعبة بتتسجل تلقائيًا على جهازك.</p>
+        <div class="home-sc-stats">
+          <span class="home-sc-stat"><b data-sc-count>٦</b> ألعاب</span>
+          <span class="home-sc-stat"><b>٠٪–١٠٠٪</b> نقاط موحّدة</span>
+        </div>
+        <a href="science-craft.html" class="btn-primary">🎮 العب الآن</a>
       </div>
     </section>
 
     <div class="section-divider">
       <span>كل التجارب بالتفصيل تحت 👇</span>
     </div>
-
     <!-- ============ jump navigation ============ -->
     <nav class="jump-nav" aria-label="قفز سريع للمجموعات">
       <a href="#exp-1" class="jump-pill jump-matter">💨 المادة والضغط</a>
@@ -1455,201 +1349,16 @@
       </table>
     </section>
 
-    <!-- ============ experiments 23-30 (standalone pages) ============ -->
-    <section class="cat-section" id="experiments-23to27">
-      <div class="section-divider">
-        <span>التفاعلات الكيميائية · تجارب جديدة 👇</span>
-      </div>
-      <div class="cat-grid">
-        <a href="exp23-balloon.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">🎈</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">التفاعلات الكيميائية · نفخ البالون</div>
-          <div class="cat-desc">تفاعل حمض-قاعدة ينتج غاز ثاني أكسيد الكربون ويملأ البالون — جرّبها في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp24-precipitate.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">🧪</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">التفاعلات الكيميائية · تكوين الراسب</div>
-          <div class="cat-desc">تفاعل نترات الفضة مع كلوريد الصوديوم ينتج راسب أبيض من كلوريد الفضة — يتلون بنفسجيًا تحت ضوء الشمس. جرّبها في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp25-colour-change.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">🎨</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">التفاعلات الكيميائية · تغيير لون المحلول</div>
-          <div class="cat-desc">وضع الزنك في محلول كبريتات النحاس الأزرق يختفي اللون ويتكوّن نحاس بني محمر. جرّبها في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp26-gas-evolution.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">🫧</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">التفاعلات الكيميائية · تصاعد غاز الهيدروجين</div>
-          <div class="cat-desc">شريط الماغنسيوم مع حمض الهيدروكلوريك المخفف يطلق فقاعات غاز الهيدروجين. جرّبها في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp27-light-heat.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">✨</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">التفاعلات الكيميائية · انبعاث ضوء وحرارة</div>
-          <div class="cat-desc">احتراق شريط الماغنسيوم في الهواء ينبعث منه ضوء أبيض مبهر وحرارة ويتحوّل لبودرة بيضاء. جرّبها في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp28-ammonia-indicator.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">🔵</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">التفاعلات الكيميائية · تغير لون الكاشف العام</div>
-          <div class="cat-desc">ورقة كاشف عام مبللة بالماء يتغيّر لونها من الأصفر إلى الأزرق عند تقريبها من غاز الأمونيا — دليل على تكوّن هيدروكسيد الأمونيوم. جرّبها في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp29-limewater-milky.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">☁️</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">التفاعلات الكيميائية · تعكر ماء الجير</div>
-          <div class="cat-desc">إمرار غاز ثاني أكسيد الكربون في ماء الجير الرائق يجعله يتعطّر (حليبيًا) براسب أبيض من كربونات الكالسيوم. جرّبها في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp30-sugar-burning.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">🍬</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">التفاعلات الكيميائية · حرق السكر</div>
-          <div class="cat-desc">تسخين السكر الأبيض يتغيّر لونه وخواصه: من بلورات بيضاء عديمة الرائحة إلى كراميل بني ثم كربون أسود مع دخان — تغيّر كيميائي. جرّبها في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp31-soap-making.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">🧼</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">التفاعلات الكيميائية · صناعة الصابون</div>
-          <div class="cat-desc">تفاعل الزيت مع الصودا الكاوية (تصبّن): زيت سائل مع قطرة قطرة من الصودا مع تسخين وتقليب يتحوّل إلى صابون كريمي — تغيّر كيميائي. جرّبها في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp32-daily-life.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">🍞</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">التفاعلات الكيميائية · تفاعلات حياتية</div>
-          <div class="cat-desc">تفاعلات كيميائية تحدث يوميًا في حياتنا: الاحتراق، التخمّر، الصدأ والطهي — وأمثلة عملية تُشرح بطريقة تفاعلية. جرّبها في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp33-physical-vs.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">⚖️</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">مقارنة التغيرات · فيزيائي vs كيميائي</div>
-          <div class="cat-desc">نفس المادة تتغيّر شكلها أو تتحوّل لمادة جديدة تمامًا — تصنيف تفاعلي لأمثلة الكتاب بين التغيّر الفيزيائي والكيميائي. جرّبها في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp34-equations.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">🧪</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">معادلات رمزية</div>
-          <div class="cat-desc">التعبير عن التفاعلات الكيميائية بمعادلات رمزية مع الحالة الفيزيائية للمواد — تجربة تفاعلية في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp35-conservation-mass.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">⚖️</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">قانون بقاء الكتلة</div>
-          <div class="cat-desc">لا تفنى الكتلة ولا تُستحدث من العدم — تجربة تفاعلية لقانون حفظ الكتلة (لافوازييه) في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp36-glucose-benedict.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">🥤</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">كشف الجلوكوز</div>
-          <div class="cat-desc">الكشف عن سكر الجلوكوز باستخدام محلول بندكت — تجربة تفاعلية في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp37-starch-iodine.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">🥔</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">كشف النشا</div>
-          <div class="cat-desc">الكشف عن النشا بمحلول اليود — يتحول المحلول إلى لون أزرق غامق مسود — تجربة تفاعلية في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp38-fats-sudan.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">🧈</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">كشف الدهون</div>
-          <div class="cat-desc">الكشف عن الدهون بسودان IV — يظهر لون أحمر-برتقالي على السطح — تجربة تفاعلية في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp39-proteins-biuret.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">🥚</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">كشف البروتين</div>
-          <div class="cat-desc">الكشف عن البروتين بمحلول البيوريت — يتحول إلى لون بنفسجي — تجربة تفاعلية في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp50-sodium-acetate.html" class="cat-card cat-chem cat-spotlight" data-category="chemical-reactions">
-          <div class="cat-icon">❄️</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">التفاعلات الكيميائية · أسيتات الصوديوم</div>
-          <div class="cat-desc">تجمد فوري — محلول أسيتات الصوديوم المُشبَع يتحوّل إلى بلورات صلبة عند لمسها، في صفحة منفصلة كاملة.</div>
-        </a>
+<!-- ============ catalog CTA banner ============ -->
+    <section class="catalog-banner">
+      <div class="catalog-banner-inner">
+        <div class="catalog-banner-text">
+          <h2>أكمل في الفهرس: تجارب ٢٣–٥٠ 🎉</h2>
+          <p>التفاعلات الكيميائية، بقاء الكتلة، والعلوم الحياتية كلها صفحات تفاعلية كاملة — افتح الفهرس وصفّي حسب أي موضوع.</p>
+        </div>
+        <a href="experiments.html" class="btn-primary">🧪 فهرس التجارب الكامل</a>
       </div>
     </section>
-
-    <!-- ============ experiments 40-49 (biology standalone pages) ============ -->
-    <section class="cat-section" id="experiments-40to49">
-      <div class="section-divider">
-        <span>العلوم الحياتية والنبات · تجارب جديدة 👇</span>
-      </div>
-      <div class="cat-grid">
-        <a href="exp40-van-helmont.html" class="cat-card cat-biology cat-spotlight" data-category="biology">
-          <div class="cat-icon">🌱</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">العلوم الحياتية · تجربة فان هيلمونت</div>
-          <div class="cat-desc">هل يحصل النبات على غذائه من التربة؟ — ٢.٢كغ شجرة ← ٧٥كغ، والتربة نقصت ٥٥غ فقط — أين ذهبت الكتلة؟ جرّبها في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp41-photorealistic.html" class="cat-card cat-biology cat-spotlight" data-category="biology">
-          <div class="cat-icon">🔬</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">العلوم الحياتية · واقعية فوتوغرافية</div>
-          <div class="cat-desc">محاكاة واقعية فوتوغرافية لتفاعل حياتي في المختبر — جرّبها في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp42-ball-stick.html" class="cat-card cat-biology cat-spotlight" data-category="biology">
-          <div class="cat-icon">⚛️</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">العلوم الحياتية · نموذج الكرة والعصا</div>
-          <div class="cat-desc">البنية الجزيئية بتمثيل الكرة والعصا — روابط ذرية تفاعلية في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp43-chlorophyll-light.html" class="cat-card cat-biology cat-spotlight" data-category="biology">
-          <div class="cat-icon">☀️</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">العلوم الحياتية · الكلوروفيل والضوء والنشا</div>
-          <div class="cat-desc">دور الكلوروفيل والضوء في تكوّن النشا — اختبار اليود للكشف عن النشا، في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp44-gas-tests.html" class="cat-card cat-biology cat-spotlight" data-category="biology">
-          <div class="cat-icon">🧪</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">العلوم الحياتية · كواشف الغازات</div>
-          <div class="cat-desc">التعرف على الغازات بكواشفها — ثاني أكسيد الكربون يكدر ماء الجير، في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp45-gas-exchange.html" class="cat-card cat-biology cat-spotlight" data-category="biology">
-          <div class="cat-icon">🌬️</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">العلوم الحياتية · تبادل الغازات</div>
-          <div class="cat-desc">تبادل الأكسجين وثاني أكسيد الكربون بين النبات والبيئة — التنفس والبناء الضوئي، في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp46-mouse-plant.html" class="cat-card cat-biology cat-spotlight" data-category="biology">
-          <div class="cat-icon">🐭</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">العلوم الحياتية · الفأر والنبات</div>
-          <div class="cat-desc">مقارنة التنفس والبناء الضوئي — الفأر يستهلك الأكسجين والنبات ينتجه، في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp47-leaves-flasks.html" class="cat-card cat-biology cat-spotlight" data-category="biology">
-          <div class="cat-icon">🍃</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">العلوم الحياتية · الورقة والدورق المخروطي</div>
-          <div class="cat-desc">تبادل الغازات في الورقة والدورق المخروطي — التنفس والبناء الضوئي معاً، في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp48-photosynthesis-respiration.html" class="cat-card cat-biology cat-spotlight" data-category="biology">
-          <div class="cat-icon">🔄</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">العلوم الحياتية · البناء والتنفس معاً</div>
-          <div class="cat-desc">مقارنة معاصرة للبناء الضوئي والتنفس — الأكسجين وثاني أكسيد الكربون معاً، في صفحة منفصلة كاملة.</div>
-        </a>
-        <a href="exp49-methylene-blue.html" class="cat-card cat-biology cat-spotlight" data-category="biology">
-          <div class="cat-icon">🔵</div>
-          <div class="cat-count">١ تجربة · صفحة تفاعلية كاملة</div>
-          <div class="cat-title">العلوم الحياتية · ميثيلين بلو</div>
-          <div class="cat-desc">كشف التنفس بالميثيلين بلو — المحلول الأزرق يتحول لونه مع نشاط التنفس، في صفحة منفصلة كاملة.</div>
-        </a>
-      </div>
-    </section>
-
-    <!-- ============ coming soon ============ -->
-    <section class="coming-soon">
-      <h2>تجارب ستضاف قريبًا...</h2>
-      <p>الموقع مبني عشان يتوسع — كل تجربة جديدة هتتضاف هنا كقسم مستقل زي التجارب اللي فوق.</p>
-      <div class="soon-grid">
-        <div class="soon-card">تجارب ستضاف قريبًا...</div>
-      </div>
-    </section>
-
     <!-- ============ latest videos ============ -->
     <section class="latest-videos-section" aria-label="أحدث فيديوهات الشرح">
       <div class="latest-videos-head">
@@ -1708,9 +1417,10 @@
       </div>
       <nav class="footer-links">
         <a href="#top">الرئيسية</a>
-        <a href="#categories">التجارب</a>
+        <a href="experiments.html">التجارب</a>
         <a href="lessons.html">الدروس</a>
         <a href="quizzes.html">الاختبارات</a>
+        <a href="science-craft.html">Science Craft</a>
         <a href="https://whatsapp.com/channel/0029VbBAp9MFMqrg4r1h8x06" target="_blank" rel="noopener">واتساب</a>
         <a href="https://t.me/secondprepfunnyscience" target="_blank" rel="noopener">تليجرام</a>
       </nav>
@@ -1751,22 +1461,47 @@
 <script src="assets/js/experiments/19-exp20-candle-tubes.js"></script>
 <script src="assets/js/experiments/20-exp21-radiation.js"></script>
 
-<!-- Auto-number standalone experiment cards by the number in their filename (display only) -->
+<!-- Dashboard: عدد ألعاب Science Craft + كروت التجارب المميزة (من البيانات وليس HTML متكرر) -->
 <script>
-  (function(){
-    var listSection = document.getElementById('experiments-23to27');
-    if (!listSection) return;
-    var cards = listSection.querySelectorAll('a.cat-spotlight');
-    cards.forEach(function(card){
-      var m = (card.getAttribute('href') || '').match(/exp(\d{2})-/);
-      if (!m) return;
-      var num = parseInt(m[1], 10);
-      var label = 'تجربة ' + (num < 10 ? '0' + num : num);
-      var badge = document.createElement('span');
-      badge.className = 'exp-number-badge';
-      badge.textContent = label;
-      card.insertBefore(badge, card.firstChild);
-    });
+  (function () {
+    function ar(n) {
+      try { return Math.round(n).toLocaleString('ar-EG'); } catch (e) { return String(Math.round(n)); }
+    }
+
+    // عدّاد Science Craft
+    if (typeof scienceCraftData !== 'undefined' && Array.isArray(scienceCraftData)) {
+      var scCountEls = document.querySelectorAll('[data-sc-count]');
+      for (var i = 0; i < scCountEls.length; i++) {
+        scCountEls[i].textContent = ar(scienceCraftData.length);
+      }
+    }
+
+    // التجارب المميزة
+    var grid = document.getElementById('featuredGrid');
+    if (grid && typeof experimentsData !== 'undefined' && Array.isArray(experimentsData)) {
+      var picks = experimentsData
+        .filter(function (e) { return e && e.featured; })
+        .sort(function (a, b) { return (a.order || 0) - (b.order || 0); })
+        .slice(0, 6);
+      var html = picks.map(function (exp) {
+        var standalone = !!exp.file;
+        var href = standalone ? exp.file : ('#exp-' + (exp.order || ''));
+        return '' +
+          '<a class="cat-card featured-card cat-' + (exp.category || 'pressure') + '" href="' + href + '">' +
+            '<span class="exp-num-chip">تجربة ' + ar(exp.order || '') + '</span>' +
+            '<span class="exp-featured-chip">⭐ مميزة</span>' +
+            '<div class="cat-icon">🧪</div>' +
+            '<div class="cat-title">' + exp.title + '</div>' +
+            '<div class="cat-desc">' + (exp.topic || '') + '</div>' +
+            '<div class="cat-type-badge">' + (standalone ? 'صفحة مستقلة ⧉' : 'في الرئيسية 🔗') + '</div>' +
+          '</a>';
+      }).join('');
+      grid.innerHTML = html || '';
+      if (!html) {
+        var sec = document.getElementById('featuredSection');
+        if (sec) sec.style.display = 'none';
+      }
+    }
   })();
 </script>
 </body>

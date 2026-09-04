@@ -1290,3 +1290,87 @@ nav.toc{
     .latest-vid-card:hover,
     .latest-videos-btn:hover{ transform:none !important; box-shadow:var(--shadow) !important; }
   }
+
+  /* ============================================================
+     Science Craft Integration — Home dashboard + catalog recipes
+     ============================================================ */
+
+  /* --- paths grid: 5 بطاقات بنفس العرض (auto-fit بدل الأعمدة الثابتة) --- */
+  .paths-section{ grid-template-columns:repeat(auto-fit, minmax(192px, 1fr)); gap:18px; }
+  @media (max-width:880px){ .paths-section{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:640px){ .paths-section{ grid-template-columns:1fr; } }
+  .path-games{ background: linear-gradient(135deg, #6D28D9, var(--gas)); }
+  .path-videos{ background: linear-gradient(135deg, #C2410C, #D97706); }
+
+  /* --- categories CTA --- */
+  .categories-cta{ display:flex; justify-content:center; margin-top:22px; }
+  .categories-cta .btn-primary{ margin:0; }
+
+  /* --- featured experiments (dashboard) --- */
+  .featured-section{ padding:38px 10px 8px; }
+  .featured-head{ text-align:center; margin-bottom:20px; }
+  .featured-head h2{
+    font-family:'Cairo', sans-serif; font-weight:900;
+    font-size:clamp(20px, 3.2vw, 28px); color:var(--ink); margin:0;
+  }
+  .featured-head p{ color:var(--ink-soft); font-size:13.5px; margin-top:6px; }
+  .featured-card{ position:relative; }
+
+  /* --- Science Craft highlight (dashboard) --- */
+  .home-sc-highlight{
+    display:grid; grid-template-columns:auto 1fr; gap:24px; align-items:center;
+    margin-top:44px; padding:26px 28px; border-radius:26px;
+    background:
+      radial-gradient(120% 120% at 0% 0%, color-mix(in srgb, var(--gas) 10%, #fff), transparent 55%),
+      linear-gradient(135deg, color-mix(in srgb, var(--liquid) 6%, #fff), #fff);
+    border:1px solid rgba(20,35,43,0.07);
+  }
+  .home-sc-logo{
+    width:96px; height:96px; object-fit:contain; border-radius:20px;
+    background:#fff; padding:6px; box-shadow:var(--shadow);
+    border:1px solid rgba(20,35,43,0.08);
+  }
+  .home-sc-badge{
+    display:inline-block; font-family:'Cairo', sans-serif; font-weight:800; font-size:12px;
+    color:var(--solid); background:color-mix(in srgb, var(--solid) 10%, #fff);
+    padding:5px 13px; border-radius:999px;
+  }
+  .home-sc-text h2{
+    font-family:'Cairo', sans-serif; font-weight:900;
+    font-size:clamp(18px, 3vw, 24px); margin:10px 0 6px; color:var(--ink);
+  }
+  .home-sc-text p{ color:var(--ink-soft); font-size:13.5px; line-height:1.8; max-width:540px; }
+  .home-sc-stats{ display:flex; flex-wrap:wrap; gap:10px; margin:12px 0 16px; }
+  .home-sc-stat{
+    background:#fff; border:1px solid rgba(20,35,43,0.08); border-radius:12px;
+    padding:6px 13px; font-size:12px; color:var(--ink-soft);
+  }
+  .home-sc-stat b{
+    color:var(--ink); font-family:'Cairo', sans-serif; font-weight:800; font-size:14px;
+  }
+  @media (max-width:640px){
+    .home-sc-highlight{ grid-template-columns:1fr; text-align:center; justify-items:center; }
+    .home-sc-text p{ margin-inline:auto; }
+    .home-sc-stats{ justify-content:center; }
+  }
+
+  /* --- catalog CTA banner (after embedded experiments zone) --- */
+  .catalog-banner{
+    margin-top:48px; border-radius:26px; overflow:hidden;
+    background:linear-gradient(135deg, var(--solid), var(--liquid));
+    color:#fff;
+  }
+  .catalog-banner-inner{
+    display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap;
+    padding:30px 32px;
+  }
+  .catalog-banner-text h2{
+    font-family:'Cairo', sans-serif; font-weight:900;
+    font-size:clamp(18px, 3vw, 24px); margin:0 0 6px;
+  }
+  .catalog-banner-text p{ font-size:13.5px; line-height:1.8; opacity:.95; max-width:560px; margin:0; }
+  .catalog-banner .btn-primary{ background:#fff; color:var(--solid); box-shadow:none; }
+  .catalog-banner .btn-primary:hover{ filter:none; transform:translateY(-2px); }
+  @media (max-width:640px){
+    .catalog-banner-inner{ justify-content:center; text-align:center; padding:26px 20px; }
+  }

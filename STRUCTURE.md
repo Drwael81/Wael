@@ -1,19 +1,25 @@
 # هيكلة مشروع «مختبر العلوم الممتع» — توثيق عملي
 
-> آخر Commit مستقر وقت تحديث هذا الملف: `e0b17cb`
-> (`feat: add educational video library` — بعد Phase 6 لتصميم الرئيسية ومراحل الفيديو V1–V5)
+> آخر Commit مستقر وقت تحديث هذا الملف: `feat: add science craft and reorganize site structure`
+> (تكامل ألعاب Science Craft + إعادة تنظيم الرئيسية وفتح كتالوج التجارب في `experiments.html`)
 
 ## 1) خريطة الملفات والمجلدات (الحالة الحالية)
 
 ```
 Wael/
-├── index.html                     الصفحة الرئيسية: قشرة الموقع + أقسام التجارب الـ22 + قسم «أحدث الفيديوهات» (markup فقط، صفر كود مضمن)
-├── style.css                      نظام التصميم: متغيرات الألوان والخطوط والـtokens العامة (يُحمَّل بعد experiments.css)
+├── index.html                     الصفحة الرئيسية: قشرة الموقع + لوحة التنقل (hero/مسارات/تصنيفات/مميزة/Science Craft) + أقسام التجارب المدمجة 1–22 + بنر فهرس التجارب + «أحدث الفيديوهات» (markup فقط، صفر كود مضمن للتجارب)
+├── experiments.html               كتالوج كل التجارب الخمسين — مولّد من experiments-data.js مع تصفية حسب الموضوع (?cat=)
+├── science-craft.html             بوابة ألعاب Science Craft — مولّدة من science-craft-data.js + عرض أفضل النتائج من نظام النقاط
+├── style.css                      نظام التصميم: متغيرات الألوان والخطوط والـtokens العامة + شريط التنقل الموحّد .main-nav + فوتر .site-footer + أنماط الكتالوج (يُحمَّل بعد experiments.css)
 ├── assets/
-│   ├── css/experiments.css        كل تنسيقات التجارب + القشرة + أنماط قسم الفيديوهات الأخيرة (ملف واحد مقصود)
+│   ├── css/experiments.css        كل تنسيقات التجارب + القشرة + أنماط الرئيسية الجديدة والكتالوج وصفحة Science Craft (ملف واحد مقصود)
 │   ├── js/experiments/            21 وحدة JavaScript مستقلة (وحدة = كتلة سلوكية واحدة) — نفس التوزيع الموثق في القسم 2
+│   ├── js/science-craft-scores.js نظام النقاط الموحّد للألعاب (localStorage) — window.ScienceCraftScores
 │   └── sounds/                    مؤثرات صوتية للتجارب (success / error / click / flame / reset)
-├── experiments-data.js            طبقة بيانات وصفية للتجارب (id / order / category / title)
+├── experiments-data.js            طبقة بيانات وصفية للتجارب (id / order / category / title + file للتجارب المستقلة + featured للمميزة)
+├── science-craft-data.js          بيان Science Craft المركزي (أحادي المصدر لكل الألعاب)
+├── brownian-mario-minecraft.html  لعبة Science Craft (نسخة مغلّفة) + 5 ألعاب أخرى بنفس النمط
+├── Science-Craft logo.jpeg        شعار Science Craft (نسخة واحدة تستخدمها الرئيسية وصفحة الألعاب)
 ├── lessons.html                   فهرس الدروس — مولّد تلقائيًا من lessons-data.js
 ├── lessons-data.js                بيانات الدروس
 ├── lesson-*.html                  ملفات الدروس (كل درس ملف مكتفٍ ذاتيًا — نمط مقصود)
@@ -49,9 +55,9 @@ Wael/
 - أي وحدة جديدة يجب أن تكون كتلة مستقلة تمامًا (صفر متغيرات عابرة للوحدات).
 
 ## 3) أدوار الطبقات
-- **experiments-data.js**: وصف فقط (لا محتوى). عدّادات التصنيفات وأي فلترة مستقبلية تُحسب منه تلقائيًا — مجموع الإدخالات لازم يساوي عدد الأقسام فعليًا (٢٢).
-- **assets/css/experiments.css**: كل تنسيق التجارب والقشرة. يُحمَّل **قبل** `style.css` عمدًا حتى يظل نظام التصميم هو المتغلب على الـtokens.
-- **style.css**: tokens الهوية (ألوان/خطوط) — لا تكتب قواعد تجارب فيه.
+- **experiments-data.js**: وصف فقط (لا محتوى). العدّادات والفلترة والكروت المميزة تُحسب منه تلقائيًا — مجموع الإدخالات = ٥٠ (٢٢ قسمًا مدمجًا في `index.html` + ٢٨ صفحة مستقلة لها حقل `file`).
+- **assets/css/experiments.css**: كل تنسيق التجارب والقشرة والرئيسية والكتالوج وصفحة Science Craft. يُحمَّل **قبل** `style.css` عمدًا حتى يظل نظام التصميم هو المتغلب على الـtokens.
+- **style.css**: tokens الهوية (ألوان/خطوط) + شريط التنقل الموحّد `.main-nav` (لأن صفحات الدروس/الاختبارات/الفيديوهات لا تحمّل experiments.css) + فوتر `.site-footer` + أنماط الكتالوج والـchips. لا تكتب قواعد تجارب فيه (باستثناء ما توثّق أعلاه).
 
 ## 4) نظام الدروس
 - `lessons-data.js` هو المصدر؛ `lessons.html` يبني البطاقات منه تلقائيًا.
@@ -72,12 +78,39 @@ Wael/
 - **`videos.html`**: التشغيل عبر **lazy-embed (YouTube)** عند النقر فقط — `toYouTubeEmbed()` يحوّل أي صيغة YouTube إلى `https://www.youtube-nocookie.com/embed/<ID>?rel=0`، ويُضاف `<iframe loading="lazy" title="..." allowfullscreen referrerpolicy="strict-origin-when-cross-origin">` عند النقر. لا iframe قبل التفاعل.
 - «وصفة» تفعيل فيديو حقيقي لاحقًا (بعد توفّر الروابط): غيّر في `videos-data.js` فقط → `status:"published"` + `videoUrl:"<رابط حقيقي>"` + `kind:"youtube"` + `duration` — ويشتغل كل شيء تلقائيًا في `videos.html` دون تعديل كود آخر.
 
-## 6) وصفة إضافة تجربة جديدة (مثال: رقم 23)
-1. في `index.html`: أضف `<section class="experiment" id="exp-23">…</section>` قبل قسم «قريبًا».
-2. في `experiments-data.js`: أضف إدخالاً `{ id:'exp-23', order:23, category:…, title:… }`.
-3. السلوك: إما اعتمد الأزرار العامة (`press-btn` مع `data-toggle` / `data-target`) فلا تحتاج كودًا، أو أنشئ وحدة جديدة `21-exp23-<اسم>.js` كتلةً معزولة.
-4. إن أنشأت وحدة: أضف وسم `<script src="assets/js/experiments/21-….js"></script>` **بعد** وسم `20-exp21-radiation.js` مباشرة.
-5. العدّادات تتحدث تلقائيًا. لا تعدّل شيئًا آخر.
+## 5-ج) نظام Science Craft (ألعاب العلوم)
+- **`science-craft-data.js`** هو البيان المركزي (أحادي المصدر): `id / title / file / description / category / topic / difficulty / status / scoringType / maxScore / icon`. منه تتولّد: صفحة `science-craft.html` + عدّاد الألعاب في الرئيسية (`[data-sc-count]`).
+- **صفحة `science-craft.html`**: تُحمّل `experiments.css` + `style.css` + `science-craft-data.js` + `assets/js/science-craft-scores.js`. تعرض شعار اللعبة + شبكة الألعاب + **أفضل نتيجة لكل لعبة** (تُحدَّث لحظيًا عبر حدث `sciencecraft:score`).
+- **نظام النقاط الموحّد `assets/js/science-craft-scores.js`**: `window.ScienceCraftScores` مع `get/getAttempts/record/on/reset` — النتائج تُحفظ محليًا في `localStorage` (مساحات `sciencecraft-best-*` و`sciencecraft-attempts-*`) بدون سيرفر. أي نتيجة تُعادل إلى **نسبة 0–100** (`normalizedScore`) للمقارنة بين ألعاب مختلفة الآليات، مع اختيار أفضل نتيجة فقط. يُرسل `CustomEvent('sciencecraft:score', {detail})`.
+- **الألعاب الست**: نسخ أصلية byte-exact من مجلد المصدر، مع **غلاف أدنى فقط** على كل صفحة (لا تعديل لمنطق اللعب إطلاقًا):
+  1. `<html lang="ar" dir="rtl">` + `<title>` عربي لكل لعبة.
+  2. `<style>#root{direction:ltr}</style>` — حارس للاتجاه يحافظ على ترتيب اللعب كما صُمِّم (والألعاب التي تُدير اتجاهها داخليًا تظل كما هي).
+  3. تحميل `assets/js/science-craft-scores.js` + كائن `window.ScienceCraft` (gameId / scoringType / maxScore / دالة `report`).
+  4. **مراقب إتمام** صغير قبل `</body>`: يفحص نص الصفحة كل ١٫٢ ثانية حتى يصادف دليل إتمام بالعربية (مثل «الوقت خلص»، «خلصت بسرعة البرق»، «استوت»، «ممتاز! Wahoo!»، «الجو نضف»، «الترتيب النهائي») ثم يسجّل `completion + attempts` مرة واحدة، ويتوقف تلقائيًا بعد ١٥ دقيقة.
+- **قيود موثّقة**: لا يتم التقاط النتيجة الرقمية الفعلية من داخل اللعبة (يتطلب إعادة كتابة منطق القياس داخل bundles React) — الوصفة أدناه.
+
+### وصفتا توسعة نظام Science Craft
+- **إضافة لعبة جديدة**: انسخ لعبتك (byte-exact) إلى جذر `Wael/`، أضف غلاف المراقب (كما أعلاه) بحقلَي `gameId` و`scoringType`، ثم أضِف إدخالًا واحدًا في `science-craft-data.js` — صفحة الألعاب والعدّادات تتحدث تلقائيًا.
+- **التقاط النتيجة الرقمية لاحقًا (نص مستقبلية)**: داخل الألعاب المصنّفة `points`/`quiz` يمكن إضافة استدعاء `window.ScienceCraft.report({ score, maxScore })` من داخل كود اللعبة لحظة انتهاء جولة — نظام النقاط يدعمها جاهزًا (`normalize` يقسم على `maxScore`). لا حاجة لتغيير أي ملف آخر.
+
+## 5-د) كتالوج التجارب (experiments.html)
+- مولّد كاملًا من `experiments-data.js` (لا HTML مكرر): `?cat=<category>` يفتح على تصنيف معين، و`؟` فلترة بالأزرار مع رابط بحث قابل للمشاركة.
+- يميّز نوع كل تجربة بشارة: «في الرئيسية 🔗» (١–٢٢ → `index.html#exp-N`) أو «صفحة مستقلة ⧉» (٢٣–٥٠ → ملفها `file`).
+- كروت مميزة تظهر فيها شارة ⭐ (الحقل `featured: true` في البيانات).
+- أزرار التصنيفات والعدّادات تُحسب من البيانات تلقائيًا.
+
+## 6) وصفة إضافة تجربة جديدة
+للتجارب المدمجة في الرئيسية:
+1. في `index.html`: أضف `<section class="experiment" id="exp-N">…</section>` داخل قسم التجارب المدمجة.
+2. في `experiments-data.js`: أضف إدخالاً `{ id:'exp-N', order:N, category:…, title:… }`.
+3. السلوك: إما اعتمد الأزرار العامة (`press-btn` مع `data-toggle` / `data-target`) فلا تحتاج كودًا، أو أنشئ وحدة جديدة `NN-expXX-<اسم>.js` كتلةً معزولة وأضف وسمها بعد وحدة `20-exp21-radiation.js`.
+4. العدّادات والكتالوج يتحدثان تلقائيًا.
+
+للتجارب المستقلة (صفحة HTML كاملة):
+1. أنشئ صفحة `expNN-<اسم>.html` مكتفية ذاتيًا في الجذر.
+2. في `experiments-data.js`: أضف إدخالاً مع حقل `file: 'expNN-<اسم>.html'` — يظهر تلقائيًا في الكتالوج.
+3. اختياري: أضف `featured: true` لظهورها في «تجارب مميزة» بالرئيسية (الحد ~٦).
+4. لا تُضف أقسامًا مكررة في `index.html` — الرئيسية تعرض فقط التجارب المدمجة ١–٢٢ + بنر يوجّه للكتالوج.
 
 ## 7) وصفة إضافة درس جديد
 1. انسخ نمط أحد ملفي الدروس الحاليين إلى `lesson-<اسم>.html` (عدّل المحتوى العلمي فقط).
@@ -90,17 +123,20 @@ Wael/
 3. لا تعديل مطلوب في أي ملف آخر — الفهرس والمشغّل يكتشفانه تلقائيًا.
 
 ## 9) قواعد لا تُكسر
-1. **ترتيب تحميل JS**: `experiments-data.js` أولًا، ثم وحدات `assets/js/experiments/` بالترتيب الرقمي تصاعديًا، و`site-enhance.js` بـdefer في مكانه.
+1. **ترتيب تحميل JS**: `experiments-data.js` أولًا، ثم وحدات `assets/js/experiments/` بالترتيب الرقمي تصاعديًا، و`site-enhance.js` بـdefer في مكانه. صفحات الألعاب تحمّل `assets/js/science-craft-scores.js` قبل استدعاء `ScienceCraft.report`.
 2. **ترتيب CSS**: `assets/css/experiments.css` ثم `style.css` بعده (التغلب على الـtokens مقصود).
 3. **مسارات نسبية فقط**: الموقع يعمل تحت `/Wael/` على GitHub Pages — ممنوع `/assets/...` أو `../`.
 4. النقل بين الملفات يكون **قصًّا حرفيًا byte-exact** مع إثبات تطابق، وليس إعادة كتابة.
 5. الترميز UTF-8 بدون BOM، ومحتوى علمي عربي لا يُلمس أثناء الهيكلة.
 6. قبل أي Commit: نسخة احتياطية + Golden Master + توقيع سلوكي للتجارب + Quiz runner — كما جرى في B1/B2-lite.
+7. **منطق الألعاب محمي**: لا يُعاد كتابة كود React داخل ملفات الألعاب إطلاقًا — التعديل مسموح في الغلاف فقط (head/title/مراقب الإتمام/النقاط).
+8. **لا قوائم أقسام مكررة في الرئيسية**: مسار كل التجارب هو `experiments.html`؛ `index.html` يبقى لوحة (تصنيفات + مميزة + مدمجة ١–٢٢ + بنر).
 
 ## 10) ما لا يُنصح به حاليًا (قرار Audit موثّق)
 - **تقسيم `experiments.css`**: غير موصى به — 10 كتل `@media` تخلط قواعد القشرة بالتجارب؛ الفصل مخاطرة عالية بلا فائدة عملية.
-- **نقل markup التجارب خارج `index.html`**: غير موصى به — يكسر أنكورات `#exp-N` ووضع عدم وجود JavaScript والـSEO.
+- **نقل markup التجارب المدمجة خارج `index.html`**: غير موصى به — يكسر أنكورات `#exp-N` ووضع عدم وجود JavaScript والـSEO.
 - صفحات الدروس تبقى مكتفية ذاتيًا؛ لا تُعاد هيكلتها.
+- **شرائح القوائم المكررة القديمة** (`#experiments-23to27` / `#experiments-40to49` / «قريبًا») أُزيلت من الرئيسية في هذا التحديث واستُبدلت بالكتالوج — لا تُعِد إضافتها.
 
 ## 11) جاهزية التوسع المستقبلي (بنية فقط — غير مطبّقة)
 > تنبيه: هذا القسم **توثيقي حصرًا**. لا يوجد أي دعم فعلي لصفوف دراسية متعددة في الموقع الحالي، ولا ينبغي بدء تنفيذه ضمن نطاق العمل الحالي.
@@ -115,4 +151,4 @@ Wael/
 
 ---
 
-*أُنشئ هذا الملف ضمن Commit: `Document project structure and remove orphan archive`. — حُدِّث لاحقًا ليعكس مراحل تصميم الرئيسية (Phase 6) ونظام الفيديوهات (V1–V5) وملف الإعدادات البنيوي `site-config.js`.*
+*أُنشئ هذا الملف ضمن Commit: `Document project structure and remove orphan archive`. — حُدِّث لاحقًا ليعكس مراحل تصميم الرئيسية (Phase 6) ونظام الفيديوهات (V1–V5) وملف الإعدادات البنيوي `site-config.js`، ثم تكامل Science Craft (manifest + نظام نقاط موحّد + غلاف الألعاب) وفتح كتالوج التجارب `experiments.html` وإعادة تنظيم الرئيسية.*

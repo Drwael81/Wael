@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#14232B">
+<title>كل التجارب · مختبر العلوم الممتع</title>
+<meta name="description" content="كل تجارب الصف الثاني الإعدادي في صفحة واحدة — ٥٠ تجربة تفاعلية مصنّفة حسب الموضوع.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Tajawal:wght@400;500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="assets/css/experiments.css">
+<link rel="stylesheet" href="style.css">
+<script src="experiments-data.js"></script>
+<script src="site-enhance.js?v=2" defer></script>
+</head>
+<body id="top">
+
+  <div class="site-header">
+    <div class="site-header-inner">
+      <a href="index.html" class="brand" aria-label="الرئيسية">
+        <span class="brand-mark">🧪</span>
+        <span class="brand-text">
+          <span class="brand-url">www.</span>2nd Prep. Funny Science lab
+        </span>
+      </a>
+      <nav class="main-nav" aria-label="التنقل الرئيسي">
+        <a href="index.html">🏠 الرئيسية</a>
+        <a href="experiments.html" class="active">🧪 التجارب</a>
+        <a href="lessons.html">📚 الدروس</a>
+        <a href="quizzes.html">📝 الاختبارات</a>
+        <a href="science-craft.html">🎮 Science Craft</a>
+        <a href="videos.html">🎥 الفيديوهات</a>
+      </nav>
+      <span class="credit">By #Dr_Wael_Aboagiza</span>
+    </div>
+  </div>
+
+  <main class="wrap">
+
+    <!-- ============ catalog hero ============ -->
+    <section class="catalog-hero">
+      <div class="catalog-hero-badge">🧪 فهرس التجارب الكامل</div>
+      <h1 class="catalog-hero-title">كل التجارب في مكان واحد</h1>
+      <p class="catalog-hero-sub">
+        دي كل تجارب الموقع مصنّفة حسب الموضوع. التجارب ١–٢٢ معروضة مباشرة في الصفحة الرئيسية (كل أبيض من الكارت
+        بينقلك للتجربة نفسها)، والتجارب ٢٣–٥٠ صفحات تفاعلية مستقلة.
+      </p>
+      <div class="catalog-stats">
+        <span class="catalog-stat"><b data-total-placeholder>٥٠</b> تجربة إجمالًا</span>
+        <span class="catalog-stat"><b data-embedded-count>٢٢</b> في الرئيسية</span>
+        <span class="catalog-stat"><b data-standalone-count>٢٨</b> صفحات مستقلة</span>
+      </div>
+    </section>
+
+    <div class="section-divider">
+      <span>صفّي حسب الموضوع 👇</span>
+    </div>
+
+    <!-- ============ filter chips ============ -->
+    <section class="filter-section" aria-label="تصفية التجارب">
+      <div class="filter-chips" id="filterChips" role="group" aria-label="التصنيفات">
+        <button class="chip active" data-filter="all">الكل</button>
+      </div>
+      <p class="filter-hint" id="filterHint" aria-live="polite">عرض كل التجارب — اضغط على تصنيف للتصفية.</p>
+    </section>
+
+    <!-- ============ catalog grid ============ -->
+    <section class="cat-section" aria-label="كل التجارب">
+      <div class="cat-grid" id="catalogGrid">
+        <noscript>
+          <div class="sc-noscript">تفعّل الجافاسكربت لعرض الفهرس الكامل.</div>
+        </noscript>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      <a href="index.html">🏠 الرئيسية</a> ·
+      <a href="https://whatsapp.com/channel/0029VbBAp9MFMqrg4r1h8x06" target="_blank" rel="noopener">📱 قناة واتساب</a> ·
+      <a href="https://t.me/secondprepfunnyscience" target="_blank" rel="noopener">✈️ تليجرام</a>
+    </p>
+    <p class="site-footer-note">مختبر العلوم الممتع · الصف الثاني الإعدادي — By #Dr_Wael_Aboagiza</p>
+  </footer>
+
+  <script>
+  (function () {
+    var data = (typeof experimentsData !== 'undefined') ? experimentsData.slice() : [];
+    var grid = document.getElementById('catalogGrid');
+    var chipsBox = document.getElementById('filterChips');
+    var hint = document.getElementById('filterHint');
+    if (!grid) return;
+
+    function arNum(n) {
+      try { return n.toLocaleString('ar-EG'); } catch (e) { return String(n); }
+    }
+
+    var CATS = [
+      { key: 'matter', label: 'خواص المادة والضغط' },
+      { key: 'diffusion', label: 'الانتشار والحركة الجزيئية' },
+      { key: 'state-changes', label: 'تغيّرات الحالة والنقاء' },
+      { key: 'temperature', label: 'الحرارة والاتزان الحراري' },
+      { key: 'heat-transfer', label: 'طرق انتقال الحرارة' },
+      { key: 'chemical-reactions', label: 'التفاعلات الكيميائية' },
+      { key: 'biology', label: 'العلوم الحياتية والنبات' }
+    ];
+
+    var catLabel = {};
+    CATS.forEach(function (c) { catLabel[c.key] = c.label; });
+
+    // عدّ لكل تصنيف
+    var catCounts = {};
+    data.forEach(function (exp) {
+      if (exp.category) catCounts[exp.category] = (catCounts[exp.category] || 0) + 1;
+    });
+
+    // التدريج بالترتيب
+    data.sort(function (a, b) { return (a.order || 0) - (b.order || 0); });
+
+    var embeddedCount = 0;
+    var standaloneCount = 0;
+    var cards = {};
+    var perCat = {};
+
+    data.forEach(function (exp) {
+      var standalone = !!(exp.file);
+      if (standalone) standaloneCount++; else embeddedCount++;
+      var href = standalone ? exp.file : ('index.html#exp-' + (exp.order || ''));
+      var card = document.createElement('a');
+      card.className = 'cat-card ' + (exp.category ? ('cat-' + exp.category) : 'cat-pressure');
+      card.href = href;
+      card.setAttribute('data-cat', exp.category || '');
+      card.setAttribute('data-type', standalone ? 'standalone' : 'embedded');
+      var chip = '';
+      if (exp.featured) chip = '<span class="exp-featured-chip">⭐ مميزة</span>';
+      card.innerHTML =
+        '<span class="exp-num-chip">تجربة ' + arNum(exp.order || '') + '</span>' + chip +
+        '<div class="cat-icon">' + (exp.icon || '🧪') + '</div>' +
+        '<div class="cat-title">' + exp.title + '</div>' +
+        '<div class="cat-desc">' + (exp.topic || (catLabel[exp.category] || '')) + '</div>' +
+        '<div class="cat-type-badge">' + (standalone ? 'صفحة مستقلة ⧉' : 'في الرئيسية 🔗') + '</div>';
+      grid.appendChild(card);
+      cards[exp.id] = card;
+      if (!perCat[exp.category]) perCat[exp.category] = [];
+      perCat[exp.category].push(card);
+    });
+
+    function fill(el, n) { if (el) el.textContent = arNum(n); }
+    fill(document.querySelector('[data-total-placeholder]'), data.length);
+    fill(document.querySelector('[data-embedded-count]'), embeddedCount);
+    fill(document.querySelector('[data-standalone-count]'), standaloneCount);
+
+    // شرائح التصفية
+    var ALL_KEY = 'all';
+    var first = chipsBox.querySelector('.chip[data-filter="all"]');
+    first.textContent = 'الكل · ' + arNum(data.length);
+    CATS.forEach(function (c) {
+      var n = catCounts[c.key] || 0;
+      if (!n) return;
+      var btn = document.createElement('button');
+      btn.className = 'chip';
+      btn.setAttribute('data-filter', c.key);
+      btn.textContent = c.label + ' · ' + arNum(n);
+      chipsBox.appendChild(btn);
+    });
+
+    var activeFilter = 'all';
+    var urlCat = '';
+    try { urlCat = decodeURIComponent((window.location.search.match(/[?&]cat=([^&]+)/) || [])[1] || ''); } catch (e) {}
+    if (urlCat && catCounts[urlCat]) activeFilter = urlCat;
+
+    function applyFilter() {
+      var chips = chipsBox.querySelectorAll('.chip');
+      for (var i = 0; i < chips.length; i++) {
+        chips[i].classList.toggle('active', chips[i].getAttribute('data-filter') === activeFilter);
+      }
+      var total = 0;
+      for (var id in cards) {
+        var card = cards[id];
+        var cat = card.getAttribute('data-cat');
+        var show = (activeFilter === ALL_KEY) || (cat === activeFilter);
+        card.classList.toggle('cat-card-hidden', !show);
+        if (show) total++;
+      }
+      var label = (activeFilter === ALL_KEY) ? 'كل التجارب' : (catLabel[activeFilter] || activeFilter);
+      hint.textContent = 'عرض ' + arNum(total) + ' من ' + arNum(data.length) + ' · ' + label;
+    }
+
+    chipsBox.addEventListener('click', function (e) {
+      var btn = e.target && e.target.closest ? e.target.closest('.chip') : null;
+      if (!btn) return;
+      activeFilter = btn.getAttribute('data-filter');
+      if (history.replaceState) {
+        try {
+          var url = new URL(window.location.href);
+          if (activeFilter === ALL_KEY) url.searchParams.delete('cat');
+          else url.searchParams.set('cat', activeFilter);
+          history.replaceState(null, '', url.toString());
+        } catch (e2) { /* keep */ }
+      }
+      applyFilter();
+    });
+
+    applyFilter();
+  })();
+  </script>
+
+</body>
+</html>
