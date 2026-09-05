@@ -20,6 +20,9 @@
 <link rel="stylesheet" href="style.css">
 <!-- Experiments Metadata (Phase 2 data layer) — id/category/order فقط، مش محتوى -->
 <script src="experiments-data.js"></script>
+<!-- Lessons + Quizzes data layers — لعدّادات الرئيسية الديناميكية -->
+<script src="lessons-data.js"></script>
+<script src="quizzes-data.js"></script>
 <!-- Video Learning data layer — قسم أحدث الفيديوهات في الرئيسية -->
 <script src="videos-data.js"></script>
 <!-- Science Craft manifest + نظام النقاط الموحّد -->
@@ -66,7 +69,7 @@
 
         <div class="hero-cta-row">
           <a href="experiments.html" class="btn-primary">🧪 ابدأ أول تجربة</a>
-          <a href="experiments.html" class="btn-secondary">📚 استكشف كل التجارب</a>
+          <a href="science-craft.html" class="btn-secondary">🎮 العب Science Craft</a>
         </div>
 
         <a href="https://whatsapp.com/channel/0029VbBAp9MFMqrg4r1h8x06" target="_blank" rel="noopener" class="hero-wa-btn">
@@ -110,22 +113,22 @@
       <div class="hero-stats">
         <div class="hero-stat">
           <span class="hero-stat-icon">🧪</span>
-          <span class="hero-stat-num" data-total-placeholder>27</span>
+          <span class="hero-stat-num" data-total-placeholder>٠</span>
           <span class="hero-stat-label">تجربة تفاعلية</span>
         </div>
         <div class="hero-stat">
           <span class="hero-stat-icon">📚</span>
-          <span class="hero-stat-num">7</span>
+          <span class="hero-stat-num" data-lessons-count>٠</span>
           <span class="hero-stat-label">دروس شرح</span>
         </div>
         <div class="hero-stat">
           <span class="hero-stat-icon">📝</span>
-          <span class="hero-stat-num">400</span>
-          <span class="hero-stat-label">سؤال اختبار</span>
+          <span class="hero-stat-num" data-questions-count>٠</span>
+          <span class="hero-stat-label">سؤال اختبار · <span data-quizzes-count>٠</span> اختبارات</span>
         </div>
         <div class="hero-stat">
           <span class="hero-stat-icon">🎮</span>
-          <span class="hero-stat-num" data-sc-count>٦</span>
+          <span class="hero-stat-num" data-sc-count>٠</span>
           <span class="hero-stat-label">لعبة Science Craft</span>
         </div>
       </div>
@@ -136,7 +139,7 @@
       <a href="experiments.html" class="path-card path-experiments">
         <div class="path-icon">🧪</div>
         <div class="path-title">قسم التجارب</div>
-        <div class="path-count" data-total-placeholder>٢٧ تجربة تفاعلية</div>
+        <div class="path-count" data-total-placeholder>٠</div>
         <div class="path-desc">اضغط، اسحب، حرّك السلايدرات، وشوف نتيجة كل تجربة بنفسك على طول.</div>
         <div class="path-cta">استكشف التجارب ←</div>
       </a>
@@ -160,72 +163,10 @@
         <div class="path-count"><span data-sc-count>٦</span> ألعاب علمية</div>
         <div class="path-desc">ألعاب تفاعلية تبني الفكرة العلمية باللعب، وأفضل نتيجة بتتسجل تلقائيًا.</div>
         <div class="path-cta">العب وتعلّم ←</div>
-      </a>
-      <a href="videos.html" class="path-card path-videos">
-        <div class="path-icon">🎥</div>
-        <div class="path-title">قسم الفيديوهات</div>
-        <div class="path-count">أحدث الشروحات</div>
-        <div class="path-desc">شرح فيديو قصير ومنظّم لكل درس، ترجع له أي وقت من غير ما تضيع حتة.</div>
-        <div class="path-cta">شاهد الفيديو ←</div>
-      </a>
+</a>
     </section>
 
-    <div class="section-divider">
-      <span>تصفّح التجارب حسب الموضوع 👇</span>
-    </div>
-
-<!-- ============ categories (compact) ============ -->
-    <section class="cat-section" id="categories">
-      <div class="cat-grid">
-        <a href="experiments.html?cat=matter" class="cat-card cat-pressure" data-category="matter">
-          <div class="cat-icon">💨</div>
-          <div class="cat-count" data-count-placeholder>٠ تجارب</div>
-          <div class="cat-title">خواص المادة والضغط</div>
-          <div class="cat-desc">الانضغاط، ضغط الغاز، الضغط الجوي ودرجة الغليان</div>
-        </a>
-        <a href="experiments.html?cat=diffusion" class="cat-card cat-diffusion" data-category="diffusion">
-          <div class="cat-icon">🌫️</div>
-          <div class="cat-count" data-count-placeholder>٠ تجارب</div>
-          <div class="cat-title">الانتشار والحركة الجزيئية</div>
-          <div class="cat-desc">سرعة الانتشار، تأثير الحرارة والكتلة، سباق الغازات، قوى التجاذب</div>
-        </a>
-        <a href="experiments.html?cat=state-changes" class="cat-card cat-states" data-category="state-changes">
-          <div class="cat-icon">🔄</div>
-          <div class="cat-count" data-count-placeholder>٠ تجارب</div>
-          <div class="cat-title">تغيّرات الحالة والنقاء</div>
-          <div class="cat-desc">التبخّر، التسامي، النقاء والغليان عند ثبات درجة الحرارة</div>
-        </a>
-        <a href="experiments.html?cat=temperature" class="cat-card cat-temp" data-category="temperature">
-          <div class="cat-icon">🌡️</div>
-          <div class="cat-count" data-count-placeholder>٠ تجارب</div>
-          <div class="cat-title">الحرارة والاتزان الحراري</div>
-          <div class="cat-desc">الاتزان الحراري، ومقارنة الحرارة بدرجة الحرارة</div>
-        </a>
-        <a href="experiments.html?cat=heat-transfer" class="cat-card cat-transfer" data-category="heat-transfer">
-          <div class="cat-icon">🔥</div>
-          <div class="cat-count" data-count-placeholder>٠ تجارب</div>
-          <div class="cat-title">طرق انتقال الحرارة</div>
-          <div class="cat-desc">التوصيل، الحمل، الإشعاع، تطبيقات في الحياة اليومية</div>
-        </a>
-        <a href="experiments.html?cat=chemical-reactions" class="cat-card cat-chem" data-category="chemical-reactions">
-          <div class="cat-icon">⚗️</div>
-          <div class="cat-count" data-count-placeholder>٠ تجارب</div>
-          <div class="cat-title">التفاعلات الكيميائية</div>
-          <div class="cat-desc">مؤشرات التفاعل، بقاء الكتلة، الأكسدة والأكاسيد</div>
-        </a>
-        <a href="experiments.html?cat=biology" class="cat-card cat-biology" data-category="biology">
-          <div class="cat-icon">🌱</div>
-          <div class="cat-count" data-count-placeholder>٠ تجارب</div>
-          <div class="cat-title">العلوم الحياتية والنبات</div>
-          <div class="cat-desc">النقل في النبات، التنفس والبناء الضوئي، الفطريات</div>
-        </a>
-      </div>
-      <div class="categories-cta">
-        <a href="experiments.html" class="btn-primary">🧪 فهرس كل التجارب</a>
-      </div>
-    </section>
-
-    <!-- ============ featured experiments ============ -->
+<!-- ============ featured experiments ============ -->
     <section class="featured-section" id="featuredSection" aria-label="تجارب مميزة">
       <div class="featured-head">
         <h2>⭐ تجارب مميزة</h2>
@@ -239,33 +180,6 @@
       </div>
     </section>
 
-    <!-- ============ Science Craft highlight ============ -->
-    <section class="home-sc-highlight">
-      <div class="home-sc-logo-wrap">
-        <img class="home-sc-logo" src="Science-Craft logo.jpeg" alt="شعار Science Craft">
-      </div>
-      <div class="home-sc-text">
-        <div class="home-sc-badge">🎮 Science Craft</div>
-        <h2>العب وتعلّم بالعلوم</h2>
-        <p>ألعاب تفاعلية تبني فكرة منهجك باللعب — حرّك، حلّق، تسبّب، وجاوب. أفضل نتيجة لكل لعبة بتتسجل تلقائيًا على جهازك.</p>
-        <div class="home-sc-stats">
-          <span class="home-sc-stat"><b data-sc-count>٦</b> ألعاب</span>
-          <span class="home-sc-stat"><b>٠٪–١٠٠٪</b> نقاط موحّدة</span>
-        </div>
-        <a href="science-craft.html" class="btn-primary">🎮 العب الآن</a>
-      </div>
-    </section>
-
-<!-- ============ catalog CTA banner ============ -->
-    <section class="catalog-banner">
-      <div class="catalog-banner-inner">
-        <div class="catalog-banner-text">
-          <h2>اكتشف ٥٠ تجربة تفاعلية 🧪</h2>
-          <p>كل التجارب في صفحة واحدة — ١–٢٢ معروضة بالتفصيل و٢٣–٥٠ صفحات مستقلة. صفّي حسب الموضوع وجرّب كل تجربة بنفسك.</p>
-        </div>
-        <a href="experiments.html" class="btn-primary">🧪 دخول قسم التجارب</a>
-      </div>
-    </section>
     <!-- ============ latest videos ============ -->
     <section class="latest-videos-section" aria-label="أحدث فيديوهات الشرح">
       <div class="latest-videos-head">
@@ -354,21 +268,53 @@
       try { return Math.round(n).toLocaleString('ar-EG'); } catch (e) { return String(Math.round(n)); }
     }
 
-    // عدّاد Science Craft
-    if (typeof scienceCraftData !== 'undefined' && Array.isArray(scienceCraftData)) {
-      var scCountEls = document.querySelectorAll('[data-sc-count]');
-      for (var i = 0; i < scCountEls.length; i++) {
-        scCountEls[i].textContent = ar(scienceCraftData.length);
+    function arrLen(list) {
+      return (typeof list !== 'undefined' && Array.isArray(list)) ? list.length : 0;
+    }
+
+    function setAll(sel, val) {
+      var els = document.querySelectorAll(sel);
+      for (var i = 0; i < els.length; i++) els[i].textContent = val;
+    }
+
+    // عدّاد التجارب — من experimentsData (لا fallback ثابت)
+    var expTotal = arrLen(experimentsData);
+    if (expTotal) {
+      var totalEls = document.querySelectorAll('[data-total-placeholder]');
+      for (var i = 0; i < totalEls.length; i++) {
+        totalEls[i].textContent = ar(expTotal) + (totalEls[i].classList.contains('path-count') ? ' تجربة تفاعلية' : '');
       }
     }
 
-    // التجارب المميزة
+    // عدّاد الدروس — من lessonsData (المنشورة فقط)
+    if (typeof lessonsData !== 'undefined' && Array.isArray(lessonsData)) {
+      var lessonCount = lessonsData.filter(function (l) { return l && l.status === 'published'; }).length;
+      if (lessonCount) setAll('[data-lessons-count]', ar(lessonCount));
+    }
+
+    // عدّاد Science Craft — من scienceCraftData
+    var scCount = arrLen(scienceCraftData);
+    if (scCount) setAll('[data-sc-count]', ar(scCount));
+
+    // عدّاد الاختبارات والأسئلة — من quizzesData
+    if (typeof quizzesData !== 'undefined' && Array.isArray(quizzesData)) {
+      var quizCount = 0, questionTotal = 0;
+      for (var j = 0; j < quizzesData.length; j++) {
+        var q = quizzesData[j];
+        if (!q) continue;
+        if (Array.isArray(q.questions) && q.questions.length) { quizCount++; questionTotal += q.questions.length; }
+      }
+      if (quizCount) setAll('[data-quizzes-count]', ar(quizCount));
+      if (questionTotal) setAll('[data-questions-count]', ar(questionTotal));
+    }
+
+    // التجارب المميزة — 3 فقط
     var grid = document.getElementById('featuredGrid');
     if (grid && typeof experimentsData !== 'undefined' && Array.isArray(experimentsData)) {
       var picks = experimentsData
         .filter(function (e) { return e && e.featured; })
         .sort(function (a, b) { return (a.order || 0) - (b.order || 0); })
-        .slice(0, 6);
+        .slice(0, 3);
       var html = picks.map(function (exp) {
         var standalone = !!exp.file;
         var href = standalone ? exp.file : ('experiments.html#exp-' + (exp.order || ''));
