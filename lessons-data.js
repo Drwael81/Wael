@@ -129,5 +129,17 @@ const lessonsData = [
     cta: "ابدأ الدرس ←",
     href: "lesson-properties-before-after-reaction.html",
     lang: "ar"
+  },
+  {
+    id: "lesson-chemical-equations",
+    order: 4,
+    unit: 2,
+    status: "published",
+    icon: "⚗️⚖️",
+    title: "Chemical Equations",
+    desc: "الدرس الرابع لوحدة التفاعلات الكيميائية (صفحات 168–182): المعادلة الكيميائية الرمزية وخطوات كتابتها، رموز الحالة الفيزيائية، شروط التفاعل على السهم، قوانين الاتحاد الكيميائي وحفظ الكتلة مع العالم لافوازييه، وطريقة وزن المعادلات خطوة بخطوة مع تمارين واختبارات تفاعلية.",
+    cta: "ابدأ الدرس ←",
+    href: "lesson-chemical-equations.html",
+    lang: "ar"
   }
 ];
