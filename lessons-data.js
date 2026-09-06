@@ -117,5 +117,17 @@ const lessonsData = [
     cta: "ابدأ الدرس ←",
     href: "lesson-chemical-reactions.html",
     lang: "ar"
+  },
+  {
+    id: "lesson-properties-before-after-reaction",
+    order: 3,
+    unit: 2,
+    status: "published",
+    icon: "🍬🧼",
+    title: "Properties Before & After Reaction",
+    desc: "الدرس الثالث لوحدة التفاعلات الكيميائية (صفحات 149–151): خصائص المواد قبل وبعد التفاعل، معمل حرق السكر (الحصول على الكربون)، محاكاة التصبن (الزيت + الصودا الكاوية ← صابون)، التفاعلات في الحياة اليومية، واختبار مراجعة نهائي.",
+    cta: "ابدأ الدرس ←",
+    href: "lesson-properties-before-after-reaction.html",
+    lang: "ar"
   }
 ];

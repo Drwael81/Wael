@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Properties Before &amp; After Reaction | خصائص المواد قبل وبعد التفاعل</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0d16;--card:#121627;--card2:#171c31;--line:#2a3150;--text:#eef2ff;--muted:#9aa6c8;--acc:#fbbf24;--acc2:#f59e0b;--hot:#fb923c;--cold:#38bdf8;--ok:#34d399;--bad:#f87171;--gold:#fbbf24;--soap:#d6c7b8;--r:20px}
+body[data-theme="light"]{--bg:#f4f5fc;--card:#fff;--card2:#f7f8ff;--line:#d8ddf0;--text:#1a2036;--muted:#5a6684}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;transition:background .4s,color .4s;overflow-x:hidden}
+::selection{background:var(--acc);color:#041018}
+.en{display:block;direction:ltr;text-align:left;font-family:'Space Grotesk','Cairo',sans-serif;font-size:.93rem;line-height:1.7;color:var(--text)}
+.ar{display:block;direction:rtl;text-align:right;font-size:.96rem;line-height:2;color:var(--text);margin-top:2px}
+.mut{color:var(--muted)!important}
+h1,h2,h3{line-height:1.5}
+section{scroll-margin-top:95px}
+#progress{position:fixed;top:0;right:0;height:4px;width:0;background:linear-gradient(90deg,var(--acc),var(--hot));z-index:99;border-radius:99px}
+.topbar{position:fixed;top:0;right:0;left:0;z-index:90;display:flex;align-items:center;gap:10px;padding:10px 14px;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand{font-weight:900;font-size:.85rem;white-space:nowrap}
+nav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;padding:2px}
+nav::-webkit-scrollbar{display:none}
+nav a{padding:5px 12px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:.72rem;font-weight:700;white-space:nowrap;text-decoration:none;transition:.25s}
+nav a.active{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#041018;border-color:transparent}
+#themeBtn,#sndBtn{cursor:pointer;border:1px solid var(--line);background:var(--card);border-radius:12px;width:40px;height:40px;font-size:1.1rem}
+#hero{min-height:88vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:110px 18px 60px}
+#heroCv{position:absolute;inset:0;width:100%;height:100%}
+.heroIn{position:relative;z-index:2;max-width:920px}
+.kicker{display:inline-block;padding:6px 18px;border:1px solid var(--line);border-radius:999px;color:var(--acc);font-weight:800;font-size:.78rem;background:var(--card)}
+#hero h1{font-size:clamp(1.9rem,5.5vw,3.3rem);font-weight:900;margin:16px 0 4px;background:linear-gradient(90deg,var(--acc),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+#hero h1 .ar{font-size:clamp(1.5rem,4.5vw,2.6rem);background:linear-gradient(90deg,var(--gold),var(--acc));-webkit-background-clip:text;background-clip:text;color:transparent;margin:0}
+.badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px}
+.badge{padding:8px 16px;border-radius:14px;border:1px solid var(--line);background:var(--card);font-size:.78rem;font-weight:700;text-align:center}
+.badge.vip{border-color:var(--gold);color:var(--gold)}
+.scrollHint{margin-top:40px;font-size:1.6rem;animation:bnc 1.6s infinite}
+@keyframes bnc{50%{transform:translateY(10px)}}
+main{max-width:1150px;margin:auto;padding:30px 16px 90px;display:flex;flex-direction:column;gap:34px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:clamp(18px,3.4vw,36px);box-shadow:0 14px 40px rgba(0,0,0,.25)}
+.chead{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.cnum{font-family:'Space Grotesk';font-size:1.6rem;font-weight:700;background:linear-gradient(180deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;border:1px solid var(--line);border-radius:16px;padding:6px 14px}
+.chead h2{font-size:clamp(1.05rem,2.6vw,1.45rem);font-weight:900}
+.ppage{font-family:'Space Grotesk';font-size:.62rem;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:1px 10px;margin-inline-start:auto}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.tile{background:var(--card2);border:1px solid var(--line);border-radius:16px;padding:18px;transition:.25s}
+.tile:hover{transform:translateY(-4px);border-color:var(--acc)}
+.note{border-inline-start:4px solid var(--acc);background:var(--card2);border-radius:12px;padding:12px 16px;margin-top:14px;font-size:.9rem}
+.note.hot{border-color:var(--hot)} .note.gold{border-color:var(--gold)} .note.ok{border-color:var(--ok)}
+.tag{display:inline-block;font-size:.7rem;font-weight:800;color:#041018;background:var(--acc);border-radius:99px;padding:2px 12px;margin-bottom:8px}
+.tag.hot{background:var(--hot)} .tag.gold{background:var(--gold)} .tag.ok{background:var(--ok)}
+.defBox{border:2px dashed var(--line);border-radius:12px;padding:12px 16px;margin-top:14px;background:var(--card2)}
+.defBox b.dT{color:var(--bad);font-size:1rem}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal.vis{opacity:1;transform:none}
+.btn{cursor:pointer;border:none;border-radius:14px;padding:10px 22px;font-family:inherit;font-weight:800;font-size:.9rem;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#041018;transition:.2s;box-shadow:0 6px 18px rgba(245,158,11,.25)}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line);box-shadow:none}
+.btn.hotb{background:linear-gradient(135deg,var(--hot),#ef4444);color:#fff}
+.labctrl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin:14px 0 6px}
+.quiz{margin-top:16px}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.opt{cursor:pointer;border:1px solid var(--line);background:var(--card2);color:var(--text);border-radius:14px;padding:7px 16px;font-family:inherit;font-weight:700;font-size:.83rem;transition:.2s}
+.opt:hover{border-color:var(--acc)}
+.opt.ok{background:var(--ok);border-color:var(--ok);color:#03210f;animation:pop .35s}
+.opt.bad{background:var(--bad);border-color:var(--bad);color:#3b0708;animation:shk .35s}
+@keyframes pop{50%{transform:scale(1.08)}}
+@keyframes shk{25%{transform:translateX(5px)}75%{transform:translateX(-5px)}}
+.exp{display:none;margin-top:10px;border-inline-start:4px solid var(--ok);background:color-mix(in srgb,var(--ok) 12%,transparent);padding:10px 14px;border-radius:10px;font-size:.88rem}
+.exp.show{display:block}
+.bench{background:linear-gradient(180deg,transparent 70%,rgba(120,80,40,.25));border-radius:16px;padding:14px 8px 26px}
+.station{background:var(--card2);border:1px solid var(--line);border-radius:16px;padding:16px;text-align:center}
+/* ===== sugar lab ===== */
+.rig{position:relative;height:250px;margin:auto;max-width:300px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end}
+.pan{position:relative;width:150px;height:46px;background:linear-gradient(180deg,#64748b,#334155);border-radius:12px 12px 46% 46%;z-index:3;box-shadow:0 10px 18px rgba(0,0,0,.4)}
+.pan::before{content:'';position:absolute;inset:4px 10px 6px;border-radius:12px 12px 46% 46%;background:#1e293b}
+.mound{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);width:86px;height:34px;background:#f1f5f9;border-radius:50% 50% 40% 40%;transition:background 1.6s,height 1.6s;z-index:2}
+.mound.c1{background:#c98a2e}
+.mound.c2{background:#22262e;height:24px}
+.stageLabel{position:absolute;bottom:-34px;left:0;right:0;font-size:.78rem;font-weight:800;color:var(--muted);text-align:center}
+.burner{position:absolute;bottom:-46px;left:50%;transform:translateX(-50%);width:64px;height:34px;background:linear-gradient(180deg,#334155,#0f172a);border-radius:4px 4px 40% 40%;box-shadow:0 8px 14px rgba(0,0,0,.45)}
+.flame{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);width:26px;height:38px;border-radius:50% 50% 40% 40%;background:radial-gradient(circle at 50% 65%,#fde68a,var(--hot) 55%,#ea580c);opacity:0;transition:opacity .3s;filter:drop-shadow(0 0 14px rgba(251,146,60,.55))}
+.flame.on{opacity:1;animation:flk .4s infinite alternate}
+@keyframes flk{to{transform:translateX(-50%) scaleX(1.18) scaleY(1.1)}}
+.smoke{position:absolute;left:50%;bottom:58px;transform:translateX(-50%);display:flex;gap:8px;opacity:0;transition:opacity .6s;z-index:5}
+.smoke.on{opacity:.75}
+.smoke i{width:10px;height:10px;border-radius:50%;background:rgba(148,163,184,.7);animation:sd 1.6s infinite;filter:blur(1px)}
+.smoke i:nth-child(2){animation-delay:.35s}
+.smoke i:nth-child(3){animation-delay:.7s}
+@keyframes sd{from{transform:translateY(0) scale(.7);opacity:.8}to{transform:translateY(-70px) scale(1.7);opacity:0}}
+/* ===== soap lab ===== */
+.bkSoap{position:relative;width:150px;height:170px;margin:8px auto 0;border:3px solid var(--line);border-top:none;border-radius:0 0 20px 20px;background:var(--card);overflow:hidden}
+.oil{position:absolute;bottom:0;left:0;right:0;height:62%;background:linear-gradient(180deg,#f6d365,#eab308);transition:height 1s}
+.caustic{position:absolute;bottom:0;left:0;right:0;height:0;background:linear-gradient(180deg,rgba(255,255,255,.75),rgba(203,213,225,.85));transition:height 1.2s}
+.foam{position:absolute;bottom:40%;left:0;right:0;height:0;opacity:0;transition:opacity .8s;display:flex;flex-wrap:wrap;align-items:flex-end}
+.foam.on{opacity:1}
+.foam i{width:20px;height:14px;border-radius:50%;background:var(--soap);box-shadow:inset 0 -3px 5px rgba(120,100,80,.35);display:inline-block;animation:rise 1.4s infinite}
+.foam i:nth-child(even){transform:translateY(6px);animation-delay:.25s}
+.foam i:nth-child(3n){transform:translateY(10px);animation-delay:.5s}
+@keyframes rise{50%{transform:translateY(-5px)}}
+.bubbleSpan{position:absolute;bottom:6px;width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.55);opacity:0}
+.acting .bubbleSpan{opacity:1;animation:bbl 1.3s infinite}
+@keyframes bbl{to{transform:translateY(-120px);opacity:0}}
+.flask{position:absolute;top:2px;left:50%;transform:translateX(-50%);font-size:2.2rem;filter:drop-shadow(0 6px 12px rgba(0,0,0,.3))}
+/* ===== daily life ===== */
+.dlife{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.dcard{background:var(--card2);border:1px solid var(--line);border-radius:18px;padding:20px 16px;text-align:center;cursor:pointer;transition:.25s;position:relative;overflow:hidden}
+.dcard:hover{transform:translateY(-4px);border-color:var(--acc)}
+.dcard .dicon{font-size:2.4rem;margin-bottom:6px}
+.dcard h3{font-size:1rem;font-weight:900;margin-bottom:4px}
+.dcard .dact{font-size:.75rem;color:var(--muted);margin-bottom:8px}
+.dcard .dnote{font-size:.84rem;font-weight:700;color:var(--acc);opacity:.85;transition:.3s}
+.dcard .dlayer{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.8rem;opacity:0;transition:opacity .5s;pointer-events:none;z-index:2}
+.dcard .dlayer.on{opacity:1}
+.dcard.bglow .dlayer{opacity:1}
+.dcard .rustfill{position:absolute;inset:0;background:linear-gradient(135deg,#b45309,#7c2d12);clip-path:inset(0 100% 0 0);transition:clip-path 2s;z-index:2;opacity:.85}
+.dcard.bgrust .rustfill{clip-path:inset(0 0 0 0)}
+.dcard .apple-mask{position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,#713f12 0%,#92400e 55%,transparent 75%);opacity:0;transition:opacity 1.2s;z-index:2;mix-blend-mode:multiply}
+.dcard.bgapple .apple-mask{opacity:.6}
+.dcard .flameb{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);width:30px;height:44px;border-radius:50% 50% 40% 40%;background:radial-gradient(circle at 50% 70%,#fef3c7,#f59e0b 55%,#dc2626);opacity:0;z-index:2;filter:drop-shadow(0 0 16px rgba(239,68,68,.6))}
+.dcard.bgfire .flameb{opacity:1;animation:flk .35s infinite alternate}
+.dcard .eggfill{position:absolute;inset:0;background:linear-gradient(180deg,#f8fafc,#cbd5e1);opacity:0;transition:opacity 1.2s;z-index:2}
+.dcard.bgegg .eggfill{opacity:.85}
+.dcard .dur{position:absolute;top:8px;left:8px;font-size:.62rem;font-family:'Space Grotesk';color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:1px 8px}
+details{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin-top:10px}
+summary{cursor:pointer;font-weight:800;list-style:none}
+summary::after{content:'＋';color:var(--acc);font-weight:900;float:left}
+details[open] summary::after{content:'－'}
+details .body{padding-top:10px;font-size:.9rem}
+.pulse{animation:pl 1.6s infinite}@keyframes pl{50%{opacity:.25}}
+.scoreLine{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:12px}
+footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
+.verified{display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px;border:1px solid var(--gold);border-radius:18px;padding:12px 22px;background:var(--card);color:var(--gold);font-weight:800;max-width:100%}
+#topBtn{position:fixed;bottom:20px;inset-inline-start:20px;z-index:85;width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,var(--hot),var(--gold));font-size:1.2rem;opacity:0;pointer-events:none;transition:.3s}
+#topBtn.show{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<a id="top"></a>
+<div id="progress"></div>
+<header class="topbar">
+  <div class="brand">🔬 Properties Before &amp; After · خصائص المواد</div>
+  <nav id="nav">
+    <a href="#hero" class="active">Start · البداية</a><a href="#beforeafter">Before/After · قبل وبعد</a>
+    <a href="#sugar">Sugar · السكر</a><a href="#soap">Saponification · التصبن</a>
+    <a href="#daily">Daily Life · الحياة اليومية</a><a href="#quiz">Quiz · المراجعة</a>
+  </nav>
+  <button id="sndBtn" title="Sound · الصوت">🔊</button>
+  <button id="themeBtn" title="Theme · المظهر">☀️</button>
+</header>
+
+<section id="hero">
+  <canvas id="heroCv"></canvas>
+  <div class="heroIn">
+    <span class="kicker">Unit 2 · Lesson 3 · Pages 149–151 <span style="opacity:.6">|</span> الوحدة الثانية · الدرس الثالث</span>
+    <h1><span class="en">Properties Before &amp; After Chemical Reaction</span><span class="ar">خصائص المواد قبل وبعد التفاعل الكيميائي</span></h1>
+    <div class="badges">
+      <span class="badge"><span class="en">🍬 Sugar Burning Lab</span><span class="ar">🍬 معمل حرق السكر</span></span>
+      <span class="badge"><span class="en">🧼 Saponification Dynamic</span><span class="ar">🧼 محاكاة التصبن</span></span>
+      <span class="badge"><span class="en">🏠 Daily Life Reactions</span><span class="ar">🏠 تفاعلات الحياة اليومية</span></span>
+      <span class="badge"><span class="en">🏆 Final Review Quiz</span><span class="ar">🏆 اختبار المراجعة النهائي</span></span>
+      <span class="badge vip"><span class="en">✔️ Reviewed by Dr. Wael Aboagiza</span><span class="ar">✔️ مراجعة د. وائل أبو عجيزة</span></span>
+    </div>
+    <div class="scrollHint">⌄</div>
+  </div>
+</section>
+
+<main>
+<!-- ============ BEFORE / AFTER ============ -->
+<section id="beforeafter" class="card reveal">
+  <div class="chead"><span class="cnum">01</span><div><h2><span class="en">Before vs After — how properties change</span><span class="ar">قبل وبعد — إزاي الخصائص بتتغير</span></h2></div></div>
+  <p class="en">When a chemical reaction happens, the starting substances (reactants) change into new substances (products) with <strong>completely different properties</strong> — that is how we know the reaction occurred.</p>
+  <p class="ar">لما بيحصل تفاعل كيميائي، المواد المتفاعلة الأصلية بتتحول لمواد جديدة (نواتج) بخصائص <strong>مختلفة تمامًا</strong> — ودي الطريقة اللي بنعرف بيها إن التفاعل حصل.</p>
+  <div class="grid2">
+    <div class="tile"><span class="tag">Before · قبل التفاعل</span>
+      <p class="en">The reacting substances keep their own original properties: colour, smell, taste and physical state.</p>
+      <p class="ar">المواد المتفاعلة بيبقى ليها خصائصها الأصلية: اللون، الرائحة، الطعم، والحالة الفيزيائية.</p></div>
+    <div class="tile"><span class="tag hot">After · بعد التفاعل</span>
+      <p class="en">New substances are formed with new properties that differ from the original ones → evidence of a chemical change.</p>
+      <p class="ar">بتتكوّن مواد جديدة بخصائص جديدة مختلفة عن الأصلية ← دليل على حدوث تغير كيميائي.</p></div>
+  </div>
+  <div class="defBox">
+    <b class="dT">Evidence · دليل حدوث التفاعل</b>
+    <p class="en">A change in the properties of the reacting substance (colour, smell, taste, state) proves that a chemical reaction has taken place.</p>
+    <p class="ar">تغيّر خصائص المادة المتفاعلة (اللون، الرائحة، الطعم، الحالة) بيدل على أن تفاعل كيميائي حدث.</p>
+  </div>
+</section>
+
+<!-- ============ SUGAR ============ -->
+<section id="sugar" class="card reveal">
+  <div class="chead"><span class="cnum">🔬</span><div><h2><span class="en">Activity 2: Sugar Burning — Dynamic Lab</span><span class="ar">نشاط 2: حرق السكر — معمل تفاعلي</span></h2></div><span class="ppage">p.149</span></div>
+  <p class="en">White sugar is a <strong>white, odourless solid</strong>. Heat it on a spoon until it burns — watch the properties change in front of you.</p>
+  <p class="ar">السكر الأبيض <strong>مادة صلبة بيضاء عديمة الرائحة</strong>. سخّنه على ملعقة لحد ما يحترق — وشوف الخصائص بتتغير قدامك.</p>
+  <div class="bench">
+    <div class="station">
+      <div class="rig" id="sugRig">
+        <div class="smoke" id="sugSmoke"><i></i><i></i><i></i></div>
+        <div class="pan"><div class="mound" id="sugMound"></div></div>
+        <div class="burner"><div class="flame" id="sugFlame"></div></div>
+        <div class="stageLabel" id="sugStage">White sugar · سكر أبيض</div>
+      </div>
+      <div class="labctrl">
+        <button class="btn hotb" id="sugHeat">🔥 <span class="en" style="display:inline">Heat the sugar</span> · <span class="ar" style="display:inline">سخّن السكر</span></button>
+        <button class="btn ghost" id="sugReset">↺</button>
+      </div>
+      <div class="note ok" id="sugObs" style="display:none">
+        <span class="en">👁️ White sugar → brown melt (caramel) with a strong caramel odour (fire danger!) → black solid carbon + smoke.</span>
+        <span class="ar">👁️ السكر الأبيض ← ذوبان بُني (كراميل) برائحة كراميل قوية (خطر حريق!) ← كربون صلب أسود + دخان.</span>
+      </div>
+    </div>
+  </div>
+  <div class="quiz">
+    <p class="en"><strong>Self-test:</strong> The black substance formed after burning sugar is…</p>
+    <p class="ar"><strong>اختبر نفسك:</strong> المادة السوداء اللي بتتكوّن بعد حرق السكر هي…</p>
+    <div class="opts"><button class="opt" data-ok>Carbon · الكربون</button><button class="opt">Salt · الملح</button><button class="opt">Soap · الصابون</button></div>
+    <div class="exp"><span class="en">✔️ Carbon — a new substance produced from burning sugar.</span><span class="ar">✔️ الكربون — مادة جديدة ناتجة عن حرق السكر.</span></div>
+  </div>
+  <div class="quiz">
+    <p class="en"><strong>Q:</strong> Sugar heated over a flame…</p>
+    <p class="ar"><strong>س:</strong> عند تسخين السكر على اللهب…</p>
+    <div class="opts"><button class="opt" data-ok>Turns brown then black · يتحول للبني ثم الأسود</button><button class="opt">Melts into water · يذوب في الماء</button><button class="opt">Disappears · يختفي</button></div>
+    <div class="exp"><span class="en">✔️ Turns brown then black — caramel first, then solid black carbon.</span><span class="ar">✔️ يتحول للبني ثم للأسود — كراميل أولًا، وبعدين كربون صلب أسود.</span></div>
+  </div>
+</section>
+
+<!-- ============ SOAP ============ -->
+<section id="soap" class="card reveal">
+  <div class="chead"><span class="cnum">🧼</span><div><h2><span class="en">Activity 3: Oil + Caustic Soda (Saponification)</span><span class="ar">نشاط 3: الزيت + الصودا الكاوية (التصبن)</span></h2></div><span class="ppage">p.150</span></div>
+  <p class="en">A liquid oil is mixed with caustic soda (sodium hydroxide). During <strong>saponification</strong>, the oil's properties change — it thickens and a completely new substance forms.</p>
+  <p class="ar">بيتم خلط زيت سائل مع الصودا الكاوية (هيدروكسيد الصوديوم). أثناء <strong>التصبن</strong> بتتغير خصائص الزيت، بيزيد لزوجته وبتتكوّن مادة جديدة تمامًا.</p>
+  <div class="bench">
+    <div class="station">
+      <div class="rig" id="soapRig" style="height:230px">
+        <div class="bkSoap" id="soapBk">
+          <div class="oil" id="oilL"></div>
+          <div class="caustic" id="causticL"></div>
+          <div class="foam" id="soapFoam"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <span class="bubbleSpan" style="left:20%"></span><span class="bubbleSpan" style="left:45%"></span><span class="bubbleSpan" style="left:70%"></span>
+        </div>
+        <div class="bot" style="text-align:center;margin-top:8px"><span class="dicon" style="font-size:1.6rem">🧴🫒</span></div>
+        <div class="stageLabel" style="position:static;margin-top:4px" id="soapStage">Liquid oil · زيت سائل</div>
+      </div>
+      <div class="labctrl">
+        <button class="btn" id="soapMix">🧪 <span class="en" style="display:inline">Mix with caustic soda</span> · <span class="ar" style="display:inline">اخلط مع الصودا الكاوية</span></button>
+        <button class="btn ghost" id="soapReset">↺</button>
+      </div>
+      <div class="note ok" id="soapObs" style="display:none">
+        <span class="en">👁️ The liquid oil's consistency changes over time → it thickens → a soapy foam forms (Saponification).</span>
+        <span class="ar">👁️ قوام الزيت السائل بيتغير مع الوقت ← بيزيد لزوجته ← بتتكوّن رغوة صابون (تصبن).</span>
+      </div>
+    </div>
+  </div>
+  <div class="quiz">
+    <p class="en"><strong>Self-test:</strong> Mixing oil with caustic soda produces…</p>
+    <p class="ar"><strong>اختبر نفسك:</strong> خلط الزيت مع الصودا الكاوية بينتج…</p>
+    <div class="opts"><button class="opt" data-ok>Soap · الصابون</button><button class="opt">Carbon · الكربون</button><button class="opt">Rust · الصدأ</button></div>
+    <div class="exp"><span class="en">✔️ Soap — a new substance formed by the saponification reaction.</span><span class="ar">✔️ الصابون — مادة جديدة بتتكوّن من تفاعل التصبن.</span></div>
+  </div>
+</section>
+
+<!-- ============ DAILY LIFE ============ -->
+<section id="daily" class="card reveal">
+  <div class="chead"><span class="cnum">🏠</span><div><h2><span class="en">Chemical Reactions in Daily Life — Interactive</span><span class="ar">التفاعلات في الحياة اليومية — تفاعلي</span></h2></div><span class="ppage">p.151</span></div>
+  <p class="en">Tap each card to see its evidence. Then press <b>▶ Play All</b> to run all four.</p>
+  <p class="ar">دوس على كل كارت عشان تشوف دليله. وبعدين دوس <b>▶ تشغيل الكل</b> عشان تشغّل الأربعة.</p>
+  <div class="dlife" id="dlife">
+    <div class="dcard" data-anim="egg">
+      <span class="dur">~1.5s</span>
+      <div class="dicon">🍳</div>
+      <h3>Frying eggs · قلي البيض</h3>
+      <p class="dact">Heat · بالحرارة</p>
+      <p class="dnote">Change of colour &amp; texture of white and yolk · تغير لون وملمس البياض والصفار</p>
+      <div class="eggfill dlayer"></div>
+    </div>
+    <div class="dcard" data-anim="apple">
+      <span class="dur">~1.2s</span>
+      <div class="dicon">🍎</div>
+      <h3>Cutting apple exposed to air · تقطيع تفاحة</h3>
+      <p class="dact">Then left in air · وسيبها في الهوا</p>
+      <p class="dnote">Apple turns brown · التفاحة بتحول لبني</p>
+      <div class="apple-mask"></div>
+    </div>
+    <div class="dcard" data-anim="rust">
+      <span class="dur">~2s</span>
+      <div class="dicon">🔩</div>
+      <h3>Iron in moist air · الحديد بيصدأ</h3>
+      <p class="dact">Expose iron to damp air · تعريض الحديد لهوا رطب</p>
+      <p class="dnote">Clean → Rusty · نظيف → صدئ</p>
+      <div class="rustfill"></div>
+    </div>
+    <div class="dcard" data-anim="fire">
+      <span class="dur">~0.6s</span>
+      <div class="dicon">🎆</div>
+      <h3>Lighting fireworks · الألعاب النارية</h3>
+      <p class="dact">Ignition · الإشعال</p>
+      <p class="dnote">Emission of light &amp; heat · انبعاث ضوء وحرارة</p>
+      <div class="flameb"></div>
+    </div>
+  </div>
+  <div class="labctrl">
+    <button class="btn" id="playAll">▶ <span class="en" style="display:inline">Play all</span> · <span class="ar" style="display:inline">تشغيل الكل</span></button>
+  </div>
+  <div class="quiz">
+    <p class="en"><strong>Self-test:</strong> A cut apple turns brown because…</p>
+    <p class="ar"><strong>اختبر نفسك:</strong> التفاحة المقطوعة بتحول لبني بسبب…</p>
+    <div class="opts"><button class="opt" data-ok>Reaction with atmospheric oxygen · التفاعل مع أكسجين الهواء</button><button class="opt">Water · الماء</button><button class="opt">Heat from sun · حرارة الشمس</button></div>
+    <div class="exp"><span class="en">✔️ Reaction with atmospheric oxygen — a chemical change in the apple's exposed surface.</span><span class="ar">✔️ التفاعل مع أكسجين الهواء — تغير كيميائي في سطح التفاحة المكشوف.</span></div>
+  </div>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section id="quiz" class="card reveal">
+  <div class="chead"><span class="cnum">🏆</span><div><h2><span class="en">Final Review Quiz</span><span class="ar">اختبار المراجعة النهائي</span></h2></div></div>
+  <p class="en">Answer the 4 questions — your score is shown live below.</p>
+  <p class="ar">جاوب على الأسئلة الأربعة — نتيجتك بتظهر مباشرة تحت.</p>
+  <div class="quiz">
+    <p class="en"><strong>Q1:</strong> Sugar heated over a flame becomes…</p>
+    <p class="ar"><strong>س1:</strong> عند تسخين السكر على اللهب يتحول إلى…</p>
+    <div class="opts"><button class="opt" data-ok>Turns brown then black · بني ثم أسود</button><button class="opt">Melts into water · يذوب في الماء</button><button class="opt">White powder · مسحوق أبيض</button></div>
+    <div class="exp"><span class="en">✔️ Turns brown then black.</span><span class="ar">✔️ يتحول للبني ثم الأسود.</span></div>
+  </div>
+  <div class="quiz">
+    <p class="en"><strong>Q2:</strong> The black substance after burning sugar is…</p>
+    <p class="ar"><strong>س2:</strong> المادة السوداء بعد حرق السكر هي…</p>
+    <div class="opts"><button class="opt" data-ok>Carbon · الكربون</button><button class="opt">Iron · الحديد</button><button class="opt">Soap · الصابون</button></div>
+    <div class="exp"><span class="en">✔️ Carbon.</span><span class="ar">✔️ الكربون.</span></div>
+  </div>
+  <div class="quiz">
+    <p class="en"><strong>Q3:</strong> Oil + caustic soda produces…</p>
+    <p class="ar"><strong>س3:</strong> الزيت + الصودا الكاوية بينتجوا…</p>
+    <div class="opts"><button class="opt" data-ok>Soap · الصابون</button><button class="opt">Carbon · الكربون</button><button class="opt">Rust · الصدأ</button></div>
+    <div class="exp"><span class="en">✔️ Soap.</span><span class="ar">✔️ الصابون.</span></div>
+  </div>
+  <div class="quiz">
+    <p class="en"><strong>Q4:</strong> A cut apple turns brown because of…</p>
+    <p class="ar"><strong>س4:</strong> التفاحة المقطوعة بتحول لبني بسبب…</p>
+    <div class="opts"><button class="opt" data-ok>Reaction with O₂ · التفاعل مع الأكسجين</button><button class="opt">Water · الماء</button><button class="opt">Bacteria · البكتيريا</button></div>
+    <div class="exp"><span class="en">✔️ Reaction with O₂.</span><span class="ar">✔️ التفاعل مع الأكسجين.</span></div>
+  </div>
+  <div class="scoreLine">
+    <b class="en" id="scoreTxt">Score: 0 / 4</b>
+    <b class="ar" id="scoreTxtAr">النتيجة: 0 / 4</b>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="verified">🛡️ <span class="en">Reviewed &amp; signed: Dr. Wael Aboagiza</span><span class="ar">مراجعة وتوقيع: د. وائل أبو عجيزة</span> <span style="font-family:'Space Grotesk'">#Dr_Wael_Aboagiza</span></div>
+  <p style="margin-top:14px;font-size:.82rem"><span class="en">Unit 2 · Lesson 3: Properties Before &amp; After Chemical Reaction · pages 149–151</span><span class="ar">الوحدة الثانية · الدرس الثالث: خصائص المواد قبل وبعد التفاعل الكيميائي · صفحات 149–151</span></p>
+</footer>
+<button id="topBtn" title="Top · لفوق">⬆</button>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+/* ===== SOUND ENGINE ===== */
+const SND={on:true,ctx:null};
+function ac(){if(!SND.ctx){const C=window.AudioContext||window.webkitAudioContext;if(!C)return null;SND.ctx=new C();}if(SND.ctx&&SND.ctx.state==='suspended')SND.ctx.resume();return SND.ctx;}
+function beep(freq,dur,vol){if(!SND.on)return;const c=ac();if(!c)return;const t=c.currentTime,o=c.createOscillator(),g=c.createGain();o.type='sine';o.frequency.value=freq;g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(vol||.08,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+dur);o.connect(g);g.connect(c.destination);o.start(t);o.stop(t+dur+.02);}
+function sOk(){beep(660,.18,.07);setTimeout(()=>beep(880,.22,.07),90);}
+function sBad(){beep(180,.25,.08);}
+$('#sndBtn').onclick=()=>{SND.on=!SND.on;$('#sndBtn').textContent=SND.on?'🔊':'🔇';if(SND.on)beep(660,.1,.06);};
+/* ===== chrome ===== */
+addEventListener('scroll',()=>{const h=document.documentElement,p=h.scrollTop/(h.scrollHeight-h.clientHeight);$('#progress').style.width=(p*100)+'%';$('#topBtn').classList.toggle('show',h.scrollTop>600);},{passive:true});
+$('#topBtn').onclick=()=>scrollTo({top:0,behavior:'smooth'});
+$('#themeBtn').onclick=()=>{const l=document.body.dataset.theme==='light';document.body.dataset.theme=l?'':'light';$('#themeBtn').textContent=l?'☀️':'🌙';};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}}),{threshold:.1});
+$$('.reveal').forEach(el=>io.observe(el));
+const spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)$$('nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));}),{rootMargin:'-35% 0px -55% 0px'});
+$$('section[id]').forEach(s=>spy.observe(s));
+/* quiz feedback (shared) */
+const score={n:0,total:0};
+function initScore(){score.n=0;score.total=$$('.quiz').length;upd();}
+function upd(){const t=$('#scoreTxt'),a=$('#scoreTxtAr');if(t)t.textContent='Score: '+score.n+' / '+score.total;if(a)a.textContent='النتيجة: '+('٠١٢٣٤٥٦٧٨٩'[score.n]||score.n)+' / '+'٠١٢٣٤٥٦٧٨٩'[score.total];}
+document.addEventListener('click',e=>{const b=e.target.closest('.opt');if(!b)return;const q=b.closest('.quiz');if(!q||q.dataset.done)return;
+ if(b.dataset.ok!==undefined){b.classList.add('ok');q.dataset.done=1;score.n++;upd();const x=q.querySelector('.exp');x&&x.classList.add('show');sOk();}
+ else{b.classList.add('bad');setTimeout(()=>b.classList.remove('bad'),450);sBad();}});
+initScore();
+/* ===== hero particles ===== */
+const hc=$('#heroCv'),hx=hc.getContext('2d');let HP=[];
+function hSize(){hc.width=hc.offsetWidth;hc.height=hc.offsetHeight;HP=Array.from({length:70},()=>({x:Math.random()*hc.width,y:Math.random()*hc.height,r:1+Math.random()*2.5,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6,c:Math.random()>.5?'251,191,36':'251,146,60'}));}
+hSize();addEventListener('resize',hSize);
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function heroLoop(){if(!reduced){hx.clearRect(0,0,hc.width,hc.height);HP.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>hc.width)p.vx*=-1;if(p.y<0||p.y>hc.height)p.vy*=-1;hx.beginPath();hx.fillStyle=`rgba(${p.c},.5)`;hx.arc(p.x,p.y,p.r,0,7);hx.fill();});}requestAnimationFrame(heroLoop);}
+heroLoop();
+/* ===== sugar lab ===== */
+const SUG={st:0};
+function sugStage(n){
+  SUG.st=n;
+  $('#sugMound').className='mound'+(n>=1?' c1':'')+(n>=2?' c2':'');
+  $('#sugFlame').classList.toggle('on',n>=1);
+  $('#sugSmoke').classList.toggle('on',n>=2);
+  const labels=['White sugar · سكر أبيض','Caramel — brown melt · كراميل ذائب بُني','Black solid carbon + smoke · كربون أسود + دخان'];
+  $('#sugStage').textContent=labels[n];
+  if(n>=1){$('#sugFlame').classList.add('on');}
+  if(n>=2)$('#sugObs').style.display='block';
+}
+$('#sugHeat').onclick=()=>{if(SUG.st<2){sugStage(SUG.st+1);sOk();} };
+$('#sugReset').onclick=()=>{sugStage(0);$('#sugObs').style.display='none';$('#sugFlame').classList.remove('on');};
+sugStage(0);
+/* ===== soap lab ===== */
+const SOAP={st:0};
+function soapStage(n){
+  SOAP.st=n;
+  if(n>=1){$('#causticL').style.height='40%';}
+  if(n>=2){$('#oilL').style.height='34%';$('#causticL').style.height='58%';$('#soapFoam').classList.add('on');$('#soapBk').classList.add('acting');$('#soapObs').style.display='block';}
+  const labels=['Liquid oil · زيت سائل','Caustic soda added · اتضافت الصودا الكاوية','Saponification → soap foam · تصبن ورغوة صابون'];
+  $('#soapStage').textContent=labels[n];
+}
+$('#soapMix').onclick=()=>{if(SOAP.st<2){soapStage(SOAP.st+1);sOk();}};
+$('#soapReset').onclick=()=>{soapStage(0);$('#oilL').style.height='';$('#causticL').style.height='';$('#soapFoam').classList.remove('on');$('#soapBk').classList.remove('acting');$('#soapObs').style.display='none';};
+soapStage(0);
+/* ===== daily life cards ===== */
+const ANIM={
+  egg:c=>{c.classList.add('bgegg');setTimeout(()=>c.classList.remove('bgegg'),1600);},
+  apple:c=>{c.classList.add('bgapple');setTimeout(()=>c.classList.remove('bgapple'),1400);},
+  rust:c=>{c.classList.add('bgrust');setTimeout(()=>c.classList.remove('bgrust'),2300);},
+  fire:c=>{c.classList.add('bgfire');setTimeout(()=>c.classList.remove('bgfire'),700);}
+};
+$('#dlife').addEventListener('click',e=>{const c=e.target.closest('.dcard');if(!c)return;ANIM[c.dataset.anim](c);sOk();});
+$('#playAll').onclick=()=>{const cards=$$('#dlife .dcard');cards.forEach((c,i)=>setTimeout(()=>ANIM[c.dataset.anim](c),i*800));};
+</script>
+</body>
+</html>
