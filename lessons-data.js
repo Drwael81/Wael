@@ -141,5 +141,17 @@ const lessonsData = [
     cta: "ابدأ الدرس ←",
     href: "lesson-chemical-equations.html",
     lang: "ar"
+  },
+  {
+    id: "lesson-nutritional-chemistry",
+    order: 5,
+    unit: 2,
+    status: "published",
+    icon: "🍞🧈🍗",
+    title: "Nutritional Chemistry",
+    desc: "الدرس الخامس لوحدة التفاعلات الكيميائية: الكيمياء الغذائية ودراسة العناصر الغذائية — الكربوهيدرات (أنواعها وكشف الجلوكوز بالأنابيب والنشا باليود)، الدهون والكوليسترول وكشفها بسودان (IV)، البروتينات وكشفها بالبيوريت، مع أسئلة وأجوبة واختبارات تفاعلية.",
+    cta: "ابدأ الدرس ←",
+    href: "lesson-nutritional-chemistry.html",
+    lang: "ar"
   }
 ];

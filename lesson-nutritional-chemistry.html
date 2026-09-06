@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f8fafc">
+<title>Lesson 3 · Nutritional Chemistry</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{color-scheme:light only;--purple:#7d5ba6;--purple-d:#5f4487;--red:#d24b41;--blue:#2b6fd4;--ink:#26304a;--bg:#f8fafc;--card:#fff;--hl:#ffe9a1;--line:#e3e8f0}
+html,body{overflow-x:hidden}
+body{background:var(--bg);color:var(--ink);font-family:'Segoe UI',system-ui,-apple-system,Tahoma,sans-serif;line-height:1.65;-webkit-tap-highlight-color:transparent}
+#progress{position:fixed;top:0;left:0;height:5px;width:0;background:linear-gradient(90deg,var(--purple),var(--red));z-index:60;border-radius:0 4px 4px 0}
+.topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(248,250,252,.86);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.pill{flex:1;text-align:center;background:var(--purple);color:#fff;border-radius:999px;padding:8px 14px;font-weight:700;font-size:14px;box-shadow:0 3px 10px rgba(95,68,135,.35);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.iconbtn{min-width:48px;min-height:48px;border:none;border-radius:14px;background:#fff;box-shadow:0 2px 8px rgba(30,40,70,.14);font-size:19px;cursor:pointer}
+.iconbtn:active{transform:scale(.94)}
+.wrap{display:grid;grid-template-columns:225px minmax(0,1fr);gap:18px;max-width:1080px;margin:0 auto;padding:14px}
+#toc{position:sticky;top:74px;align-self:start;background:#fff;border-radius:16px;box-shadow:0 4px 18px rgba(30,40,70,.08);padding:12px;max-height:calc(100vh - 90px);overflow:auto}
+#toc h3{font-size:13px;color:var(--purple-d);margin-bottom:8px;letter-spacing:.4px}
+#toc a{display:flex;gap:8px;align-items:center;padding:9px 8px;border-radius:10px;color:var(--ink);text-decoration:none;font-size:12.5px;font-weight:600;min-height:40px}
+#toc a:hover,#toc a.on{background:#f1ecfa;color:var(--purple-d)}
+#tocOverlay{position:fixed;inset:0;background:rgba(38,48,74,.4);z-index:55;display:none}
+main{min-width:0}
+h1{font-size:26px;color:var(--purple-d);text-align:center;margin-top:6px}
+h1 .ar{display:block;font-size:17px;color:var(--red);margin-top:4px}
+.unitline{text-align:center;color:#8a94a8;font-size:12px;margin:6px 0 12px}
+.gctrl{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:10px 0 20px}
+.btn{min-height:48px;padding:10px 16px;border:none;border-radius:14px;background:#fff;color:var(--ink);box-shadow:0 2px 10px rgba(30,40,70,.13);font-size:14px;font-weight:700;cursor:pointer;transition:.15s}
+.btn:active{transform:scale(.96)}
+.btn.primary{background:var(--purple);color:#fff}
+.btn.run{background:var(--red);color:#fff;display:block;margin:10px auto 4px;width:min(100%,320px)}
+section{background:#fff;border-radius:20px;box-shadow:0 6px 22px rgba(30,40,70,.08);padding:18px 14px;margin-bottom:18px;scroll-margin-top:80px}
+.sec-h{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.sec-h .em{font-size:24px}
+.sec-h h2{background:var(--purple);color:#fff;border-radius:999px;padding:7px 18px;font-size:15px;box-shadow:0 3px 10px rgba(95,68,135,.3)}
+.sec-h .ar2{font-size:13.5px;color:var(--red);font-weight:700}
+.narrow{max-width:440px;margin-inline:auto}
+p{margin:8px 0}
+.defbox{border:2px dashed #c9b6e2;border-radius:12px;padding:10px 14px;background:#fbfaff;margin:12px auto;max-width:440px}
+.defbox .t{color:var(--red);font-weight:800}
+.redhead{color:var(--red);font-weight:800;text-align:center;margin:12px 0 6px}
+.hl{background:var(--hl);border-radius:4px;padding:0 4px}
+.gr{background:var(--hl);color:#b03040;font-weight:800;border-radius:4px;padding:0 4px}
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:440px;margin:12px auto}
+.ncard{border:2px solid #d8cdee;border-radius:14px;padding:10px 6px;text-align:center;background:#fdfcff;box-shadow:0 3px 10px rgba(95,68,135,.12);font-size:12.5px}
+.ncard .ord{color:var(--purple-d);font-size:12px;font-weight:700}
+.ncard .em{font-size:26px;display:block;margin:4px 0}
+.ncard b{font-size:12.5px}
+.srcgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;max-width:440px;margin:10px auto}
+.src{display:flex;align-items:center;gap:8px;font-size:13.5px;background:#fff8ef;border:1px solid #f0dcc2;border-radius:10px;padding:7px 10px}
+.src .em{font-size:20px}
+.sharh{direction:rtl;text-align:right;background:#f2f7ff;border-right:4px solid var(--blue);border-radius:10px;padding:10px 12px;margin:12px auto 0;max-width:440px;font-size:13.5px;color:#28415f}
+.fig{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 6px 20px rgba(30,40,70,.10);padding:10px;position:relative;margin:14px auto;max-width:720px}
+.fig svg{display:block;width:100%;height:auto;max-height:55vh;cursor:zoom-in}
+.tools{position:absolute;top:8px;inset-inline-end:8px;display:flex;gap:6px;z-index:5}
+.toolbtn{width:48px;height:48px;border:none;border-radius:14px;background:rgba(255,255,255,.92);box-shadow:0 2px 8px rgba(30,40,70,.18);font-size:18px;cursor:pointer}
+.toolbtn:active{transform:scale(.94)}
+.figcap{text-align:center;color:#7a8498;font-size:12px;margin-top:6px}
+.rail{writing-mode:vertical-rl;transform:rotate(180deg);background:#e6ddf4;color:var(--purple-d);font-weight:700;border-radius:999px;padding:10px 6px;font-size:12px;text-align:center}
+.tcol{flex:1;display:flex;flex-direction:column;gap:10px;min-width:0}
+.tree{display:flex;gap:10px}
+.tcard{border:2px dashed #c9b6e2;border-radius:14px;padding:10px;background:#fdfcff}
+.tcard h4{color:var(--red);font-size:14.5px}
+.tcard p{font-size:12.5px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.chip{background:#f7ecdd;border:1px solid #ecd7b8;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:700}
+.qa-h{background:var(--red);color:#fff;border-radius:999px;padding:6px 16px;display:inline-block;font-weight:800;margin-bottom:8px}
+.ans{border-inline-start:4px solid #35b06f;background:#f2fbf6;border-radius:10px;padding:10px 12px;font-size:13.5px;margin:8px 0}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13px;max-width:440px;margin-inline:auto}
+th,td{border:1px solid var(--line);padding:8px;text-align:center;background:#fff}
+th{background:#f1ecfa;color:var(--purple-d)}
+.tblwrap{max-width:440px;margin-inline:auto}
+.tblwrap table{font-size:11px;max-width:100%}
+.resrow{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+.rt{text-align:center;font-size:11.5px;width:70px}
+.rt b{display:block}
+.sympt{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:10px 0}
+.symp{background:#efeaf7;border:1px solid #d8cdee;border-radius:12px;padding:8px 12px;font-size:12.5px;font-weight:700}
+.notebox{background:#fff6ec;border:2px dashed #e8c79b;border-radius:12px;padding:10px 12px;font-size:13px;max-width:440px;margin:12px auto}
+.notebox .t{color:var(--red);font-weight:800}
+.steps{max-width:440px;margin:8px auto;padding-inline-start:22px;font-size:14px}
+.steps li{margin:6px 0}
+.obc{max-width:440px;margin:8px auto;border-radius:12px;padding:10px 12px;font-size:13.5px}
+.ob{background:#eef7ff;border-inline-start:4px solid var(--blue)}
+.cc{background:#effbf3;border-inline-start:4px solid #35b06f}
+.obc .t{font-weight:800;color:var(--purple-d)}
+.quiz{background:#f8f6ff;border:2px solid #e2d9f2;border-radius:16px;padding:12px;margin:14px auto 0;max-width:440px}
+.quiz h4{color:var(--purple-d);font-size:14px;margin-bottom:8px}
+.qopt{display:block;width:100%;text-align:start;min-height:48px;margin:6px 0;border:2px solid var(--line);border-radius:12px;background:#fff;font-size:13.5px;font-weight:600;padding:8px 12px;cursor:pointer;transition:.15s}
+.qopt.correct{background:#d9f2e3;border-color:#35b06f;box-shadow:0 0 0 3px #35b06f55,0 0 18px #35b06f88;animation:glowp .7s}
+.qopt.wrong{background:#fde3e1;border-color:var(--red);animation:shake .35s}
+#lightbox,#cmpModal{position:fixed;inset:0;z-index:70;background:rgba(248,250,252,.94);backdrop-filter:blur(6px);display:none}
+#lightbox .stage{position:absolute;inset:0;overflow:auto}
+#lightbox .zoomwrap{width:250%;padding:30px}
+#lbClose,#cmpClose{position:absolute;top:12px;inset-inline-end:12px;z-index:5}
+.cmpbox{position:absolute;inset:10px;overflow:auto;background:#fff;border-radius:18px;box-shadow:0 10px 40px rgba(30,40,70,.25);padding:16px;max-width:700px;margin:auto}
+.organ,.tapinfo{cursor:pointer;transition:filter .25s,transform .5s}
+.organ.active,.tapinfo.active{filter:drop-shadow(0 0 7px #ffd54a)}
+#organCard,#heartCard{direction:rtl;text-align:right;background:#fff8e8;border:2px solid #ffd54a;border-radius:14px;padding:10px 12px;margin:10px auto 0;max-width:440px;font-size:13.5px;display:none}
+#organCard b,#heartCard b{color:var(--purple-d)}
+.liq{transform-box:fill-box;transform-origin:50% 100%;transform:scaleY(.12);transition:transform 1s,fill .9s}
+.liq.filled{transform:scaleY(.62)}
+#a1flame{opacity:0;transform-box:fill-box;transform-origin:50% 100%}
+.heating #a1flame{opacity:1;animation:flick .5s infinite}
+#a1bub circle{opacity:0}
+.heating #a1bub circle{animation:bub 1.3s infinite}
+.heating #a1bub circle:nth-child(2){animation-delay:.3s}.heating #a1bub circle:nth-child(3){animation-delay:.6s}.heating #a1bub circle:nth-child(4){animation-delay:.9s}.heating #a1bub circle:nth-child(5){animation-delay:.45s}
+#a1drip{opacity:0}
+.pouring #a1drip{animation:drip .8s infinite}
+.spot{transition:fill 1s}
+.done .spot{fill:#2a3f8f !important}
+#pDrops circle{opacity:0}
+.dropping #pDrops circle{animation:drip .9s infinite}
+.dropping #pDrops circle:nth-child(2){animation-delay:.3s}.dropping #pDrops circle:nth-child(3){animation-delay:.6s}
+#pAfter{opacity:0;transition:opacity 1s}
+.done #pAfter{opacity:1}
+.cap{animation:floaty 4s ease-in-out infinite}
+.cap:nth-child(odd){animation-delay:1.2s}
+#torsoSvg.exploded #gLiver{transform:translate(0,-10px)}
+#torsoSvg.exploded #gStomach{transform:translate(8px,0)}
+#torsoSvg.exploded #gPancreas{transform:translate(0,10px)}
+#gLiver,#gStomach,#gPancreas{transition:transform .5s}
+#a3stream{opacity:0;transition:.3s}.pouring3 #a3stream{opacity:1}
+#a3drops circle{opacity:0}.pouring3 #a3drops circle{animation:drip .9s infinite}
+.pouring3 #a3drops circle:nth-child(2){animation-delay:.35s}
+#a3layer{transform:scaleY(0);transform-box:fill-box;transform-origin:50% 0;transition:transform .9s}
+.done3 #a3layer{transform:scaleY(1)}
+.shakeT{animation:shk .45s 2;transform-box:fill-box;transform-origin:50% 90%}
+#a4drops circle{opacity:0}.dropping4 #a4drops circle{animation:drip .9s infinite}
+.dropping4 #a4drops circle:nth-child(2){animation-delay:.3s}
+#a4v{transition:fill 1.2s}.done4 #a4v{fill:#7a3fb0}
+.cl{stroke-dasharray:70;stroke-dashoffset:70;transition:stroke-dashoffset 1.2s .2s}
+.doneA .cl{stroke-dashoffset:0}
+@media(max-width:900px){
+.wrap{grid-template-columns:1fr}
+#toc{position:fixed;top:0;bottom:0;inset-inline-start:0;z-index:56;max-height:none;border-radius:0 18px 18px 0;transform:translateX(-110%);transition:transform .3s;width:min(78vw,300px)}
+#toc.open{transform:none}
+body.menu #tocOverlay{display:block}
+}
+@keyframes bub{0%{transform:translateY(0);opacity:.9}100%{transform:translateY(-64px);opacity:0}}
+@keyframes flick{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.18)}}
+@keyframes drip{0%{transform:translateY(0);opacity:0}15%{opacity:1}100%{transform:translateY(46px);opacity:0}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+@keyframes shk{0%,100%{transform:rotate(0)}25%{transform:rotate(7deg)}75%{transform:rotate(-7deg)}}
+@keyframes glowp{0%{box-shadow:0 0 0 0 #35b06faa}100%{box-shadow:0 0 0 14px #35b06f00}}
+@media print{body{display:none}}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<header class="topbar">
+<button class="iconbtn" id="menuBtn" aria-label="Menu">☰</button>
+<span class="pill">Lesson 3 · Nutritional Chemistry</span>
+<button class="iconbtn" id="muteBtn" aria-label="Mute">🔇</button>
+</header>
+<div id="tocOverlay"></div>
+<nav id="toc">
+<h3>CONTENTS · المحتويات</h3>
+<a href="#s1">📘 Nutritional chemistry</a>
+<a href="#s2">🍞 Carbohydrates</a>
+<a href="#s3">🧬 Types of carbohydrates</a>
+<a href="#s4">❓ Question &amp; Answer</a>
+<a href="#s5">🧪 Detection of glucose</a>
+<a href="#s6">🩺 Diabetes (Biology)</a>
+<a href="#s7">🥔 Detection of starch</a>
+<a href="#s8">🌱 Importance of carbs</a>
+<a href="#s9">⚖️ Nutritional awareness</a>
+<a href="#s10">🧈 Second: Fats</a>
+<a href="#s11">🫀 Cholesterol</a>
+<a href="#s12">🍞 Excess carbohydrates</a>
+<a href="#s13">🥚 Detection of fats</a>
+<a href="#s14">🧪 Testing two samples</a>
+<a href="#s15">🍗 Third: Proteins</a>
+<a href="#s16">🧫 Detection of proteins</a>
+<a href="#s17">💪 Importance of proteins</a>
+</nav>
+<div class="wrap">
+<div></div>
+<main>
+<h1>Nutritional Chemistry<span class="ar">الكيمياء الغذائية</span></h1>
+<div class="unitline">Unit 2 · Matter and Chemical Reactions · Lesson 3</div>
+<div class="gctrl">
+<button class="btn primary" id="runAll">▶ Run All · تشغيل الكل</button>
+<button class="btn" id="compareBtn">⚖ Compare · مقارنة</button>
+<button class="btn" id="resetAll">↺ Reset · إعادة تعيين</button>
+</div>
+
+<section id="s1">
+<div class="sec-h"><span class="em">📘</span><h2>Nutritional chemistry</h2><span class="ar2">الكيمياء الغذائية</span></div>
+<div class="narrow">
+<p>• Nutritional chemistry is a branch of chemistry.</p>
+<div class="defbox"><span class="t">Nutritional chemistry:</span> A branch of chemistry that studies the <span class="hl">types of nutrients in food</span>.</div>
+<p class="redhead">Nutritional chemistry is concerned with the study of types of nutrients, including:</p>
+<div class="cards3">
+<div class="ncard"><span class="ord">First</span><span class="em">🍞</span><b>Carbohydrates</b></div>
+<div class="ncard"><span class="ord">Second</span><span class="em">🧈</span><b>Fats</b></div>
+<div class="ncard"><span class="ord">Third</span><span class="em">🐟🍗</span><b>Proteins</b></div>
+</div>
+<div class="sharh">يعني إيه كيمياء غذائية؟ دي فرع من الكيمياء بيدرس أنواع العناصر الغذائية اللي في الأكل. والعناصر الأساسية تلاتة: الأول الكربوهيدرات، الثاني الدهون، الثالث البروتينات.</div>
+</div>
+<div class="quiz" data-pool="intro"><h4>🎯 Test yourself · اختبر نفسك</h4><div class="qbox"></div></div>
+</section>
+
+<section id="s2">
+<div class="sec-h"><span class="em">🍞</span><h2>First: Carbohydrates</h2><span class="ar2">أولاً: الكربوهيدرات</span></div>
+<div class="narrow">
+<p>• All carbohydrates contain three elements, <b>which are:</b></p>
+<div class="cards3">
+<div class="ncard"><b style="color:#444">• Carbon (C)</b></div>
+<div class="ncard"><b style="color:var(--blue)">• Hydrogen (H)</b></div>
+<div class="ncard"><b style="color:var(--red)">• Oxygen (O)</b></div>
+</div>
+<div class="defbox"><span class="t">Carbohydrates:</span> Organic chemical compounds composed of <span class="hl">carbon, hydrogen and oxygen</span>.</div>
+<p class="redhead">From the sources of carbohydrates in food</p>
+<div class="srcgrid">
+<div class="src"><span class="em">🍞</span>Bread</div><div class="src"><span class="em">🥔</span>Potatoes</div>
+<div class="src"><span class="em">🍚</span>Rice</div><div class="src"><span class="em">🌾</span>Grains</div>
+<div class="src"><span class="em">🥬</span>Vegetables</div><div class="src"><span class="em">🍇</span>Grapes</div>
+<div class="src"><span class="em">🍎</span>Apples</div>
+</div>
+<p style="text-align:center;margin-top:8px"><b style="color:var(--purple-d)">Carbohydrates</b> are responsible for the <span class="hl">sweet taste of fruits</span>.</p>
+<div class="sharh">كل الكربوهيدرات فيها تلات عناصر: كربون (C) وهيدروجين (H) وأكسجين (O). ومصادرها: العيش والبطاطس والرز والحبوب والخضار وفواكه زي العنب والتفاح، وهي المسؤولة عن الطعم الحلو في الفاكهة.</div>
+</div>
+</section>
+
+<section id="s3">
+<div class="sec-h"><span class="em">🧬</span><h2>Types of carbohydrates</h2><span class="ar2">أنواع الكربوهيدرات</span></div>
+<div class="narrow"><p>The following diagram shows the most important types of carbohydrates, according to their chemical composition (molecular structure):</p></div>
+<div class="fig" style="padding:14px">
+<div class="tools"><button class="toolbtn toolzoom" title="×2.5">🔍</button></div>
+<div class="tree">
+<div class="rail">Carbohydrates are divided into</div>
+<div class="tcol">
+<div class="tcard"><h4>Monosaccharides</h4><p>The simplest form of carbohydrates.</p>
+<div class="chips"><span class="chip">🍇 Glucose (grape sugar)</span><span class="chip">🍑 Fructose (fruit sugar)</span></div></div>
+<div class="tcard"><h4>Disaccharides</h4><p>Sugars in which each molecule consists of <span class="hl">two monosaccharide units</span> with <span class="hl">one water molecule removed</span>.</p>
+<div class="rxn" style="background:#f8f6ff;border:1px solid #e2d9f2;border-radius:12px;padding:8px;margin-top:8px"><div style="font-size:11px;color:var(--purple-d);font-weight:700;text-align:center">Sucrose (cane sugar) — one unit of glucose + one unit of fructose</div>
+<svg viewBox="0 0 320 74" style="cursor:auto"><polygon points="14,0 7,12.1 -7,12.1 -14,0 -7,-12.1 7,-12.1" transform="translate(30,44)" fill="#8fc1e3" stroke="#3f7fae" stroke-width="2"/><text x="30" y="70" font-size="9" text-anchor="middle">Glucose</text><text x="62" y="48" font-size="13" fill="#d24b41" font-weight="bold">+</text><polygon points="0,-14 13.3,-4.3 8.2,11.3 -8.2,11.3 -13.3,-4.3" transform="translate(94,44)" fill="#c9a0d8" stroke="#8a5ba6" stroke-width="2"/><text x="94" y="70" font-size="9" text-anchor="middle">Fructose</text>
+<line x1="120" y1="44" x2="196" y2="44" stroke="#d24b41" stroke-width="2"/><polygon points="196,40 206,44 196,48" fill="#d24b41"/><text x="158" y="16" font-size="8" text-anchor="middle" fill="#d24b41">Removal of</text><text x="158" y="26" font-size="8" text-anchor="middle" fill="#d24b41">one water molecule</text>
+<polygon points="14,0 7,12.1 -7,12.1 -14,0 -7,-12.1 7,-12.1" transform="translate(240,44)" fill="#8fc1e3" stroke="#3f7fae" stroke-width="2"/><path d="M254 44 l6 7 l6 -7" fill="none" stroke="#556" stroke-width="2"/><polygon points="0,-14 13.3,-4.3 8.2,11.3 -8.2,11.3 -13.3,-4.3" transform="translate(280,44)" fill="#c9a0d8" stroke="#8a5ba6" stroke-width="2"/><text x="262" y="70" font-size="9" text-anchor="middle">Sucrose</text></svg></div>
+<div class="rxn" style="background:#f8f6ff;border:1px solid #e2d9f2;border-radius:12px;padding:8px;margin-top:8px"><div style="font-size:11px;color:var(--purple-d);font-weight:700;text-align:center">Maltose (malt sugar) — two units of glucose</div>
+<svg viewBox="0 0 320 74" style="cursor:auto"><polygon points="14,0 7,12.1 -7,12.1 -14,0 -7,-12.1 7,-12.1" transform="translate(30,44)" fill="#8fc1e3" stroke="#3f7fae" stroke-width="2"/><text x="30" y="70" font-size="9" text-anchor="middle">Glucose</text><text x="62" y="48" font-size="13" fill="#d24b41" font-weight="bold">+</text><polygon points="14,0 7,12.1 -7,12.1 -14,0 -7,-12.1 7,-12.1" transform="translate(94,44)" fill="#8fc1e3" stroke="#3f7fae" stroke-width="2"/><text x="94" y="70" font-size="9" text-anchor="middle">Glucose</text>
+<line x1="120" y1="44" x2="196" y2="44" stroke="#d24b41" stroke-width="2"/><polygon points="196,40 206,44 196,48" fill="#d24b41"/><text x="158" y="16" font-size="8" text-anchor="middle" fill="#d24b41">Removal of</text><text x="158" y="26" font-size="8" text-anchor="middle" fill="#d24b41">one water molecule</text>
+<polygon points="14,0 7,12.1 -7,12.1 -14,0 -7,-12.1 7,-12.1" transform="translate(240,44)" fill="#8fc1e3" stroke="#3f7fae" stroke-width="2"/><path d="M254 44 l6 7 l6 -7" fill="none" stroke="#556" stroke-width="2"/><polygon points="14,0 7,12.1 -7,12.1 -14,0 -7,-12.1 7,-12.1" transform="translate(280,44)" fill="#8fc1e3" stroke="#3f7fae" stroke-width="2"/><text x="262" y="70" font-size="9" text-anchor="middle">Maltose</text></svg></div>
+</div>
+<div class="tcard"><h4>Oligosaccharides</h4><p>Sugars consist of <span class="hl">3 : 9 units</span> of monosaccharides.</p>
+<div class="chips"><span class="chip">🫘 Raffinose (legume sugar)</span></div></div>
+<div class="tcard"><h4>Polysaccharides</h4><p>Sugars consist of <span class="hl">more than 9 units</span> of monosaccharides.</p>
+<div class="chips"><span class="chip">🌽 Starch</span><span class="chip">🌿 Cellulose</span></div></div>
+</div>
+</div>
+<div class="sharh">الكربوهيدرات ٤ أنواع: أحادية (الجلوكوز والفركتوز)، ثنائية (السكروز = جلوكوز + فركتوز، المالتوز = جلوكوز + جلوكوز مع حذف جزيء ماء)، قليلة التعدد (٣:٩ وحدات زي الرافينوز)، ومتعددة التعدد (أكتر من ٩ وحدات زي النشا والسليلوز).</div>
+</div>
+<div class="quiz" data-pool="types"><h4>🎯 Test yourself · اختبر نفسك</h4><div class="qbox"></div></div>
+</section>
+
+<section id="s4">
+<div class="sec-h"><span class="em">❓</span><h2>Question ? Answer</h2><span class="ar2">سؤال وجواب</span></div>
+<div class="narrow">
+<span class="qa-h">Q</span>
+<p>The opposite figure shows the composition of two types of disaccharides (1) &amp; (2):<br>
+(1) What are the names of sugar (1) and sugar (2)? With explanation.<br>
+(2) Determine the name and type of both sugar (X) and sugar (Y).<br>
+(3) How do 2 molecules of (X) turn into sugar (1)?</p>
+</div>
+<div class="fig">
+<div class="tools"><button class="toolbtn toolzoom" title="×2.5">🔍</button></div>
+<svg viewBox="0 0 340 110">
+<text x="46" y="18" font-size="11" text-anchor="middle" fill="#556">(X)</text>
+<polygon points="14,0 7,12.1 -7,12.1 -14,0 -7,-12.1 7,-12.1" transform="translate(46,44)" fill="#5a9fd4" stroke="#2b6fd4" stroke-width="2"/>
+<path d="M60 44 l7 8 l7 -8" fill="none" stroke="#556" stroke-width="2"/>
+<polygon points="14,0 7,12.1 -7,12.1 -14,0 -7,-12.1 7,-12.1" transform="translate(88,44)" fill="#5a9fd4" stroke="#2b6fd4" stroke-width="2"/>
+<text x="67" y="86" font-size="11" text-anchor="middle" fill="#556">(1)</text>
+<text x="216" y="18" font-size="11" text-anchor="middle" fill="#556">(Y)</text>
+<polygon points="0,-14 13.3,-4.3 8.2,11.3 -8.2,11.3 -13.3,-4.3" transform="translate(216,44)" fill="#8a5ba6" stroke="#5f3d78" stroke-width="2"/>
+<path d="M230 44 l7 8 l7 -8" fill="none" stroke="#556" stroke-width="2"/>
+<polygon points="14,0 7,12.1 -7,12.1 -14,0 -7,-12.1 7,-12.1" transform="translate(258,44)" fill="#5a9fd4" stroke="#2b6fd4" stroke-width="2"/>
+<text x="237" y="86" font-size="11" text-anchor="middle" fill="#556">(2)</text>
+</svg>
+</div>
+<div class="narrow">
+<span class="qa-h" style="background:#35b06f">A</span>
+<div class="ans"><b>(1)</b> <b>Sugar (1): Maltose,</b> because it is a disaccharide composed of two identical monosaccharide units (glucose).<br><b>Sugar (2): Sucrose,</b> because it is a disaccharide composed of two different monosaccharide units (glucose and fructose).</div>
+<div class="ans"><b>(2)</b> (X): <span class="hl">Glucose</span>, which is a monosaccharide. — (Y): <span class="hl">Fructose</span>, which is a monosaccharide.</div>
+<div class="ans"><b>(3)</b> By <span class="hl">removing one water molecule</span>.</div>
+<div class="sharh">السكر (١) وحدتين متشابهتين يبقى مالتوز، والسكر (٢) وحدتين مختلفتين يبقى سكروز. (X) جلوكوز و(Y) فركتوز، والتحويل بيتم بحذف جزيء ماء واحد.</div>
+</div>
+<div class="quiz" data-pool="qa"><h4>🎯 Test yourself · اختبر نفسك</h4><div class="qbox"></div></div>
+</section>
+
+<section id="s5">
+<div class="sec-h"><span class="em">🧪</span><h2>Detection of glucose</h2><span class="ar2">الكشف عن الجلوكوز</span></div>
+<div class="narrow"><p>• Glucose can be detected using <span class="hl">blue Benedict's solution</span>, as shown in the following activity:</p></div>
+<div class="fig">
+<div class="tools"><button class="toolbtn toolzoom" title="×2.5">🔍</button></div>
+<svg id="a1svg" viewBox="0 0 360 330">
+<rect x="90" y="300" width="180" height="12" rx="6" fill="#8a94a8"/><rect x="176" y="42" width="8" height="260" fill="#7a8498"/><rect x="150" y="148" width="58" height="6" fill="#7a8498"/>
+<line x1="120" y1="210" x2="105" y2="296" stroke="#556" stroke-width="4"/><line x1="240" y1="210" x2="255" y2="296" stroke="#556" stroke-width="4"/><line x1="112" y1="210" x2="248" y2="210" stroke="#556" stroke-width="4"/>
+<rect x="170" y="252" width="20" height="14" rx="4" fill="#444"/><rect x="177" y="238" width="6" height="16" fill="#666"/>
+<path id="a1flame" d="M180 214 c-7 10 -7 16 0 22 c7 -6 7 -12 0 -22z" fill="#f39c2d"/>
+<rect x="120" y="120" width="120" height="90" rx="8" fill="rgba(205,232,245,.35)" stroke="#9fb8c8" stroke-width="2.5"/>
+<rect x="124" y="150" width="112" height="56" fill="#cfe8f5" opacity=".65"/><ellipse cx="180" cy="150" rx="56" ry="4" fill="#e8f5fc" opacity=".9"/>
+<g id="a1bub"><circle cx="140" cy="200" r="3" fill="#fff"/><circle cx="165" cy="204" r="3" fill="#fff"/><circle cx="190" cy="200" r="3" fill="#fff"/><circle cx="215" cy="204" r="3" fill="#fff"/><circle cx="152" cy="196" r="2.5" fill="#fff"/></g>
+<g stroke="#8fb4c8" stroke-width="2" fill="rgba(255,255,255,.5)"><rect x="130" y="112" width="16" height="90" rx="8"/><rect x="157" y="112" width="16" height="90" rx="8"/><rect x="184" y="112" width="16" height="90" rx="8"/><rect x="211" y="112" width="16" height="90" rx="8"/></g>
+<rect id="a1l1" class="liq" x="132" y="140" width="12" height="60" rx="6" fill="#d7ecf7"/><rect id="a1l2" class="liq" x="159" y="140" width="12" height="60" rx="6" fill="#d7ecf7"/><rect id="a1l3" class="liq" x="186" y="140" width="12" height="60" rx="6" fill="#d7ecf7"/><rect id="a1l4" class="liq" x="213" y="140" width="12" height="60" rx="6" fill="#d7ecf7"/>
+<g id="a1drop"><circle cx="180" cy="58" r="9" fill="#d24b41"/><rect x="176" y="66" width="8" height="34" rx="3" fill="#4aa8d8" stroke="#2b6fd4"/><circle id="a1drip" cx="180" cy="106" r="4" fill="#4aa8d8"/></g>
+<text x="255" y="60" font-size="10" fill="#2b6fd4" font-weight="bold">Benedict's</text><text x="255" y="72" font-size="10" fill="#2b6fd4" font-weight="bold">solution</text>
+</svg>
+</div>
+<button class="btn run" id="a1run">▶ Run experiment · شغّل التجربة</button>
+<div class="narrow">
+<p class="redhead" style="text-align:start">Activity ① : Detection of glucose sugar — Steps:</p>
+<ol class="steps">
+<li>Place 2 mL of glucose sugar solution at different concentrations in 3 test tubes, and place only the same volume of water in a fourth tube.</li>
+<li>Add 2 mL of Benedict's solution to each tube.</li>
+<li>Heat the test tubes in a water bath for 5 minutes.</li>
+</ol>
+<div class="obc ob"><span class="t">Observation:</span> The colour of the blue Benedict's solution (reagent) changes to several different colours with glucose solutions, and its colour does not change with water.</div>
+<div class="obc cc"><span class="t">Conclusion:</span> The colour of the glucose solution changes when Benedict's solution is added to it, depending on the concentration of sugar in the solution, as shown in the opposite table:</div>
+</div>
+<div class="resrow">
+<div class="rt"><svg viewBox="0 0 30 90"><rect x="8" y="6" width="14" height="78" rx="7" fill="rgba(255,255,255,.6)" stroke="#8fb4c8" stroke-width="2"/><rect id="r1" class="liq" x="10" y="30" width="10" height="52" rx="5" fill="#d94a56"/></svg><b style="color:#d94a56">Red</b>High</div>
+<div class="rt"><svg viewBox="0 0 30 90"><rect x="8" y="6" width="14" height="78" rx="7" fill="rgba(255,255,255,.6)" stroke="#8fb4c8" stroke-width="2"/><rect id="r2" class="liq" x="10" y="30" width="10" height="52" rx="5" fill="#e8834a"/></svg><b style="color:#e8834a">Orange</b>Medium</div>
+<div class="rt"><svg viewBox="0 0 30 90"><rect x="8" y="6" width="14" height="78" rx="7" fill="rgba(255,255,255,.6)" stroke="#8fb4c8" stroke-width="2"/><rect id="r3" class="liq" x="10" y="30" width="10" height="52" rx="5" fill="#3aa06b"/></svg><b style="color:#3aa06b">Green</b>Low</div>
+<div class="rt"><svg viewBox="0 0 30 90"><rect x="8" y="6" width="14" height="78" rx="7" fill="rgba(255,255,255,.6)" stroke="#8fb4c8" stroke-width="2"/><rect id="r4" class="liq" x="10" y="30" width="10" height="52" rx="5" fill="#4aa8d8"/></svg><b style="color:#4aa8d8">Blue</b>None</div>
+</div>
+<table><tr><th>Resulting colour</th><td style="color:#d94a56"><b>Red</b></td><td style="color:#e8834a"><b>Orange</b></td><td style="color:#3aa06b"><b>Green</b></td><td style="color:#4aa8d8"><b>Blue</b></td></tr>
+<tr><th>Concentration of glucose sugar solution</th><td>High</td><td>Medium</td><td>Low</td><td>None</td></tr></table>
+<div class="sharh">بنحط ٢ مللي جلوكوز بتراكيز مختلفة في ٣ أنابيب والرابعة ماء، بنضيف بندكت أزرق ونسخّن ٥ دقايق. اللون: أحمر = عالي، برتقالي = متوسط، أخضر = منخفض، أزرق = مفيش.</div>
+<div class="quiz" data-pool="glucose"><h4>🎯 Test yourself · اختبر نفسك</h4><div class="qbox"></div></div>
+</div>
+</section>
+
+<section id="s6">
+<div class="sec-h"><span class="em">🩺</span><h2>Integration with Biology — Diabetes</h2><span class="ar2">التكامل مع الأحياء — السكري</span></div>
+<div class="narrow">
+<p class="redhead" style="text-align:start">• Cause of the disease:</p>
+<p>The <span class="hl">accumulation of glucose sugar in blood</span>, as a result of insufficient secretion of <span class="hl">insulin hormone</span>, which is secreted by the <span class="hl">pancreas</span>.</p>
+<p class="redhead" style="text-align:start">• Symptoms of the disease:</p>
+<div class="sympt"><span class="symp">① Significant weight loss.</span><span class="symp">② Increased urination times.</span><span class="symp">③ Excessive thirst.</span></div>
+</div>
+<div class="fig">
+<div class="tools"><button class="toolbtn" id="explodeBtn" title="Explode">🧩</button><button class="toolbtn toolzoom" title="×2.5">🔍</button></div>
+<svg id="torsoSvg" viewBox="0 0 420 430">
+<path d="M185 18 h50 v26 c0 12 9 20 22 25 c45 16 76 30 85 64 c7 28 9 86 9 150 h-44 c0 -42 -2 -74 -7 -90 c-2 64 -7 128 -16 162 H156 c-9 -34 -14 -98 -16 -162 c-5 16 -7 48 -7 90 H89 c0 -64 2 -122 9 -150 c9 -34 40 -48 85 -64 c13 -5 22 -13 22 -25 z" fill="#e9d6bd" stroke="#1e2b58" stroke-width="3"/>
+<g id="gLiver" class="organ" data-organ="liver"><path d="M176 132 c-6 22 18 44 44 48 c10 2 16 -3 19 -9 c3 7 9 12 18 11 c28 -4 46 -40 40 -66 c-5 -20 -28 -28 -52 -24 c-8 1 -14 4 -20 8 c-6 -4 -12 -6 -20 -6 c-16 0 -26 8 -29 18 z" fill="#d4593b" stroke="#1e2b58" stroke-width="3"/><ellipse cx="222" cy="176" rx="7" ry="10" fill="#3aa06b" stroke="#1e2b58" stroke-width="2"/></g>
+<g id="gStomach" class="organ" data-organ="stomach"><path d="M212 150 c-2 10 -2 18 0 26 c-4 18 2 32 12 42 c12 12 10 30 -4 40 c-18 13 -24 32 -12 46 c14 17 48 18 66 2 c22 -19 22 -56 4 -76 c-13 -15 -34 -20 -44 -36 c-5 -8 -9 -14 -12 -19 c2 -8 2 -16 0 -25 z" fill="#e06287" stroke="#1e2b58" stroke-width="3"/></g>
+<g id="gPancreas" class="organ" data-organ="pancreas"><path d="M150 306 c-12 6 -14 22 -4 32 c10 10 28 12 42 8 c32 -9 62 -14 80 -25 c10 -6 8 -18 -4 -21 c-14 -3 -30 -2 -44 -6 c-24 -6 -52 2 -70 12 z" fill="#f4b942" stroke="#1e2b58" stroke-width="3"/></g>
+<g font-size="15" font-weight="bold" fill="#1e2b58">
+<text x="352" y="140">LIVER</text><line x1="348" y1="136" x2="300" y2="140" stroke="#1e2b58" stroke-width="2"/>
+<text x="18" y="232">STOMACH</text><line x1="96" y1="228" x2="196" y2="244" stroke="#1e2b58" stroke-width="2"/>
+<text x="14" y="368">PANCREAS</text><line x1="104" y1="364" x2="158" y2="330" stroke="#1e2b58" stroke-width="2"/>
+</g>
+</svg>
+</div>
+<div id="organCard"></div>
+<div class="narrow">
+<div class="notebox"><span class="t">🔎 Note:</span> Benedict's reagent can be used when diabetes is suspected by adding drops of it to a sample of the urine of the person suspected of having the disease and observing the resulting colour.</div>
+<div class="sharh">السكري بيحصل بتراكم الجلوكوز في الدم لنقص الأنسولين من البنكرياس. الأعراض: نقص وزن، كثرة تبول، عطش شديد. دوس على الأعضاء في الرسمة تعرف وظيفتها، وجرب زر الفك 🧩.</div>
+</div>
+<div class="quiz" data-pool="diabetes"><h4>🎯 Test yourself · اختبر نفسك</h4><div class="qbox"></div></div>
+</section>
+
+<section id="s7">
+<div class="sec-h"><span class="em">🥔</span><h2>Detection of starch</h2><span class="ar2">الكشف عن النشا</span></div>
+<div class="narrow"><p>• Starch can be detected using a <span class="hl">yellowish-brown iodine solution</span>, as shown in the following activity:</p></div>
+<div class="fig">
+<div class="tools"><button class="toolbtn toolzoom" title="×2.5">🔍</button></div>
+<svg id="a2svg" viewBox="0 0 360 400">
+<g><rect x="40" y="70" width="44" height="62" rx="9" fill="#7a4a2a" stroke="#4a2a12" stroke-width="2"/><rect x="54" y="54" width="16" height="18" fill="#7a4a2a"/><rect x="51" y="46" width="22" height="10" rx="3" fill="#3a2a1a"/><rect x="46" y="86" width="32" height="26" rx="3" fill="#f0e6d2"/></g>
+<g transform="rotate(18 262 66)"><circle cx="262" cy="46" r="9" fill="#d24b41"/><rect x="258" y="54" width="8" height="34" rx="3" fill="#b8862b" stroke="#8a621a"/></g>
+<g id="pDrops"><circle cx="238" cy="108" r="4" fill="#b8862b"/><circle cx="252" cy="108" r="4" fill="#b8862b"/><circle cx="224" cy="108" r="4" fill="#b8862b"/></g>
+<ellipse cx="190" cy="170" rx="88" ry="56" fill="#caa06a" stroke="#8a6a42" stroke-width="3"/><ellipse cx="190" cy="170" rx="64" ry="39" fill="#f4e6c8"/>
+<circle class="spot" cx="162" cy="160" r="6" fill="#b8862b"/><circle class="spot" cx="192" cy="150" r="6" fill="#b8862b"/><circle class="spot" cx="222" cy="164" r="6" fill="#b8862b"/><circle class="spot" cx="176" cy="184" r="6" fill="#b8862b"/><circle class="spot" cx="208" cy="184" r="6" fill="#b8862b"/>
+<path d="M300 160 l0 60" stroke="#d24b41" stroke-width="4"/><polygon points="294,220 306,220 300,232" fill="#d24b41"/>
+<g id="pAfter"><ellipse cx="190" cy="310" rx="88" ry="52" fill="#caa06a" stroke="#8a6a42" stroke-width="3"/><ellipse cx="190" cy="310" rx="64" ry="36" fill="#2a3f8f"/><ellipse cx="170" cy="300" rx="14" ry="8" fill="#1d2f70"/><ellipse cx="212" cy="318" rx="16" ry="9" fill="#1d2f70"/></g>
+<text x="190" y="392" font-size="11" text-anchor="middle" fill="#8a5ba6" font-weight="bold">Potato starch turns iodine solution into dark blue</text>
+</svg>
+</div>
+<button class="btn run" id="a2run">▶ Run experiment · شغّل التجربة</button>
+<div class="narrow">
+<p class="redhead" style="text-align:start">Activity ② : Detection of starch — Steps:</p>
+<ol class="steps"><li>Cut a potato tuber in half.</li><li>Add drops of iodine solution to the inner part of the potato.</li></ol>
+<div class="obc ob"><span class="t">Observation:</span> The yellowish-brown colour of the iodine changes to <span class="hl">dark blue</span>.</div>
+<div class="obc cc"><span class="t">Conclusion:</span> The starch in the potatoes changes the colour of the iodine solution from yellowish brown to dark blue.</div>
+<div class="sharh">بننقط يود على بطاطس مقطوعة، اللون بيتحول أزرق غامق — ده كشف النشا.</div>
+</div>
+<div class="quiz" data-pool="starch"><h4>🎯 Test yourself · اختبر نفسك</h4><div class="qbox"></div></div>
+</section>
+
+<section id="s8">
+<div class="sec-h"><span class="em">🌱</span><h2>The importance of carbohydrates</h2><span class="ar2">أهمية الكربوهيدرات</span></div>
+<div class="narrow">
+<p>• There are many ways in which living organisms benefit from carbohydrates, as follows:</p>
+<div class="cards3" style="grid-template-columns:1fr 1fr">
+<div class="ncard"><span class="ord">1</span><b>A source of energy.</b></div>
+<div class="ncard"><span class="ord">2</span><b>Supporting the brain functions.</b></div>
+<div class="ncard"><span class="ord">3</span><b>Plant cell walls are made of cellulose.</b></div>
+<div class="ncard"><span class="ord">4</span><b>Participating in the formation of the nectar of flowers.</b></div>
+</div>
+<p class="redhead">Carbohydrates are used in many industries, such as making:</p>
+<div class="cards3">
+<div class="ncard"><span class="ord">1</span><span class="em">📄</span><b>Paper from cellulose.</b></div>
+<div class="ncard"><span class="ord">2</span><span class="em">🧴</span><b>Some cosmetics from sugars and starch.</b></div>
+<div class="ncard"><span class="ord">3</span><span class="em">💊</span><b>Medicine capsules.</b></div>
+</div>
+</div>
+<div class="fig">
+<div class="tools"><button class="toolbtn toolzoom" title="×2.5">🔍</button></div>
+<svg viewBox="0 0 420 320">
+<defs><filter id="bl"><feGaussianBlur stdDeviation="4"/></filter></defs>
+<ellipse cx="100" cy="150" rx="70" ry="26" fill="#c000c0" filter="url(#bl)"/><ellipse cx="218" cy="112" rx="70" ry="26" fill="#c000c0" filter="url(#bl)"/><ellipse cx="330" cy="150" rx="70" ry="26" fill="#c000c0" filter="url(#bl)"/><ellipse cx="215" cy="215" rx="76" ry="26" fill="#c000c0" filter="url(#bl)"/><ellipse cx="115" cy="282" rx="70" ry="26" fill="#c000c0" filter="url(#bl)"/><ellipse cx="318" cy="282" rx="70" ry="26" fill="#c000c0" filter="url(#bl)"/>
+<g class="cap" transform="rotate(-25 100 120)"><path d="M64 120 a17 17 0 0 1 17 -17 h20 v34 h-20 a17 17 0 0 1 -17 -17z" fill="#2277cc"/><path d="M101 103 h20 a17 17 0 0 1 17 17 a17 17 0 0 1 -17 17 h-20 z" fill="#f5f5f5"/><ellipse cx="82" cy="110" rx="12" ry="5" fill="#fff" opacity=".75"/></g>
+<g class="cap" transform="rotate(15 218 82)"><path d="M182 82 a17 17 0 0 1 17 -17 h20 v34 h-20 a17 17 0 0 1 -17 -17z" fill="#cc2222"/><path d="M219 65 h20 a17 17 0 0 1 17 17 a17 17 0 0 1 -17 17 h-20 z" fill="#f5f5f5"/><ellipse cx="200" cy="72" rx="12" ry="5" fill="#fff" opacity=".75"/></g>
+<g class="cap" transform="rotate(-30 330 120)"><path d="M294 120 a17 17 0 0 1 17 -17 h20 v34 h-20 a17 17 0 0 1 -17 -17z" fill="#229944"/><path d="M331 103 h20 a17 17 0 0 1 17 17 a17 17 0 0 1 -17 17 h-20 z" fill="#f5f5f5"/><ellipse cx="312" cy="110" rx="12" ry="5" fill="#fff" opacity=".75"/></g>
+<g class="cap"><path d="M175 185 a17 17 0 0 1 17 -17 h22 v34 h-22 a17 17 0 0 1 -17 -17z" fill="#f2c21b"/><path d="M214 168 h22 a17 17 0 0 1 17 17 a17 17 0 0 1 -17 17 h-22 z" fill="#f3c6e8" opacity=".55" stroke="#d98cc8"/><circle cx="222" cy="182" r="3" fill="#efe0da"/><circle cx="230" cy="190" r="3" fill="#efe0da"/><circle cx="238" cy="180" r="3" fill="#efe0da"/><circle cx="244" cy="190" r="3" fill="#efe0da"/><ellipse cx="196" cy="175" rx="12" ry="5" fill="#fff" opacity=".75"/></g>
+<g class="cap" transform="rotate(20 115 252)"><path d="M79 252 a17 17 0 0 1 17 -17 h20 v34 h-20 a17 17 0 0 1 -17 -17z" fill="#ee7722"/><path d="M116 235 h20 a17 17 0 0 1 17 17 a17 17 0 0 1 -17 17 h-20 z" fill="#f5f5f5"/><ellipse cx="97" cy="242" rx="12" ry="5" fill="#fff" opacity=".75"/></g>
+<g class="cap" transform="rotate(-20 318 252)"><path d="M282 252 a17 17 0 0 1 17 -17 h20 v34 h-20 a17 17 0 0 1 -17 -17z" fill="#199988"/><path d="M319 235 h20 a17 17 0 0 1 17 17 a17 17 0 0 1 -17 17 h-20 z" fill="#f5f5f5"/><ellipse cx="300" cy="242" rx="12" ry="5" fill="#fff" opacity=".75"/></g>
+</svg>
+<div class="figcap">Medicine capsules</div>
+</div>
+<div class="sharh">فوايد الكربوهيدرات: طاقة، دعم وظائف المخ، سليلوز لجدر الخلايا، رحيق الأزهار. وصناعات: ورق، مستحضرات تجميل، وكبسولات أدوية.</div>
+<div class="quiz" data-pool="importance"><h4>🎯 Test yourself · اختبر نفسك</h4><div class="qbox"></div></div>
+</section>
+
+<section id="s9">
+<div class="sec-h"><span class="em">⚖️</span><h2>Nutritional awareness</h2><span class="ar2">وعي غذائي</span></div>
+<div class="narrow">
+<div class="defbox"><span class="t">⚖️ Nutritional awareness:</span> It is recommended to <span class="hl">reduce carbohydrates in the form of white sugar and white flour</span> in the meals, and to <span class="hl">rely on whole grains</span>.</div>
+<div class="sharh">قلّل من السكر الأبيض والدقيق الأبيض في أكلك، واعتمد على الحبوب الكاملة.</div>
+</div>
+</section>
+
+<section id="s10">
+<div class="sec-h"><span class="em">🧈</span><h2>Second: Fats</h2><span class="ar2">ثانياً: الدهون</span></div>
+<div class="narrow">
+<div class="defbox"><span class="t">Fats:</span> Organic chemical compounds that contain <span class="hl">the same elements as carbohydrates</span>.</div>
+<p>• The chemical composition of both fats and carbohydrates is similar… <span class="gr">G.R.?</span><br>Because each of them consists of the following elements:</p>
+<div class="cards3">
+<div class="ncard"><b style="color:#444">• Carbon (C)</b></div>
+<div class="ncard"><b style="color:var(--blue)">• Hydrogen (H)</b></div>
+<div class="ncard"><b style="color:var(--red)">• Oxygen (O)</b></div>
+</div>
+<p class="redhead">From the sources of fats in food</p>
+<div class="srcgrid">
+<div class="src"><span class="em">🧈</span>Butter</div><div class="src"><span class="em">🥛</span>Milk</div>
+<div class="src"><span class="em">🥩</span>Meat</div><div class="src"><span class="em">🫒</span>Vegetable oils</div>
+<div class="src"><span class="em">🥚</span>Eggs</div><div class="src"><span class="em">🥜</span>Many types of nuts</div>
+</div>
+<p>∗ <b style="color:var(--purple-d)">Carbohydrates and fats</b> are essential chemical compounds for the transport and storage of energy in living organisms. Despite the similarity in the chemical composition of both fats and carbohydrates, fats provide the body with <span class="hl">more energy</span> than carbohydrates.</p>
+<span class="qa-h">Q</span><p>Which provides the body with more energy (20 g of carbohydrates or 20 g of fats)? With explanation.</p>
+<div class="ans"><span class="qa-h" style="background:#35b06f">A</span> <b>20 g of fats, because</b> fats provide the body with more energy than carbohydrates.</div>
+<div class="sharh">الدهون فيها نفس عناصر الكربوهيدرات بالظبط (كربون وهيدروجين وأكسجين) عشان كده تركيبهما الكيميائي متشابه. بس الدهون بتدي الجسم طاقة أكتر — يعني ٢٠ جم دهون طاقتها أكبر من ٢٠ جم كربوهيدرات. ومصادرها: الزبدة واللحوم والبيض واللبن والزيوت النباتية والمكسرات.</div>
+</div>
+<div class="quiz" data-pool="fats"><h4>🎯 Test yourself · اختبر نفسك</h4><div class="qbox"></div></div>
+</section>
+
+<section id="s11">
+<div class="sec-h"><span class="em">🫀</span><h2>Medical awareness: Cholesterol</h2><span class="ar2">وعي طبي: الكوليسترول</span></div>
+<div class="narrow">
+<p>▸ <b>Cholesterol</b> is a fatty substance found with body fats.</p>
+<div class="defbox"><span class="t">Cholesterol:</span> A fatty substance its deposition on the inside walls of arteries leads to <span class="hl">their blockage</span>.</div>
+<p class="redhead" style="text-align:start">▸ Cholesterol risks:</p>
+<div class="sympt"><span class="symp">The deposition of cholesterol inside the arteries leads to their blockage</span><span class="symp" style="background:#fde3e1;border-color:#e8b8b4">therefore ➜</span><span class="symp">The risk of heart diseases increases.</span></div>
+</div>
+<div class="fig">
+<div class="tools"><button class="toolbtn toolzoom" title="×2.5">🔍</button></div>
+<svg id="heartSvg" viewBox="0 0 420 480">
+<rect x="176" y="58" width="24" height="150" rx="10" fill="#3f6fb0" stroke="#274b80" stroke-width="2.5"/>
+<rect x="205" y="36" width="13" height="32" rx="6" fill="#d0342c"/><rect x="228" y="32" width="13" height="36" rx="6" fill="#d0342c"/><rect x="251" y="36" width="13" height="32" rx="6" fill="#d0342c"/>
+<path d="M222 92 c0 -34 52 -34 52 0 v52" fill="none" stroke="#d0342c" stroke-width="24" stroke-linecap="round"/>
+<path d="M262 118 c20 -6 34 4 38 18" stroke="#3f6fb0" stroke-width="16" fill="none" stroke-linecap="round"/>
+<g class="tapinfo" data-set="heart" data-key="heart">
+<ellipse cx="150" cy="172" rx="24" ry="28" fill="#8e2f4f" stroke="#5f1f35" stroke-width="2.5"/>
+<ellipse cx="272" cy="170" rx="21" ry="26" fill="#8e2f4f" stroke="#5f1f35" stroke-width="2.5"/>
+<path d="M148 150 c-26 66 6 140 62 162 c56 -22 88 -96 62 -162 c-14 -38 -42 -46 -62 -28 c-20 -18 -48 -10 -62 28 z" fill="#b8342f" stroke="#7a1f1f" stroke-width="3"/>
+<path d="M196 176 c10 40 10 84 4 118" stroke="#e8a33d" stroke-width="10" fill="none" opacity=".9"/>
+<path d="M232 180 c-4 40 -2 80 -8 110" stroke="#e8a33d" stroke-width="8" fill="none" opacity=".8"/>
+<path d="M204 190 c-8 30 -6 60 -2 84 M204 190 c10 26 14 52 12 76" stroke="#3f6fb0" stroke-width="3" fill="none"/>
+</g>
+<text x="60" y="205" font-size="15" font-weight="bold">Artery</text><line x1="112" y1="200" x2="166" y2="208" stroke="#333" stroke-width="1.5"/>
+<line x1="196" y1="300" x2="150" y2="360" stroke="#e8834a" stroke-width="2"/><line x1="262" y1="290" x2="300" y2="350" stroke="#e8834a" stroke-width="2"/>
+<g class="tapinfo" data-set="heart" data-key="blocked" transform="translate(38,352) rotate(-16)">
+<rect x="0" y="0" width="185" height="72" rx="36" fill="#c0392b" stroke="#7a1f1f" stroke-width="3"/>
+<rect x="13" y="15" width="159" height="42" rx="21" fill="#7a2626"/>
+<circle cx="30" cy="18" r="7" fill="#e8c363"/><circle cx="48" cy="15" r="8" fill="#e8c363"/><circle cx="68" cy="17" r="8" fill="#e8c363"/><circle cx="88" cy="20" r="7" fill="#e8c363"/><circle cx="108" cy="17" r="8" fill="#e8c363"/><circle cx="128" cy="15" r="7" fill="#e8c363"/><circle cx="146" cy="18" r="6" fill="#e8c363"/>
+<circle cx="34" cy="54" r="7" fill="#e8c363"/><circle cx="54" cy="57" r="8" fill="#e8c363"/><circle cx="74" cy="55" r="8" fill="#e8c363"/><circle cx="94" cy="52" r="7" fill="#e8c363"/><circle cx="114" cy="55" r="8" fill="#e8c363"/><circle cx="134" cy="57" r="7" fill="#e8c363"/><circle cx="150" cy="54" r="6" fill="#e8c363"/>
+<circle cx="70" cy="36" r="6" fill="#d03030" stroke="#8c1f1f"/><circle cx="92" cy="36" r="6" fill="#d03030" stroke="#8c1f1f"/><circle cx="114" cy="36" r="6" fill="#d03030" stroke="#8c1f1f"/>
+<rect x="-14" y="28" width="16" height="14" rx="6" fill="#c0392b" stroke="#7a1f1f" stroke-width="2"/>
+</g>
+<g class="tapinfo" data-set="heart" data-key="healthy" transform="translate(228,352) rotate(-12)">
+<rect x="0" y="0" width="185" height="72" rx="36" fill="#c0392b" stroke="#7a1f1f" stroke-width="3"/>
+<rect x="13" y="13" width="159" height="46" rx="23" fill="#7a2626"/>
+<circle cx="40" cy="26" r="7" fill="#d03030" stroke="#8c1f1f"/><circle cx="70" cy="40" r="7" fill="#d03030" stroke="#8c1f1f"/><circle cx="100" cy="26" r="7" fill="#d03030" stroke="#8c1f1f"/><circle cx="128" cy="40" r="7" fill="#d03030" stroke="#8c1f1f"/><circle cx="152" cy="28" r="7" fill="#d03030" stroke="#8c1f1f"/><circle cx="58" cy="50" r="7" fill="#d03030" stroke="#8c1f1f"/><circle cx="116" cy="52" r="7" fill="#d03030" stroke="#8c1f1f"/>
+</g>
+<text x="30" y="330" font-size="15" font-weight="bold">Cholesterol</text><line x1="118" y1="334" x2="128" y2="368" stroke="#333" stroke-width="1.5"/>
+<text x="252" y="322" font-size="15" font-weight="bold">Red blood cells</text><line x1="300" y1="330" x2="310" y2="378" stroke="#333" stroke-width="1.5"/><line x1="330" y1="330" x2="348" y2="372" stroke="#333" stroke-width="1.5"/>
+<text x="128" y="452" font-size="14" font-weight="bold" text-anchor="middle">Blocked artery</text>
+<text x="320" y="452" font-size="14" font-weight="bold" text-anchor="middle">Healthy artery</text>
+<text x="210" y="476" font-size="13" font-weight="bold" text-anchor="middle" fill="#8a5ba6">Cholesterol causes blockage of the heart arteries</text>
+</svg>
+</div>
+<div id="heartCard"></div>
+<div class="narrow">
+<p class="redhead">▸ To maintain a stable normal level of cholesterol in blood, it requires the following:</p>
+<div class="cards3">
+<div class="ncard"><span class="ord">1</span><span class="em">🚫</span><b>Reduce your intake of fats and fried foods.</b></div>
+<div class="ncard"><span class="ord">2</span><span class="em">🏃</span><b>Exercise regularly.</b></div>
+<div class="ncard"><span class="ord">3</span><span class="em">💧</span><b>Drink plenty of water.</b></div>
+</div>
+<div class="sharh">الكوليسترول مادة دهنية بتترسب على الجدران الداخلية للشرايين فتسدّها — دوس على الشريان المسدود والسليم والقلب في الرسمة تشوف الفرق — وعشان نحافظ على مستوى طبيعي: نقلل من الدهون والمقليات، نتمرن بانتظام، ونشرب مية كتير.</div>
+</div>
+<div class="quiz" data-pool="cholesterol"><h4>🎯 Test yourself · اختبر نفسك</h4><div class="qbox"></div></div>
+</section>
+
+<section id="s12">
+<div class="sec-h"><span class="em">🍞</span><h2>Question ? Answer — Excess carbohydrates</h2><span class="ar2">سؤال وجواب — زيادة الكربوهيدرات</span></div>
+<div class="narrow">
+<span class="qa-h">Q</span><p>What happens when you consume more carbohydrates than the body needs?</p>
+<div class="ans"><span class="qa-h" style="background:#35b06f">A</span> The excess is stored in:<br>
+- The liver and muscles in the form of <span class="hl">glycogen</span>.<br>
+- The body's cells in the form of <span class="hl">fats</span> that are burned when needed, such as during periods of fasting or when following diets.</div>
+</div>
+<div class="fig">
+<div class="tools"><button class="toolbtn toolzoom" title="×2.5">🔍</button></div>
+<svg viewBox="0 0 420 210">
+<text x="52" y="40" font-size="10" text-anchor="middle">Foods rich</text><text x="52" y="52" font-size="10" text-anchor="middle">in glucose</text>
+<text x="52" y="95" font-size="34" text-anchor="middle">🍞</text>
+<line x1="86" y1="88" x2="130" y2="88" stroke="#d24b41" stroke-width="2"/><polygon points="130,84 140,88 130,92" fill="#d24b41"/>
+<polygon points="14,0 7,12.1 -7,12.1 -14,0 -7,-12.1 7,-12.1" transform="translate(165,88)" fill="#5a9fd4" stroke="#2b6fd4" stroke-width="2"/>
+<text x="165" y="116" font-size="9" text-anchor="middle">Excess</text><text x="165" y="126" font-size="9" text-anchor="middle">glucose</text>
+<path d="M182 82 C 240 60 280 60 330 66" fill="none" stroke="#d24b41" stroke-width="2"/><polygon points="330,62 340,66 330,70" fill="#d24b41"/>
+<text x="252" y="48" font-size="9" text-anchor="middle" fill="#556">Stored in the form of Glycogen in</text>
+<path d="M182 94 C 240 120 260 140 300 158" fill="none" stroke="#d24b41" stroke-width="2"/><polygon points="298,152 308,160 296,162" fill="#d24b41"/>
+<text x="252" y="120" font-size="9" text-anchor="middle" fill="#556">Fats in</text>
+<path d="M345 40 c-8 -8 -22 -6 -26 4 c-3 10 6 20 16 22 c5 1 8 -1 10 -4 c1 3 4 5 8 4 c12 -2 20 -18 17 -28 c-3 -9 -14 -12 -25 2 z" fill="#8c2f2f" stroke="#5f1f1f" stroke-width="2"/><text x="392" y="58" font-size="10">Liver</text>
+<path d="M340 84 c14 -4 30 0 34 8 c-6 8 -22 10 -34 6 c-6 -2 -6 -12 0 -14 z" fill="#c0392b" stroke="#7a1f1f" stroke-width="2"/><text x="392" y="96" font-size="10">Muscles</text>
+<g><circle cx="320" cy="160" r="9" fill="#d8b98a" stroke="#a9895a"/><circle cx="336" cy="154" r="9" fill="#d8b98a" stroke="#a9895a"/><circle cx="350" cy="162" r="9" fill="#d8b98a" stroke="#a9895a"/><circle cx="328" cy="172" r="9" fill="#d8b98a" stroke="#a9895a"/><circle cx="344" cy="174" r="9" fill="#d8b98a" stroke="#a9895a"/><circle cx="336" cy="163" r="9" fill="#e2c79b" stroke="#a9895a"/></g><text x="392" y="170" font-size="10">Body's cells</text>
+</svg>
+</div>
+<div class="sharh">لو أكلت كربوهيدرات زيادة عن احتياج الجسم، الزيادة بتتخزن: في الكبد والعضلات على هيئة جلايكوجين، وفي خلايا الجسم على هيئة دهون بتتحرق وقت الاحتياج زي فترات الصيام أو الرجيم.</div>
+<div class="quiz" data-pool="store"><h4>🎯 Test yourself · اختبر نفسك</h4><div class="qbox"></div></div>
+</section>
+
+<section id="s13">
+<div class="sec-h"><span class="em">🥚</span><h2>Detection of fats</h2><span class="ar2">الكشف عن الدهون</span></div>
+<div class="narrow"><p>∗ Fats can be detected using <span class="hl">red Sudan (IV) solution</span>, as shown in the following activity:</p></div>
+<div class="fig">
+<div class="tools"><button class="toolbtn toolzoom" title="×2.5">🔍</button></div>
+<svg id="a3svg" viewBox="0 0 420 250">
+<g><path d="M60 40 l24 14 l-10 16 l-24 -14 z" fill="#f2c21b" stroke="#c9992e" stroke-width="2"/><path id="a3stream" d="M78 62 q4 20 2 40" stroke="#f2a91b" stroke-width="5" fill="none"/></g>
+<g stroke="#8fb4c8" stroke-width="2.5" fill="rgba(255,255,255,.55)"><rect x="66" y="110" width="26" height="110" rx="12"/></g>
+<rect class="liq filled" x="70" y="150" width="18" height="66" rx="8" fill="#f6d8b8" style="transform:scaleY(1)"/>
+<text x="79" y="240" font-size="9" text-anchor="middle">1</text>
+<path d="M120 165 l26 0" stroke="#8a5ba6" stroke-width="3"/><polygon points="146,160 156,165 146,170" fill="#8a5ba6"/>
+<g transform="rotate(15 210 60)"><circle cx="210" cy="42" r="9" fill="#333"/><rect x="206" y="50" width="8" height="32" rx="3" fill="#d24b41" stroke="#a02020"/></g>
+<text x="258" y="46" font-size="9" fill="#a02020" font-weight="bold">Sudan (IV)</text><text x="258" y="57" font-size="9" fill="#a02020" font-weight="bold">solution</text>
+<g id="a3drops"><circle cx="204" cy="96" r="4" fill="#d24b41"/><circle cx="210" cy="96" r="4" fill="#d24b41"/></g>
+<g stroke="#8fb4c8" stroke-width="2.5" fill="rgba(255,255,255,.55)"><rect x="196" y="110" width="26" height="110" rx="12"/></g>
+<rect class="liq" x="200" y="140" width="18" height="76" rx="8" fill="#f2c9a0" style="transform:scaleY(1)"/>
+<text x="209" y="240" font-size="9" text-anchor="middle">2</text>
+<path d="M252 165 l26 0" stroke="#8a5ba6" stroke-width="3"/><polygon points="278,160 288,165 278,170" fill="#8a5ba6"/>
+<g id="a3tube3" stroke="#8fb4c8" stroke-width="2.5" fill="rgba(255,255,255,.55)"><rect x="318" y="100" width="26" height="120" rx="12" transform="rotate(14 331 160)"/></g>
+<g transform="rotate(14 331 160)"><rect class="liq" x="322" y="140" width="18" height="76" rx="8" fill="#e8a05b" style="transform:scaleY(1)"/><rect id="a3layer" x="322" y="128" width="18" height="14" rx="6" fill="#d94a2c"/></g>
+<line x1="300" y1="228" x2="370" y2="228" stroke="#556" stroke-width="3"/><line x1="310" y1="228" x2="306" y2="244" stroke="#556" stroke-width="3"/><line x1="360" y1="228" x2="364" y2="244" stroke="#556" stroke-width="3"/>
+<text x="331" y="246" font-size="9" text-anchor="middle">3</text>
+</svg>
+</div>
+<button class="btn run" id="a3run">▶ Run experiment · شغّل التجربة</button>
+<div class="narrow">
+<p class="redhead" style="text-align:start">Activity ③ : Detection of fats — Steps:</p>
+<ol class="steps">
+<li>Separate the egg yolk (yellow) "rich in fat" from the albumen (egg white).</li>
+<li>Add the egg yolk to distilled water and shake to make a mixture.</li>
+<li>Add 10 mL of Sudan (IV) solution to 10 mL of the previous mixture with shaking.</li>
+</ol>
+<div class="obc ob"><span class="t">Observation:</span> A <span class="hl">red-orange colour</span> is formed on the surface of the mixture.</div>
+<div class="obc cc"><span class="t">Conclusion:</span> Sudan (IV) solution gives a red-orange colour on the surfaces of mixtures that contain fat.</div>
+<div class="figcap">Adding Sudan (IV) solution</div>
+<div class="sharh">بنفصل الصفار (الغني بالدهن) عن البياض، بنرجّه في ماء مقطر، وبنضيف ١٠ مللي من محلول سودان (٤) الأحمر على ١٠ مللي من المخلوط مع الرج — هتتكون طبقة حمراء برتقالية على السطح، وده دليل وجود الدهون.</div>
+</div>
+<div class="quiz" data-pool="sudan"><h4>🎯 Test yourself · اختبر نفسك</h4><div class="qbox"></div></div>
+</section>
+
+<section id="s14">
+<div class="sec-h"><span class="em">🧪</span><h2>Question ? Answer — Testing two samples</h2><span class="ar2">سؤال وجواب — اختبار عينتين</span></div>
+<div class="narrow">
+<span class="qa-h">Q</span><p>The opposite table shows the results of testing two samples of mixtures extracted from two foods:<br>Which of the following is correct?</p>
+</div>
+<div class="tblwrap">
+<table>
+<tr><th>Reagent ╲ Sample</th><th>Iodine solution</th><th>Benedict's solution</th><th>Sudan (IV) solution</th></tr>
+<tr><th>(1)</th><td>Yellowish brown</td><td>Orange</td><td>Red-orange on the surface</td></tr>
+<tr><th>(2)</th><td>Dark blue</td><td>Blue</td><td>Red-orange on the surface</td></tr>
+</table>
+</div>
+<div class="narrow">
+<p>ⓐ Sample (2) contains only fats. — ⓑ Sample (2) contains starch and fats. — ⓒ Sample (1) contains starch and glucose. — ⓓ Sample (1) contains starch only.</p>
+<div class="ans"><b>Idea of solution:</b><br>
+∵ - The yellowish-brown iodine solution forms a dark blue colour with starch.<br>
+- Blue Benedict's solution forms colours (green, orange or red) with glucose solution.<br>
+- Sudan (IV) solution forms a red-orange colour on the surfaces of fat mixtures.<br>
+∴ Sample (1) contains glucose and fats, and sample (2) contains starch and fats.</div>
+<div class="ans"><b>Solution:</b> The correct choice: <span class="hl">ⓑ</span></div>
+<div class="sharh">حلّل الجدول: العينة (١) لونها برتقالي مع بندكت يعني فيها جلوكوز، ومع سودان حمراء برتقالية يعني فيها دهون — يعني جلوكوز + دهون. العينة (٢) أزرق غامق مع اليود يعني نشا، وحمراء برتقالية مع سودان يعني دهون — يعني نشا + دهون. الإجابة الصحيحة (ب).</div>
+</div>
+<div class="quiz" data-pool="samples"><h4>🎯 Test yourself · اختبر نفسك</h4><div class="qbox"></div></div>
+</section>
+
+<section id="s15">
+<div class="sec-h"><span class="em">🍗</span><h2>Third: Proteins</h2><span class="ar2">ثالثاً: البروتينات</span></div>
+<div class="narrow">
+<div class="defbox"><span class="t">Proteins:</span> Organic chemical compounds consisting of water-soluble basic units, called <span class="hl">amino acids</span>.</div>
+<p>∗ <b style="color:var(--purple-d)">Enzymes</b> help in converting amino acids into proteins.</p>
+</div>
+<div class="fig">
+<div class="tools"><button class="toolbtn toolzoom" title="×2.5">🔍</button></div>
+<svg id="aasvg" viewBox="0 0 420 170">
+<g><circle cx="70" cy="60" r="10" fill="#d94a56"/><circle cx="95" cy="45" r="10" fill="#e8c33a"/><circle cx="55" cy="90" r="10" fill="#e8c33a"/><circle cx="85" cy="85" r="10" fill="#3aa06b"/><circle cx="110" cy="70" r="10" fill="#d94a56"/><circle cx="70" cy="115" r="10" fill="#3aa06b"/><circle cx="105" cy="110" r="10" fill="#d94a56"/><circle cx="45" cy="60" r="10" fill="#4a6fc0"/><polygon points="130,80 150,115 110,115" fill="#3aa06b"/></g>
+<text x="85" y="150" font-size="10" text-anchor="middle" font-weight="bold">Different amino acids</text>
+<path d="M165 88 l60 0" stroke="#8a94a8" stroke-width="10"/><polygon points="225,74 250,88 225,102" fill="#8a94a8"/><text x="196" y="80" font-size="9" text-anchor="middle">Enzymes</text>
+<g><path class="cl" d="M270 55 q15 -12 30 0 q15 12 30 0 q12 -10 26 -2" fill="none" stroke="#9aa4b8" stroke-width="2.5"/>
+<path class="cl" d="M268 95 q18 14 36 4 q18 -10 36 2 q14 8 26 0" fill="none" stroke="#9aa4b8" stroke-width="2.5"/>
+<path class="cl" d="M285 130 q15 10 30 0 q12 -8 24 0" fill="none" stroke="#9aa4b8" stroke-width="2.5"/>
+<circle cx="270" cy="55" r="9" fill="#4a6fc0"/><circle cx="300" cy="52" r="9" fill="#d94a56"/><circle cx="330" cy="55" r="9" fill="#e8c33a"/><polygon points="368,40 384,68 352,68" fill="#3aa06b"/>
+<circle cx="268" cy="95" r="9" fill="#3aa06b"/><circle cx="304" cy="99" r="9" fill="#d94a56"/><circle cx="340" cy="97" r="9" fill="#e8c33a"/>
+<circle cx="285" cy="130" r="9" fill="#3aa06b"/><circle cx="315" cy="130" r="9" fill="#d94a56"/><circle cx="339" cy="130" r="9" fill="#e8c33a"/></g>
+<text x="320" y="158" font-size="10" text-anchor="middle" font-weight="bold">Protein</text>
+<text x="210" y="168" font-size="10" text-anchor="middle" fill="#8a5ba6" font-weight="bold">Proteins are made up of amino acids</text>
+</svg>
+</div>
+<button class="btn run" id="aarun">▶ Build protein · كوِّن البروتين</button>
+<div class="narrow">
+<p>∗ The amino acids that make up proteins are composed of the same elements found in both carbohydrates and fats, which are:</p>
+<div class="cards3" style="grid-template-columns:1fr 1fr">
+<div class="ncard"><b style="color:#444">• Carbon (C)</b></div>
+<div class="ncard"><b style="color:var(--blue)">• Hydrogen (H)</b></div>
+<div class="ncard"><b style="color:var(--red)">• Oxygen (O)</b></div>
+<div class="ncard"><b style="color:var(--purple-d)">• In addition to nitrogen (N)</b></div>
+</div>
+</div>
+<div class="fig">
+<div class="tools"><button class="toolbtn toolzoom" title="×2.5">🔍</button></div>
+<svg viewBox="0 0 260 170">
+<line x1="95" y1="80" x2="125" y2="80" stroke="#556" stroke-width="3"/><line x1="125" y1="80" x2="155" y2="80" stroke="#556" stroke-width="3"/>
+<line x1="125" y1="80" x2="110" y2="50" stroke="#556" stroke-width="3"/><line x1="155" y1="80" x2="170" y2="50" stroke="#556" stroke-width="3"/>
+<line x1="125" y1="80" x2="112" y2="112" stroke="#556" stroke-width="3"/><line x1="155" y1="80" x2="168" y2="112" stroke="#556" stroke-width="3"/>
+<line x1="110" y1="50" x2="90" y2="35" stroke="#556" stroke-width="2.5"/><line x1="170" y1="50" x2="190" y2="35" stroke="#556" stroke-width="2.5"/><line x1="170" y1="50" x2="192" y2="55" stroke="#556" stroke-width="2.5"/>
+<circle cx="125" cy="80" r="11" fill="#222"/><circle cx="155" cy="80" r="11" fill="#222"/>
+<circle cx="110" cy="50" r="10" fill="#d03030"/><circle cx="112" cy="112" r="10" fill="#d03030"/>
+<circle cx="170" cy="50" r="10" fill="#4a6fc0"/>
+<circle cx="90" cy="35" r="6" fill="#cfd6e4"/><circle cx="190" cy="35" r="6" fill="#cfd6e4"/><circle cx="192" cy="55" r="6" fill="#cfd6e4"/><circle cx="168" cy="112" r="6" fill="#cfd6e4"/>
+<text x="200" y="30" font-size="8">Hydrogen</text><text x="200" y="52" font-size="8">Nitrogen</text><text x="180" y="116" font-size="8">Hydrogen</text><text x="20" y="120" font-size="8">Oxygen</text><text x="200" y="84" font-size="8">Carbon</text>
+<line x1="104" y1="114" x2="40" y2="118" stroke="#556" stroke-width="1"/><line x1="161" y1="82" x2="198" y2="82" stroke="#556" stroke-width="1"/>
+<text x="130" y="160" font-size="10" text-anchor="middle" fill="#8a5ba6" font-weight="bold">Amino acid molecule</text>
+</svg>
+</div>
+<div class="narrow">
+<p class="redhead">From the sources of proteins in food</p>
+<div class="srcgrid">
+<div class="src" style="background:#fdeeee;border-color:#f0c2c2"><span class="em">🥩</span>Red meat</div>
+<div class="src" style="background:#fdeeee;border-color:#f0c2c2"><span class="em">🍗</span>White meat</div>
+<div class="src" style="background:#fdeeee;border-color:#f0c2c2"><span class="em">🐟</span>Fish</div>
+<div class="src" style="background:#fdeeee;border-color:#f0c2c2"><span class="em">🥚</span>Eggs</div>
+<div class="src" style="background:#fdeeee;border-color:#f0c2c2"><span class="em">🥛</span>Milk and its derivatives</div>
+<div class="src" style="background:#eef7ea;border-color:#cfe4c8"><span class="em">🫘</span>Legumes</div>
+<div class="src" style="background:#eef7ea;border-color:#cfe4c8"><span class="em">🥜</span>Nuts</div>
+<div class="src" style="background:#eef7ea;border-color:#cfe4c8"><span class="em">🌱</span>Soybeans</div>
+</div>
+<div class="notebox"><span class="t">🔎 Note:</span> <b style="color:var(--purple-d)">Proteins</b> are not considered a major source of energy.</div>
+<div class="notebox" style="background:#fdeeee;border-color:#e8b8b4"><span class="t"><span class="gr">G.R.?</span> The danger of excessive use of dietary supplements containing amino acids for the purpose of rapid muscle building.</span><br><b style="color:var(--purple-d)">Because</b> they cause serious risks to the kidneys and liver.</div>
+<div class="sharh">البروتينات مركبات عضوية وحداتها الأساسية أحماض أمينية ذائبة في الماء، والإنزيمات بتساعد في تحويلها لبروتينات. عناصرها نفس عناصر الدهون والكربوهيدرات + النيتروجين (N). مصادرها حيوانية (لحوم حمراء وبيضا وسمك وبيض ولبن) ونباتية (بقوليات ومكسرات وصويا). والبروتينات مش مصدر رئيسي للطاقة. واحذر المكملات الغذائية لبناء العضلات لأنها بتضر الكلى والكبد.</div>
+</div>
+<div class="quiz" data-pool="proteins"><h4>🎯 Test yourself · اختبر نفسك</h4><div class="qbox"></div></div>
+</section>
+
+<section id="s16">
+<div class="sec-h"><span class="em">🧫</span><h2>Detection of proteins</h2><span class="ar2">الكشف عن البروتينات</span></div>
+<div class="narrow"><p>∗ Proteins can be detected using a <span class="hl">Biuret solution (blue in colour)</span>, as shown in the following activity:</p></div>
+<div class="fig">
+<div class="tools"><button class="toolbtn toolzoom" title="×2.5">🔍</button></div>
+<svg id="a4svg" viewBox="0 0 420 240">
+<g transform="rotate(20 90 40)"><circle cx="90" cy="26" r="8" fill="#d24b41"/><rect x="86" y="33" width="8" height="30" rx="3" fill="#4a6fc0" stroke="#2b4f90"/></g>
+<text x="120" y="30" font-size="9" font-weight="bold">Biuret solution</text>
+<g id="a4drops"><circle cx="96" cy="72" r="4" fill="#4a6fc0"/><circle cx="96" cy="72" r="3.5" fill="#4a6fc0"/></g>
+<g stroke="#8fb4c8" stroke-width="2.5" fill="rgba(255,255,255,.55)"><rect x="84" y="90" width="26" height="120" rx="12"/></g>
+<rect class="liq" x="88" y="170" width="18" height="36" rx="8" fill="#f4ecc8" style="transform:scaleY(1)"/>
+<text x="97" y="232" font-size="9" text-anchor="middle">Egg white</text>
+<text x="160" y="120" font-size="9" text-anchor="middle">After</text><text x="160" y="131" font-size="9" text-anchor="middle">shaking</text><path d="M146 140 l28 0" stroke="#d24b41" stroke-width="2"/><polygon points="174,136 182,140 174,144" fill="#d24b41"/>
+<g stroke="#8fb4c8" stroke-width="2.5" fill="rgba(255,255,255,.55)"><rect x="196" y="90" width="26" height="120" rx="12"/></g>
+<rect class="liq" x="200" y="140" width="18" height="66" rx="8" fill="#4a6fc0" style="transform:scaleY(1)"/>
+<text x="209" y="232" font-size="9" text-anchor="middle">Blue colour</text>
+<text x="268" y="120" font-size="9" text-anchor="middle">Turns</text><text x="268" y="131" font-size="9" text-anchor="middle">into</text><path d="M254 140 l28 0" stroke="#d24b41" stroke-width="2"/><polygon points="282,136 290,140 282,144" fill="#d24b41"/>
+<g stroke="#8fb4c8" stroke-width="2.5" fill="rgba(255,255,255,.55)"><rect x="304" y="90" width="26" height="120" rx="12"/></g>
+<rect id="a4v" class="liq" x="308" y="140" width="18" height="66" rx="8" fill="#4a6fc0" style="transform:scaleY(1)"/>
+<text x="317" y="232" font-size="9" text-anchor="middle">Violet colour</text>
+</svg>
+</div>
+<button class="btn run" id="a4run">▶ Run experiment · شغّل التجربة</button>
+<div class="narrow">
+<p class="redhead" style="text-align:start">Activity ④ : Detection of proteins — Steps:</p>
+<ol class="steps">
+<li>Separate the egg albumen (egg white) from the yolk (egg yellow).</li>
+<li>Put a portion of the egg white (rich in protein) in a test tube.</li>
+<li>Add a few drops of Biuret solution to the albumen with a gentle shake.</li>
+</ol>
+<div class="obc ob"><span class="t">Observation:</span> After shaking, the blue colour of the Biuret solution changes to <span class="hl">violet</span>.</div>
+<div class="obc cc"><span class="t">Conclusion:</span> Biuret solution forms a violet colour when added to proteins.</div>
+<div class="sharh">بنحط بياض البيض في أنبوبة، بنضيف نقط محلول بيوريت الأزرق مع رج خفيف — اللون بيتحول من الأزرق للبنفسجي، وده دليل وجود البروتين.</div>
+</div>
+<div class="quiz" data-pool="biuret"><h4>🎯 Test yourself · اختبر نفسك</h4><div class="qbox"></div></div>
+</section>
+
+<section id="s17">
+<div class="sec-h"><span class="em">💪</span><h2>The importance of proteins</h2><span class="ar2">أهمية البروتينات</span></div>
+<div class="narrow">
+<p class="redhead">There are many ways in which living organisms benefit from proteins, such as:</p>
+<div class="cards3">
+<div class="ncard"><span class="ord">1</span><b>They are involved in building muscles, and the repair and growth of damaged cells.</b></div>
+<div class="ncard"><span class="ord">2</span><b>They are used in the formation of enzymes that act as catalysts.</b></div>
+<div class="ncard"><span class="ord">3</span><b>They are used in the formation of antibodies that support the immune system against disease-causing microbes.</b></div>
+</div>
+</div>
+<div class="fig">
+<div class="tools"><button class="toolbtn toolzoom" title="×2.5">🔍</button></div>
+<svg viewBox="0 0 420 240">
+<g fill="#f2a97e"><path d="M30 105 h55 c10 -16 24 -26 40 -26 h55 c8 0 8 11 0 11 h-46 c-2 0 -2 5 0 5 h52 c8 0 8 11 0 11 h-50 c-2 0 -2 5 0 5 h48 c8 0 8 11 0 11 h-46 c-2 0 -2 5 0 5 h36 c8 0 8 11 0 11 h-54 c-28 0 -46 20 -68 20 H30 z"/></g>
+<rect x="95" y="88" width="62" height="26" rx="12" fill="#f7c893" stroke="#e0a86a"/><rect x="116" y="93" width="20" height="16" rx="3" fill="#fff" opacity=".85"/><text x="126" y="106" font-size="12" text-anchor="middle" fill="#e08a8a" font-weight="bold">+</text>
+<path d="M118 122 q8 6 16 0 q-4 8 -16 0z" fill="#d24b41"/>
+<g fill="#f2a97e"><path d="M240 105 h55 c10 -16 24 -26 40 -26 h55 c8 0 8 11 0 11 h-46 c-2 0 -2 5 0 5 h52 c8 0 8 11 0 11 h-50 c-2 0 -2 5 0 5 h48 c8 0 8 11 0 11 h-46 c-2 0 -2 5 0 5 h36 c8 0 8 11 0 11 h-54 c-28 0 -46 20 -68 20 H240 z"/></g>
+<path d="M196 118 l14 0" stroke="#d24b41" stroke-width="4"/><polygon points="210,112 222,118 210,124" fill="#d24b41"/>
+<text x="120" y="196" font-size="11" font-weight="bold" text-anchor="middle">INJURED HAND · HEALING</text>
+<text x="330" y="196" font-size="11" font-weight="bold" text-anchor="middle">HEALTHY HAND · STRONG &amp; GROWING</text>
+<rect x="40" y="206" width="170" height="24" rx="12" fill="#f7c893"/><text x="125" y="222" font-size="10" text-anchor="middle" font-weight="bold">Damage: Skin &amp; tissue injury</text>
+<rect x="240" y="206" width="170" height="24" rx="12" fill="#7a9be8"/><text x="325" y="222" font-size="10" text-anchor="middle" fill="#fff" font-weight="bold">Healthy: Restored &amp; Strong</text>
+</svg>
+<div class="figcap">Proteins are involved in the repair and growth of damaged cells</div>
+</div>
+<div class="narrow">
+<div class="defbox" style="max-width:100%"><b style="color:var(--purple-d)">PROTEIN IS ESSENTIAL FOR REPAIR &amp; GROWTH:</b> Provides amino acids to rebuild skin, muscle, and connective tissue · Supports collagen formation for healing · Fuels cell regeneration and strength. <i>Key: Protein → Tissue Repair → Growth</i></div>
+<p class="redhead">The benefits of proteins extend to many industries, such as:</p>
+<div class="cards3">
+<div class="ncard"><span class="ord">1</span><b>Extraction of gelatin which is used in the food industry from the proteins found in the bones and skins of animals.</b></div>
+<div class="ncard"><span class="ord">2</span><b>Production of insulin which is used in the treatment of diabetes through genetic engineering.</b></div>
+<div class="ncard"><span class="ord">3</span><b>The use of enzymes in the manufacture of laundry detergents to remove stains.</b></div>
+</div>
+</div>
+<div class="fig" style="max-width:340px">
+<div class="tools"><button class="toolbtn toolzoom" title="×2.5">🔍</button></div>
+<svg viewBox="0 0 220 140">
+<g transform="rotate(-24 70 50)"><rect x="35" y="25" width="70" height="50" rx="6" fill="#2b6fd4" stroke="#1d4f9e" stroke-width="2"/><rect x="42" y="34" width="56" height="18" rx="4" fill="#eaf2ff"/><text x="70" y="47" font-size="9" text-anchor="middle" fill="#2b6fd4" font-weight="bold">POWDER</text></g>
+<path d="M96 62 q20 26 34 44" stroke="#cfd6e4" stroke-width="10" fill="none"/>
+<circle cx="104" cy="76" r="2.5" fill="#d94a56"/><circle cx="112" cy="86" r="2.5" fill="#3aa06b"/><circle cx="120" cy="96" r="2.5" fill="#4a6fc0"/><circle cx="128" cy="104" r="2.5" fill="#e8c33a"/>
+<ellipse cx="150" cy="116" rx="42" ry="12" fill="#e8edf5"/><circle cx="136" cy="112" r="2.5" fill="#d94a56"/><circle cx="150" cy="110" r="2.5" fill="#3aa06b"/><circle cx="164" cy="113" r="2.5" fill="#4a6fc0"/><circle cx="144" cy="118" r="2.5" fill="#e8c33a"/><circle cx="158" cy="118" r="2.5" fill="#d94a56"/>
+<text x="110" y="136" font-size="8.5" text-anchor="middle" fill="#8a5ba6" font-weight="bold">Coloured granules in powder detergent contain enzymes</text>
+</svg>
+</div>
+<div class="sharh">البروتينات بتبني العضلات وبتصلح الخلايا التالفة، وبتكوِّن الإنزيمات والأجسام المضادة للمناعة. وصناعياً: جيلاتين من عظام وجلود الحيوانات، أنسولين لمرضى السكري بالهندسة الوراثية، وإنزيمات في مساحيق الغسيل لإزالة البقع.</div>
+<div class="quiz" data-pool="impProt"><h4>🎯 Test yourself · اختبر نفسك</h4><div class="qbox"></div></div>
+</section>
+</main>
+</div>
+
+<div id="lightbox"><button class="iconbtn" id="lbClose">✕</button><div class="stage"><div class="zoomwrap"></div></div></div>
+<div id="cmpModal"><button class="iconbtn" id="cmpClose">✕</button>
+<div class="cmpbox">
+<h3 style="color:var(--purple-d);text-align:center;margin-bottom:10px">⚖ Compare · مقارنة الكواشف الأربعة</h3>
+<div style="overflow-x:auto"><table style="max-width:100%;font-size:11px;min-width:480px">
+<tr><th></th><th>🧪 Glucose</th><th>🥔 Starch</th><th>🥚 Fats</th><th>🧫 Proteins</th></tr>
+<tr><th>Reagent</th><td>Blue Benedict's</td><td>Yellowish-brown iodine</td><td>Red Sudan (IV)</td><td>Blue Biuret</td></tr>
+<tr><th>Method</th><td>Add + heat 5 min</td><td>Drops on sample</td><td>Add + shake</td><td>Drops + gentle shake</td></tr>
+<tr><th>Positive</th><td>Red / Orange / Green</td><td>Dark blue</td><td>Red-orange layer on surface</td><td>Violet</td></tr>
+<tr><th>Negative</th><td>Stays blue</td><td>Stays yellowish-brown</td><td>No red-orange layer</td><td>Stays blue</td></tr>
+<tr><th>Tested in</th><td>Glucose solutions</td><td>Potato starch</td><td>Egg yolk</td><td>Egg albumen</td></tr>
+</table></div>
+<p style="text-align:center;font-size:13px;margin-top:8px">All four tests depend on a <b>colour change</b> of the reagent. · الاختبارات الأربعة بتعتمد على تغيّر لون الكاشف.</p>
+</div>
+</div>
+
+<script>
+(function(){
+"use strict";
+var T=[];function later(fn,ms){T.push(setTimeout(fn,ms))}function clearT(){T.forEach(clearTimeout);T=[]}
+var Sound=(function(){var ctx=null,muted=true,master=null;
+function ensure(){if(!ctx){ctx=new (window.AudioContext||window.webkitAudioContext)();master=ctx.createGain();master.gain.value=0.3;master.connect(ctx.destination)}if(ctx.state==="suspended")ctx.resume();return ctx}
+function osc(type,f0,f1,a,d){if(muted)return;var c=ensure(),o=c.createOscillator(),g=c.createGain(),t=c.currentTime;o.type=type;o.frequency.setValueAtTime(f0,t);if(f1)o.frequency.exponentialRampToValueAtTime(f1,t+d);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(a,t+.012);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(master);o.start(t);o.stop(t+d+.05)}
+function pour(){if(muted)return;var c=ensure(),t=c.currentTime,len=c.sampleRate*.5,buf=c.createBuffer(1,len,c.sampleRate),ch=buf.getChannelData(0),i;for(i=0;i<len;i++)ch[i]=Math.random()*2-1;var s=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();s.buffer=buf;f.type="lowpass";f.frequency.value=900;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.5,t+.08);g.gain.exponentialRampToValueAtTime(.0001,t+.5);s.connect(f);f.connect(g);g.connect(master);s.start(t)}
+return{get muted(){return muted},toggle:function(){muted=!muted;return muted},click:function(){osc("triangle",680,0,.35,.09)},bubble:function(){osc("sine",300,620,.25,.12)},pour:pour,ok:function(){osc("sine",660,0,.4,.12);setTimeout(function(){osc("sine",880,0,.4,.18)},120)},no:function(){osc("square",160,120,.3,.2)}}})();
+document.addEventListener("click",function(e){if(e.target.closest("button"))Sound.click()});
+var prog=document.getElementById("progress");
+addEventListener("scroll",function(){var h=document.documentElement,max=h.scrollHeight-h.clientHeight;prog.style.width=(max>0?(h.scrollTop/max)*100:0)+"%"});
+var toc=document.getElementById("toc");
+document.getElementById("menuBtn").onclick=function(){toc.classList.toggle("open");document.body.classList.toggle("menu")};
+document.getElementById("tocOverlay").onclick=function(){toc.classList.remove("open");document.body.classList.remove("menu")};
+toc.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){toc.classList.remove("open");document.body.classList.remove("menu")})});
+var mb=document.getElementById("muteBtn");mb.onclick=function(){mb.textContent=Sound.toggle()?"🔇":"🔊"};
+var lb=document.getElementById("lightbox"),zw=lb.querySelector(".zoomwrap"),st=lb.querySelector(".stage");
+function openZoom(svg){zw.innerHTML="";zw.appendChild(svg.cloneNode(true));lb.style.display="block";later(function(){st.scrollLeft=(zw.clientWidth-st.clientWidth)/2;st.scrollTop=Math.max(0,(zw.clientHeight-st.clientHeight)/3)},30)}
+document.getElementById("lbClose").onclick=function(){lb.style.display="none"};
+document.querySelectorAll(".toolzoom").forEach(function(b){b.onclick=function(){openZoom(b.closest(".fig").querySelector("svg"))}});
+document.querySelectorAll(".fig svg").forEach(function(s){s.addEventListener("click",function(e){if(e.target.closest(".organ")||e.target.closest(".tapinfo"))return;openZoom(s)})});
+var ORGANS={liver:["الكبد","Liver","أكبر غدة في الجسم؛ بيخزّن الجلوكوز على هيئة جلايكوجين وبينظم مستواه في الدم."],stomach:["المعدة","Stomach","عضو عضلي بيستقبل الطعام وفيه بيبدأ الهضم."],pancreas:["البنكرياس","Pancreas","بيفرز هرمون الأنسولين المنظم للجلوكوز في الدم؛ نقصه بيسبب السكري."]};
+var ocard=document.getElementById("organCard");
+document.querySelectorAll(".organ").forEach(function(g){g.addEventListener("click",function(e){e.stopPropagation();document.querySelectorAll(".organ").forEach(function(o){o.classList.remove("active")});g.classList.add("active");var d=ORGANS[g.dataset.organ];ocard.style.display="block";ocard.innerHTML="<b>"+d[0]+" ("+d[1]+"):</b> "+d[2];Sound.ok()})});
+document.getElementById("explodeBtn").onclick=function(){document.getElementById("torsoSvg").classList.toggle("exploded")};
+var HEARTS={heart:["القلب","Heart","عضلة بتضخ الدم لكل الجسم؛ الشرايين التاجية بتغذيها بالأكسجين والجلوكوز."],blocked:["الشريان المسدود","Blocked artery","تراكم الكوليسترول (الأصفر) بيضيّق مجرى الدم فبيمنع وصول الدم للقلب — وده بيزود خطر أمراض القلب."],healthy:["الشريان السليم","Healthy artery","مجرى واسع والدم بيجري فيه بحرية، وكرات الدم الحمراء بتوصل الأكسجين لكل خلايا الجسم."]};
+var hcard=document.getElementById("heartCard");
+document.querySelectorAll(".tapinfo").forEach(function(g){g.addEventListener("click",function(e){e.stopPropagation();document.querySelectorAll(".tapinfo").forEach(function(o){o.classList.remove("active")});g.classList.add("active");var d=HEARTS[g.dataset.key];hcard.style.display="block";hcard.innerHTML="<b>"+d[0]+" ("+d[1]+"):</b> "+d[2];Sound.ok()})});
+/* A1 */
+var a1=document.getElementById("a1svg"),a1done=false;
+function resetA1(){a1.classList.remove("pouring","heating","done");["a1l1","a1l2","a1l3","a1l4"].forEach(function(id){var r=document.getElementById(id);r.classList.remove("filled");r.style.fill="#d7ecf7"});["r1","r2","r3","r4"].forEach(function(id){document.getElementById(id).classList.remove("filled")});a1done=false}
+function runA1(){if(a1done)return;resetA1();a1done=true;Sound.pour();a1.classList.add("pouring");
+later(function(){["a1l1","a1l2","a1l3","a1l4"].forEach(function(id){document.getElementById(id).classList.add("filled");document.getElementById(id).style.fill="#4aa8d8"})},400);
+later(function(){a1.classList.remove("pouring");a1.classList.add("heating");var n=0,iv=setInterval(function(){Sound.bubble();if(++n>6)clearInterval(iv)},450)},1600);
+later(function(){a1.classList.remove("heating");a1.classList.add("done");document.getElementById("a1l1").style.fill="#d94a56";document.getElementById("a1l2").style.fill="#e8834a";document.getElementById("a1l3").style.fill="#3aa06b";document.getElementById("a1l4").style.fill="#4aa8d8";["r1","r2","r3","r4"].forEach(function(id){document.getElementById(id).classList.add("filled")});Sound.ok()},4200)}
+document.getElementById("a1run").onclick=runA1;
+/* A2 */
+var a2=document.getElementById("a2svg"),a2done=false;
+function resetA2(){a2.classList.remove("dropping","done");a2done=false}
+function runA2(){if(a2done)return;resetA2();a2done=true;Sound.pour();a2.classList.add("dropping");later(function(){a2.classList.add("done");Sound.ok()},2600)}
+document.getElementById("a2run").onclick=runA2;
+/* A3 Sudan */
+var a3=document.getElementById("a3svg"),a3done=false;
+function resetA3(){a3.classList.remove("pouring3","done3");var t=document.getElementById("a3tube3");t.classList.remove("shakeT");a3done=false}
+function runA3(){if(a3done)return;resetA3();a3done=true;Sound.pour();a3.classList.add("pouring3");
+later(function(){Sound.pour()},900);
+later(function(){a3.classList.remove("pouring3");document.getElementById("a3tube3").classList.add("shakeT");Sound.bubble()},2200);
+later(function(){a3.classList.add("done3");Sound.ok()},3400)}
+document.getElementById("a3run").onclick=runA3;
+/* A4 Biuret */
+var a4=document.getElementById("a4svg"),a4done=false;
+function resetA4(){a4.classList.remove("dropping4","done4");a4done=false}
+function runA4(){if(a4done)return;resetA4();a4done=true;Sound.pour();a4.classList.add("dropping4");
+later(function(){a4.classList.remove("dropping4");a4.classList.add("done4");Sound.ok()},2400)}
+document.getElementById("a4run").onclick=runA4;
+/* Amino */
+var aa=document.getElementById("aasvg"),aadone=false;
+function resetAA(){aa.classList.remove("doneA");aadone=false}
+function runAA(){if(aadone)return;resetAA();aadone=true;Sound.click();later(function(){aa.classList.add("doneA");Sound.ok()},150)}
+document.getElementById("aarun").onclick=runAA;
+/* globals */
+document.getElementById("runAll").onclick=function(){clearT();resetA1();resetA2();resetA3();resetA4();resetAA();
+document.getElementById("s5").scrollIntoView({behavior:"smooth"});runA1();
+later(function(){document.getElementById("s7").scrollIntoView({behavior:"smooth"});runA2()},4600);
+later(function(){document.getElementById("s13").scrollIntoView({behavior:"smooth"});runA3()},8200);
+later(function(){document.getElementById("s16").scrollIntoView({behavior:"smooth"});runA4()},12600);
+later(function(){document.getElementById("s15").scrollIntoView({behavior:"smooth"});runAA()},16000)};
+document.getElementById("compareBtn").onclick=function(){document.getElementById("cmpModal").style.display="block"};
+document.getElementById("cmpClose").onclick=function(){document.getElementById("cmpModal").style.display="none"};
+document.getElementById("resetAll").onclick=function(){clearT();resetA1();resetA2();resetA3();resetA4();resetAA();ocard.style.display="none";hcard.style.display="none";document.querySelectorAll(".organ,.tapinfo").forEach(function(o){o.classList.remove("active")});document.getElementById("torsoSvg").classList.remove("exploded");document.querySelectorAll(".quiz").forEach(function(q){q.dataset.lock="";renderQuiz(q)})};
+addEventListener("keydown",function(e){if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="p"){e.preventDefault()}if(e.key==="Escape"){lb.style.display="none";document.getElementById("cmpModal").style.display="none"}});
+/* quizzes */
+var POOLS={
+intro:[{q:"Nutritional chemistry studies…",a:["the types of nutrients in food","the motion of bodies","electric currents","rocks"],c:0},{q:"Which nutrient comes 'First'?",a:["Fats","Carbohydrates","Proteins","Vitamins"],c:1},{q:"All carbohydrates contain:",a:["C, N, O","H, He, O","C, H, O","Ca, C, Fe"],c:2}],
+types:[{q:"The simplest form of carbohydrates:",a:["Monosaccharides","Disaccharides","Polysaccharides","Oligosaccharides"],c:0},{q:"Glucose is also known as:",a:["fruit sugar","cane sugar","grape sugar","malt sugar"],c:2},{q:"Sucrose consists of:",a:["glucose + glucose","fructose + fructose","galactose + glucose","glucose + fructose"],c:3},{q:"Oligosaccharides units:",a:["2","3 : 9","more than 9","1"],c:1},{q:"Polysaccharides such as:",a:["Starch and Cellulose","Glucose and Fructose","Sucrose and Maltose","Raffinose"],c:0}],
+qa:[{q:"Sugar (1) two identical hexagons:",a:["Sucrose","Maltose","Raffinose","Starch"],c:1},{q:"Sugar (2) pentagon + hexagon:",a:["Sucrose","Maltose","Glucose","Cellulose"],c:0},{q:"(Y) the pentagon unit:",a:["Glucose","Maltose","Fructose","Sucrose"],c:2},{q:"2 molecules of (X) → sugar (1) by:",a:["adding water","removing one water molecule","adding oxygen","cooling"],c:1}],
+glucose:[{q:"Glucose is detected using:",a:["iodine","blue Benedict's solution","water","salt"],c:1},{q:"HIGH glucose gives:",a:["Blue","Green","Orange","Red"],c:3},{q:"MEDIUM glucose gives:",a:["Orange","Red","Green","Blue"],c:0},{q:"LOW glucose gives:",a:["Green","Red","Orange","Yellow"],c:0},{q:"NO glucose stays:",a:["Red","Blue","Orange","Green"],c:1}],
+diabetes:[{q:"Insulin is secreted by the:",a:["liver","stomach","pancreas","kidney"],c:2},{q:"Diabetes is caused by:",a:["accumulation of glucose in blood","lack of iodine","excess starch","lack of cellulose"],c:0},{q:"A symptom of diabetes:",a:["Blue skin","Excessive thirst","Low temperature","Hair growth"],c:1},{q:"Benedict's can test which sample?",a:["saliva","sweat","urine","tears"],c:2}],
+starch:[{q:"Starch is detected using:",a:["Benedict's","yellowish-brown iodine","water","lemon"],c:1},{q:"Iodine on potato turns:",a:["red","orange","dark blue","green"],c:2}],
+importance:[{q:"Plant cell walls are made of:",a:["glucose","starch","cellulose","fructose"],c:2},{q:"Paper is made from:",a:["sucrose","cellulose","glucose","maltose"],c:1},{q:"Medicine capsules use:",a:["carbohydrates","proteins only","fats only","minerals"],c:0}],
+fats:[{q:"Fats contain the same elements as:",a:["proteins","carbohydrates","vitamins","minerals"],c:1},{q:"Which provides MORE energy?",a:["20 g carbohydrates","20 g fats","equal","water"],c:1},{q:"Which is a source of fats?",a:["Vegetable oils","Rice","Apples","Bread"],c:0},{q:"Fats and carbohydrates are similar in:",a:["chemical composition","energy given","taste","colour"],c:0}],
+cholesterol:[{q:"Cholesterol is:",a:["a fatty substance","a protein","a sugar","a vitamin"],c:0},{q:"Deposition of cholesterol inside arteries leads to:",a:["their blockage","their strength","faster blood flow","weight loss"],c:0},{q:"To maintain normal cholesterol:",a:["eat more fried food","exercise regularly","drink less water","skip meals"],c:1},{q:"Blockage of heart arteries increases the risk of:",a:["heart diseases","diabetes only","starch excess","fat deficiency"],c:0}],
+store:[{q:"Excess glucose is stored in liver and muscles as:",a:["fats","glycogen","proteins","vitamins"],c:1},{q:"Excess is stored in body's cells as:",a:["fats","glycogen","glucose","amino acids"],c:0},{q:"Stored fats are burned when needed, such as during:",a:["fasting or diets","sleeping only","eating","resting"],c:0}],
+sudan:[{q:"Fats are detected using:",a:["red Sudan (IV) solution","iodine","Benedict's","Biuret"],c:0},{q:"Sudan (IV) gives which colour on fat mixtures?",a:["dark blue","violet","red-orange","green"],c:1},{q:"The egg part rich in fat is:",a:["the albumen","the yolk","the shell","water"],c:1}],
+samples:[{q:"Sample (2): iodine dark blue + Benedict's blue + Sudan red-orange → contains:",a:["glucose and fats","starch and fats","starch only","fats only"],c:1},{q:"Sample (1): iodine yellowish brown + Benedict's orange + Sudan red-orange → contains:",a:["glucose and fats","starch and fats","starch and glucose","starch only"],c:0},{q:"Dark blue with iodine proves the presence of:",a:["glucose","starch","fats","proteins"],c:1}],
+proteins:[{q:"The basic units of proteins are:",a:["amino acids","glucose","fats","starch"],c:0},{q:"What helps convert amino acids into proteins?",a:["Enzymes","Iodine","Sudan","Heat"],c:0},{q:"The extra element in proteins (not in fats/carbs):",a:["nitrogen (N)","carbon (C)","oxygen (O)","hydrogen (H)"],c:0},{q:"Proteins are a major source of energy:",a:["True","False","Only at night","Only with fats"],c:1},{q:"Excessive amino-acid supplements harm:",a:["kidneys and liver","bones","eyes","hair"],c:0}],
+biuret:[{q:"Proteins are detected using:",a:["Biuret solution (blue)","iodine","Sudan (IV)","water"],c:0},{q:"Biuret turns which colour with proteins?",a:["violet","red","orange","dark blue"],c:0},{q:"The egg part rich in protein is:",a:["the yolk","the albumen (egg white)","the shell","none"],c:1}],
+impProt:[{q:"Proteins are involved in:",a:["building muscles and repair","blocking arteries","storing glucose","sweet taste"],c:0},{q:"Antibodies are formed from:",a:["proteins","fats only","glucose","iodine"],c:0},{q:"Gelatin is extracted from:",a:["proteins in bones and skins of animals","plant cellulose","white sugar","petroleum"],c:0},{q:"Insulin for diabetes treatment is produced through:",a:["genetic engineering","boiling","filtration","freezing"],c:1},{q:"Enzymes are used in laundry detergents to:",a:["remove stains","add colour","increase foam","add smell"],c:0}]};
+function renderQuiz(qz){var pool=POOLS[qz.dataset.pool],box=qz.querySelector(".qbox");var it=pool[Math.floor(Math.random()*pool.length)];qz._item=it;
+var h="<p style='font-size:13.5px;font-weight:700;margin-bottom:6px'>"+it.q+"</p>";
+it.a.forEach(function(op,i){h+="<button class='qopt' data-i='"+i+"'>"+op+"</button>"});
+h+="<button class='btn' style='width:100%;margin-top:6px' data-next>⟳ Next question · سؤال تاني</button>";
+box.innerHTML=h}
+document.querySelectorAll(".quiz").forEach(function(qz){renderQuiz(qz);
+qz.addEventListener("click",function(e){var nb=e.target.closest("[data-next]");if(nb){renderQuiz(qz);return}
+var b=e.target.closest(".qopt");if(!b||qz.dataset.lock)return;qz.dataset.lock="1";
+if(+b.dataset.i===qz._item.c){b.classList.add("correct");Sound.ok()}else{b.classList.add("wrong");Sound.no();qz.querySelectorAll(".qopt")[qz._item.c].classList.add("correct")}})});
+var links=document.querySelectorAll("#toc a");
+addEventListener("scroll",function(){var y=scrollY+120,cur=links[0];links.forEach(function(a){var s=document.querySelector(a.getAttribute("href"));if(s&&s.offsetTop<=y)cur=a});links.forEach(function(a){a.classList.toggle("on",a===cur)})});
+})();
+</script>
+</body>
+</html>
