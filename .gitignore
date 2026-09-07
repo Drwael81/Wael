@@ -1,0 +1,6 @@
+# Local backup files (covers .bak, .bak.* and numbered copies like .bak10/.bak12)
+*.bak*
+
+# OS files
+.DS_Store
+Thumbs.db
