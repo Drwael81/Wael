@@ -125,6 +125,12 @@ body.scrolled .site-header{ box-shadow: 0 4px 18px rgba(16, 32, 40, 0.10); }
 
 .path-card{ border-radius: 26px; border: none; }
 
+/* بطاقة Mystery Lab — هوية داكنة من لوجو Mystery Lab */
+.path-mystery{
+  background: linear-gradient(135deg, #102040, #103040);
+  box-shadow: 0 18px 40px rgba(16, 32, 64, 0.28);
+}
+
 /* صناديق النتائج داخل التجارب: خلفية أنعم */
 .result{
   background: color-mix(in srgb, var(--accent, var(--liquid)) 7%, #fff);

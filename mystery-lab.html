@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#102040">
+<title>Mystery Lab · ألغاز مختبر العلوم الممتع</title>
+<meta name="description" content="Mystery Lab: حلّ الألغاز العلمية وكُن مفتّش علوم — لغز اختفاء الجليد وألغاز أكثر قريبًا.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Tajawal:wght@400;500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="assets/css/experiments.css">
+<link rel="stylesheet" href="style.css">
+<style>
+  :root{
+    --m-navy:#102040;
+    --m-teal:#103040;
+    --m-gold:#E0C090;
+    --m-goldL:#F0C090;
+    --m-ember:#B05030;
+    --m-ink:#EAF0F5;
+    --m-mut:#9FB3C7;
+    --m-line:rgba(224,192,144,.22);
+  }
+  .mystery-hero{
+    position:relative;
+    background:linear-gradient(160deg,#102040 0%,#103040 60%,#0d1626 100%);
+    color:var(--m-ink);
+    border-radius:28px;
+    padding:46px 28px 38px;
+    text-align:center;
+    overflow:hidden;
+    border:1px solid rgba(224,192,144,.16);
+    box-shadow:0 18px 44px rgba(16,32,64,.35);
+  }
+  .mystery-hero::before{
+    content:''; position:absolute; inset:0; pointer-events:none;
+    background:
+      radial-gradient(360px 260px at 85% -10%, rgba(224,192,144,.12), transparent 65%),
+      radial-gradient(420px 360px at -15% 115%, rgba(176,80,48,.12), transparent 65%);
+  }
+  .mystery-hero-badge{
+    display:inline-block; color:var(--m-goldL); font-family:'Cairo',sans-serif; font-weight:700; font-size:13px;
+    border:1px solid var(--m-line); border-radius:999px; padding:7px 18px; margin-bottom:16px; position:relative;
+  }
+  .mystery-hero-title{
+    font-family:'Cairo',sans-serif; font-weight:900; color:#fff;
+    font-size:clamp(30px,5.5vw,46px); margin:0 0 12px; position:relative;
+    background:linear-gradient(120deg,var(--m-goldL),var(--m-gold)); -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .mystery-hero-sub{
+    color:var(--m-mut); font-size:15px; line-height:1.9; max-width:600px; margin:0 auto 22px; position:relative;
+  }
+  .mystery-hero-stats{
+    display:flex; flex-wrap:wrap; gap:10px; justify-content:center; position:relative;
+  }
+  .mystery-stat{
+    font-family:'Cairo',sans-serif; font-size:12.5px; font-weight:700; color:var(--m-ink);
+    background:rgba(255,255,255,.06); border:1px solid var(--m-line);
+    border-radius:999px; padding:8px 16px;
+  }
+  .mystery-stat b{ color:var(--m-goldL); }
+  .mystery-wrap{ padding:34px 20px 70px; }
+  .mystery-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:22px;
+    max-width:1180px; margin:0 auto;
+  }
+  .mystery-card{
+    display:flex; flex-direction:column;
+    background:linear-gradient(165deg,#102040 0%,#0f1c33 100%);
+    border:1px solid rgba(224,192,144,.20); border-radius:20px;
+    padding:24px 22px; text-decoration:none; color:var(--m-ink);
+    box-shadow:0 12px 30px rgba(16,32,64,.28);
+    transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  }
+  .mystery-card:hover{ transform:translateY(-4px); box-shadow:0 18px 40px rgba(16,32,64,.40); border-color:rgba(224,192,144,.45); }
+  .mystery-card-top{ display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:14px; }
+  .mystery-num{
+    font-family:'Cairo',sans-serif; font-weight:800; font-size:11.5px; color:var(--m-gold);
+    border:1px solid var(--m-line); border-radius:999px; padding:4px 12px;
+  }
+  .mystery-chip{
+    font-family:'Cairo',sans-serif; font-weight:700; font-size:11px;
+    color:var(--m-mut); background:rgba(224,192,144,.08);
+    border:1px solid rgba(255,255,255,.10); border-radius:999px; padding:4px 11px;
+  }
+  .mystery-chip.done{ color:#9BE8C0; border-color:rgba(155,232,192,.35); }
+  .mystery-icon{ font-size:42px; line-height:1; margin-bottom:12px; }
+  .mystery-title{ font-family:'Cairo',sans-serif; font-weight:800; font-size:17px; color:#fff; margin-bottom:8px; line-height:1.5; }
+  .mystery-desc{ font-size:13px; color:var(--m-mut); line-height:1.8; margin-bottom:20px; }
+  .mystery-cta{
+    margin-top:auto; font-family:'Cairo',sans-serif; font-weight:800; font-size:13.5px;
+    text-align:center; color:#102040;
+    background:linear-gradient(135deg,var(--m-goldL),var(--m-gold));
+    border-radius:13px; padding:12px 18px;
+    box-shadow:0 8px 20px rgba(224,192,144,.22);
+  }
+  .mystery-empty{ text-align:center; color:var(--m-mut); padding:40px 20px; }
+</style>
+<script src="mystery-data.js"></script>
+<script src="site-enhance.js?v=2" defer></script>
+</head>
+<body>
+
+  <div class="site-header">
+    <div class="site-header-inner">
+      <a href="index.html" class="brand" aria-label="الرئيسية">
+        <span class="brand-mark">🕵️</span>
+        <span class="brand-text">
+          <span class="brand-url">www.</span>2nd Prep. Funny Science lab
+        </span>
+      </a>
+      <nav class="main-nav" aria-label="التنقل الرئيسي">
+        <a href="index.html">🏠 الرئيسية</a>
+        <a href="experiments.html">🧪 التجارب</a>
+        <a href="lessons.html">📚 الدروس</a>
+        <a href="quizzes.html">📝 الاختبارات</a>
+        <a href="science-craft.html">🎮 Science Craft</a>
+        <a href="videos.html">🎥 الفيديوهات</a>
+        <a href="mystery-lab.html" class="active">🕵️ Mystery Lab</a>
+      </nav>
+      <span class="credit">By #Dr_Wael_Aboagiza</span>
+    </div>
+  </div>
+
+  <main class="mystery-wrap">
+
+    <section class="mystery-hero" aria-label="Mystery Lab">
+      <div class="mystery-hero-badge">🕵️ قسم الألغاز العلمية</div>
+      <h1 class="mystery-hero-title">Mystery Lab</h1>
+      <p class="mystery-hero-sub">
+        في المعمل وقعت حوادث غامضة… وكل لغز فيه أدلة وأسئلة وحلّ علمي.
+        افحص الأدلة، أجب عن الأسئلة، واكتشف بنفسك السبب العلمي وراء كل غامض.
+      </p>
+      <div class="mystery-hero-stats">
+        <span class="mystery-stat">🔍 عدد الألغاز: <b data-mystery-count>٠</b></span>
+        <span class="mystery-stat">🔎 أدلة وأسئلة تفاعلية</span>
+        <span class="mystery-stat">📱 حالة الحل محفوظة على جهازك</span>
+      </div>
+    </section>
+
+    <div class="section-divider">
+      <span>اختار غزّك 👇</span>
+    </div>
+
+    <section aria-label="ألغاز Mystery Lab">
+      <div class="mystery-grid" id="mysteryGrid">
+        <noscript>
+          <div class="mystery-empty">فعّل الجافاسكربت لعرض قائمة الألغاز.</div>
+        </noscript>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      <a href="https://whatsapp.com/channel/0029VbBAp9MFMqrg4r1h8x06" target="_blank" rel="noopener">📱 قناة واتساب</a> ·
+      <a href="https://t.me/secondprepfunnyscience" target="_blank" rel="noopener">✈️ تليجرام</a> ·
+      <a href="index.html">🏠 الرئيسية</a>
+    </p>
+    <p class="site-footer-note">مختبر العلوم الممتع · الصف الثاني الإعدادي — By #Dr_Wael_Aboagiza</p>
+  </footer>
+
+<script>
+  (function () {
+    var data = (typeof mysteryData !== 'undefined' && Array.isArray(mysteryData)) ? mysteryData : [];
+    var grid = document.getElementById('mysteryGrid');
+    if (!grid) return;
+
+    function arNum(n) {
+      try { return Math.round(n).toLocaleString('ar-EG'); } catch (e) { return String(Math.round(n)); }
+    }
+    function isSolved(id) {
+      try { return localStorage.getItem('mystery-done-' + id) === '1'; } catch (e) { return false; }
+    }
+
+    var cards = data
+      .filter(function (m) { return m && m.status === 'published' && m.href && m.title; })
+      .sort(function (a, b) { return (a.order || 0) - (b.order || 0); })
+      .map(function (m) {
+        var solved = isSolved(m.id);
+        var chip = solved
+          ? '<span class="mystery-chip done">✅ تم الحل</span>'
+          : '<span class="mystery-chip">' + m.difficulty + '</span>';
+        return '' +
+          '<a class="mystery-card" href="' + m.href + '">' +
+            '<div class="mystery-card-top">' +
+              '<span class="mystery-num">الغز #' + arNum(m.order) + '</span>' +
+              chip +
+            '</div>' +
+            '<div class="mystery-icon">' + (m.icon || '🕵️') + '</div>' +
+            '<div class="mystery-title">' + m.title + '</div>' +
+            '<div class="mystery-desc">' + m.tagline + '</div>' +
+            '<div class="mystery-cta">ابدأ التحقيق ←</div>' +
+          '</a>';
+      }).join('');
+
+    if (cards) grid.innerHTML = cards;
+    else grid.innerHTML = '<div class="mystery-empty">لا توجد ألغاز مضافة بعد.</div>';
+
+    var countEls = document.querySelectorAll('[data-mystery-count]');
+    for (var i = 0; i < countEls.length; i++) countEls[i].textContent = arNum(data.length);
+  })();
+</script>
+
+</body>
+</html>
