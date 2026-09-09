@@ -12,5 +12,15 @@ const mysteryData = [
     tagline: 'اختفت قطعة الثلج من الكوب — حلّ اللغز واكتشف ماذا حدث',
     difficulty: 'سهل',
     href: 'mystery-1-missing-ice.html'
+  },
+  {
+    id: 'mystery-2-missing-state',
+    order: 2,
+    status: 'published',
+    icon: '❓',
+    title: 'Mystery #2 — The Missing State',
+    tagline: 'مادة غامضة داخل قارورة مغلقة… حدّد حالتها (صلب أم سائل أم غاز) من الأدلة',
+    difficulty: 'متوسط',
+    href: 'mystery-2-missing-state.html'
   }
 ];

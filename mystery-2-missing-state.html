@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mystery #2 · الحالة المفقودة — Mystery Lab</title>
+<style>
+  :root{
+    --navy:#102040;
+    --teal:#103040;
+    --mid:#305060;
+    --gold:#E0C090;
+    --goldL:#F0C090;
+    --ember:#B05030;
+    --rust:#904020;
+    --ink:#EAF0F5;
+    --mut:#9FB3C7;
+    --line:rgba(224,192,144,.22);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%}
+  body{
+    font-family:'Segoe UI',Tahoma,system-ui,sans-serif;
+    color:var(--ink);
+    background:linear-gradient(165deg,#102040 0%,#103040 55%,#0d1626 100%);
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+  .stage-bg{
+    position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(420px 320px at 85% -5%, rgba(224,192,144,.10), transparent 65%),
+      radial-gradient(520px 420px at -10% 110%, rgba(176,80,48,.10), transparent 65%);
+  }
+  .mystery-top{
+    position:relative;z-index:1;max-width:520px;margin:12px auto 0;padding:0 18px;
+    display:flex;justify-content:space-between;gap:10px;
+  }
+  .mystery-top a{
+    font-size:12.5px;font-weight:600;color:var(--mut);text-decoration:none;
+    border:1px solid var(--line);border-radius:999px;padding:6px 14px;
+    transition:color .2s,border-color .2s;
+  }
+  .mystery-top a:hover{color:var(--goldL);border-color:var(--gold)}
+  .app{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:18px 18px 40px}
+
+  /* ---------- brand ---------- */
+  .brand{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:6px 4px 14px;
+  }
+  .brand .logo{
+    display:flex;align-items:center;gap:9px;
+    font-weight:800;letter-spacing:.5px;color:var(--goldL);
+  }
+  .brand .logo .mark{
+    width:30px;height:30px;border-radius:9px;
+    background:linear-gradient(140deg,var(--gold),var(--ember));
+    box-shadow:0 0 18px rgba(224,192,144,.35);
+    display:grid;place-items:center;font-size:16px;
+  }
+  .brand .case-tag{
+    font-size:12px;color:var(--mut);
+    border:1px solid var(--line);border-radius:999px;padding:5px 12px;
+  }
+
+  /* ---------- progress trail ---------- */
+  .trail{
+    display:flex;align-items:center;justify-content:space-between;
+    background:rgba(16,32,64,.5);border:1px solid var(--line);
+    border-radius:16px;padding:12px 10px;margin-bottom:18px;
+  }
+  .trail .node{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;position:relative}
+  .trail .node .bub{
+    width:26px;height:26px;border-radius:50%;
+    border:2px solid rgba(159,179,199,.35);
+    color:var(--mut);font-size:12px;font-weight:700;
+    display:grid;place-items:center;
+    transition:all .35s;
+  }
+  .trail .node .lbl{font-size:10px;color:var(--mut);transition:color .35s}
+  .trail .node.on .bub{border-color:var(--gold);color:var(--gold);box-shadow:0 0 12px rgba(224,192,144,.45)}
+  .trail .node.on .lbl{color:var(--goldL)}
+  .trail .node.done .bub{background:var(--gold);border-color:var(--gold);color:#102040}
+  .trail .node.done .lbl{color:var(--gold)}
+
+  /* ---------- views ---------- */
+  .view{display:none}
+  .view.active{display:block;animation:fadeUp .45s ease both}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+  .card{
+    background:rgba(16,32,64,.55);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:20px 18px;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+  }
+  .kicker{font-size:12px;color:var(--gold);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+  h1.title{font-size:26px;line-height:1.35;margin-bottom:8px}
+  h1.title small{display:block;font-size:14px;color:var(--mut);font-weight:500;margin-top:4px}
+  .lead{font-size:15.5px;line-height:1.75;color:var(--ink);opacity:.92}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 18px}
+  .tag{font-size:12px;color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:6px 11px}
+
+  /* scene : sealed flask with mystery substance */
+  .scene{display:flex;flex-direction:column;align-items:center;gap:8px;margin:20px 0 8px}
+  .flask{
+    position:relative;width:112px;height:132px;
+    border:2px solid rgba(224,192,144,.40);border-top:none;
+    border-radius:10px 10px 26px 26px;
+    background:linear-gradient(rgba(224,192,144,.06),rgba(224,192,144,.02));
+    display:grid;place-items:center;overflow:hidden;
+  }
+  .flask::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(64px 64px at 50% 55%, rgba(240,192,144,.20), transparent 72%);
+  }
+  .flask .neck{
+    position:absolute;top:-26px;left:50%;transform:translateX(-50%);
+    width:34px;height:26px;border:2px solid rgba(224,192,144,.40);border-bottom:none;
+    border-radius:6px 6px 0 0;
+  }
+  .flask .seal{
+    position:absolute;top:-32px;left:50%;transform:translateX(-50%);
+    width:46px;height:10px;border-radius:6px;
+    background:linear-gradient(135deg,var(--goldL),var(--gold));
+    box-shadow:0 0 14px rgba(224,192,144,.45);
+  }
+  .flask .q{
+    position:relative;font-size:38px;font-weight:900;color:var(--goldL);
+    animation:qGlow 3s ease-in-out infinite;
+  }
+  @keyframes qGlow{0%,100%{text-shadow:0 0 10px rgba(240,192,144,.45)}50%{text-shadow:0 0 26px rgba(240,192,144,.85)}}
+  .scene-cap{font-size:12px;color:var(--mut);text-align:center;line-height:1.7}
+
+  /* ---------- buttons ---------- */
+  .btn{
+    border:none;cursor:pointer;font-family:inherit;border-radius:14px;
+    font-size:16px;font-weight:700;padding:14px 20px;width:100%;
+    transition:transform .12s,box-shadow .25s,background .25s;
+  }
+  a.btn{display:block;text-align:center;text-decoration:none}
+  .btn.gold{
+    background:linear-gradient(135deg,var(--goldL),var(--gold));color:#102040;
+    box-shadow:0 8px 24px rgba(224,192,144,.25);
+  }
+  .btn.gold:hover{transform:translateY(-1px);box-shadow:0 10px 30px rgba(224,192,144,.38)}
+  .btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--line)}
+  .btn:active{transform:scale(.98)}
+  .btn-row{display:flex;gap:10px}
+  .btn-row .btn{flex:1}
+
+  /* ---------- evidence (tests & clues) ---------- */
+  .ev-card{
+    background:rgba(16,32,64,.5);border:1px solid var(--line);border-radius:18px;
+    padding:16px;margin-bottom:12px;
+    display:none;
+  }
+  .ev-card.visible{display:block;animation:cardIn .5s ease both}
+  .ev-card.glow{animation:goldGlow .8s ease}
+  @keyframes cardIn{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:none}}
+  @keyframes goldGlow{0%{box-shadow:0 0 0 rgba(224,192,144,0)}30%{box-shadow:0 0 26px rgba(224,192,144,.55)}100%{box-shadow:0 0 0 rgba(224,192,144,0)}}
+  .ev-head{display:flex;align-items:center;gap:10px;margin-bottom:8px;color:var(--goldL);font-weight:700;font-size:14px}
+  .ev-head .idx{
+    flex:none;width:28px;height:28px;border-radius:50%;
+    background:rgba(224,192,144,.14);border:1px solid var(--gold);
+    display:grid;place-items:center;font-size:13px;color:var(--gold);
+  }
+  .ev-text{font-size:14.5px;line-height:1.7;color:var(--ink)}
+
+  /* ---------- evidence board ---------- */
+  .board-row{
+    display:flex;align-items:flex-start;gap:12px;
+    background:rgba(16,32,64,.45);border:1px solid var(--line);border-radius:14px;
+    padding:13px 14px;margin-bottom:10px;
+    animation:cardIn .5s ease both;
+  }
+  .board-row .b-icon{flex:none;font-size:19px;line-height:1}
+  .board-row .b-txt{font-size:13.5px;line-height:1.65;color:var(--ink)}
+
+  /* ---------- verdict question ---------- */
+  .q{background:rgba(16,32,64,.5);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:14px}
+  .q .q-text{font-weight:700;font-size:15.5px;margin-bottom:12px;line-height:1.6}
+  .opt{
+    display:block;width:100%;text-align:right;font-family:inherit;cursor:pointer;
+    background:rgba(16,32,64,.45);border:1px solid var(--line);border-radius:12px;
+    color:var(--ink);font-size:14.5px;padding:12px 14px;margin-bottom:9px;
+    transition:border-color .2s,background .2s,transform .1s;
+  }
+  .opt:hover{border-color:var(--gold)}
+  .opt:active{transform:scale(.985)}
+  .opt.correct{
+    border-color:var(--gold);background:rgba(224,192,144,.12);color:var(--goldL);
+    box-shadow:0 0 16px rgba(224,192,144,.25);
+  }
+  .opt.wrong{border-color:var(--ember);background:rgba(176,80,48,.14);color:#f2b8a2;animation:shake .4s ease}
+  .opt:disabled{cursor:default}
+  @keyframes shake{0%,100%{transform:none}25%{transform:translateX(5px)}75%{transform:translateX(-5px)}}
+  .q-bad{
+    display:none;margin-top:8px;padding:12px 14px;border-radius:12px;
+    background:rgba(176,80,48,.14);border:1px solid rgba(176,80,48,.5);
+    font-size:13px;line-height:1.7;color:#f2b8a2;
+  }
+  .q-bad.show{display:block;animation:fadeUp .3s ease both}
+
+  /* ---------- reveal ---------- */
+  .reveal-box{text-align:center;position:relative;overflow:hidden}
+  .reveal-box::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(320px 200px at 50% 0%, rgba(240,192,144,.16), transparent 70%);
+    pointer-events:none;
+  }
+  .case-stamp{
+    display:inline-block;transform:rotate(-6deg);
+    border:3px solid var(--gold);border-radius:14px;color:var(--goldL);
+    font-weight:900;font-size:17px;padding:12px 26px;letter-spacing:1px;
+    box-shadow:0 0 24px rgba(224,192,144,.35);
+  }
+  .chain{display:flex;flex-direction:column;align-items:center;gap:6px;margin:26px 0 6px}
+  .chain .step{
+    display:flex;align-items:center;gap:10px;
+    background:rgba(16,32,64,.5);border:1px solid var(--line);border-radius:999px;
+    padding:10px 18px;font-size:14px;color:var(--mut);
+    opacity:.35;transition:opacity .6s,color .6s,border-color .6s;
+  }
+  .chain .step.lit{opacity:1;color:var(--goldL);border-color:var(--gold);box-shadow:0 0 16px rgba(224,192,144,.2)}
+  .chain .arr{font-size:15px;color:var(--mid);opacity:0;transition:opacity .6s}
+  .chain .arr.lit{opacity:1;color:var(--gold)}
+
+  .explain{margin-top:18px;display:none;animation:fadeUp .6s ease both}
+  .explain.show{display:block}
+  .explain .chip{
+    display:inline-flex;align-items:center;gap:8px;
+    background:linear-gradient(135deg,rgba(240,192,144,.18),rgba(224,192,144,.08));
+    border:1px solid var(--gold);color:var(--goldL);
+    font-weight:800;border-radius:999px;padding:9px 18px;margin:6px 4px 0;
+  }
+  .fin{display:flex;justify-content:center;margin-top:16px;color:var(--gold);font-weight:800}
+  .score-badge{
+    display:inline-block;margin-top:14px;
+    background:linear-gradient(135deg,rgba(240,192,144,.18),rgba(224,192,144,.08));
+    border:1px solid var(--gold);color:var(--goldL);
+    font-weight:800;border-radius:999px;padding:9px 20px;font-size:14px;
+    box-shadow:0 0 16px rgba(224,192,144,.18);
+  }
+</style>
+</head>
+<body>
+<div class="stage-bg"></div>
+
+<nav class="mystery-top" aria-label="التنقل">
+  <a href="index.html">🏠 الرئيسية</a>
+  <a href="mystery-lab.html">🕵️ العودة إلى الألغاز</a>
+</nav>
+
+<div class="app">
+
+  <header class="brand">
+    <div class="logo"><span class="mark">🔬</span> Mystery Lab</div>
+    <span class="case-tag">🕵️ CASE 02</span>
+  </header>
+
+  <!-- progress trail -->
+  <nav class="trail" id="trail" aria-hidden="true">
+    <div class="node on" data-id="case"><span class="bub">1</span><span class="lbl">القضية</span></div>
+    <div class="node" data-id="tests"><span class="bub">2</span><span class="lbl">التحقيقات</span></div>
+    <div class="node" data-id="board"><span class="bub">3</span><span class="lbl">اللوحة</span></div>
+    <div class="node" data-id="verdict"><span class="bub">4</span><span class="lbl">الحكم</span></div>
+  </nav>
+
+  <main>
+
+    <!-- 1 · Case Screen -->
+    <section class="view active" id="s-case">
+      <div class="card">
+        <div class="kicker">📁 ملف قضية · الغز رقم 2</div>
+        <h1 class="title">الحالة المفقودة <small>The Missing State</small></h1>
+        <p class="lead">في مختبر الطاقة، وجدت الباحثة قارورة محكمة الإغلاق تعلّقت بها بطاقة باهتة كتب عليها فقط: <b>«مادة مجهولة»</b>. المادة موجودة بالداخل لكن لا أحد يعرف حالتها… <b>هل هي صلب أم سائل أم غاز؟</b> مهمتك: افحص الأدلة وحدّد الحالة بنفسك.</p>
+        <div class="tags"><span class="tag">📁 ملف قضية</span><span class="tag">⏳ قيد التحقيق</span><span class="tag">🔒 قارورة مغلقة</span><span class="tag">🔬 حالة المادة</span></div>
+        <div class="scene">
+          <div class="flask">
+            <div class="neck"></div>
+            <div class="seal"></div>
+            <div class="q">؟</div>
+          </div>
+          <div class="scene-cap">قارورة محكمة الإغلاق بداخلها مادة غامضة بلا اسم… حدّد حالتها من الأدلة فقط</div>
+        </div>
+        <button class="btn gold" id="btn-start">🔍 ابدأ التحقيق</button>
+      </div>
+    </section>
+
+    <!-- 2 · Tests & Clues (Evidence) -->
+    <section class="view" id="s-tests">
+      <div class="card">
+        <div class="kicker">🩺 التحقيقات · افحص الدليل تلو الآخر</div>
+        <h1 class="title" style="font-size:20px">5 أدلة على الطاولة</h1>
+
+        <div class="ev-card" id="ev1">
+          <div class="ev-head"><span class="idx">1</span> 🔎 الاختبار 1 · الشكل</div>
+          <p class="ev-text">أمالت الباحثة القارورة بلطف: المادة الغامضة <b>لا تحافظ على شكل ثابت</b>، بل انتشرت وملأت الحجم الكامل للقارورة في كل الاتجاهات حتى أعلاه.</p>
+        </div>
+        <div class="ev-card" id="ev2">
+          <div class="ev-head"><span class="idx">2</span> 🧪 الاختبار 2 · الحجم والانضغاط</div>
+          <p class="ev-text">المادة <b>بلا حجم ثابت</b>: ظلّت تملأ الحجم كاملًا مهما تغيّر. وعند الضغط عليها بمكبس صغير <b>انكمش حجمها بسهولة</b> — إنها قابلة للانضغاط.</p>
+        </div>
+        <div class="ev-card" id="ev3">
+          <div class="ev-head"><span class="idx">3</span> 💨 الاختبار 3 · الانتشار</div>
+          <p class="ev-text">وُصّلت القارورة بأنبوب زجاجي فارغ وفتح الحاجز بينهما: انتشرت المادة <b>بسرعة كبيرة</b> وامتلأ الأنبوب والحيز كله بها.</p>
+        </div>
+        <div class="ev-card" id="ev4">
+          <div class="ev-head"><span class="idx">4</span> 🌡️ الدليل 4 · درجة الحرارة</div>
+          <p class="ev-text">عندما سخّنت الباحثة القارورة قليلًا، <b>ازدادت حركة الجزيئات وارتفع معدل الانتشار</b> بشكل ملحوظ — الحرارة تزيد سرعة الانتشار.</p>
+        </div>
+        <div class="ev-card" id="ev5">
+          <div class="ev-head"><span class="idx">5</span> ⚖️ الدليل 5 · كتلة الجزيئات</div>
+          <p class="ev-text">بمقارنتها بغاز معروف: جزيئات المادة الغامضة <b>خفيفة جدًا</b> — والجزيئات الأخفّ تنتشر أسرع من الأثقل.</p>
+        </div>
+
+        <button class="btn gold" id="btn-ev">افحص الدليل التالي</button>
+      </div>
+    </section>
+
+    <!-- 3 · Evidence Board -->
+    <section class="view" id="s-board">
+      <div class="card">
+        <div class="kicker">🧩 لوحة الأدلة · راجعها ثم احكم</div>
+        <h1 class="title" style="font-size:20px">ملخص التحقيقات</h1>
+
+        <div class="board-row" id="b1"><span class="b-icon">🔎</span><span class="b-txt"><b>الشكل:</b> لا تحافظ على شكل ثابت — تملأ الحجم كاملًا.</span></div>
+        <div class="board-row" id="b2"><span class="b-icon">🧪</span><span class="b-txt"><b>الحجم والانضغاط:</b> بلا حجم ثابت ومقبولة على الانضغاط بسهولة.</span></div>
+        <div class="board-row" id="b3"><span class="b-icon">💨</span><span class="b-txt"><b>الانتشار:</b> تنتشر بسرعة كبيرة وتملأ كل مكان متاح.</span></div>
+        <div class="board-row" id="b4"><span class="b-icon">🌡️</span><span class="b-txt"><b>درجة الحرارة:</b> التسخين يزيد حركة الجزيئات ويرفع معدل الانتشار.</span></div>
+        <div class="board-row" id="b5"><span class="b-icon">⚖️</span><span class="b-txt"><b>كتلة الجزيئات:</b> جزيئاتها خفيفة — والأخفّ ينتشر أسرع.</span></div>
+
+        <p class="lead" style="font-size:13.5px;margin-top:6px">كل دليل يضيّق الاحتمالات… أيّ حالة تتفق مع <b>كل هذه الأدلة معًا</b>؟</p>
+        <button class="btn gold" id="btn-verdict" style="margin-top:14px">🕵️ أصدر الحكم النهائي</button>
+      </div>
+    </section>
+
+    <!-- 4 · Final Verdict + Solved Reveal -->
+    <section class="view" id="s-verdict">
+      <div class="card" id="v-question">
+        <div class="kicker">⚖️ الحكم النهائي · اللحظة الحاسمة</div>
+        <h1 class="title" style="font-size:20px">ما حالة المادة الغامضة؟</h1>
+
+        <div class="q">
+          <p class="q-text">بناءً على الأدلة الخمسة، اختر حالة المادة:</p>
+          <button class="opt" id="opt-solid" data-ok="false" data-conflict="فكّر مجددًا — الدليل 1 و 2 يناقضان هذا: المادة لا تحافظ على شكل ثابت، وملأت الحجم كاملًا، وانكمش حجمها بالمكبس بسهولة. «الصلب» يحافظ على شكله وحجمه ويصعب انضغاطه.">🧊 مادة صلبة (Solid)</button>
+          <button class="opt" id="opt-liquid" data-ok="false" data-conflict="فكّر مجددًا — الدليل 2 يناقض هذا: «السائل» له حجم ثابت ويصعب انضغاطه، أما المادة الغامضة فانكمش حجمها بسهولة وملأت القارورة كلها حتى أعلاه.">💧 مادة سائلة (Liquid)</button>
+          <button class="opt" id="opt-gas" data-ok="true">💨 مادة غازية (Gas)</button>
+          <p class="q-bad" id="vbad"></p>
+          <p class="q-bad" id="vretry" style="display:none">
+            <button class="btn ghost" id="btn-retry" style="width:100%;margin-top:2px">🔁 الحكم الذي اخترته لا يتفق مع الأدلة — فكّر مجددًا وحاول</button>
+          </p>
+        </div>
+      </div>
+
+      <div class="card reveal-box" id="v-reveal" style="display:none">
+        <div class="kicker" id="rv-kicker">⚡ حل القضية</div>
+        <div class="case-stamp" id="stamp">قضية محلولة — الحالة المفقودة: غاز! 💨</div>
+
+        <div class="chain">
+          <div class="step" id="st1">🔎 لا شكل ثابت — يملأ الحجم كله</div>
+          <div class="arr" id="ar1">↓</div>
+          <div class="step" id="st2">🧪 قابل للانضغاط — بلا حجم ثابت</div>
+          <div class="arr" id="ar2">↓</div>
+          <div class="step" id="st3">💨 ينتشر بسرعة كبيرة</div>
+          <div class="arr" id="ar3">↓</div>
+          <div class="step" id="st4">🎯 الحكم النهائي: الحالة الغازية</div>
+        </div>
+
+        <div class="explain" id="explain">
+          <div class="card" style="background:rgba(16,32,64,.6);border-color:rgba(224,192,144,.35)">
+            <div class="kicker">🔬 الشرح العلمي</div>
+            <p class="lead" style="font-size:14px">
+              الغاز <b>لا يحافظ على شكل ولا حجم ثابتين</b>، يملأ كل الحيز المتاح، <b>يقبل الانضغاط</b>،
+              وينتشر بسرعة أكبر من السائل والصلب.
+            </p>
+            <p class="lead" style="font-size:14px;margin-top:10px">
+              وكلما زادت الحرارة زادت حركة الجزيئات فزاد معدل الانتشار، والجزيئات <b>الأخفّ تنتشر أسرع</b> من الأثقل —
+              وهذا ما اتفقت عليه الأدلة الخمسة كلها.
+            </p>
+            <div><span class="chip">✅ الحالة الغازية · Gas</span></div>
+            <div class="score-badge">⭐ نتيجة التحقيق: <span id="score">100</span>/100</div>
+            <div class="fin">مهمة مكتملة ✓</div>
+          </div>
+        </div>
+
+        <div class="btn-row" style="margin-top:18px">
+          <button class="btn ghost" id="btn-restart">🔄 إعادة التحقيق</button>
+          <a class="btn gold" id="btn-done" href="mystery-lab.html">🏁 العودة إلى الألغاز</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var views = {
+    "case": document.getElementById("s-case"),
+    "tests": document.getElementById("s-tests"),
+    "board": document.getElementById("s-board"),
+    "verdict": document.getElementById("s-verdict")
+  };
+  var nodes = document.querySelectorAll("#trail .node");
+  var state = { evIndex: 0, score: 100, attempts: 0 };
+
+  function goTo(name){
+    Object.keys(views).forEach(function(k){ views[k].classList.remove("active"); });
+    views[name].classList.add("active");
+    updateTrail(name);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+  function updateTrail(name){
+    var order = ["case","tests","board","verdict"];
+    var idx = order.indexOf(name);
+    nodes.forEach(function(node){
+      var nid = node.getAttribute("data-id");
+      node.classList.toggle("done", order.indexOf(nid) < idx);
+      node.classList.toggle("on", nid === name);
+    });
+  }
+
+  /* stage transitions order */
+  var btn_start = document.getElementById("btn-start");
+  btn_start.addEventListener("click", function(){ goTo("tests"); });
+
+  /* tests & clues */
+  var evCards = [document.getElementById("ev1"), document.getElementById("ev2"), document.getElementById("ev3"), document.getElementById("ev4"), document.getElementById("ev5")];
+  var btn_ev = document.getElementById("btn-ev");
+  function revealNextEv(){
+    if(state.evIndex < evCards.length){
+      var card = evCards[state.evIndex++];
+      card.classList.add("visible");
+      card.classList.add("glow");
+      setTimeout(function(){ card.classList.remove("glow"); }, 900);
+    }
+    if(state.evIndex >= evCards.length){
+      btn_ev.textContent = "🧩 انطلق إلى لوحة الأدلة";
+    }
+  }
+  btn_ev.addEventListener("click", function(){
+    if(state.evIndex < evCards.length){ revealNextEv(); }
+    else { goTo("board"); }
+  });
+
+  /* board → verdict */
+  document.getElementById("btn-verdict").addEventListener("click", function(){ goTo("verdict"); });
+
+  /* final verdict */
+  var vq = document.querySelector("#v-question .q");
+  var vbad = document.getElementById("vbad");
+  var vretry = document.getElementById("vretry");
+  var btnRetry = document.getElementById("btn-retry");
+  var opts = vq.querySelectorAll(".opt");
+  var solvedDone = false;
+
+  function verdictOk(){
+    document.getElementById("v-question").style.display = "none";
+    document.getElementById("v-reveal").style.display = "block";
+    document.getElementById("score").textContent = String(state.score);
+    goTo("verdict");
+    runReveal();
+  }
+
+  opts.forEach(function(opt){
+    opt.addEventListener("click", function(){
+      if(solvedDone) return;
+      var ok = opt.getAttribute("data-ok") === "true";
+      if(ok){
+        solvedDone = true;
+        state.attempts = 0;
+        opts.forEach(function(o){ o.disabled = true; });
+        opt.classList.add("correct");
+        verdictOk();
+      } else {
+        state.attempts++;
+        state.score = Math.max(1, 100 - state.attempts * 33);
+        opts.forEach(function(o){ o.disabled = true; });
+        opt.classList.add("wrong");
+        vbad.textContent = "❌ " + opt.getAttribute("data-conflict");
+        vbad.classList.add("show");
+        vretry.style.display = "block";
+      }
+    });
+  });
+
+  btnRetry.addEventListener("click", function(){
+    vbad.classList.remove("show");
+    vretry.style.display = "none";
+    opts.forEach(function(o){
+      o.disabled = false;
+      o.classList.remove("wrong");
+    });
+  });
+
+  /* reveal */
+  function runReveal(){
+    var steps = ["st1","ar1","st2","ar2","st3","ar3","st4"];
+    steps.forEach(function(id, i){
+      setTimeout(function(){
+        var el = document.getElementById(id);
+        if(el) el.classList.add("lit");
+        if(i === steps.length - 1){
+          setTimeout(function(){
+            document.getElementById("explain").classList.add("show");
+            try { localStorage.setItem("mystery-done-mystery-2-missing-state", "1"); } catch(e){}
+          }, 500);
+        }
+      }, 400 + i * 650);
+    });
+  }
+
+  document.getElementById("btn-restart").addEventListener("click", function(){ location.reload(); });
+})();
+</script>
+</body>
+</html>
