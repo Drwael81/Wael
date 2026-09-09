@@ -112,7 +112,7 @@ body[data-theme="light"] .breezeSvg{background:linear-gradient(180deg,#bfe0ff,#d
 .humRow{display:flex;gap:26px;justify-content:center;align-items:flex-end;margin-top:12px}
 .humC{text-align:center;font-size:.75rem;font-weight:800}
 footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
-.verified{display:inline-flex;align-items:center;gap:12px;border:1px solid var(--gold);border-radius:18px;padding:12px 22px;background:var(--card);color:var(--gold);font-weight:800}
+.verified{display:inline-flex;flex-wrap:wrap;align-items:center;gap:12px;border:1px solid var(--gold);border-radius:18px;padding:12px 22px;background:var(--card);color:var(--gold);font-weight:800}
 #topBtn{position:fixed;bottom:20px;inset-inline-start:20px;z-index:85;width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,var(--hot),var(--gold));font-size:1.2rem;opacity:0;pointer-events:none;transition:.3s}
 #topBtn.show{opacity:1;pointer-events:auto}
 </style>
@@ -204,7 +204,12 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
 <!-- ============ LIFE APPS (p.117) ============ -->
 <section id="apps" class="card reveal">
   <div class="chead"><span class="cnum">🏠</span><div><h2><span class="en">Life Applications of Convection</span><span class="ar">تطبيقات حياتية على الحمل</span></h2></div><span class="ppage">p.117</span></div>
-  <div class="tile" style="margin-top:16px;padding:14px">
+  <div class="tile" style="margin-top:16px;border-color:var(--gold)">
+    <span class="tag gold">Core Principle · القاعدة الأساسية</span>
+    <p class="ar">التسخين ⬅ تمدد المائع ⬅ تقل الكثافة ⬅ يصعد إلى أعلى.</p>
+    <p class="ar">التبريد ⬅ انكماش المائع ⬅ تزداد الكثافة ⬅ يهبط إلى أسفل.</p>
+  </div>
+  <div class="tile" style="margin-top:14px;padding:14px">
     <img src="images/lesson-convection-and-radiation/02_Convection_Freezer_vs_Heater_Horizontal.png" alt="Convection applications — freezer on top (cold air sinks) vs heater on the floor (warm air rises)" loading="lazy" style="display:block;width:100%;max-height:480px;object-fit:contain;border-radius:12px;border:1px solid var(--line);background:var(--card2)">
   </div>
   <div class="grid2">
@@ -273,7 +278,7 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
     </div>
     <div class="body">
       <span class="en">By means of convection currents rising from the Earth's surface — the eagle spreads its wings to ride them, balancing gravity.</span>
-      <span class="ar">عن طريق تيارات الحمل الصاعدة من سطح الأرض — النسر بيفرد أجنحته ويركبها فيوازن قوة الجاذبية.</span>
+      <span class="ar">عن طريق <strong>تيارات الحمل الصاعدة</strong> من سطح الأرض — النسر بيفرد أجنحته ويركبها فيوازن قوة الجاذبية.</span>
     </div></details>
   <div class="quiz" style="margin-top:16px">
     <p class="en"><strong>Q2 (1):</strong> Object (X) sits ON the heater, object (Y) on a far table. What is the method of heat transfer from the heater to each?</p>
@@ -372,6 +377,16 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
   <div class="note gold">
     <span class="en">💡 Notes: • All hot objects radiate heat (infrared) — the hotter, the more infrared it emits. • All heat sources transfer heat through air by radiation AND convection, while heat from the Sun travels by radiation ONLY.</span>
     <span class="ar">💡 ملاحظات: • كل الأجسام الساخنة بتُشعّ حرارة (تحت حمراء) — وكل ما تسخن أكتر بتُشعّ أكتر. • كل مصادر الحرارة بتنقل حرارتها في الهوا بالإشعاع والحمل، بينما حرارة الشمس بالإشعاع فقط.</span>
+  </div>
+  <div class="grid2" style="margin-top:14px">
+    <div class="tile" style="border-color:var(--hot)">
+      <span class="tag hot">Good absorber & good radiator · ممتص ومشعّ جيد</span>
+      <p class="ar">تمتص النصيب الأكبر من الأشعة الحرارية (ممتص جيد).</p>
+    </div>
+    <div class="tile" style="border-color:var(--cold)">
+      <span class="tag">Poor absorber & good reflector · ممتص ضعيف وعاكس جيد</span>
+      <p class="ar">تعكس النصيب الأكبر من الأشعة الحرارية (ممتص ضعيف / عاكس جيد).</p>
+    </div>
   </div>
 </section>
 

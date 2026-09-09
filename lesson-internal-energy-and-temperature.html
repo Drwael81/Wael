@@ -55,6 +55,7 @@ main{max-width:1150px;margin:auto;padding:30px 16px 90px;display:flex;flex-direc
 .tile:hover{transform:translateY(-4px);border-color:var(--acc)}
 .note{border-inline-start:4px solid var(--acc);background:var(--card2);border-radius:12px;padding:12px 16px;margin-top:14px;font-size:.9rem}
 .note.hot{border-color:var(--hot)} .note.gold{border-color:var(--gold)} .note.ok{border-color:var(--ok)}
+.labwrap .note{border:1px solid var(--gold);border-inline-start:5px solid var(--gold);background:linear-gradient(180deg,color-mix(in srgb,var(--gold) 12%,transparent),var(--card2));font-weight:600}
 .tag{display:inline-block;font-size:.7rem;font-weight:800;color:#041018;background:var(--acc);border-radius:99px;padding:2px 12px;margin-bottom:8px}
 .tag.hot{background:var(--hot)} .tag.gold{background:var(--gold)}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
@@ -293,11 +294,16 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
       <p class="en">Temperature <strong>constant</strong> — no heat transfer.</p><p class="ar">الحرارة <strong>ثابتة</strong> — مفيش انتقال حرارة.</p>
       <p class="en">Mass <strong>constant</strong> — no matter transfer.</p><p class="ar">الكتلة <strong>ثابتة</strong> — مفيش انتقال مادة.</p></div>
   </div>
-  <table dir="ltr" style="margin-top:14px">
-    <tr><th></th><th>Open · مفتوح</th><th>Closed · مغلق</th><th>Isolated · معزول</th></tr>
-    <tr><td>Exchange of energy · تبادل طاقة</td><td>Occurs ✔</td><td>Occurs ✔</td><td>Does not occur ✘</td></tr>
-    <tr><td>Exchange of matter · تبادل مادة</td><td>Occurs ✔</td><td>Does not occur ✘</td><td>Does not occur ✘</td></tr>
-  </table>
+  <details style="margin-top:14px">
+    <summary><span class="ar">جدول المقارنة السريع</span></summary>
+    <div class="body">
+      <table dir="ltr">
+        <tr><th></th><th>Open · مفتوح</th><th>Closed · مغلق</th><th>Isolated · معزول</th></tr>
+        <tr><td>Exchange of energy · تبادل طاقة</td><td>Occurs ✔</td><td>Occurs ✔</td><td>Does not occur ✘</td></tr>
+        <tr><td>Exchange of matter · تبادل مادة</td><td>Occurs ✔</td><td>Does not occur ✘</td><td>Does not occur ✘</td></tr>
+      </table>
+    </div>
+  </details>
   <div class="note gold">
     <span class="en">💡 G.R.: A medical thermometer is a closed system — because only energy is exchanged with the surroundings as heat.</span>
     <span class="ar">💡 علل: الترمومتر الطبي نظام مغلق — لأنه بيتبادل طاقة بس مع المحيط في صورة حرارة.</span>
@@ -322,6 +328,7 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
     <span class="en">Try it: switch the state, then drag the temperature slider — particle speed IS the "average kinetic energy", i.e. temperature!</span>
     <span class="ar">جرّب: غيّر الحالة وحرّك سلايدر الحرارة — سرعة الجسيمات دي «متوسط طاقة الحركة» يعني درجة الحرارة!</span>
   </div>
+  <div class="qOut"><span class="en">Internal Energy = P.E. + K.E. of the particles</span><span class="ar">الطاقة الداخلية = طاقة الوضع + طاقة الحركة (لجسيمات النظام)</span></div>
   <div class="grid3" style="margin-top:16px">
     <div class="tile"><h3>🧊 <span class="en">Solids</span><span class="ar">المواد الصلبة</span></h3>
       <table><tr><th>P.E. · وضع</th><td>Maximum · قصوى</td></tr><tr><th>K.E. · حركة</th><td>Small · صغيرة</td></tr></table>
@@ -347,7 +354,6 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
       <p class="en">Solid: <strong>as small as possible</strong> · Gas: <strong>as large as possible</strong>.</p>
       <p class="ar">صلب: <strong>أصغر ما يمكن</strong> · غاز: <strong>أكبر ما يمكن</strong>.</p></div>
   </div>
-  <div class="qOut"><span class="en">Internal Energy = P.E. + K.E. of the particles</span><span class="ar">الطاقة الداخلية = طاقة الوضع + طاقة الحركة (لجسيمات النظام)</span></div>
   <div class="note ok">
     <span class="en">The internal energy increases with an increase in the K.E. of its particles, their P.E., or both.</span>
     <span class="ar">الطاقة الداخلية بتزيد بزيادة طاقة حركة الجسيمات أو طاقة وضعها أو الاتنين.</span>
