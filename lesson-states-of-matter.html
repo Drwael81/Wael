@@ -150,6 +150,12 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
 #topBtn{position:fixed;bottom:20px;inset-inline-start:20px;z-index:85;width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,var(--hot),var(--gold));font-size:1.2rem;opacity:0;pointer-events:none;transition:.3s}
 #topBtn.show{opacity:1;pointer-events:auto}
 </style>
+<style>
+.vid{margin:18px 0 8px}
+.vidLbl{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:.78rem;font-weight:800;color:var(--muted);margin-bottom:8px}
+.vidBox{position:relative;width:100%;max-width:100%;border-radius:16px;overflow:hidden;background:#000;border:1px solid var(--line);box-shadow:0 10px 26px rgba(0,0,0,.22)}
+.vidBox iframe{display:block;width:100%;border:0;aspect-ratio:16/9;background:#000}
+</style>
 </head>
 <body>
 <div id="progress"></div>
@@ -261,6 +267,12 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
         <p class="ar"><strong>اللزوجة:</strong> خاصية فيزيائية تعبّر عن مقدار مقاومة السائل للانسياب.</p>
         <p class="en" style="margin-top:6px">Lower viscosity → greater fluidity.</p>
         <p class="ar">كلما انخفضت اللزوجة → زادت الانسيابية.</p>
+        <div class="vid" data-vid="i0RTLlfQmLA">
+          <p class="vidLbl"><span class="en">🎬 Watch the concept</span><span class="ar">🎬 شاهد الفكرة</span></p>
+          <div class="vidBox">
+            <iframe src="https://www.youtube.com/embed/i0RTLlfQmLA" title="Viscosity — fluidity concept" loading="lazy" allowfullscreen allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+          </div>
+        </div>
       </div>
       <div>
         <img src="images/lesson1-states-of-matter/viscosity.jpg" alt="Viscosity — how much liquids resist flow" loading="lazy" style="display:block;width:100%;max-height:400px;object-fit:contain;border-radius:12px;border:1px solid var(--line);background:#fff;margin-top:10px">
@@ -372,6 +384,12 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
     <img src="images/lesson1-states-of-matter/permanganate-diffusion.jpg" alt="Potassium permanganate — diffusion in water" loading="lazy" style="display:block;width:100%;max-height:380px;object-fit:contain;border-radius:12px;border:1px solid var(--line);background:#fff">
     <p style="margin-top:8px;font-size:.78rem;color:var(--muted);text-align:center"><span class="en">Potassium permanganate — diffusion in water</span><span class="ar">برمنجنات البوتاسيوم — الانتشار في الماء</span></p>
   </div>
+  <div class="vid" data-vid="9IkApe6ImOg">
+    <p class="vidLbl"><span class="en">🎬 Watch the concept</span><span class="ar">🎬 شاهد الفكرة</span></p>
+    <div class="vidBox">
+      <iframe src="https://www.youtube.com/embed/9IkApe6ImOg" title="Potassium permanganate — diffusion in water" loading="lazy" allowfullscreen allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+    </div>
+  </div>
   <div class="note ok">
     <span class="en"><strong>We conclude — diffusion speed:</strong> solids &lt; liquids &lt; gases.</span>
     <span class="ar"><strong>نستنتج — سرعة الانتشار:</strong> صلب &lt; سائل &lt; غاز.</span>
@@ -413,6 +431,12 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
     <span class="en">👁️ Tea particles diffuse in hot water FASTER than in cold water → direct relationship with temperature.</span>
     <span class="ar">👁️ جسيمات الشاي بتنتشر في الماء الساخن أسرع من البارد → علاقة طردية مع درجة الحرارة.</span>
   </div>
+  <div class="vid" data-vid="RVIJh4wx4s8">
+    <p class="vidLbl"><span class="en">🎬 Watch the concept</span><span class="ar">🎬 شاهد الفكرة</span></p>
+    <div class="vidBox">
+      <iframe src="https://www.youtube.com/embed/RVIJh4wx4s8" title="Temperature and diffusion" loading="lazy" allowfullscreen allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+    </div>
+  </div>
   <h3 style="margin-top:20px">🏁 <span class="en">Live proof 2: H₂ (lower mass) vs O₂ (greater mass)</span> · <span class="ar">دليل حي 2: H₂ (أقل كتلة) ضد O₂ (أكبر كتلة)</span></h3>
   <div class="mLane" dir="ltr"><span><span class="en">H₂ — lower mass</span><span class="ar">H₂ — كتلة أقل</span></span><div class="mTrack"><i class="mB h" id="mH"></i></div><b class="en" style="color:var(--ok)">Faster ⬆</b></div>
   <div class="mLane" dir="ltr"><span><span class="en">O₂ — greater mass</span><span class="ar">O₂ — كتلة أكبر</span></span><div class="mTrack"><i class="mB o" id="mO"></i></div><b class="en" style="color:var(--bad)">Slower ⬇</b></div>
@@ -425,6 +449,12 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
   <div class="note" id="mObs" style="display:none">
     <span class="en">🏆 H₂ (lower mass) diffuses faster than O₂ (greater mass) → inverse relationship with mass.</span>
     <span class="ar">🏆 الهيدروجين (الأقل كتلة) انتشر أسرع من الأكسجين (الأكبر كتلة) → علاقة عكسية مع الكتلة.</span>
+  </div>
+  <div class="vid" data-vid="1NVqcu4897I">
+    <p class="vidLbl"><span class="en">🎬 Watch the concept</span><span class="ar">🎬 شاهد الفكرة</span></p>
+    <div class="vidBox">
+      <iframe src="https://www.youtube.com/embed/1NVqcu4897I" title="Hydrogen vs oxygen gas race" loading="lazy" allowfullscreen allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+    </div>
   </div>
 </section>
 
