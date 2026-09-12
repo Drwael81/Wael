@@ -127,6 +127,12 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
 #topBtn{position:fixed;bottom:20px;inset-inline-start:20px;z-index:85;width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,var(--hot),var(--gold));font-size:1.2rem;opacity:0;pointer-events:none;transition:.3s}
 #topBtn.show{opacity:1;pointer-events:auto}
 </style>
+<style>
+.vid{margin:18px 0 8px}
+.vidLbl{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:.78rem;font-weight:800;color:var(--muted);margin-bottom:8px}
+.vidBox{position:relative;width:100%;max-width:100%;border-radius:16px;overflow:hidden;background:#000;border:1px solid var(--line);box-shadow:0 10px 26px rgba(0,0,0,.22)}
+.vidBox iframe{display:block;width:100%;border:0;aspect-ratio:16/9;background:#000}
+</style>
 </head>
 <body>
 <div id="progress"></div>
@@ -280,6 +286,14 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
   </div>
   <div id="arrowMsg" class="note" style="display:none"></div>
   <div class="note ok"><span class="en">✔️ Energy increases in (Y) melting & (Z) evaporation.</span><span class="ar">✔️ الطاقة بتزيد في (Y) الانصهار و(Z) التبخر.</span></div>
+  <div class="vid" data-vid="N9yCE1-H5gs">
+    <p class="vidLbl"><span class="en">🎬 Evaporation vs Boiling</span><span class="ar">🎬 التبخر مقابل الغليان</span></p>
+    <div class="vidBox">
+      <iframe src="https://www.youtube.com/embed/N9yCE1-H5gs" title="Evaporation vs Boiling" loading="lazy" allowfullscreen allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+    </div>
+    <p class="en mut" style="font-size:.8rem;margin-top:6px">Evaporation occurs at the surface, while boiling occurs throughout the liquid.</p>
+    <p class="ar mut" style="font-size:.8rem;margin-top:2px">التبخر بيحصل على السطح، بينما الغليان بيحصل في كامل السائل.</p>
+  </div>
   <details><summary>Q2 · <span class="en">Solid substance curve (mp, states at 10/30/70 min, K.E. in AB)</span> · <span class="ar">منحنى مادة صلبة (الانصهار، الحالات، طاقة الحركة في AB)</span></summary>
     <div class="body">
       <p class="en">Melting point = −20°C · 10 min: solid · 30 min: solid+liquid · 70 min: liquid+gas · K.E. in AB: no change (no temperature change).</p>
@@ -320,6 +334,14 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
       <div class="mCard"><span class="en">🔥 Boiling point · الغليان</span><b class="bp" id="mBp">100.0°C</b></div>
       <div class="mCard"><span class="en">🥚 Egg boiling time · سلق بيضة</span><b class="eg" id="mEgg">10.0 min</b></div>
       <input type="range" id="altR2" aria-label="Altitude · الارتفاع" min="-427" max="6500" step="25" value="0">
+      <div class="vid" data-vid="N11AEocOfM8">
+        <p class="vidLbl"><span class="en">🎬 Boiling Below 100°C</span><span class="ar">🎬 الغليان تحت 100°م</span></p>
+        <div class="vidBox">
+          <iframe src="https://www.youtube.com/embed/N11AEocOfM8" title="Boiling Below 100°C" loading="lazy" allowfullscreen allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+        </div>
+        <p class="en mut" style="font-size:.8rem;margin-top:6px">Water can boil below 100°C when the surrounding pressure decreases.</p>
+        <p class="ar mut" style="font-size:.8rem;margin-top:2px">يمكن أن تغلي المياه تحت 100°م عندما يقل الضغط المحيط.</p>
+      </div>
       <button class="btn" id="chalBtn">🎯 <span class="en" style="display:inline">Challenge: boil at 80°C</span> · <span class="ar" style="display:inline">تحدٍ: غليان عند 80°م</span></button>
       <div id="chalMsg" class="note" style="display:none"></div>
     </div>
