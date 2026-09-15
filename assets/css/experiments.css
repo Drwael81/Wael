@@ -1304,6 +1304,7 @@ nav.toc{
   @media (max-width:640px){ .paths-section{ grid-template-columns:1fr; } }
   .path-games{ background: linear-gradient(135deg, #6D28D9, var(--gas)); }
   .path-videos{ background: linear-gradient(135deg, #C2410C, #D97706); }
+  .path-study{ background: linear-gradient(135deg, #24567A, #1E8A72); }
 
   /* --- categories CTA --- */
   .categories-cta{ display:flex; justify-content:center; margin-top:22px; }
