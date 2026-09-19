@@ -115,6 +115,10 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
 .verified{display:inline-flex;flex-wrap:wrap;align-items:center;gap:12px;border:1px solid var(--gold);border-radius:18px;padding:12px 22px;background:var(--card);color:var(--gold);font-weight:800}
 #topBtn{position:fixed;bottom:20px;inset-inline-start:20px;z-index:85;width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,var(--hot),var(--gold));font-size:1.2rem;opacity:0;pointer-events:none;transition:.3s}
 #topBtn.show{opacity:1;pointer-events:auto}
+.vid{margin:18px 0 8px}
+.vidLbl{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:.78rem;font-weight:800;color:var(--muted);margin-bottom:8px}
+.vidBox{position:relative;width:100%;max-width:100%;border-radius:16px;overflow:hidden;background:#000;border:1px solid var(--line);box-shadow:0 10px 26px rgba(0,0,0,.22)}
+.vidBox iframe{display:block;width:100%;border:0;aspect-ratio:16/9;background:#000}
 </style>
 </head>
 <body>
@@ -174,6 +178,17 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
   </div>
   <div class="speedRow" data-spd="perm"><span>⏩ Speed · السرعة:</span>
     <button class="spBtn active" data-sp="1">1×</button><button class="spBtn" data-sp="2">2×</button><button class="spBtn" data-sp="4">4×</button></div>
+
+  <!-- 🎬 Convection in Water -->
+  <div class="vid" data-vid="4v-ISNCCBjU">
+    <p class="vidLbl"><span class="en">🌊 Convection in Water</span><span class="ar">🌊 الحمل في الماء</span></p>
+    <div class="vidBox">
+      <iframe src="https://www.youtube.com/embed/4v-ISNCCBjU" title="Convection in Water: Potassium Permanganate" loading="lazy" allowfullscreen allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+    </div>
+    <p class="en mut" style="font-size:.8rem;margin-top:6px">Drop the purple potassium permanganate crystal into the heated water and watch the purple colour spread — heat moves through the liquid by convection currents.</p>
+    <p class="ar mut" style="font-size:.8rem;margin-top:2px">ضَع بلورة البرمنجنات البنفسجية في الماء الساخن وشاهد اللون البنفسجي ينتشر — الحرارة بتنتقل في السائل بتيارات الحمل.</p>
+  </div>
+
   <div class="note pur" id="permObs" style="display:none">
     <span class="en">👁️ Observed: the purple colour spreads throughout the beaker → convection. Heat is transferred in <strong>fluids</strong> (liquids & gases) by the movement of convection currents.</span>
     <span class="ar">👁️ الملاحظ: اللون البنفسجي انتشر في الكأس كله → حمل. الحرارة بتنتقل في <strong>الموائع</strong> (سوائل وغازات) بحركة تيارات الحمل.</span>
@@ -198,6 +213,16 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
       <p class="en">- When air is heated, its density decreases and it <strong>rises</strong> upwards.<br>- It is replaced by cold air (of higher density), and so on…</p>
       <p class="ar">- لما الهوا بيسخن، كثافته بتقل و<strong>بيصعد</strong> لفوق.<br>- وبيحل محله هوا بارد (أعلى كثافة)، وهكذا…</p>
       <svg viewBox="0 0 120 90" style="width:100%"><path d="M60 78 V22" stroke="#fb923c" stroke-width="4" class="pulse"/><path d="M60 22 C92 24 96 48 94 76" fill="none" stroke="#38bdf8" stroke-width="3" class="dash"/><path d="M60 22 C28 24 24 48 26 76" fill="none" stroke="#38bdf8" stroke-width="3" class="dash"/><text x="60" y="88" text-anchor="middle" fill="#fb923c" font-size="9" font-weight="700">Rising hot air · صعود الهوا الساخن</text></svg></div>
+  </div>
+
+  <!-- 🎬 Convection in Air -->
+  <div class="vid" data-vid="p6vKxB4PmlY">
+    <p class="vidLbl"><span class="en">☁️ Convection in Air</span><span class="ar">☁️ الحمل في الهواء</span></p>
+    <div class="vidBox">
+      <iframe src="https://www.youtube.com/embed/p6vKxB4PmlY" title="Convection in Air: Watch Hot Air Rise" loading="lazy" allowfullscreen allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+    </div>
+    <p class="en mut" style="font-size:.8rem;margin-top:6px">When air is heated its density decreases and it rises, replaced by cooler, denser air — this is convection in gases.</p>
+    <p class="ar mut" style="font-size:.8rem;margin-top:2px">لما الهواء بيسخن تقل كثافته فيصعد لأعلى ويحل محله هواء أبرد أعلى كثافة — ده هو الحمل في الغازات.</p>
   </div>
 </section>
 
@@ -336,6 +361,17 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
       <p class="en">• Objects absorb infrared radiation → their temperature rises.<br>• Opaque <strong>dark</strong> objects absorb infrared <strong>better than</strong> shiny (light-coloured) objects.</p>
       <p class="ar">• الأجسام بتمتص الأشعة تحت الحمراء → درجة حرارتها بتزيد.<br>• الأجسام المعتمة <strong>الغامقة</strong> بتمتص الأشعة <strong>أفضل من</strong> اللامعة (الفاتحة).</p></div>
   </div>
+
+  <!-- 🎬 Dark vs Shiny -->
+  <div class="vid" data-vid="o2auhv2CDb8">
+    <p class="vidLbl"><span class="en">☀️ Dark vs Shiny</span><span class="ar">☀️ الغامق ضد اللامع</span></p>
+    <div class="vidBox">
+      <iframe src="https://www.youtube.com/embed/o2auhv2CDb8" title="Dark vs Shiny: Absorption of Thermal Radiation" loading="lazy" allowfullscreen allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+    </div>
+    <p class="en mut" style="font-size:.8rem;margin-top:6px">The dark opaque object absorbs infrared radiation better than the shiny light-coloured one — that is why dark objects heat up faster under the Sun.</p>
+    <p class="ar mut" style="font-size:.8rem;margin-top:2px">الجسم الغامق المعتم بيمتص الأشعة تحت الحمراء أفضل من اللامع الفاتح — ولهذا الأجسام الغامقة بتسخن أسرع تحت الشمس.</p>
+  </div>
+
   <h3 style="margin-top:20px">☀️ <span class="en">Absorption Race: Dark vs Shiny</span> · <span class="ar">سباق الامتصاص: الغامق ضد اللامع</span></h3>
   <div class="grid2" style="margin-top:12px">
     <div class="tile"><h3>⚫ <span class="en">Dark tea pot</span> · <span class="ar">إبريق غامق</span></h3>
@@ -471,6 +507,17 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
     <div class="humC"><svg viewBox="0 0 70 130" style="width:64px"><defs><linearGradient id="gc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ef4444"/><stop offset=".45" stop-color="#22c55e"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs><circle cx="35" cy="14" r="11" fill="url(#gc)"/><path d="M35 27c-13 0-18 9-18 22v28h9v48h18V77h9V49c0-13-5-22-18-22z" fill="url(#gc)"/></svg><span class="en">Cold</span><span class="ar">بارد</span></div>
     <div class="humC"><svg viewBox="0 0 70 130" style="width:64px"><defs><linearGradient id="gw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ef4444"/><stop offset="1" stop-color="#fb923c"/></linearGradient></defs><circle cx="35" cy="14" r="11" fill="url(#gw)"/><path d="M35 27c-13 0-18 9-18 22v28h9v48h18V77h9V49c0-13-5-22-18-22z" fill="url(#gw)"/></svg><span class="en">Warm</span><span class="ar">دافئ</span></div>
   </div>
+
+  <!-- 🎬 Thermography -->
+  <div class="vid" data-vid="fct0Llr55Q0">
+    <p class="vidLbl"><span class="en">🎨 Thermography</span><span class="ar">🎨 التصوير الحراري</span></p>
+    <div class="vidBox">
+      <iframe src="https://www.youtube.com/embed/fct0Llr55Q0" title="Thermography: Seeing Heat with Infrared" loading="lazy" allowfullscreen allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+    </div>
+    <p class="en mut" style="font-size:.8rem;margin-top:6px">An infrared camera detects thermal radiation and turns it into coloured images — used for imaging in the dark and detecting an object's temperature.</p>
+    <p class="ar mut" style="font-size:.8rem;margin-top:2px">كاميرا الأشعة تحت الحمراء بتكشف الإشعاع الحراري وتحوّله لصور ملونة — تُستخدم للتصوير في الظلام والكشف عن درجة حرارة الأجسام.</p>
+  </div>
+
   <div class="grid2" style="margin-top:14px">
     <div class="tile"><span class="tag">Uses · الاستخدامات</span>
       <p class="en">- Imaging in the dark.<br>- Detecting the temperature of objects.</p>
