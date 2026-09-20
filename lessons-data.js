@@ -153,5 +153,17 @@ const lessonsData = [
     cta: "ابدأ الدرس ←",
     href: "lesson-nutritional-chemistry.html",
     lang: "ar"
+  },
+  {
+    id: "lesson-photosynthesis",
+    order: 1,
+    unit: 3,
+    status: "published",
+    icon: "🌱☀️🍃",
+    title: "Photosynthesis · التمثيل الضوئي",
+    desc: "الدرس الأول لوحدة تدفق الطاقة (الوحدة الثالثة): كيف يصنع النبات غذاءه — شرح مرئي تفاعلي ثنائي اللغة للتمثيل الضوئي (صفحات 232–238): المعادلة والعوامل المؤثرة، التجارب الاستدلالية (الأكسجين والكربون والأوراق والضوء)، وأسئلة واختبارات تفاعلية.",
+    cta: "ابدأ الدرس ←",
+    href: "lesson-photosynthesis.html",
+    lang: "ar"
   }
 ];

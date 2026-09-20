@@ -144,6 +144,12 @@
     </div>
 
     <div class="lesson-grid" id="lessonGrid2"></div>
+
+    <div class="unit-header" id="unit3" style="margin-top:40px;">
+      <span class="unit-label">الوحدة الثالثة: تدفّق الطاقة</span>
+    </div>
+
+    <div class="lesson-grid" id="lessonGrid3"></div>
   </div>
 
   <footer class="site-footer">www.2ndPrepFunnyScienceLab · By #Dr_Wael_Aboagiza</footer>
@@ -165,7 +171,7 @@
     }
 
     const unit1 = lessonsData
-      .filter(l => l && l.status === 'published' && l.href && l.title && l.unit !== 2)
+      .filter(l => l && l.status === 'published' && l.href && l.title && l.unit !== 2 && l.unit !== 3)
       .sort((a, b) => (a.order || 0) - (b.order || 0));
     const unit2 = lessonsData
       .filter(l => l && l.status === 'published' && l.href && l.title && l.unit === 2)
@@ -180,6 +186,12 @@
     const grid2 = document.getElementById('lessonGrid2');
     const cards2 = unit2.map(cardHTML).join('');
     if (grid2 && cards2) grid2.innerHTML = cards2;
+    const unit3 = lessonsData
+      .filter(l => l && l.status === 'published' && l.href && l.title && l.unit === 3)
+      .sort((a, b) => (a.order || 0) - (b.order || 0));
+    const cards3 = unit3.map(cardHTML).join('');
+    const grid3 = document.getElementById('lessonGrid3');
+    if (grid3 && cards3) grid3.innerHTML = cards3;
   })();
 </script>
 
