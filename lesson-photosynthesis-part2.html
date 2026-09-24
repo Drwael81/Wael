@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Photosynthesis Part 2 — Mechanism & Factors | ميكانيزم البناء الضوئي والعوامل المؤثرة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060b16;--card:#0f1a2e;--card2:#12203a;--line:#24345a;--text:#eaf2ff;--muted:#93a6cc;--acc:#22d3ee;--acc2:#4f8cff;--hot:#fb923c;--cold:#38bdf8;--ok:#34d399;--bad:#f87171;--gold:#fbbf24;--pur:#a855f7;--r:20px}
+body[data-theme="light"]{--bg:#eef3fb;--card:#fff;--card2:#f4f8ff;--line:#c9d6ee;--text:#10203c;--muted:#5a6b8c}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;transition:background .4s,color .4s;overflow-x:hidden}
+::selection{background:var(--acc);color:#032}
+.en{display:block;direction:ltr;text-align:left;font-family:'Space Grotesk','Cairo',sans-serif;font-size:.93rem;line-height:1.7;color:var(--text)}
+.ar{display:block;direction:rtl;text-align:right;font-size:.96rem;line-height:2;color:var(--text);margin-top:2px}
+.mut{color:var(--muted)!important}
+h1,h2,h3{line-height:1.5}
+section{scroll-margin-top:95px}
+#progress{position:fixed;top:0;right:0;height:4px;width:0;background:linear-gradient(90deg,var(--acc),var(--hot));z-index:99;border-radius:99px}
+.topbar{position:fixed;top:0;right:0;left:0;z-index:90;display:flex;align-items:center;gap:10px;padding:10px 14px;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand{font-weight:900;font-size:.85rem;white-space:nowrap}
+nav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;padding:2px}
+nav::-webkit-scrollbar{display:none}
+nav a{padding:5px 12px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:.72rem;font-weight:700;white-space:nowrap;text-decoration:none;transition:.25s}
+nav a.active{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#041018;border-color:transparent}
+#themeBtn{cursor:pointer;border:1px solid var(--line);background:var(--card);border-radius:12px;width:40px;height:40px;font-size:1.1rem}
+#soundBtn{cursor:pointer;border:1px solid var(--line);background:var(--card);border-radius:12px;width:40px;height:40px;font-size:1.1rem}
+#rail{position:fixed;inset-inline-end:12px;top:50%;transform:translateY(-50%);z-index:80;display:flex;flex-direction:column;align-items:center;gap:6px}
+#rail .tube{width:12px;height:36vh;border:2px solid var(--line);border-radius:99px;position:relative;overflow:hidden;background:rgba(128,160,220,.08)}
+#rail .bulb{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#a3e635,#22c55e);margin-top:-4px}
+#railFill{position:absolute;bottom:0;width:100%;height:0;background:linear-gradient(0deg,#22c55e,#84cc16 40%,#22d3ee)}
+#railVal{font-family:'Space Grotesk';font-size:.72rem;color:var(--muted)}
+@media(max-width:1000px){#rail{display:none}}
+#hero{min-height:94vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:110px 18px 60px}
+#heroCv{position:absolute;inset:0;width:100%;height:100%}
+.heroIn{position:relative;z-index:2;max-width:920px}
+.kicker{display:inline-block;padding:6px 18px;border:1px solid var(--line);border-radius:999px;color:var(--acc);font-weight:800;font-size:.78rem;background:var(--card)}
+#hero h1{font-size:clamp(1.9rem,5.5vw,3.3rem);font-weight:900;margin:16px 0 4px;background:linear-gradient(90deg,var(--acc),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+#hero h1 .ar{font-size:clamp(1.5rem,4.5vw,2.6rem);background:linear-gradient(90deg,var(--gold),var(--acc));-webkit-background-clip:text;background-clip:text;color:transparent;margin:0}
+#hero p.desc{margin:16px auto;max-width:72ch;color:var(--muted)}
+.badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:20px}
+.badge{padding:8px 16px;border-radius:14px;border:1px solid var(--line);background:var(--card);font-size:.78rem;font-weight:700;text-align:center}
+.badge.vip{border-color:var(--gold);color:var(--gold)}
+.scrollHint{margin-top:40px;font-size:1.6rem;animation:bnc 1.6s infinite}
+@keyframes bnc{50%{transform:translateY(10px)}}
+main{max-width:1150px;margin:auto;padding:30px 16px 90px;display:flex;flex-direction:column;gap:34px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:clamp(18px,3.4vw,36px);box-shadow:0 14px 40px rgba(0,0,0,.25)}
+.chead{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.cnum{font-family:'Space Grotesk';font-size:1.5rem;font-weight:700;background:linear-gradient(180deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;border:1px solid var(--line);border-radius:16px;padding:6px 14px}
+.chead h2{font-size:clamp(1.05rem,2.6vw,1.45rem);font-weight:900}
+.pg{font-family:'Space Grotesk';font-size:.7rem;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:2px 12px;white-space:nowrap;flex-shrink:0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px}
+.row2{display:flex;gap:14px;flex-wrap:nowrap;align-items:stretch}
+.row2>.tile{flex:1;min-width:0}
+.tile{background:var(--card2);border:1px solid var(--line);border-radius:16px;padding:18px;transition:.25s}
+.tile:hover{transform:translateY(-4px);border-color:var(--acc)}
+.note{border-inline-start:4px solid var(--acc);background:var(--card2);border-radius:12px;padding:12px 16px;margin-top:14px;font-size:.9rem}
+.note.hot{border-color:var(--hot)} .note.gold{border-color:var(--gold)} .note.ok{border-color:var(--ok)} .note.pur{border-color:var(--pur)}
+.tag{display:inline-block;font-size:.7rem;font-weight:800;color:#041018;background:var(--acc);border-radius:99px;padding:2px 12px;margin-bottom:8px}
+.tag.hot{background:var(--hot)} .tag.gold{background:var(--gold)} .tag.ok{background:var(--ok)} .tag.pur{background:var(--pur)}
+.defBox{border:2px dashed var(--line);border-radius:12px;padding:12px 16px;margin-top:14px;background:var(--card2)}
+.defBox b.dT{color:var(--bad);font-size:1rem}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal.vis{opacity:1;transform:none}
+.btn{cursor:pointer;border:none;border-radius:14px;padding:10px 22px;font-family:inherit;font-weight:800;font-size:.9rem;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#041018;transition:.2s;box-shadow:0 6px 18px rgba(34,211,238,.25)}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line);box-shadow:none}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.labctrl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin:14px 0 6px}
+.quiz{margin-top:10px}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.opt{cursor:pointer;border:1px solid var(--line);background:var(--card2);color:var(--text);border-radius:14px;padding:7px 16px;font-family:inherit;font-weight:700;font-size:.83rem;transition:.2s}
+.opt:hover{border-color:var(--acc)}
+.opt.ok{background:var(--ok);border-color:var(--ok);color:#03210f;animation:pop .35s}
+.opt.bad{background:var(--bad);border-color:var(--bad);color:#3b0708;animation:shk .35s}
+@keyframes pop{50%{transform:scale(1.08)}}
+@keyframes shk{25%{transform:translateX(5px)}75%{transform:translateX(-5px)}}
+.exp{display:none;margin-top:10px;border-inline-start:4px solid var(--ok);background:color-mix(in srgb,var(--ok) 12%,transparent);padding:10px 14px;border-radius:10px;font-size:.88rem}
+.exp.show{display:block}
+.pulse{animation:pl 1.6s infinite}@keyframes pl{50%{opacity:.25}}
+.simBox{border:2px dashed var(--line);border-radius:16px;padding:16px;margin:16px 0;background:var(--card2)}
+.meter{height:12px;border-radius:99px;border:1px solid var(--line);overflow:hidden;background:var(--card2)}
+.meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--acc),var(--ok));transition:width .3s}
+.rRow{display:grid;grid-template-columns:120px 1fr;gap:10px;align-items:center;margin-top:10px;font-size:.82rem}
+.rBar{height:16px;background:var(--card);border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.rBar i{display:block;height:100%;width:0;border-radius:99px;transition:width .4s}
+/* excited atom */
+.atomBox{text-align:center}
+#atomSvg{width:100%;max-width:340px;height:auto;margin:6px auto;display:block}
+.orbit{fill:none;stroke:var(--line);stroke-width:1.5;stroke-dasharray:5 5;transition:.3s}
+.orbit.outer{stroke:var(--muted)}
+.nucleus{fill:url(#nucG)}
+#elecWrap{transition:transform 1s cubic-bezier(.5,0,.5,1.3)}
+#atomSvg.exc #elecWrap{transform:translateY(-10px)}
+.electron{fill:#fbbf24;stroke:#fef08a;stroke-width:2}
+#atomSvg.exc .electron{fill:#f97316}
+#atomSvg.exc .orbit{stroke:var(--gold)}
+#photon{opacity:0}
+#atomSvg.ph #photon{animation:ph 1s ease-out}
+@keyframes ph{0%{opacity:.9;r:12}100%{opacity:0;r:30}}
+.stateChip{display:inline-block;padding:4px 14px;border-radius:99px;font-weight:800;font-size:.82rem;border:1px solid var(--line);background:var(--card);transition:.3s}
+#atomSvg.exc + div .stateChip, .atomBox.excMark .stateChip{background:rgba(248,113,113,.15);border-color:var(--bad);color:var(--bad)}
+/* steps */
+.steps{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+.step{display:flex;gap:12px;border:1px solid var(--line);border-radius:14px;background:var(--card2);padding:12px 14px}
+.step .snum{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-family:'Space Grotesk';font-weight:700;color:#041018;background:linear-gradient(135deg,var(--acc),var(--acc2))}
+.step .snum.b{background:linear-gradient(135deg,var(--ok),#0ea5a4)}
+.step .sgr{font-size:.7rem;font-weight:800;color:var(--gold)}
+.step .sgr.en{color:var(--gold)}
+/* stepper */
+.stepper{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:14px;margin-top:8px}
+.stPill{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.stPill i{width:14px;height:14px;border-radius:50%;background:var(--card);border:1px solid var(--line);transition:.25s}
+.stPill i.on{background:var(--acc)}
+.stepper .sBody{min-height:130px;display:flex;align-items:center}
+/* equation builder */
+.eqRow{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:center;margin-top:10px}
+.eqMolec{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:12px 16px;font-family:'Space Grotesk','Cairo';font-weight:800;text-align:center;min-width:110px}
+.eqMolec big{font-size:1.3rem;display:block;line-height:1.4}
+.eqMolec small{font-size:.7rem;color:var(--muted);display:block}
+.eqMolec .cnt{font-family:'Space Grotesk';font-size:1rem;color:var(--acc)}
+.eqPlus{font-size:1.6rem;color:var(--muted)}
+.eqArrow{font-family:'Space Grotesk';font-size:1rem;font-weight:700;color:var(--gold);text-align:center}
+.atGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.at{ background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 10px;text-align:center;font-size:.8rem}
+.at b{font-family:'Space Grotesk';font-size:1.15rem;display:block}
+.at small{color:var(--muted);font-size:.66rem}
+.at.bal{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card))}
+.plants{display:flex;align-items:center;justify-content:center;gap:6px;margin:6px 0 14px}
+.plantKind{flex:1;min-width:70px;text-align:center;border:1px solid var(--line);border-radius:14px;padding:12px 8px;background:var(--card2)}
+.plantKind b{display:block;font-size:.82rem;font-weight:800;margin-top:4px}
+.plantKind em{font-style:normal;font-size:.72rem;color:var(--muted)}
+/* ball-stick models */
+.modelRow{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:10px}
+.modelBtn{cursor:pointer;border:1px solid var(--line);background:var(--card);border-radius:16px;padding:10px;min-width:150px;transition:.25s}
+.modelBtn:hover{border-color:var(--acc);transform:translateY(-3px)}
+.modelBtn.active{border-color:var(--gold);box-shadow:0 0 0 2px rgba(251,191,36,.25)}
+.modelBtn svg{width:100%;height:auto;display:block}
+.modelBtn b{display:block;font-family:'Space Grotesk','Cairo';font-size:.82rem;margin-top:6px}
+.legend{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:10px;font-size:.75rem;color:var(--muted)}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:50%;vertical-align:-2px;margin-inline-end:4px}
+/* leaf sim */
+.leafLab{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;align-items:flex-start}
+.leafCard{flex:0 1 300px;text-align:center;border:1px solid var(--line);border-radius:16px;background:var(--card);padding:12px}
+.leafCard h4{font-size:.9rem;margin-bottom:4px}
+.leafCard svg{width:100%;height:auto}
+.leafPale,.leafGreen,.leafGreen2,.strip{transition:fill .6s}
+.svga.dropped .leafPale{fill:#b45309}
+.svga.dropped .leafGreen{fill:#1e40af}
+.svgb.dropped .leafGreen2{fill:#1e40af}
+.strip{fill:rgba(15,23,42,.7);transition:fill .6s}
+.svgb.dropped .strip{fill:rgba(180,83,9,.85)}
+/* compare table */
+.cmpBox{overflow-x:auto;margin-top:12px}
+table.cmp{width:100%;border-collapse:collapse;font-size:.85rem;min-width:560px}
+table.cmp th,table.cmp td{border:1px solid var(--line);padding:10px 12px;text-align:start}
+table.cmp thead th{background:var(--card2);font-family:'Space Grotesk','Cairo';font-weight:800}
+table.cmp td:first-child{font-weight:800;white-space:nowrap}
+table.cmp .ar{font-size:.85rem}
+/* factors */
+.fact{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-top:10px}
+.factHead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.factHead h4{font-size:.95rem}
+.factVal{font-family:'Space Grotesk';font-size:.85rem;color:var(--acc);font-weight:700}
+.fact svg{width:100%;max-width:420px;height:auto;display:block;margin:8px auto}
+.fact input[type=range]{width:100%;accent-color:var(--acc);cursor:pointer;margin-top:8px}
+.factNote{font-size:.82rem;margin-top:8px;padding:8px 12px;border-radius:10px;border-inline-start:4px solid var(--acc);background:var(--card2)}
+.factNote.good{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 10%,var(--card2))}
+.factNote.stop{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card2))}
+.grLine{stroke:var(--acc);stroke-width:2.5;fill:none;stroke-linecap:round}
+.grOpt{stroke:var(--gold);stroke-width:1.5;stroke-dasharray:5 4}
+.grAxis{stroke:var(--line);stroke-width:1}
+.grLab{font-family:'Space Grotesk';font-size:9px;fill:var(--muted)}
+.grDot{fill:var(--gold);stroke:#041018;stroke-width:1.5}
+/* figure MCQ */
+.figBox{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:8px}
+.figBox .leafCard{flex:0 1 220px}
+/* footer */
+footer{text-align:center;padding:30px 16px 50px;color:var(--muted)}
+.verified{display:inline-flex;align-items:center;gap:12px;border:1px solid var(--gold);border-radius:18px;padding:12px 22px;background:var(--card);color:var(--gold);font-weight:800}
+.jigsaw{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+.jig{display:flex;justify-content:space-between;gap:10px;align-items:center;border:1px solid var(--line);border-radius:14px;background:var(--card2);padding:10px 14px;font-size:.82rem}
+.jig b{font-family:'Space Grotesk','Cairo';min-width:110px}
+@media(max-width:440px){.verified{flex-wrap:wrap;justify-content:center}}
+@media(max-width:460px){.eqMolec{min-width:92px}.eqMolec big{font-size:1.05rem}.plantKind{min-width:56px}}
+@media(max-width:390px){.topbar{gap:6px;padding:8px}.brand{font-size:.76rem}nav a{padding:4px 9px;font-size:.64rem}#themeBtn,#soundBtn{width:34px;height:34px;font-size:1rem;border-radius:10px}#hero{min-height:88vh;padding:100px 12px 48px}.kicker{font-size:.66rem;padding:5px 12px}.badge{font-size:.7rem;padding:7px 11px}main{padding:22px 10px 80px;gap:26px}.card{padding:16px 13px}.chead{gap:10px;margin-bottom:12px}.cnum{font-size:1.15rem;padding:4px 10px;border-radius:12px}.pg{font-size:.6rem;padding:2px 8px}.note{font-size:.84rem;padding:10px 12px}.grid2,.grid3{grid-template-columns:1fr}.row2{flex-wrap:wrap}.row2>.tile{flex:1 1 100%}.tile{padding:14px}.atGrid{grid-template-columns:1fr}.en{font-size:.88rem}.ar{font-size:.91rem}.btn{padding:8px 13px;font-size:.8rem}.labctrl{gap:8px}.opts{flex-direction:column}.opt{text-align:start;width:100%;padding:8px 14px}.simBox{padding:12px}}
+#topBtn{position:fixed;bottom:20px;inset-inline-start:20px;z-index:85;width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,var(--hot),var(--gold));font-size:1.2rem;opacity:0;pointer-events:none;transition:.3s}
+#topBtn.show{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<header class="topbar">
+  <div class="brand">🌿 Photosynthesis Part 2 · الجزء الثاني</div>
+  <nav id="nav">
+    <a href="#hero" class="active">Start · البداية</a><a href="#mech">Mechanism · الميكانيزم</a>
+    <a href="#eqn">Equation · المعادلة</a><a href="#act">Activity · النشاط</a>
+    <a href="#fact">Factors · العوامل</a><a href="#recap">Recap · الخلاصة</a>
+  </nav>
+  <button id="themeBtn" title="Theme · المظهر">☀️</button>
+</header>
+<div id="rail"><div class="tube"><i id="railFill"></i></div><div class="bulb"></div><b id="railVal">0°</b></div>
+
+<section id="hero">
+  <canvas id="heroCv"></canvas>
+  <div class="heroIn">
+    <span class="kicker">Unit 3 · Photosynthesis Part 2 · Pages 240-247 <span style="opacity:.6">|</span> الوحدة 3 · الجزء الثاني · صفحات 240-247</span>
+    <h1><span class="en">Mechanism of Photosynthesis & the Factors Affecting It</span><span class="ar">ميكانيزم البناء الضوئي والعوامل المؤثرة فيه</span></h1>
+    <p class="desc en">In Part 2 we follow the journey of light energy: how chlorophyll absorbs blue & red light and becomes excited, how water is split and glucose is built in two shining stages, then we balance the word-equation, verify the importance of chlorophyll & light with the iodine experiment, and finally control the rate with temperature, CO₂ and light.</p>
+    <p class="desc ar">في الجزء الثاني بنكمل رحلة الطاقة الضوئية: إزاي الكلوروفيل بيمتص الضوء الأزرق والأحمر وبيفضل مُثار، وإزاي بيتقسّم الماء ويتكوّن الجلوكوز في مرحلتين، وبعدين نوازن المعادلة، ونتأكد من أهمية الكلوروفيل والضوء بتجربة اليود، وأخيرًا نتحكم في المعدل بدرجة الحرارة وثاني أكسيد الكربون والضوء.</p>
+    <div class="badges">
+      <span class="badge"><span class="en">⚛️ Excited Atom & Enzymes</span><span class="ar">⚛️ الذرة المثارة والإنزيمات</span></span>
+      <span class="badge"><span class="en">⚗️ Balanced Equation & Modelling</span><span class="ar">⚗️ المعادلة المتزنة والنمذجة</span></span>
+      <span class="badge"><span class="en">🍃 Chlorophyll & Light (Activity 2)</span><span class="ar">🍃 الكلوروفيل والضوء (نشاط 2)</span></span>
+      <span class="badge"><span class="en">📈 Factors & Vertical Farming</span><span class="ar">📈 العوامل والزراعة الرأسية</span></span>
+      <span class="badge vip"><span class="en">✔️ Reviewed by Dr. Wael Aboagiza</span><span class="ar">✔️ مراجعة د. وائل أبو عجيزة</span></span>
+    </div>
+    <div class="scrollHint">⌄</div>
+  </div>
+</section>
+
+<main>
+<section id="mech" class="card reveal">
+  <div class="chead"><span class="cnum">05</span><span class="pg">Pages 240-241 · ص 240-241</span><div><h2><span class="en">Integration with Chemistry & the Mechanism of Photosynthesis</span><span class="ar">التكامل مع الكيمياء وميكانيزم البناء الضوئي</span></h2></div></div>
+
+  <h3 style="margin-top:6px">⚛️ <span class="en">1 · The Excited Atom</span> · <span class="ar">1 · الذرة المثارة</span></h3>
+  <p class="en">When an electron gains a <strong>quantum of energy</strong>, it jumps to a higher energy level and the atom becomes <strong>unstable (excited)</strong> — then the electron quickly returns to its original level, releasing the quantum and the atom becomes stable again.</p>
+  <p class="ar">لما الإلكترون ياخد <strong>كمية طاقة</strong> بينط من مستواه لمستوى أعلى وتبقى الذرة <strong>غير مستقرة (مثارة)</strong> — وبسرعة الإلكترون بيرجع لمستواه الأصلي ويطلق الكمية وترجع الذرة مستقرة.</p>
+  <div class="simBox">
+    <div class="atomBox">
+      <svg id="atomSvg" viewBox="0 0 240 180" dir="ltr">
+        <defs>
+          <radialGradient id="nucG" cx="45%" cy="35%" r="75%">
+            <stop offset="0%" stop-color="#5eead4"/><stop offset="100%" stop-color="#0f766e"/>
+          </radialGradient>
+        </defs>
+        <ellipse class="orbit" cx="120" cy="92" rx="52" ry="19"/>
+        <ellipse class="orbit outer" cx="120" cy="92" rx="82" ry="29"/>
+        <circle id="photon" cx="120" cy="92" fill="var(--gold)" opacity=".9" r="14"/>
+        <g id="elecWrap">
+          <circle class="electron" cx="120" cy="73" r="9"/>
+        </g>
+        <g class="nucleus">
+          <circle cx="120" cy="92" r="20" fill="url(#nucG)" stroke="#134e4a" stroke-width="2"/>
+          <text x="120" y="97" text-anchor="middle" font-size="13" font-weight="800" fill="#041018" font-family="Space Grotesk,sans-serif">N</text>
+        </g>
+        <text x="120" y="170" text-anchor="middle" font-size="10" fill="var(--muted)" font-family="Space Grotesk,sans-serif">Electron energy levels · مستويات طاقة الإلكترون</text>
+      </svg>
+    </div>
+    <div class="labctrl">
+      <button class="btn" id="atomGive">⚡ Give quantum of energy · أعطِ كمية طاقة</button>
+      <button class="btn ghost" id="atomReset">↺ Reset · إعادة</button>
+    </div>
+    <div class="note" id="atomObs" style="margin-top:6px">
+      <span class="en">👆 Press the button — the electron jumps to a higher level and the atom becomes excited.</span>
+      <span class="ar">👆 اضغط الزر — الإلكترون بيقفز لمستوى أعلى وتبقى الذرة مثارة.</span>
+    </div>
+  </div>
+
+  <h3 style="margin-top:20px">🧬 <span class="en">2 · Enzymes</span> · <span class="ar">2 · الإنزيمات</span></h3>
+  <div class="grid2" style="margin-top:10px">
+    <div class="tile"><span class="tag">🧬 Enzymes · الإنزيمات</span>
+      <p class="en">Protein molecules that act as <strong>catalysts</strong> in some chemical reactions.</p>
+      <p class="ar">جزيئات بروتينية تعمل <strong>عوامل مساعدة (محفزات)</strong> في بعض التفاعلات الكيميائية.</p></div>
+    <div class="tile"><span class="tag hot">🔑 Importance · الأهمية</span>
+      <p class="en">In the <strong>light-independent stage</strong> they raise the reaction rate <strong>without needing the high lab temperatures</strong>.</p>
+      <p class="ar">في <strong>المرحلة اللا ضوئية</strong> ترفع معدل التفاعلات <strong>من غير الحاجة لدرجات الحرارة المرتفعة في المعمل</strong>.</p></div>
+  </div>
+
+  <h3 style="margin-top:20px">🌗 <span class="en">3 · The Two Stages of Photosynthesis</span> · <span class="ar">3 · مرحلتا البناء الضوئي</span></h3>
+  <div class="grid2" style="margin-top:10px">
+    <div class="tile"><span class="tag">☀️ Light-dependent · معتمدة على الضوء</span>
+      <p class="en"><strong>Occurs:</strong> on the grana <strong>thylakoid membranes</strong> inside the green plastid — in the presence of light.</p>
+      <p class="ar"><strong>تحدث:</strong> على <strong>أغشية الثايلاكويد</strong> في الجرانا داخل البلاستيد الأخضر — في وجود الضوء.</p></div>
+    <div class="tile"><span class="tag hot">🌙 Light-independent · غير معتمدة على الضوء</span>
+      <p class="en"><strong>Occurs:</strong> in the <strong>internal space (stroma)</strong> of the green plastid — without needing light.</p>
+      <p class="ar"><strong>تحدث:</strong> في <strong>الحيز الداخلي (الستروما)</strong> للبلاستيد الأخضر — من غير حاجة للضوء.</p></div>
+  </div>
+  <div class="jigsaw">
+    <div class="jig"><b>💡 G.R. · علّل</b><span><span class="en">Why do the light-dependent reactions occur on the grana thylakoids?</span><span class="ar">لماذا تحدث التفاعلات الضوئية على أغشية ثايلاكويد الجرانا؟</span></span></div>
+    <div class="jig"><b style="color:var(--ok)">✔ Answer</b><span><span class="en">Because they contain the green <strong>chlorophyll</strong> pigment responsible for absorbing light energy.</span><span class="ar">لأنها تحتوي صبغة <strong>الكلوروفيل</strong> الخضراء المسؤولة عن امتصاص الطاقة الضوئية.</span></span></div>
+    <div class="jig"><b>💡 G.R. · علّل</b><span><span class="en">Why do the light-independent reactions occur in the stroma?</span><span class="ar">لماذا تحدث التفاعلات اللا ضوئية في الستروما؟</span></span></div>
+    <div class="jig"><b style="color:var(--ok)">✔ Answer</b><span><span class="en">Because the stroma contains most of the <strong>enzymes</strong> needed for photosynthesis.</span><span class="ar">لأن الستروما يحتوي معظم <strong>الإنزيمات</strong> اللازمة للبناء الضوئي.</span></span></div>
+  </div>
+
+  <h3 style="margin-top:20px">🪜 <span class="en">4 · The Mechanism — Step by Step</span> · <span class="ar">4 · الميكانيزم — خطوة بخطوة</span></h3>
+  <div class="simBox">
+    <div class="stepper">
+      <div class="stPill" id="stepsPill">
+        <i class="on"></i><i></i><i></i><i></i><i></i>
+      </div>
+      <div class="sBody">
+        <div class="note" style="margin:0">
+          <span class="en" id="sEN"></span>
+          <span class="ar" id="sAR"></span>
+        </div>
+      </div>
+      <div class="labctrl">
+        <button class="btn ghost" id="stPrev">◀ Prev · السابق</button>
+        <button class="btn" id="stPlay">▶ Play · شغّل</button>
+        <button class="btn ghost" id="stNext">Next · التالي ▶</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="defBox">
+    <b class="dT">📖 Definitions · التعريفات</b>
+    <p class="en" style="margin-top:6px"><strong>Light-dependent reactions:</strong> a group of chemical reactions that take place in the <strong>grana</strong> and depend on the presence of light.</p>
+    <p class="ar"><strong>التفاعلات الضوئية:</strong> مجموعة تفاعلات كيميائية تحدث في <strong>الجرانا</strong> وتعتمد على وجود الضوء.</p>
+    <p class="en" style="margin-top:8px"><strong>Light-independent reactions:</strong> a group of chemical reactions that take place in the <strong>stroma</strong> and do not depend on the presence of light.</p>
+    <p class="ar"><strong>التفاعلات اللا ضوئية:</strong> مجموعة تفاعلات كيميائية تحدث في <strong>الستروما</strong> ولا تعتمد على وجود الضوء.</p>
+  </div>
+
+  <div class="quiz">
+    <p class="en"><strong>Q1:</strong> Where do the light-independent reactions of photosynthesis take place?</p>
+    <p class="ar"><strong>س1:</strong> أين تحدث التفاعلات غير المعتمدة على الضوء في البناء الضوئي؟</p>
+    <div class="opts">
+      <button class="opt">On the grana thylakoid membranes · على أغشية الثايلاكويد في الجرانا</button>
+      <button class="opt" data-ok>In the internal space (stroma) · في الحيز الداخلي (الستروما)</button>
+      <button class="opt">In the cell wall · في الجدار الخلوي</button>
+      <button class="opt">In the nucleus · في النواة</button>
+    </div>
+    <div class="exp"><span class="en">✔️ In the stroma — because it contains most of the enzymes needed for photosynthesis.</span><span class="ar">✔️ في الستروما — لأنه يحتوي معظم الإنزيمات اللازمة للبناء الضوئي.</span></div>
+  </div>
+  <div class="quiz">
+    <p class="en"><strong>Q2:</strong> An electron gains a quantum of energy — the atom becomes…</p>
+    <p class="ar"><strong>س2:</strong> عندما يكتسب الإلكترون كمية طاقة، تصبح الذرة…</p>
+    <div class="opts">
+      <button class="opt" data-ok>Excited and unstable · مثارة وغير مستقرة</button>
+      <button class="opt">Stable and calm · مستقرة وهادئة</button>
+      <button class="opt">Smaller · أصغر</button>
+      <button class="opt">Ionic · أيونية</button>
+    </div>
+    <div class="exp"><span class="en">✔️ Excited (unstable) — then the electron quickly returns and releases the quantum.</span><span class="ar">✔️ مثارة وغير مستقرة — ثم يعود الإلكترون سريعًا ويطلق الكمية.</span></div>
+  </div>
+</section>
+
+<section id="eqn" class="card reveal">
+  <div class="chead"><span class="cnum">06</span><span class="pg">Pages 242-243 · ص 242-243</span><div><h2><span class="en">The Chemical Equation, Modelling & Starch Formation</span><span class="ar">المعادلة الكيميائية والنمذجة وتكوين النشا</span></h2></div></div>
+
+  <p class="en">The plant <strong>rearranges</strong> atoms from simple molecules using sunlight: <strong>carbon dioxide</strong> (from the air) + <strong>water</strong> (from the soil) → food <strong>(glucose sugar)</strong> — the main product — + <strong>oxygen</strong> — a by-product.</p>
+  <p class="ar">يكوّن النبات الغذاء بإعادة <strong>ترتيب ذرات</strong> جزيئات بسيطة باستخدام ضوء الشمس: <strong>ثاني أكسيد الكربون</strong> (من الهواء) + <strong>الماء</strong> (من التربة) ← غذاء <strong>(سكر الجلوكوز)</strong> — المنتج الأساسي — + <strong>الأكسجين</strong> — منتج ثانوي.</p>
+
+  <div class="simBox">
+    <div class="eqRow">
+      <div class="eqMolec" id="mCO2"><big>CO<sub>2</sub></big><span class="cnt">× <b id="cCO2">0</b></span><small>Carbon dioxide · ثاني أكسيد الكربون</small></div>
+      <span class="eqPlus">＋</span>
+      <div class="eqMolec" id="mH2O"><big>H<sub>2</sub>O</big><span class="cnt">× <b id="cH2O">0</b></span><small>Water · الماء</small></div>
+    </div>
+    <div class="eqArrow" style="text-align:center;margin-top:8px">☀️ sunlight · ضوء الشمس &nbsp;/&nbsp; 🍃 chlorophyll · الكلوروفيل &nbsp;→</div>
+    <div class="eqRow">
+      <div class="eqMolec" id="mGluc"><big>C<sub>6</sub>H<sub>12</sub>O<sub>6</sub></big><span class="cnt">× <b id="cGluc">0</b></span><small>Glucose (food) · جلوكوز (غذاء)</small></div>
+      <span class="eqPlus">＋</span>
+      <div class="eqMolec" id="mO2"><big>O<sub>2</sub></big><span class="cnt">× <b id="cO2">0</b></span><small>Oxygen (by-product) · أكسجين</small></div>
+    </div>
+    <div class="labctrl">
+      <button class="btn" id="eqAdd">＋ Add 1 CO₂ & 1 H₂O · أضف</button>
+      <button class="btn" id="eqFull" disabled style="background:linear-gradient(135deg,var(--ok),#0ea5a4);box-shadow:0 6px 18px rgba(52,211,153,.25)">🔒 Unlock 6 : 6 · افتح ٦:٦</button>
+      <button class="btn ghost" id="eqReset">↺ Reset · إعادة</button>
+    </div>
+    <div class="atGrid" id="atGrid">
+      <div class="at" id="atC"><b>0 / 0</b>⚫ Carbon C · كربون <small>(CO₂ → Glucose)</small></div>
+      <div class="at" id="atH"><b>0 / 0</b>⚪ Hydrogen H · هيدروجين <small>(H₂O → Glucose)</small></div>
+      <div class="at" id="atO"><b>0 / 0</b>🔴 Oxygen O · أكسجين <small>(2CO₂+H₂O → C₆H₁₂O₆+6O₂)</small></div>
+    </div>
+    <div class="note" id="eqObs" style="margin-top:8px">
+      <span class="en">👆 Add reactant molecules, then press <strong>Unlock 6:6</strong> to balance the equation.</span>
+      <span class="ar">👆 أضف جزيئات المتفاعلات، ثم اضغط <strong>افتح ٦:٦</strong> لموازنة المعادلة.</span>
+    </div>
+  </div>
+
+  <h3 style="margin-top:20px">🧩 <span class="en">Modelling — Ball & Stick Models</span> · <span class="ar">النمذجة — نماذج الكرات والعيدان</span></h3>
+  <p class="en">Coloured balls represent the <strong>atoms of the elements</strong>, and the sticks represent the <strong>chemical bonds</strong>. Tap each model.</p>
+  <p class="ar">الكرات الملونة تمثل <strong>ذرات العناصر</strong>، والعيدان تمثل <strong>الروابط الكيميائية</strong>. اضغط على كل نموذج.</p>
+  <div class="modelRow" id="modelRow">
+    <button class="modelBtn" data-m="co2"><svg viewBox="0 0 120 70">
+      <line x1="30" y1="35" x2="60" y2="35" stroke="#9ca3af" stroke-width="3"/>
+      <line x1="28" y1="31" x2="58" y2="31" stroke="#9ca3af" stroke-width="1.6"/>
+      <line x1="60" y1="35" x2="90" y2="35" stroke="#9ca3af" stroke-width="3"/>
+      <line x1="62" y1="31" x2="92" y2="31" stroke="#9ca3af" stroke-width="1.6"/>
+      <circle cx="30" cy="35" r="9" fill="#ef4444"/><circle cx="90" cy="35" r="9" fill="#ef4444"/>
+      <circle cx="60" cy="35" r="7" fill="#111827" stroke="#6b7280" stroke-width="1.5"/>
+    </svg><b>CO₂</b></button>
+    <button class="modelBtn" data-m="h2o"><svg viewBox="0 0 120 70">
+      <line x1="38" y1="55" x2="60" y2="28" stroke="#9ca3af" stroke-width="3"/>
+      <line x1="82" y1="55" x2="60" y2="28" stroke="#9ca3af" stroke-width="3"/>
+      <circle cx="60" cy="28" r="9" fill="#ef4444"/>
+      <circle cx="36" cy="57" r="6" fill="#f8fafc" stroke="#64748b" stroke-width="1.2"/>
+      <circle cx="84" cy="57" r="6" fill="#f8fafc" stroke="#64748b" stroke-width="1.2"/>
+    </svg><b>H₂O</b></button>
+    <button class="modelBtn" data-m="o2"><svg viewBox="0 0 120 70">
+      <line x1="42" y1="35" x2="78" y2="35" stroke="#9ca3af" stroke-width="3"/>
+      <line x1="42" y1="30" x2="78" y2="30" stroke="#9ca3af" stroke-width="1.6"/>
+      <circle cx="40" cy="35" r="9" fill="#ef4444"/><circle cx="80" cy="35" r="9" fill="#ef4444"/>
+    </svg><b>O₂</b></button>
+    <button class="modelBtn" data-m="gluc"><svg viewBox="0 0 120 80">
+      <polygon points="60,14 100,33 100,58 60,77 20,58 20,33" fill="none" stroke="#9ca3af" stroke-width="3"/>
+      <polygon points="60,14 100,33 60,48 20,33" fill="none" stroke="#9ca3af" stroke-width="1.6" stroke-dasharray="4 3"/>
+      <circle cx="60" cy="14" r="6" fill="#ef4444"/>
+      <circle cx="100" cy="33" r="6" fill="#111827" stroke="#6b7280" stroke-width="1.2"/>
+      <circle cx="100" cy="58" r="6" fill="#111827" stroke="#6b7280" stroke-width="1.2"/>
+      <circle cx="60" cy="77" r="6" fill="#111827" stroke="#6b7280" stroke-width="1.2"/>
+      <circle cx="20" cy="58" r="6" fill="#111827" stroke="#6b7280" stroke-width="1.2"/>
+      <circle cx="20" cy="33" r="6" fill="#111827" stroke="#6b7280" stroke-width="1.2"/>
+      <circle cx="70" cy="34" r="4" fill="#f8fafc" stroke="#64748b" stroke-width="1"/>
+      <circle cx="90" cy="44" r="4" fill="#f8fafc" stroke="#64748b" stroke-width="1"/>
+    </svg><b>C₆H₁₂O₆</b></button>
+  </div>
+  <div class="legend">
+    <span><i style="background:#111827;border:1px solid #6b7280"></i>Carbon · كربون (C)</span>
+    <span><i style="background:#ef4444"></i>Oxygen · أكسجين (O)</span>
+    <span><i style="background:#f8fafc"></i>Hydrogen · هيدروجين (H)</span>
+  </div>
+  <div class="note" id="modelInfo" style="margin-top:10px">
+    <span class="en">👆 Tap a molecule to read about its atoms and bonds.</span>
+    <span class="ar">👆 اضغط على الجزيء لتقرأ عن ذراته وروابطه.</span>
+  </div>
+
+  <h3 style="margin-top:20px">🌾 <span class="en">Starch Formation</span> · <span class="ar">تكوين النشا</span></h3>
+  <p class="en">Glucose molecules join to form <strong>starch granules</strong> — sparingly soluble in cold water — stored in <strong>leaves, roots and stems</strong>.</p>
+  <p class="ar">تترابط جزيئات الجلوكوز مكوّنة <strong>حبيبات نشا</strong> — قليلة الذوبان في الماء البارد — تُختزن في <strong>الأوراق والجذور والسيقان</strong>.</p>
+  <div class="plants">
+    <div class="plantKind"><span style="font-size:1.6rem">🥔</span><b>Potato stems</b><em>سيقان البطاطس</em></div>
+    <span class="eqPlus">✓</span>
+    <div class="plantKind"><span style="font-size:1.6rem">🍠</span><b>Sweet potato roots</b><em>جذور البطاطا</em></div>
+  </div>
+
+  <div class="note gold" style="margin-top:6px">
+    <span class="en">💡 <strong>Give reason:</strong> oxygen gas is available in large quantities in gardens during the daytime — <strong>because of the oxygen released during photosynthesis</strong>.</span>
+    <span class="ar">💡 <strong>علّل:</strong> يتوفر غاز الأكسجين بكميات كبيرة في الحدائق أثناء النهار — <strong>بسبب انطلاق الأكسجين الناتج عن عملية البناء الضوئي</strong>.</span>
+  </div>
+
+  <h3 style="margin-top:20px">⚖️ <span class="en">Compare — the Two Stages</span> · <span class="ar">قارن — المرحلتان</span></h3>
+  <div class="cmpBox">
+    <table class="cmp">
+      <thead><tr><th></th><th><span class="en">☀️ Light-dependent · الضوئية</span></th><th><span class="en">🌙 Light-independent · اللاضوئية</span></th></tr></thead>
+      <tbody>
+        <tr><td><span class="en">Location</span><span class="ar">الموقع</span></td>
+          <td><span class="en">Grana thylakoids (contains chlorophyll)</span><span class="ar">أغشية الثايلاكويد بالجرانا (تحتوي كلوروفيل)</span></td>
+          <td><span class="en">Stroma (contains enzymes)</span><span class="ar">الستروما (يحتوي إنزيمات)</span></td>
+        </tr>
+        <tr><td><span class="en">Conditions</span><span class="ar">الشروط</span></td>
+          <td><span class="en">Light + water + chlorophyll</span><span class="ar">ضوء + ماء + كلوروفيل</span></td>
+          <td><span class="en">Hydrogen + CO₂ + energy + enzymes</span><span class="ar">هيدروجين + ثاني أكسيد كربون + طاقة + إنزيمات</span></td>
+        </tr>
+        <tr><td><span class="en">Products</span><span class="ar">النواتج</span></td>
+          <td><span class="en">O₂ (by-product) + hydrogen to stroma</span><span class="ar">أكسجين (منتج ثانوي) + هيدروجين للستروما</span></td>
+          <td><span class="en">Glucose (main product)</span><span class="ar">جلوكوز (المنتج الرئيسي)</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="quiz">
+    <p class="en"><strong>Q3:</strong> Which of the following is the balanced equation of photosynthesis?</p>
+    <p class="ar"><strong>س3:</strong> أي مما يلي يمثل المعادلة المتزنة للبناء الضوئي؟</p>
+    <div class="opts">
+      <button class="opt">CO₂ + H₂O → C₆H₁₂O₆ + O₂</button>
+      <button class="opt" data-ok>6CO₂ + 6H₂O →☀️ C₆H₁₂O₆ + 6O₂</button>
+      <button class="opt">6CO₂ + 6O₂ → C₆H₁₂O₆ + 6H₂O</button>
+      <button class="opt">C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O</button>
+    </div>
+    <div class="exp"><span class="en">✔️ 6CO₂ + 6H₂O →light/chlorophyll C₆H₁₂O₆ + 6O₂ — balanced: 6C · 12H · 18O on each side.</span><span class="ar">✔️ 6CO₂ + 6H₂O ←ضوء/كلوروفيل C₆H₁₂O₆ + 6O₂ — متزنة: 6كربون · 12هيدروجين · 18أكسجين في كل طرف.</span></div>
+  </div>
+</section>
+
+<section id="act" class="card reveal">
+  <div class="chead"><span class="cnum">07</span><span class="pg">Pages 244-245 · ص 244-245</span><div><h2><span class="en">Activity 2 — Importance of Chlorophyll & Light in Starch Formation</span><span class="ar">نشاط 2 — أهمية الكلوروفيل والضوء في تكوين النشا</span></h2></div></div>
+  <p class="en">We use a <strong>variegated leaf</strong> (green + white areas) and a <strong>green leaf partially covered with opaque tape</strong>, then test for starch using <strong>iodine solution</strong>.</p>
+  <p class="ar">نستخدم <strong>ورقة ملونة</strong> (مناطق خضراء وبيضاء) و<strong>ورقة خضراء غطّينا جزءًا منها بشريط معتم</strong>، ثم نكشف عن النشا باستخدام <strong>محلول اليود</strong>.</p>
+
+  <div class="steps">
+    <div class="step"><span class="snum">1</span><div><span class="sgr">تأكد من عمل البناء الضوئي</span><p class="en"><strong>Take a variegated leaf</strong> from a plant exposed to enough light.</p><p class="ar"><strong>خذ ورقة ملونة</strong> من نبات تعرّض للضوء مدة كافية.</p><span class="sgr en" style="color:var(--gold)">G.R. · To be sure it carried out photosynthesis and formed starch. · للتأكد من أنها قامت بالبناء الضوئي وتكوين النشا.</span></div></div>
+    <div class="step"><span class="snum">2</span><div><span class="sgr">كسر الجدر الخلوية</span><p class="en"><strong>Put the leaf in boiling water</strong> for 2 minutes.</p><p class="ar"><strong>ضع الورقة في ماء مغلي</strong> لمدة دقيقتين.</p><span class="sgr en" style="color:var(--gold)">G.R. · To break the cell walls · لكسر الجدر الخلوية.</span></div></div>
+    <div class="step"><span class="snum b">3</span><div><span class="sgr">إزالة اللون الأخضر</span><p class="en"><strong>Immerse the leaf in a test tube of ethyl alcohol (ethanol)</strong> heated in a water bath.</p><p class="ar"><strong>اغمر الورقة في أنبوبة اختبار بها كحول إيثيلي</strong> وسخّنها في حمام مائي.</p><span class="sgr en" style="color:var(--gold)">G.R. · To remove the green colour so it does not interfere with the iodine colour · لإزالة اللون الأخضر حتى لا يتداخل مع لون اليود.</span></div></div>
+    <div class="step"><span class="snum">4</span><div><span class="sgr">استعادة طراوة الورقة</span><p class="en"><strong>Take the leaf out and wash it with water</strong>.</p><p class="ar"><strong>أخرج الورقة واغسلها بالماء</strong>.</p><span class="sgr en" style="color:var(--gold)">G.R. · To make it soft again · لإعادتها طريّة.</span></div></div>
+    <div class="step"><span class="snum b">5</span><div><span class="sgr">اختبار النشا باليود</span><p class="en"><strong>Add drops of the yellowish-brown iodine solution</strong> with a dropper — the colour changes to <strong>dark blue only in the green areas</strong>.</p><p class="ar"><strong>أضف قطرات من محلول اليود الأصفر البني</strong> بالقطارة — يتغير اللون إلى <strong>الأزرق الداكن في المناطق الخضراء فقط</strong>.</p></div></div>
+    <div class="step"><span class="snum">6</span><div><span class="sgr">ورقة خضراء بشريط معتم</span><p class="en"><strong>Repeat using another green leaf</strong> — part of it is covered with <strong>opaque adhesive tape</strong> (blocks light).</p><p class="ar"><strong>كرر باستخدام ورقة خضراء أخرى</strong> — جزء منها مغطى <strong>بشريط لاصق معتم</strong> (يمنع الضوء).</p></div></div>
+  </div>
+
+  <h3 style="margin-top:20px">🧪 <span class="en">Try the Iodine Test</span> · <span class="ar">جرّب اختبار اليود</span></h3>
+  <div class="simBox">
+    <div class="leafLab">
+      <div class="leafCard">
+        <h4><span class="en">Variegated leaf · ورقة ملونة</span></h4>
+        <svg id="leafA" class="svga" viewBox="0 0 190 120">
+          <path class="leafPale" d="M22 62 C40 24 118 16 152 50 C176 72 160 96 120 94 C78 112 24 96 22 62 Z"/>
+          <path class="leafGreen" d="M118 40 C150 30 158 60 142 80 C128 92 106 88 118 40 Z"/>
+        </svg>
+      </div>
+      <div class="leafCard">
+        <h4><span class="en">Green leaf + opaque tape · ورقة خضراء + شريط معتم</span></h4>
+        <svg id="leafB" class="svgb" viewBox="0 0 190 120">
+          <path class="leafGreen2" d="M22 62 C40 24 118 16 152 50 C176 72 160 96 120 94 C78 112 24 96 22 62 Z"/>
+          <path class="strip" d="M60 34 L92 88 L108 84 L76 30 Z"/>
+        </svg>
+      </div>
+    </div>
+    <div class="labctrl">
+      <button class="btn" id="dropIodine">🧪 Drop iodine drops · أضف قطرات اليود</button>
+      <button class="btn ghost" id="leafReset">↺ Reset · إعادة</button>
+    </div>
+    <div class="note" id="leafObs" style="margin-top:6px">
+      <span class="en">👆 Drop the iodine and watch the green areas turn dark blue (starch present).</span>
+      <span class="ar">👆 أضف اليود ولاحظ تحول المناطق الخضراء للأزرق الداكن (يوجد نشا).</span>
+    </div>
+  </div>
+
+  <div class="note ok">
+    <span class="en">👁️ <strong>Observation:</strong> the iodine turns <strong>dark blue only in the green areas</strong>, and does NOT change colour in the white areas or under the opaque tape — <strong>no starch</strong> there.</span>
+    <span class="ar">👁️ <strong>الملاحظة:</strong> يتحول اليود إلى <strong>أزرق داكن في المناطق الخضراء فقط</strong>، ولا يتغير في المناطق البيضاء أو تحت الشريط المعتم — <strong>لا يوجد نشا</strong>.</span>
+  </div>
+  <div class="grid2" style="margin-top:14px">
+    <div class="tile"><span class="tag">⬜ White areas</span>
+      <p class="en">Do not carry out photosynthesis — <strong>no chlorophyll</strong> → no starch.</p>
+      <p class="ar">لا تقوم بالبناء الضوئي — <strong>لعدم وجود الكلوروفيل</strong> → لا يتكون نشا.</p></div>
+    <div class="tile"><span class="tag hot">🖤 Under opaque tape</span>
+      <p class="en">Does not carry out photosynthesis — <strong>no light</strong> → no starch.</p>
+      <p class="ar">لا تقوم بالبناء الضوئي — <strong>لعدم وجود الضوء</strong> → لا يتكون نشا.</p></div>
+  </div>
+  <div class="defBox">
+    <b class="dT">📌 Conclusion · الاستنتاج</b>
+    <p class="en"><strong>Chlorophyll</strong> is necessary for starch formation (activity of photosynthesis), and <strong>light</strong> is also necessary for starch formation.</p>
+    <p class="ar"><strong>الكلوروفيل</strong> ضروري لتكوين النشا، و<strong>الضوء</strong> ضروري أيضًا لتكوين النشا.</p>
+  </div>
+
+  <div class="quiz">
+    <p class="en"><strong>Q4:</strong> The figure shows a variegated leaf after the iodine test. Which statement is correct?</p>
+    <p class="ar"><strong>س4:</strong> يوضح الشكل ورقة ملونة بعد اختبار اليود. أي عبارة صحيحة؟</p>
+    <div class="figBox">
+      <div class="leafCard" style="flex:0 1 230px">
+        <svg viewBox="0 0 190 120" dir="ltr">
+          <path d="M22 62 C40 24 118 16 152 50 C176 72 160 96 120 94 C78 112 24 96 22 62 Z" fill="#b45309"/>
+          <path d="M118 40 C150 30 158 60 142 80 C128 92 106 88 118 40 Z" fill="#1e40af"/>
+          <text x="140" y="16" text-anchor="middle" font-size="9" fill="#fff" font-family="Space Grotesk">green → dark blue</text>
+          <text x="20" y="16" font-size="9" fill="#fff" font-family="Space Grotesk">white → yellow-brown</text>
+        </svg>
+      </div>
+    </div>
+    <div class="opts">
+      <button class="opt">Both areas turned dark blue · تحولت المنطقتان للأزرق الداكن</button>
+      <button class="opt" data-ok>The green areas turned dark blue and the white areas remained yellowish-brown · تحولت الخضراء للأزرق الداكن وبقيت البيضاء بنية مائلة للصفرة</button>
+      <button class="opt">The whole leaf remained yellow · بقيت الورقة كلها صفراء</button>
+      <button class="opt">White areas turned dark blue only · تحولت البيضاء فقط للأزرق الداكن</button>
+    </div>
+    <div class="exp"><span class="en">✔️ The green areas contain chlorophyll → photosynthesis → starch → dark blue with iodine. The white areas have no chlorophyll → no starch.</span><span class="ar">✔️ المناطق الخضراء تحتوي كلوروفيل ← بناء ضوئي ← نشا ← أزرق داكن مع اليود. والبيضاء لا يوجد بها كلوروفيل ← لا نشا.</span></div>
+  </div>
+</section>
+
+<section id="fact" class="card reveal">
+  <div class="chead"><span class="cnum">08</span><span class="pg">Pages 246-247 · ص 246-247</span><div><h2><span class="en">Factors Affecting the Rate of Photosynthesis & Vertical Farming</span><span class="ar">العوامل المؤثرة في معدل البناء الضوئي والزراعة الرأسية</span></h2></div></div>
+  <p class="en">Three main factors control the rate of photosynthesis. Move the sliders and watch the rate curve.</p>
+  <p class="ar">ثلاثة عوامل أساسية تتحكم في معدل البناء الضوئي. حرّك المنزلقات ولاحظ منحنى المعدل.</p>
+
+  <div class="fact">
+    <div class="factHead"><h4>🌡️ <span class="en">1 · Temperature</span> · <span class="ar">1 · درجة الحرارة</span></h4><span class="factVal" id="tVal">20 °C</span></div>
+    <input type="range" id="tRange" min="0" max="45" step="1" value="20" dir="ltr">
+    <svg id="tSvg" viewBox="0 0 420 130" dir="ltr"></svg>
+    <div class="factNote" id="tNote"><span class="en">👆 Move the slider.</span><span class="ar">👆 حرّك المنزلق.</span></div>
+  </div>
+
+  <div class="fact">
+    <div class="factHead"><h4>🫧 <span class="en">2 · Carbon dioxide concentration</span> · <span class="ar">2 · تركيز ثاني أكسيد الكربون</span></h4><span class="factVal" id="cVal">0.10 %</span></div>
+    <input type="range" id="cRange" min="0" max="0.2" step="0.005" value="0.1" dir="ltr">
+    <svg id="cSvg" viewBox="0 0 420 130" dir="ltr"></svg>
+    <div class="factNote" id="cNote"><span class="en">👆 Move the slider.</span><span class="ar">👆 حرّك المنزلق.</span></div>
+  </div>
+
+  <div class="fact">
+    <div class="factHead"><h4>💡 <span class="en">3 · Light intensity</span> · <span class="ar">3 · شدة الضوء</span></h4><span class="factVal" id="lVal">50 %</span></div>
+    <input type="range" id="lRange" min="0" max="100" step="1" value="50" dir="ltr">
+    <svg id="lSvg" viewBox="0 0 420 130" dir="ltr"></svg>
+    <div class="factNote" id="lNote"><span class="en">👆 Move the slider.</span><span class="ar">👆 حرّك المنزلق.</span></div>
+  </div>
+
+  <div class="note pur" style="margin-top:16px">
+    <span class="en">💦 Water, mineral salts and wind are <strong>also factors</strong> affecting the rate of photosynthesis.</span>
+    <span class="ar">💦 الماء والأملاح المعدنية والرياح <strong>أيضًا عوامل</strong> تؤثر في معدل البناء الضوئي.</span>
+  </div>
+
+  <h3 style="margin-top:20px">🏙️ <span class="en">Vertical Farming</span> · <span class="ar">الزراعة الرأسية</span></h3>
+  <p class="en">A modern technology used in modern cities — it <strong>simulates the conditions suitable for agriculture</strong> to carry out photosynthesis.</p>
+  <p class="ar">تكنولوجيا حديثة في المدن العصرية — <strong>تحاكي الظروف المناسبة للزراعة</strong> لإتمام عملية البناء الضوئي.</p>
+  <div class="grid3" style="margin-top:10px">
+    <div class="tile"><span class="tag">💡 Artificial lighting</span>
+      <p class="en">Provides the light needed for the light-dependent stage.</p>
+      <p class="ar">توفر الضوء اللازم للمرحلة الضوئية.</p></div>
+    <div class="tile"><span class="tag ok">💧 Hydroponics</span>
+      <p class="en">Nutrients dissolved in water — no soil needed.</p>
+      <p class="ar">مغذيات ذائبة في الماء — بدون تربة.</p></div>
+    <div class="tile"><span class="tag gold">🌽 Multi-storey buildings</span>
+      <p class="en">Producing vegetables & fruits in skyscrapers.</p>
+      <p class="ar">إنتاج الخضروات والفواكه في ناطحات السحاب.</p></div>
+  </div>
+  <div class="defBox">
+    <b class="dT">⭐ Importance · الأهمية</b>
+    <p class="en">Provides a <strong>sustainable solution</strong> to the problem of the shortage of arable agricultural land.</p>
+    <p class="ar">تقدم <strong>حلًا مستدامًا</strong> لمشكلة نقص الأراضي الزراعية الصالحة للزراعة.</p>
+  </div>
+
+  <div class="quiz">
+    <p class="en"><strong>Q5:</strong> How does the lack of light affect the plant?</p>
+    <p class="ar"><strong>س5:</strong> كيف يؤثر نقص الضوء على النبات؟</p>
+    <div class="opts">
+      <button class="opt">Increases the rate of photosynthesis · يزيد معدل البناء الضوئي</button>
+      <button class="opt" data-ok>Decreases the light-dependent reactions → less energy → less glucose → less growth · يقلل التفاعلات الضوئية ← قلة الطاقة ← قلة الجلوكوز ← قلة النمو</button>
+      <button class="opt">Only stops the light-independent stage · يوقف المرحلة اللا ضوئية فقط</button>
+      <button class="opt">Has no effect · لا تأثير له</button>
+    </div>
+    <div class="exp"><span class="en">✔️ Lack of light → the light-dependent stage slows → the energy for the light-independent stage decreases → glucose (food) production falls → plant growth decreases.</span><span class="ar">✔️ نقص الضوء ← تباطؤ المرحلة الضوئية ← نقص الطاقة للمرحلة اللا ضوئية ← قلة إنتاج الجلوكوز (الغذاء) ← انخفاض نمو النبات.</span></div>
+  </div>
+</section>
+
+<section id="recap" class="card reveal">
+  <div class="chead"><span class="cnum">🔑</span><div><h2><span class="en">Quick Recap — Key Takeaways</span><span class="ar">خلاصة سريعة — أهم النقاط</span></h2></div></div>
+  <div class="badges" style="margin:0;justify-content:flex-start">
+    <span class="badge"><span class="en">Excited atom: quantum of energy raises the electron level</span><span class="ar">الذرة المثارة: كمية الطاقة ترفع مستوى الإلكترون</span></span>
+    <span class="badge"><span class="en">Light-dependent in grana</span><span class="ar">التفاعلات الضوئية في الجرانا</span></span>
+    <span class="badge"><span class="en">Light-independent in stroma</span><span class="ar">اللاضوئية في الستروما</span></span>
+    <span class="badge"><span class="en">6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂</span><span class="ar">المعادلة المتزنة للبناء الضوئي</span></span>
+    <span class="badge"><span class="en">Iodine → dark blue if starch formed</span><span class="ar">اليود ← أزرق داكن عند تكوّن النشا</span></span>
+    <span class="badge"><span class="en">Chlorophyll & light are both essential</span><span class="ar">الكلوروفيل والضوء كلاهما ضروري</span></span>
+    <span class="badge"><span class="en">Temperature · CO₂ · Light control the rate</span><span class="ar">الحرارة · ثاني أكسيد الكربون · الضوء تتحكم في المعدل</span></span>
+    <span class="badge"><span class="en">Vertical farming = artificial light + hydroponics</span><span class="ar">الزراعة الرأسية = إضاءة اصطناعية + هيدروبونيكس</span></span>
+  </div>
+  <div class="note gold" style="margin-top:16px">
+    <span class="en">💡 Memory trick: "Light paints the food" — the light-dependent stage captures the energy in the grana, and the light-independent stage uses enzymes in the stroma to settle H + CO₂ into glucose.</span>
+    <span class="ar">💡 حيلة للحفظ: «الضوء يطلّي الغذاء» — المرحلة الضوئية تلتقط الطاقة في الجرانا، والمرحلة اللا ضوئية تستخدم إنزيمات الستروما لجمع الهيدروجين مع ثاني أكسيد الكربون في جلوكوز.</span>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="verified">🛡️ <span class="en">Reviewed & signed: Dr. Wael Aboagiza</span><span class="ar">مراجعة وتوقيع: د. وائل أبو عجيزة</span> <span style="font-family:'Space Grotesk'">#Dr_Wael_Aboagiza</span></div>
+  <p style="margin-top:14px;font-size:.82rem"><span class="en">Unit 3 · Photosynthesis Part 2 | Mechanism & Factors</span><span class="ar">الوحدة 3 · الجزء الثاني | الميكانيزم والعوامل</span></p>
+</footer>
+<button id="topBtn" title="Top · لفوق">⬆</button>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+addEventListener('scroll',()=>{const h=document.documentElement,p=h.scrollTop/(h.scrollHeight-h.clientHeight);
+ $('#progress').style.width=(p*100)+'%';$('#railFill').style.height=(p*100)+'%';$('#railVal').textContent=Math.round(p*100)+'°';
+ $('#topBtn').classList.toggle('show',h.scrollTop>600);},{passive:true});
+$('#topBtn').onclick=()=>scrollTo({top:0,behavior:'smooth'});
+$('#themeBtn').onclick=()=>{const l=document.body.dataset.theme==='light';document.body.dataset.theme=l?'':'light';$('#themeBtn').textContent=l?'☀️':'';};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}}),{threshold:.1});
+$$('.reveal').forEach(el=>io.observe(el));
+const spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)$$('nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));}),{rootMargin:'-35% 0px -55% 0px'});
+$$('section[id]').forEach(s=>spy.observe(s));
+document.addEventListener('click',e=>{const b=e.target.closest('.opt');if(!b)return;
+ const q=b.closest('.quiz');if(!q||q.dataset.done)return;
+ if(b.dataset.ok!==undefined){b.classList.add('ok');q.dataset.done=1;const x=q.querySelector('.exp');x&&x.classList.add('show');}
+ else{b.classList.add('bad');setTimeout(()=>b.classList.remove('bad'),450);}});
+const hc=$('#heroCv'),hx=hc.getContext('2d');let HP=[];
+function hSize(){hc.width=hc.offsetWidth;hc.height=hc.offsetHeight;HP=Array.from({length:70},()=>({x:Math.random()*hc.width,y:Math.random()*hc.height,r:1+Math.random()*2.5,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6,c:Math.random()>.5?'34,211,238':'74,222,128'}));}
+hSize();addEventListener('resize',hSize);
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function heroLoop(){if(!reduced){hx.clearRect(0,0,hc.width,hc.height);HP.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>hc.width)p.vx*=-1;if(p.y<0||p.y>hc.height)p.vy*=-1;hx.beginPath();hx.fillStyle=`rgba(${p.c},.5)`;hx.arc(p.x,p.y,p.r,0,7);hx.fill();});}requestAnimationFrame(heroLoop);}
+heroLoop();
+
+/* Excited atom */
+let atomT=null;
+$('#atomGive').onclick=()=>{
+ if($('#atomSvg').classList.contains('exc'))return;
+ $('#atomSvg').classList.add('exc');
+ $('#atomObs').innerHTML='<span class="en">⚡ The electron gained a <strong>quantum of energy</strong> — the atom became <strong>excited & unstable</strong>.</span><span class="ar">⚡ اكتسب الإلكترون <strong>كمية طاقة</strong> — أصبحت الذرة <strong>مثارة وغير مستقرة</strong>.</span>';
+ clearTimeout(atomT);atomT=setTimeout(()=>{
+  $('#atomSvg').classList.remove('exc');$('#atomSvg').classList.add('ph');
+  $('#atomObs').innerHTML='<span class="en">🌀 The electron quickly <strong>returned to its original level</strong> and released the quantum — the atom is <strong>stable</strong> again.</span><span class="ar">🌀 عاد الإلكترون سريعًا <strong>لمستواه الأصلي</strong> وأطلق الكمية — عادت الذرة <strong>مستقرة</strong>.</span>';
+  setTimeout(()=>$('#atomSvg').classList.remove('ph'),1100);
+ },1700);
+};
+$('#atomReset').onclick=()=>{clearTimeout(atomT);$('#atomSvg').classList.remove('exc','ph');
+ $('#atomObs').innerHTML='<span class="en">👆 Press the button — the electron jumps to a higher level and the atom becomes excited.</span><span class="ar">👆 اضغط الزر — الإلكترون يقفز لمستوى أعلى وتبقى الذرة مثارة.</span>';};
+
+/* Mechanism stepper */
+const STEPS=[
+ {en:'<strong>Chlorophyll absorbs the blue & red light rays</strong> and becomes active (excited).',ar:'<strong>يمتص الكلوروفيل الأشعة الزرقاء والحمراء</strong> ويصبح نشطًا (مثارًا).',st:'☀️ Light-dependent · ضوئية — في الجرانا/أغشية الثايلاكويد'},
+ {en:'Part of the energy <strong>splits water into oxygen + hydrogen</strong> — oxygen goes to the air (by-product), hydrogen moves to the stroma.',ar:'جزء من الطاقة <strong>يفكك الماء إلى أكسجين + هيدروجين</strong> — الأكسجين يخرج للهواء (منتج ثانوي)، والهيدروجين ينتقل للستروما.',st:'☀️ Light-dependent · ضوئية'},
+ {en:'The <strong>remaining energy</strong> of the excited chlorophyll is used in the light-independent stage.',ar:'<strong>الطاقة المتبقية</strong> للكلوروفيل النشط تُستخدم في المرحلة اللا ضوئية.',st:'☀️ Light-dependent · ضوئية'},
+ {en:'<strong>Hydrogen</strong> (carried on a thylakoid compound) <strong>moves to the stroma</strong>.',ar:'<strong>الهيدروجين</strong> (المحمول على مركب بأغشية الثايلاكويد) <strong>ينتقل إلى الستروما</strong>.',st:'🌙 Light-independent · لاضوئية — في الستروما'},
+ {en:'Hydrogen + <strong>CO₂</strong> + energy (from the light-dependent stage) + <strong>enzymes</strong> of the stroma → <strong>glucose C₆H₁₂O₆</strong>.',ar:'الهيدروجين + <strong>ثاني أكسيد الكربون</strong> + طاقة (من المرحلة الضوئية) + <strong>إنزيمات</strong> الستروما ← <strong>جلوكوز C₆H₁₂O₆</strong>.',st:'🌙 Light-independent · لاضوئية'}
+];
+const PILL=()=>$$('#stepsPill i');
+let si=0,stIntv=null;
+function stRender(i){
+ PILL().forEach((x,k)=>x.classList.toggle('on',k<=i));
+ $('#sEN').innerHTML=STEPS[i].en;$('#sAR').innerHTML=STEPS[i].ar;
+}
+stRender(0);
+function stShow(i){si=(i+STEPS.length)%STEPS.length;stRender(si);}
+$('#stNext').onclick=()=>stShow(si+1);
+$('#stPrev').onclick=()=>stShow(si-1);
+$('#stPlay').onclick=()=>{
+ if(stIntv){clearInterval(stIntv);stIntv=null;$('#stPlay').textContent='▶ Play · شغّل';return;}
+ si=0;stRender(0);
+ $('#stPlay').textContent='⏸ Stop · إيقاف';
+ stIntv=setInterval(()=>{if(si>=STEPS.length-1){clearInterval(stIntv);stIntv=null;$('#stPlay').textContent='▶ Play · شغّل';return;}stShow(si+1);},2000);
+};
+
+/* Equation builder */
+const EQ={co2:0,h2o:0};
+function eqPaint(){
+ $('#cCO2').textContent=EQ.co2;$('#cH2O').textContent=EQ.h2o; $('#cGluc').textContent=EQ.gluc||0;$('#cO2').textContent=EQ.o2||0;
+ const lC=EQ.co2,rC=EQ.gluc?6:0, lH=EQ.h2o*2,rH=EQ.gluc?12:0, lO=EQ.co2*2+EQ.h2o,rO=EQ.gluc?(6+EQ.o2*2):0;
+ $('#atC').querySelector('b').textContent=lC+' / '+rC;
+ $('#atH').querySelector('b').textContent=lH+' / '+rH;
+ $('#atO').querySelector('b').textContent=lO+' / '+rO;
+ ['atC','atH','atO'].forEach((id,i)=>{const v=[rC&&lC===rC,rH&&lH===rH,rO&&lO===rO][i];$('#'+id).classList.toggle('bal',!!v);});
+ $('#eqFull').disabled=!(EQ.co2>=6&&EQ.h2o>=6);
+}
+$('#eqAdd').onclick=()=>{if(EQ.co2>=6)EQ.co2=6;else EQ.co2++;if(EQ.h2o>=6)EQ.h2o=6;else EQ.h2o++;eqPaint();
+ $('#eqObs').innerHTML='<span class="en">Added a molecule of CO₂ and H₂O. Continue until 6 CO₂ and 6 H₂O, then unlock.</span><span class="ar">أضفت جزيء CO₂ وجزيء H₂O. واصل حتى 6 CO₂ و 6 H₂O ثم افتح.</span>';};
+$('#eqFull').onclick=()=>{EQ.gluc=1;EQ.o2=6;eqPaint();
+ ['mCO2','mH2O','mGluc','mO2'].forEach(id=>{const m=$('#'+id);m.style.borderColor='var(--ok)';m.style.boxShadow='0 0 0 1px var(--ok)';});
+ $('#eqObs').innerHTML='<span class="en">⚖️ <strong>Balanced!</strong> 6CO₂ + 6H₂O →☀️ C₆H₁₂O₆ + 6O₂ — atoms: 6C · 12H · 18O on each side.</span><span class="ar">⚖️ <strong>متزنة!</strong> — 6CO₂ + 6H₂O ←ضوء C₆H₁₂O₆ + 6O₂ — الذرات: 6كربون · 12هيدروجين · 18أكسجين في كل طرف.</span>';};
+$('#eqReset').onclick=()=>{EQ.co2=0;EQ.h2o=0;delete EQ.gluc;delete EQ.o2;eqPaint();
+ ['mCO2','mH2O','mGluc','mO2'].forEach(id=>{const m=$('#'+id);m.style.borderColor='';m.style.boxShadow='';});
+ $('#eqObs').innerHTML='<span class="en">👆 Add reactant molecules, then press <strong>Unlock 6:6</strong> to balance the equation.</span><span class="ar">👆 أضف جزيئات المتفاعلات، ثم اضغط <strong>افتح ٦:٦</strong> لموازنة المعادلة.</span>';};
+eqPaint();
+
+/* Models */
+const MODELINFO={
+ co2:['🟢 <strong>CO₂ (Carbon dioxide):</strong> 1 carbon atom (black) + 2 oxygen atoms (red) — a linear molecule with double bonds.','🟢 <strong>CO₂ (ثاني أكسيد الكربون):</strong> ذرة كربون واحدة (سوداء) + ذرتا أكسجين (حمراوان) — جزيء خطي بروابط مزدوجة.'],
+ h2o:['💧 <strong>H₂O (Water):</strong> 1 oxygen atom (red) + 2 hydrogen atoms (white) — a bent molecule with single bonds.','💧 <strong>H₂O (الماء):</strong> ذرة أكسجين (حمراء) + ذرتا هيدروجين (بيضاوان) — جزيء منحنٍ بروابط أحادية.'],
+ o2:['🟥 <strong>O₂ (Oxygen):</strong> 2 oxygen atoms joined by a double bond — released as a by-product.','🟥 <strong>O₂ (الأكسجين):</strong> ذرتا أكسجين مرتبطتان برابطة مزدوجة — يُطلق كمنتج ثانوي.'],
+ gluc:['🍬 <strong>C₆H₁₂O₆ (Glucose):</strong> 6 carbons + 12 hydrogens + 6 oxygens — the food (main product) built in the stroma.','🍬 <strong>C₆H₁₂O₆ (الجلوكوز):</strong> 6 كربون + 12 هيدروجين + 6 أكسجين — الغذاء (المنتج الرئيسي) المُكوَّن في الستروما.']
+};
+$$('.modelBtn').forEach(b=>b.onclick=()=>{$$('.modelBtn').forEach(x=>x.classList.remove('active'));b.classList.add('active');
+ $('#modelInfo').innerHTML='<span class="en">'+MODELINFO[b.dataset.m][0]+'</span><span class="ar">'+MODELINFO[b.dataset.m][1]+'</span>';});
+
+/* Leaf iodine sim */
+$('#dropIodine').onclick=()=>{
+ $('#leafA').classList.add('dropped');$('#leafB').classList.add('dropped');
+ $('#leafObs').innerHTML='<span class="en">🧪 The <strong>green areas turned dark blue</strong> (starch present), while the white areas and the area under the opaque tape stayed <strong>yellowish-brown</strong> (no starch).</span><span class="ar">🧪 تحولت <strong>المناطق الخضراء للأزرق الداكن</strong> (يوجد نشا)، بينما بقيت المناطق البيضاء والمنطقة تحت الشريط المعتم <strong>بنية مائلة للصفرة</strong> (لا نشا).</span>';
+};
+$('#leafReset').onclick=()=>{$('#leafA').classList.remove('dropped');$('#leafB').classList.remove('dropped');
+ $('#leafObs').innerHTML='<span class="en">👆 Drop the iodine and watch the green areas turn dark blue (starch present).</span><span class="ar">👆 أضف اليود ولاحظ تحول المناطق الخضراء للأزرق الداكن (يوجد نشا).</span>';};
+
+/* Factors */
+function buildGraph(svgId,min,max,fopt,rate,draw){
+ const svg=$(svgId),W=420,H=130,pl=40,pr=16,pt=16,pb=26;
+ const xw=W-pl-pr, yh=H-pt-pb;
+ const X=v=>pl+(v-min)/(max-min)*xw, Y=r=>H-pb-(Math.max(0,Math.min(100,r))/100)*yh;
+ let pts='';const N=50;
+ for(let i=0;i<=N;i++){const v=min+(max-min)*i/N;pts+=(i?',':'')+X(v).toFixed(1)+','+Y(rate(v)).toFixed(1);}
+ let h='<line class="grAxis" x1="'+pl+'" y1="'+(H-pb)+'" x2="'+W+'" y2="'+(H-pb)+'"/>';
+ h+='<text class="grLab" x="'+pl+'" y="'+(H-10)+'">0</text>';
+ h+='<text class="grLab" x="'+(W-40)+'" y="'+(H-10)+'">'+maxToLabel(svgId,max)+'</text>';
+ h+='<text class="grLab" x="'+(pl)+'" y="'+(pt+8)+'">Rate</text>';
+ h+='<line class="grOpt" x1="'+X(fopt)+'" y1="'+pt+'" x2="'+X(fopt)+'" y2="'+(H-pb)+'"/>';
+ h+='<text class="grLab" x="'+(X(fopt)-14)+'" y="'+(pt+10)+'" style="fill:var(--gold)">★ Optimum · الأمثل</text>';
+ h+='<polyline class="grLine" points="'+pts+'"/>';
+ h+='<circle class="grDot" id="'+(svgId.replace('#',''))+'Dot" cx="'+X(fopt)+'" cy="'+Y(rate(fopt))+'" r="6"/>';
+ svg.innerHTML=h;
+}
+function maxToLabel(sid,max){if(sid==='#tSvg')return '45 °C';if(sid==='#cSvg')return '0.2 %';return '100 %';}
+function moveDot(svgId,rangeId,val,outId,noteId,rate,fopt,good){
+ const svg=$(svgId),W=420,H=130,pl=40,pr=16,pt=16,pb=26;
+ const xw=W-pl-pr,yh=H-pt-pb;
+ const min=parseFloat($(rangeId).min),max=parseFloat($(rangeId).max);
+ const X=v=>pl+(v-min)/(max-min)*xw,Y=r=>H-pb-(Math.max(0,Math.min(100,r))/100)*yh;
+ const dot=svg.querySelector('.grDot');if(dot){dot.setAttribute('cx',X(val).toFixed(1));dot.setAttribute('cy',Y(rate(val)).toFixed(1));}
+ const r=Math.round(rate(val));
+ const note=$(noteId);
+ note.className='factNote'+(r<10?' stop':r>=99?' good':'');
+ if(noteId==='#tNote'){
+  note.innerHTML='<span class="en">'+(r<10?(val<=fopt?'Very low temperature — photosynthesis has <strong>not started yet</strong>; it rises when the temperature increases above 0°C.':'Temperature too high — photosynthesis <strong>stops</strong> (decreased gradually after point X).'):(val<=fopt?'Above 0°C, as temperature rises the rate <strong>increases</strong> up to the optimum (20°C = point X).':'Past the optimum X (20°C), the rate <strong>decreases</strong> gradually until it stops.'))+'</span><span class="ar">'+(r<10?(val<=fopt?'حرارة منخفضة جدًا — البناء الضوئي <strong>لم يبدأ بعد</strong>؛ يبدأ في الارتفاع عند تجاوز 0°م.':'ارتفاع شديد — يتوقف البناء الضوئي (انخفض تدريجيًا بعد النقطة X).'):(val<=fopt?'فوق 0°م وبزيادة الحرارة يزداد المعدل <strong>حتى</strong> الحد الأمثل (20°م = النقطة X).':'بعد الحد الأمثل X (20°م) يبدأ المعدل <strong>في الانخفاض</strong> تدريجيًا حتى يتوقف.'))+'</span>';
+ }else if(noteId==='#cNote'){
+  note.innerHTML='<span class="en">'+(val>=fopt?'Rate <strong>stabilizes</strong> at the optimum (0.1% = point Y).':'CO₂ concentration <strong>increasing the rate</strong>.')+'</span><span class="ar">'+(val>=fopt?'يثبت المعدل عند الحد الأمثل (0.1% = النقطة Y).':'تركيز ثاني أكسيد الكربون <strong>يزيد المعدل</strong>.')+'</span>';
+ }else{
+  note.innerHTML='<span class="en">'+(val>=fopt?'Rate <strong>stabilizes</strong> at the optimal intensity (point Z).':'Light intensity <strong>increasing the rate</strong>.')+'</span><span class="ar">'+(val>=fopt?'يثبت المعدل عند الشدة المثلى (النقطة Z).':'شدة الضوء <strong>تزيد المعدل</strong>.')+'</span>';
+ }
+}
+const F={
+ t:{min:0,max:45,opt:20,rate:v=>v<=20?v/20*100:Math.max(0,100-(v-20)/22*100)},
+ c:{min:0,max:0.2,opt:0.1,rate:v=>v>=0.1?100:v/0.1*100},
+ l:{min:0,max:100,opt:50,rate:v=>v>=50?100:v/50*100}
+};
+buildGraph('#tSvg',0,45,20,F.t.rate);buildGraph('#cSvg',0,0.2,0.1,F.c.rate);buildGraph('#lSvg',0,100,50,F.l.rate);
+function bind(rid,sid,oid,nid,f){
+ const r=$(rid);function up(){const v=parseFloat(r.value);
+  if(oid==='#tVal')$(oid).textContent=v+' °C';
+  else if(oid==='#cVal')$(oid).textContent=v.toFixed(2)+' %';
+  else $(oid).textContent=v+' %';
+  moveDot(sid,rid,v,oid,nid,f.rate,f.opt);
+ }
+ r.addEventListener('input',up);up();
+}
+bind('#tRange','#tSvg','#tVal','#tNote',F.t);
+bind('#cRange','#cSvg','#cVal','#cNote',F.c);
+bind('#lRange','#lSvg','#lVal','#lNote',F.l);
+
+(function(){
+try{
+const KEY='l5sound';
+let on=true;try{on=localStorage.getItem(KEY)!=='0'}catch(e){}
+const AU={};
+function au(n){return AU[n]||(AU[n]=new Audio('assets/sounds/'+n+'.mp3'))}
+function play(n,v){if(!on)return;try{const a=au(n);a.volume=v;a.currentTime=0;a.play().catch(()=>{})}catch(e){}}
+document.addEventListener('click',e=>{
+ const t=e.target;if(!t||!t.closest)return;
+ if(t.closest('#soundBtn'))return;
+ const opt=t.closest('.opt');
+ if(opt){const q=opt.closest('.quiz');
+  if(q&&!q.dataset.done){setTimeout(()=>{if(opt.classList.contains('ok'))play('success',.4);else if(opt.classList.contains('bad'))play('error',.35)},0);}
+  return;}
+ if(t.closest('#atomReset,#eqReset,#leafReset,#stPrev,#stNext')){play('reset',.35);return;}
+ if(t.closest('#atomGive,#eqAdd,#eqFull,#stPlay,#dropIodine,.modelBtn')){play('lab-click',.25);}
+},{capture:true});
+const tb=$('#themeBtn');if(tb){const b=document.createElement('button');b.id='soundBtn';b.type='button';b.title='Sound · الصوت';
+ const paint=()=>{b.textContent=on?'🔊':'🔇'};paint();tb.parentNode.insertBefore(b,tb.nextSibling);
+ b.addEventListener('click',()=>{on=!on;try{localStorage.setItem(KEY,on?'1':'0')}catch(e){}paint();if(on)play('lab-click',.25);});}
+}catch(e){}
+})();
+</script>
+</body>
+</html>
